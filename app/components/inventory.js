@@ -1,35 +1,40 @@
 import React, { Component } from 'react';
 
 import {
-  StyleSheet,
+  View,
   Text,
-  View
+  TextInput,
+  StyleSheet,
 } from 'react-native';
 
-export default class Character extends Component {
+export default class Inventory extends Component {
   constructor() {
     super();
-    this.state = {stats: statFixture};
+    this.state = {
+      items: [
+        {name: 'Wooden sword', effect: 'Combat + 1'}
+      ]
+    };
   }
 
   render() {
-    let characterStats = this.state.stats.map((stat, i) => (
-      <StatRow name={stat.name} value={stat.value} key={i} />
+    let inventory = this.state.items.map((item, i) => (
+      <ItemRow name={item.name} value={item.effect} key={i} />
     ));
     return (
       <View style={styles.container}>
         <View stlye={styles.headerRow}>
           <Text style={styles.headerText}>
-            Character
+            Inventory
           </Text>
         </View>
-        {characterStats}
+        {inventory}
       </View>
     );
   }
 }
 
-const StatRow = props => (
+const ItemRow = props => (
   <View style={styles.containerRow}>
     <View style={styles.rowName}>
       <Text style={styles.text}>
@@ -55,15 +60,13 @@ const styles = StyleSheet.create({
   },
   containerRow: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
+    justifyContent: 'space-between'
   },
   rowName: {
     flexDirection: 'row',
-    flex: 1,
   },
   rowValue: {
     flexDirection: 'row',
-    flex: 2
   }
   ,
   text: {
@@ -71,22 +74,3 @@ const styles = StyleSheet.create({
     fontSize: 20
   }
 });
-
-const statFixture = [
-  {name: 'Name', value: 'Gerald Littlefoot'},
-  {name: 'Profession', value: 'Wayfarer'},
-  {name: 'Rank', value: 1},
-  {name: 'Defence', value: 5},
-  {name: 'Stamina', value: 12},
-  {name: 'Charisma', value: 5},
-  {name: 'Combat', value: 5},
-  {name: 'Magic', value: 5},
-  {name: 'Sanctity', value: 5},
-  {name: 'Scouting', value: 5},
-  {name: 'Thievery', value: 5},
-  {name: 'God', value: 'None'},
-  {name: 'Money', value: '6 shards'},
-  {name: 'Titles and Honours', value: 'None'},
-  {name: 'Blessings', value: 'None'},
-  {name: 'Resurrection Arrangements', value: 'None'}
-];
