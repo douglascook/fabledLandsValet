@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 import {
   StyleSheet,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   ,
   text: {
     backgroundColor: 'whitesmoke',
-    fontSize: 20
+    fontSize: 18
   }
 });
 
