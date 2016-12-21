@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-
+import React, { Component } from 'react';
 import {
   View,
   Text,
@@ -7,18 +6,21 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import Character from './character';
+
 export default class Inventory extends Component {
   constructor() {
     super();
     this.state = {
       items: [
-        {name: 'Wooden sword', effect: 'Combat + 1'}
-      ]
+        { name: 'Wooden sword', effect: 'Combat + 1' },
+      ],
     };
   }
 
+  // TODO add propTypes validation to remove warning about navigate
   render() {
-    let inventory = this.state.items.map((item, i) => (
+    const inventory = this.state.items.map((item, i) => (
       <ItemRow name={item.name} value={item.effect} key={i} />
     ));
     return (
@@ -29,6 +31,9 @@ export default class Inventory extends Component {
           </Text>
         </View>
         {inventory}
+        <Text onPress={() => this.props.navigate('pop')}>
+          Go to character
+        </Text>
       </View>
     );
   }
@@ -56,21 +61,20 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 30,
     backgroundColor: 'steelblue',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   containerRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   rowName: {
     flexDirection: 'row',
   },
   rowValue: {
     flexDirection: 'row',
-  }
-  ,
+  },
   text: {
     backgroundColor: 'whitesmoke',
-    fontSize: 20
-  }
+    fontSize: 20,
+  },
 });

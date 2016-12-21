@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-
 import {
   StyleSheet,
   Text,
   View
 } from 'react-native';
+
+import Inventory from './inventory';
 
 export default class Character extends Component {
   constructor() {
@@ -24,6 +25,11 @@ export default class Character extends Component {
           </Text>
         </View>
         {characterStats}
+        <Text onPress={() => this.props.navigate(
+          'push', { key: 'about', component: Inventory })}
+        >
+          Go to inventory
+        </Text>
       </View>
     );
   }
