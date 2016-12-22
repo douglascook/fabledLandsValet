@@ -5,7 +5,11 @@ import {
 } from 'react-native';
 
 import styles from '../styles';
-import { SingleItemRow } from './generic';
+import {
+  SingleItemRow,
+  NavRow,
+} from './generic';
+
 
 export default class Inventory extends Component {
   constructor() {
@@ -17,7 +21,6 @@ export default class Inventory extends Component {
     };
   }
 
-  // TODO add propTypes validation to remove warning about navigate
   render() {
     const inventory = this.state.items.map((item, i) => (
       <SingleItemRow name={item.name} value={item.effect} key={i} />
@@ -28,12 +31,8 @@ export default class Inventory extends Component {
           Inventory
         </Text>
         {inventory}
-        <View style={styles.navRow}>
-          <Text style={styles.navText}
-                onPress={() => this.props.navigate('pop')}>
-            Go to character
-          </Text>
-        </View>
+        <NavRow onPress={() => this.props.navigate('pop')}
+                text="Go to character"/>
       </View>
     );
   }

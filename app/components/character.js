@@ -5,8 +5,13 @@ import {
 } from 'react-native';
 
 import Inventory from './inventory';
-import { SingleItemRow } from './generic';
+import {
+  SingleItemRow,
+  NavRow,
+} from './generic';
+
 import styles from '../styles';
+
 
 export default class Character extends Component {
   constructor() {
@@ -15,26 +20,26 @@ export default class Character extends Component {
   }
 
   render() {
-    let characterStats = this.state.stats.map((stat, i) => (
+    const characterStats = this.state.stats.map((stat, i) => (
       <SingleItemRow name={stat.name} value={stat.value} key={i} />
     ));
+    const nextRoute = {
+      key: 'inventory',
+      component: Inventory,
+    };
     return (
       <View style={styles.container}>
         <Text style={styles.headerText}>
           Character
         </Text>
         {characterStats}
-        <View style={styles.navRow}>
-          <Text style={styles.navText}
-                onPress={() => this.props.navigate(
-                  'push', { key: 'about', component: Inventory })}>
-            Go to inventory
-          </Text>
-        </View>
+        <NavRow onPress={() => this.props.navigate('push', nextRoute)}
+                text="Go to inventory"/>
       </View>
     );
   }
 }
+
 
 const statFixture = [
   { name: 'Name', value: 'Gerald Littlefoot' },

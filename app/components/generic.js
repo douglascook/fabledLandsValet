@@ -6,7 +6,7 @@ import {
 import styles from '../styles';
 
 
-const SingleItemRow = props => (
+export const SingleItemRow = props => (
   <View style={styles.containerRow}>
     <View style={styles.rowName}>
       <Text style={styles.text}>
@@ -21,4 +21,11 @@ const SingleItemRow = props => (
   </View>
 );
 
-export { SingleItemRow };
+
+export const NavRow = props => (
+  <View style={styles.navRow}>
+    <Text style={styles.navText} onPress={props.onPress}>
+      {props.text}
+    </Text>
+  </View>
+);
