@@ -3,29 +3,24 @@ import {
   Text,
   View,
 } from 'react-native';
+import { connect } from 'react-redux';
 
-import Inventory from './inventory';
+import InventoryScreen from './inventory';
 import {
   SingleItemRow,
   NavRow,
 } from './generic';
-
 import styles from '../styles';
 
 
-export default class Character extends Component {
-  constructor() {
-    super();
-    this.state = { stats: statFixture };
-  }
-
+class Character extends Component {
   render() {
-    const characterStats = this.state.stats.map((stat, i) => (
+    const characterStats = this.props.stats.map((stat, i) => (
       <SingleItemRow name={stat.name} value={stat.value} key={i} />
     ));
     const nextRoute = {
       key: 'inventory',
-      component: Inventory,
+      component: InventoryScreen,
     };
     return (
       <View style={styles.container}>
@@ -40,22 +35,12 @@ export default class Character extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return { stats: state.stats };
+};
 
-const statFixture = [
-  { name: 'Name', value: 'Gerald Littlefoot' },
-  { name: 'Profession', value: 'Wayfarer' },
-  { name: 'Rank', value: 1 },
-  { name: 'Defence', value: 5 },
-  { name: 'Stamina', value: 12 },
-  { name: 'Charisma', value: 5 },
-  { name: 'Combat', value: 5 },
-  { name: 'Magic', value: 5 },
-  { name: 'Sanctity', value: 5 },
-  { name: 'Scouting', value: 5 },
-  { name: 'Thievery', value: 5 },
-  { name: 'God', value: 'None' },
-  { name: 'Money', value: '6 shards' },
-  { name: 'Titles and Honours', value: 'None' },
-  { name: 'Blessings', value: 'None' },
-  { name: 'Resurrection Arrangements', value: 'None' },
-];
+const CharacterScreen = connect(
+  mapStateToProps,
+)(Character);
+
+export default CharacterScreen;

@@ -3,26 +3,18 @@ import {
   View,
   Text,
 } from 'react-native';
+import { connect } from 'react-redux';
 
-import styles from '../styles';
 import {
   SingleItemRow,
   NavRow,
 } from './generic';
+import styles from '../styles';
 
 
-export default class Inventory extends Component {
-  constructor() {
-    super();
-    this.state = {
-      items: [
-        { name: 'Wooden sword', effect: 'Combat + 1' },
-      ],
-    };
-  }
-
+class Inventory extends Component {
   render() {
-    const inventory = this.state.items.map((item, i) => (
+    const inventory = this.props.inventory.map((item, i) => (
       <SingleItemRow name={item.name} value={item.effect} key={i} />
     ));
     return (
@@ -37,3 +29,13 @@ export default class Inventory extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return { inventory: state.inventory };
+};
+
+const InventoryScreen = connect(
+  mapStateToProps,
+)(Inventory);
+
+export default InventoryScreen;
