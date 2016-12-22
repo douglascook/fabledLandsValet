@@ -16,8 +16,12 @@ const styles = StyleSheet.create({
   navRow: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'flex-end',
+  },
+  navText: {
+    textAlign: 'center',
+    fontSize: 16,
   },
   rowName: {
     flexDirection: 'row',

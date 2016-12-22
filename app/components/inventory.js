@@ -24,14 +24,13 @@ export default class Inventory extends Component {
     ));
     return (
       <View style={styles.container}>
-        <View stlye={styles.headerRow}>
-          <Text style={styles.headerText}>
-            Inventory
-          </Text>
-        </View>
+        <Text style={styles.headerText}>
+          Inventory
+        </Text>
         {inventory}
         <View style={styles.navRow}>
-          <Text onPress={() => this.props.navigate('pop')}>
+          <Text style={styles.navText}
+                onPress={() => this.props.navigate('pop')}>
             Go to character
           </Text>
         </View>

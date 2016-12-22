@@ -20,15 +20,14 @@ export default class Character extends Component {
     ));
     return (
       <View style={styles.container}>
-        <View stlye={styles.headerRow}>
-          <Text style={styles.headerText}>
-            Character
-          </Text>
-        </View>
+        <Text style={styles.headerText}>
+          Character
+        </Text>
         {characterStats}
         <View style={styles.navRow}>
-          <Text onPress={() => this.props.navigate(
-              'push', { key: 'about', component: Inventory })}>
+          <Text style={styles.navText}
+                onPress={() => this.props.navigate(
+                  'push', { key: 'about', component: Inventory })}>
             Go to inventory
           </Text>
         </View>
