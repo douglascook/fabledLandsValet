@@ -10,6 +10,7 @@ import {
   NavRow,
 } from './generic';
 import styles from '../styles';
+import { pop } from '../actions';
 
 
 class Inventory extends Component {
@@ -23,19 +24,22 @@ class Inventory extends Component {
           Inventory
         </Text>
         {inventory}
-        <NavRow onPress={() => this.props.navigate('pop')}
+        <NavRow onPress={() => this.props.pop()}
                 text="Go to character"/>
       </View>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return { inventory: state.inventory };
-};
+const mapStateToProps = state => (
+  { inventory: state.inventory }
+);
 
-const InventoryScreen = connect(
+const mapDispatchToProps = dispatch => (
+  { pop: () => dispatch(pop()) }
+);
+
+export default connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(Inventory);
-
-export default InventoryScreen;

@@ -1,79 +1,39 @@
 import React, { Component } from 'react';
 import { NavigationExperimental } from 'react-native';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { connect } from 'react-redux';
 
-import CharacterScreen from './components/character';
-import character from './reducers';
-
+import Character from './components/character';
+import Inventory from './components/inventory';
 
 const {
   CardStack: NavigationCardStack,
-  StateUtils: NavigationStateUtils,
 } = NavigationExperimental;
 
 
-function reducer(state, action, route) {
-  if (!state) {
-    return {
-      index: 0,
-      routes: [
-        { key: 'character', component: CharacterScreen },
-      ],
-    };
-  }
-  switch (action) {
-    case 'push': {
-      return NavigationStateUtils.push(state, route);
-    }
-    case 'pop': {
-      return NavigationStateUtils.pop(state);
-    }
-    default:
-      return state;
-  }
-}
-
-class TabNavigation extends Component {
-  constructor() {
-    super();
-    this.state = { navState: reducer() };
-    // TODO why does binding this when called in render fail?
-    this.renderScene = this.renderScene.bind(this);
-  }
-
-  navigate(action, route) {
-    const navState = reducer(this.state.navState, action, route);
-    this.setState({ navState });
-  }
-
+class Navigation extends Component {
   renderScene(props) {
-    return (
-      <props.scene.route.component
-        navigate={(a, r) => this.navigate(a, r)}
-      />
-    );
+    switch (props.scene.route.key) {
+      case 'character':
+        return <Character />;
+      case 'inventory':
+        return <Inventory />;
+    }
   }
 
   render() {
-    const { navState } = this.state;
     return (
       <NavigationCardStack
-        navigationState={navState}
-        renderScene={this.renderScene}
+        navigationState={this.props.navState}
+        renderScene={p => this.renderScene(p)}
       />
     );
   }
 }
 
-let store = createStore(character);
+const mapStateToProps = state => (
+  { navState: state.navigation }
+);
 
-export default class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <TabNavigation />
-      </Provider>
-    );
-  }
-}
+export default connect(
+  mapStateToProps,
+)(Navigation);

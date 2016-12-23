@@ -1,3 +1,11 @@
+import { NavigationExperimental } from 'react-native';
+import { combineReducers } from 'redux';
+
+const {
+  StateUtils: NavigationStateUtils,
+} = NavigationExperimental;
+
+
 const initialState = {
   stats: [
     { name: 'Name', value: 'Gerald Littlefoot' },
@@ -20,11 +28,35 @@ const initialState = {
   inventory: [
     { name: 'Wooden sword', effect: 'Combat + 1' },
   ],
+  navigation: {
+    index: 0,
+    routes: [{ key: 'character' }],
+  },
 };
 
-// currently this defines the only store
-function character(state = initialState, action) {
+function character(state = initialState.stats, action) {
   return state;
 }
 
-export default character;
+function inventory(state = initialState.inventory, action) {
+  return state;
+}
+
+function navigation(state = initialState.navigation, action) {
+  switch (action.type) {
+    case 'push': {
+      return NavigationStateUtils.push(state, action.route);
+    }
+    case 'pop': {
+      return NavigationStateUtils.pop(state);
+    }
+    default:
+      return state;
+  }
+}
+
+export default combineReducers({
+  stats: character,
+  inventory,
+  navigation,
+});

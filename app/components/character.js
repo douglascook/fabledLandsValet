@@ -5,12 +5,12 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 
-import InventoryScreen from './inventory';
 import {
   SingleItemRow,
   NavRow,
 } from './generic';
 import styles from '../styles';
+import { push } from '../actions';
 
 
 class Character extends Component {
@@ -18,29 +18,28 @@ class Character extends Component {
     const characterStats = this.props.stats.map((stat, i) => (
       <SingleItemRow name={stat.name} value={stat.value} key={i} />
     ));
-    const nextRoute = {
-      key: 'inventory',
-      component: InventoryScreen,
-    };
     return (
       <View style={styles.container}>
         <Text style={styles.headerText}>
           Character
         </Text>
         {characterStats}
-        <NavRow onPress={() => this.props.navigate('push', nextRoute)}
+        <NavRow onPress={() => this.props.push({ key: 'inventory' })}
                 text="Go to inventory"/>
       </View>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return { stats: state.stats };
-};
+const mapStateToProps = state => (
+  { stats: state.stats }
+);
 
-const CharacterScreen = connect(
+const mapDispatchToProps = dispatch => (
+  { push: route => dispatch(push(route)) }
+);
+
+export default connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(Character);
-
-export default CharacterScreen;
