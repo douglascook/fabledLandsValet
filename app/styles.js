@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     paddingLeft: 5,
     paddingRight: 5,
+    paddingBottom: 1,
   },
   navRow: {
     flex: 1,

@@ -10,3 +10,10 @@ export function pop() {
     type: 'pop',
   };
 }
+
+export function addItem(item) {
+  return {
+    type: 'addItem',
+    item,
+  };
+}

@@ -8,12 +8,20 @@ import { connect } from 'react-redux';
 import {
   SingleItemRow,
   NavRow,
+  InsertRow,
 } from './generic';
 import styles from '../styles';
-import { pop } from '../actions';
+import {
+  pop,
+  addItem,
+} from '../actions';
 
 
 class Inventory extends Component {
+  addItemToStore(text) {
+    this.props.addItem({ name: text });
+  }
+
   render() {
     const inventory = this.props.inventory.map((item, i) => (
       <SingleItemRow name={item.name} value={item.effect} key={i} />
@@ -24,20 +32,26 @@ class Inventory extends Component {
           Inventory
         </Text>
         {inventory}
-        <NavRow onPress={() => this.props.pop()}
-                text="Go to character"/>
+        <InsertRow
+          insertItem={e => this.addItemToStore(e.nativeEvent.text)}
+        />
+        <NavRow
+          onPress={() => this.props.pop()}
+          text="Go to character"
+        />
       </View>
     );
   }
 }
 
-const mapStateToProps = state => (
-  { inventory: state.inventory }
-);
+const mapStateToProps = state => ({
+  inventory: state.inventory,
+});
 
-const mapDispatchToProps = dispatch => (
-  { pop: () => dispatch(pop()) }
-);
+const mapDispatchToProps = dispatch => ({
+  pop: () => dispatch(pop()),
+  addItem: item => dispatch(addItem(item)),
+});
 
 export default connect(
   mapStateToProps,

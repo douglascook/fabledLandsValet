@@ -24,20 +24,22 @@ class Character extends Component {
           Character
         </Text>
         {characterStats}
-        <NavRow onPress={() => this.props.push({ key: 'inventory' })}
-                text="Go to inventory"/>
+        <NavRow
+          onPress={() => this.props.push({ key: 'inventory' })}
+          text="Go to inventory"
+        />
       </View>
     );
   }
 }
 
-const mapStateToProps = state => (
-  { stats: state.stats }
-);
+const mapStateToProps = state => ({
+  stats: state.stats,
+});
 
-const mapDispatchToProps = dispatch => (
-  { push: route => dispatch(push(route)) }
-);
+const mapDispatchToProps = dispatch => ({
+  push: route => dispatch(push(route)),
+});
 
 export default connect(
   mapStateToProps,

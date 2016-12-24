@@ -39,17 +39,20 @@ function character(state = initialState.stats, action) {
 }
 
 function inventory(state = initialState.inventory, action) {
-  return state;
+  switch (action.type) {
+    case 'addItem':
+      return [...state, action.item];
+    default:
+      return state;
+  }
 }
 
 function navigation(state = initialState.navigation, action) {
   switch (action.type) {
-    case 'push': {
+    case 'push':
       return NavigationStateUtils.push(state, action.route);
-    }
-    case 'pop': {
+    case 'pop':
       return NavigationStateUtils.pop(state);
-    }
     default:
       return state;
   }
