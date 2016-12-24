@@ -6,7 +6,7 @@ import {
 import { connect } from 'react-redux';
 
 import {
-  SingleItemRow,
+  RemovableRow,
   NavRow,
   InsertRow,
 } from './generic';
@@ -14,6 +14,7 @@ import styles from '../styles';
 import {
   pop,
   addItem,
+  removeItem,
 } from '../actions';
 
 
@@ -22,9 +23,18 @@ class Inventory extends Component {
     this.props.addItem({ name: text });
   }
 
+  removeItem(key) {
+    this.props.removeItem(key);
+  }
+
   render() {
     const inventory = this.props.inventory.map((item, i) => (
-      <SingleItemRow name={item.name} value={item.effect} key={i} />
+      <RemovableRow
+        name={item.name}
+        value={item.effect}
+        onRemove={() => this.props.removeItem(i)}
+        key={i}
+      />
     ));
     return (
       <View style={styles.container}>
@@ -51,6 +61,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   pop: () => dispatch(pop()),
   addItem: item => dispatch(addItem(item)),
+  removeItem: key => dispatch(removeItem(key)),
 });
 
 export default connect(

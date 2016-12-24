@@ -17,3 +17,10 @@ export function addItem(item) {
     item,
   };
 }
+
+export function removeItem(key) {
+  return {
+    type: 'removeItem',
+    key,
+  };
+}

@@ -42,6 +42,11 @@ function inventory(state = initialState.inventory, action) {
   switch (action.type) {
     case 'addItem':
       return [...state, action.item];
+    case 'removeItem':
+      return [
+        ...state.slice(0, action.key),
+        ...state.slice(action.key + 1),
+      ];
     default:
       return state;
   }
