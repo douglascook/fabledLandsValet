@@ -2,6 +2,7 @@ import React from 'react';
 import {
   View,
   Text,
+  TouchableHighlight,
 } from 'react-native';
 import styles from '../styles';
 
@@ -24,8 +25,10 @@ export const SingleItemRow = props => (
 
 export const NavRow = props => (
   <View style={styles.navRow}>
-    <Text style={styles.navText} onPress={props.onPress}>
-      {props.text}
-    </Text>
+    <TouchableHighlight onPress={props.onPress} underlayColor="steelblue">
+      <Text style={styles.navText}>
+        {props.text}
+      </Text>
+    </TouchableHighlight>
   </View>
 );

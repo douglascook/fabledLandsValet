@@ -6,12 +6,14 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: 30,
-    backgroundColor: 'steelblue',
+    backgroundColor: 'lightseagreen',
     textAlign: 'center',
   },
   containerRow: {
     flexDirection: 'row',
     alignItems: 'flex-start',
+    paddingLeft: 5,
+    paddingRight: 5,
   },
   navRow: {
     flex: 1,
