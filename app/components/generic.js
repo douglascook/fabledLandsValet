@@ -40,13 +40,18 @@ export class InsertRow extends Component {
     this.state = { text: null };
   }
 
+  submitAndClear(e) {
+    this.props.insertItem(e);
+    this.setState({ text: null });
+  }
+
   render() {
     return (
       <TextInput
-        defaultValue="Add something here"
+        placeholder="Add something here"
         value={this.state.text}
         onChangeText={text => this.setState({ text })}
-        onSubmitEditing={this.props.insertItem}
+        onSubmitEditing={e => this.submitAndClear(e)}
       />
     );
   }
