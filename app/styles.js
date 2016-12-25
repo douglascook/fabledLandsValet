@@ -34,6 +34,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flex: 2,
   },
+  remRowItem: {
+    flexDirection: 'row',
+    flex: 5,
+  },
+  remRowButton: {
+    flexDirection: 'row',
+    flex: 1,
+    backgroundColor: 'firebrick',
+  },
   text: {
     backgroundColor: 'whitesmoke',
     fontSize: 18,

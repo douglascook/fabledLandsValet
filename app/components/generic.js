@@ -26,19 +26,21 @@ export const SingleItemRow = props => (
 
 export const RemovableRow = props => (
   <View style={styles.containerRow}>
-    <View style={styles.rowName}>
+    <View style={styles.remRowItem}>
       <Text style={styles.text}>
         {props.name}
       </Text>
     </View>
-    <View style={styles.rowValue}>
+    <View style={styles.remRowItem}>
       <Text style={styles.text}>
         {props.value}
       </Text>
     </View>
-    <View style={{flex: 1}}>
+    <View style={styles.remRowButton}>
       <TouchableHighlight onPress={props.onRemove}>
-        <Text>Remove</Text>
+        <Text>
+          Rem
+        </Text>
       </TouchableHighlight>
     </View>
   </View>
