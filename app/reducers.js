@@ -26,7 +26,16 @@ const initialState = {
     { name: 'Resurrection Arrangements', value: 'None' },
   ],
   inventory: [
-    { name: 'Wooden sword', effect: 'Combat + 1' },
+    {
+      name: 'Wooden sword',
+      effects: [
+        { skill: 'Combat', modification: 1 },
+        { skill: 'Pride', modification: -1 },
+      ],
+    },
+    {
+      name: 'Pet rock',
+    },
   ],
   navigation: {
     index: 0,
