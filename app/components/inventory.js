@@ -34,19 +34,14 @@ class Inventory extends Component {
   }
 
   generateInventory() {
-    let inventory = [];
-    for (let i = 0; i < this.props.inventory.length; i++) {
-      let item = this.props.inventory[i];
-      inventory.push(
-        <RemovableRow
-          name={item.name}
-          value={this.formatEffects(item.effects)}
-          onRemove={() => this.props.removeItem(i)}
-          key={i}
-        />
-      );
-    }
-    return inventory;
+    return this.props.inventory.map((item, i) => (
+      <RemovableRow
+        name={item.name}
+        value={this.formatEffects(item.effects)}
+        onRemove={() => this.props.removeItem(i)}
+        key={i}
+      />
+    ));
   }
 
   render() {
