@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'whitesmoke',
     fontSize: 18,
     fontWeight: 'bold',
+    paddingLeft: 1,
   },
 });
 

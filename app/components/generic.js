@@ -19,7 +19,7 @@ export const SingleItemRow = props => (
     </View>
     <View style={styles.rowValue}>
       <Text style={styles.text}>
-        {props.value ? props.value : ''}
+        {props.value}
       </Text>
     </View>
   </View>
