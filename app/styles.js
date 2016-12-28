@@ -12,9 +12,10 @@ const styles = StyleSheet.create({
   containerRow: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    paddingLeft: 5,
-    paddingRight: 5,
-    paddingBottom: 1,
+    marginLeft: 3,
+    marginRight: 3,
+    marginTop: 1,
+    marginBottom: 1,
   },
   navRow: {
     flex: 1,
@@ -27,25 +28,30 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   rowName: {
-    flexDirection: 'row',
     flex: 1,
+    marginRight: 5,
   },
   rowValue: {
-    flexDirection: 'row',
     flex: 2,
   },
   remRowItem: {
-    flexDirection: 'row',
     flex: 5,
+    marginRight: 5,
   },
   remRowButton: {
-    flexDirection: 'row',
     flex: 1,
-    backgroundColor: 'firebrick',
+    justifyContent: 'flex-end',
   },
   text: {
     backgroundColor: 'whitesmoke',
     fontSize: 18,
+    paddingLeft: 2,
+    paddingRight: 2,
+  },
+  textTitle: {
+    backgroundColor: 'whitesmoke',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
 

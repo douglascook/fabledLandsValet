@@ -4,6 +4,7 @@ import {
   Text,
   TouchableHighlight,
   TextInput,
+  Button
 } from 'react-native';
 
 import styles from '../styles';
@@ -12,13 +13,13 @@ import styles from '../styles';
 export const SingleItemRow = props => (
   <View style={styles.containerRow}>
     <View style={styles.rowName}>
-      <Text style={styles.text}>
+      <Text style={styles.textTitle}>
         {props.name}
       </Text>
     </View>
     <View style={styles.rowValue}>
       <Text style={styles.text}>
-        {props.value}
+        {props.value ? props.value : ''}
       </Text>
     </View>
   </View>
@@ -37,11 +38,11 @@ export const RemovableRow = props => (
       </Text>
     </View>
     <View style={styles.remRowButton}>
-      <TouchableHighlight onPress={props.onRemove}>
-        <Text>
-          Rem
-        </Text>
-      </TouchableHighlight>
+      <Button
+        onPress={props.onRemove}
+        title="x"
+        color="firebrick"
+      />
     </View>
   </View>
 );
