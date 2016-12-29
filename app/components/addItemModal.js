@@ -14,11 +14,18 @@ const Item = Picker.Item;
 export default class AddItemModal extends Component {
   constructor() {
     super();
-    this.state = {
-      skill: 'none',
-      change: 0,
-    };
+    this.state = this.getDefaultState();
   }
+
+  getDefaultState() {
+    return { skill: 'none', change: 0 };
+  }
+
+  submitAndClear() {
+    this.props.addToInventory(this.state);
+    this.setState(this.getDefaultState());
+  }
+
   render() {
     return (
       <Modal
@@ -41,7 +48,7 @@ export default class AddItemModal extends Component {
         />
         <Button
           title="Add it!"
-          onPress={() => this.props.addToInventory(this.state)}
+          onPress={() => this.submitAndClear()}
         />
       </Modal>
     );

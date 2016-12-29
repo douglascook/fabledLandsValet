@@ -30,6 +30,7 @@ class Inventory extends Component {
   }
 
   addItemToStore(state) {
+    // TODO entire state should be new item
     const newItem = {
       name: state.name,
       effects: [

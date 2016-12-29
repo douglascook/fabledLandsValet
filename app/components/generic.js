@@ -78,6 +78,8 @@ export class InsertRow extends Component {
         value={this.state.text}
         onChangeText={text => this.setState({ text })}
         onSubmitEditing={e => this.submitAndClear(e)}
+        onEndEditing={e => this.submitAndClear(e)}
+        autoCapitalize="sentences"
       />
     );
   }
