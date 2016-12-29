@@ -38,10 +38,13 @@ class Inventory extends Component {
     this.props.removeItem(key);
   }
 
-  formatEffects(effects = []) {
-    return (
-      effects.map(e => `${e.skill} ${e.modification}`).join(', ')
-    );
+  formatEffects(effects) {
+    if (effects) {
+      return (
+        effects.map(e => `${e.skill} ${e.modification}`).join(', ')
+      );
+    }
+    return ' ';
   }
 
   generateInventory() {
