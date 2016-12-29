@@ -21,8 +21,19 @@ export default class AddItemModal extends Component {
     return { skill: 'none', change: 0 };
   }
 
+  buildItem() {
+    const newItem = { name: this.state.name };
+    if (this.state.skill !== 'none') {
+      newItem.effects = [
+        { skill: this.state.skill, modification: this.state.change },
+      ];
+    }
+    return newItem;
+  }
+
   submitAndClear() {
-    this.props.addToInventory(this.state);
+    this.props.addToInventory(this.buildItem());
+    // TODO need to clear insert row state too
     this.setState(this.getDefaultState());
   }
 
@@ -32,7 +43,6 @@ export default class AddItemModal extends Component {
         visible={this.props.visible}
         onRequestClose={this.props.closeModal}
       >
-        <Text>Add an item</Text>
         <InsertRow
           insertItem={e => this.setState({ ...this.state, name: e.nativeEvent.text })}
         />
@@ -64,7 +74,7 @@ function buildSkills() {
 }
 
 function buildRange() {
-  let items = [];
+  const items = [];
   for (let i = -10; i < 11; i++) {
     items.push(<Item label={i.toString()} value={i} key={i} />);
   }

@@ -29,15 +29,8 @@ class Inventory extends Component {
     this.setState({ modalVisible: visible });
   }
 
-  addItemToStore(state) {
-    // TODO entire state should be new item
-    const newItem = {
-      name: state.name,
-      effects: [
-        { skill: state.skill, modification: state.change },
-      ],
-    };
-    this.props.addItem(newItem);
+  addItemToStore(item) {
+    this.props.addItem(item);
     this.setModalVisible(false);
   }
 
@@ -72,7 +65,7 @@ class Inventory extends Component {
         {inventory}
         <Button
           onPress={() => this.setModalVisible(true)}
-          title="Open da modal"
+          title="Add item"
         />
         <AddItemModal
           visible={this.state.modalVisible}

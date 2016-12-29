@@ -66,19 +66,13 @@ export class InsertRow extends Component {
     this.state = { text: null };
   }
 
-  submitAndClear(e) {
-    this.props.insertItem(e);
-    //this.setState({ text: null });
-  }
-
   render() {
     return (
       <TextInput
-        placeholder="Add something here"
+        placeholder="Item Name"
         value={this.state.text}
         onChangeText={text => this.setState({ text })}
-        onSubmitEditing={e => this.submitAndClear(e)}
-        onEndEditing={e => this.submitAndClear(e)}
+        onSubmitEditing={e => this.props.insertItem(e)}
         autoCapitalize="sentences"
       />
     );
