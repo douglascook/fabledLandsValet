@@ -4,42 +4,42 @@ import {
   Text,
   TouchableHighlight,
   TextInput,
-  Button
+  Button,
 } from 'react-native';
 
 import styles from '../styles';
 
 
-export const SingleItemRow = props => (
+export const SingleItemRow = ({ name, value }) => (
   <View style={styles.containerRow}>
     <View style={styles.rowName}>
       <Text style={styles.textTitle}>
-        {props.name}
+        {name}
       </Text>
     </View>
     <View style={styles.rowValue}>
       <Text style={styles.text}>
-        {props.value}
+        {value}
       </Text>
     </View>
   </View>
 );
 
-export const RemovableRow = props => (
+export const RemovableRow = ({ name, value, onRemove }) => (
   <View style={styles.containerRow}>
     <View style={styles.remRowItem}>
       <Text style={styles.text}>
-        {props.name}
+        {name}
       </Text>
     </View>
     <View style={styles.remRowItem}>
       <Text style={styles.text}>
-        {props.value}
+        {value}
       </Text>
     </View>
     <View style={styles.remRowButton}>
       <Button
-        onPress={props.onRemove}
+        onPress={onRemove}
         title="x"
         color="firebrick"
       />
@@ -47,14 +47,14 @@ export const RemovableRow = props => (
   </View>
 );
 
-export const NavRow = props => (
+export const NavRow = ({ text, onPress }) => (
   <View style={styles.navRow}>
     <TouchableHighlight
-      onPress={props.onPress}
+      onPress={onPress}
       underlayColor="steelblue"
     >
       <Text style={styles.navText}>
-        {props.text}
+        {text}
       </Text>
     </TouchableHighlight>
   </View>
@@ -68,7 +68,7 @@ export class InsertRow extends Component {
 
   submitAndClear(e) {
     this.props.insertItem(e);
-    this.setState({ text: null });
+    //this.setState({ text: null });
   }
 
   render() {

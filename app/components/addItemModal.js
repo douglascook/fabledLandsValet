@@ -3,6 +3,7 @@ import {
   Text,
   Modal,
   Picker,
+  Button,
 } from 'react-native';
 
 import { InsertRow } from './generic';
@@ -25,7 +26,9 @@ export default class AddItemModal extends Component {
         onRequestClose={this.props.closeModal}
       >
         <Text>Add an item</Text>
-        <InsertRow insertItem={e => this.addItemToStore(e.nativeEvent.text)} />
+        <InsertRow
+          insertItem={e => this.setState({ ...this.state, name: e.nativeEvent.text })}
+        />
         <ItemPicker
           selected={this.state.skill}
           updateSelected={value => this.setState({ ...this.state, skill: value })}
@@ -35,6 +38,10 @@ export default class AddItemModal extends Component {
           selected={this.state.change}
           updateSelected={value => this.setState({ ...this.state, change: value})}
           items={buildRange()}
+        />
+        <Button
+          title="Add it!"
+          onPress={() => this.props.addToInventory(this.state)}
         />
       </Modal>
     );

@@ -29,8 +29,15 @@ class Inventory extends Component {
     this.setState({ modalVisible: visible });
   }
 
-  addItemToStore(text) {
-    this.props.addItem({ name: text });
+  addItemToStore(state) {
+    const newItem = {
+      name: state.name,
+      effects: [
+        { skill: state.skill, modification: state.change },
+      ],
+    };
+    this.props.addItem(newItem);
+    this.setModalVisible(false);
   }
 
   removeItem(key) {
@@ -64,11 +71,12 @@ class Inventory extends Component {
         {inventory}
         <Button
           onPress={() => this.setModalVisible(true)}
-          title='Open da modal'
+          title="Open da modal"
         />
         <AddItemModal
           visible={this.state.modalVisible}
           closeModal={() => this.setModalVisible(false)}
+          addToInventory={state => this.addItemToStore(state)}
         />
         <NavRow
           onPress={() => this.props.pop()}
