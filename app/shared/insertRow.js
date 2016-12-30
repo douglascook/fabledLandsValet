@@ -16,7 +16,7 @@ export default class InsertRow extends Component {
         placeholder="Item Name"
         value={this.state.text}
         onChangeText={text => this.setState({ text })}
-        onSubmitEditing={e => this.props.insertItem(e)}
+        onSubmitEditing={e => this.props.onSubmit(e)}
         autoCapitalize="sentences"
       />
     );

@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 
 import InsertRow from '../shared/insertRow';
+import SingleItemRow from '../shared/singleItemRow';
+import { formatEffects } from './inventory';
 
 const Item = Picker.Item;
 
@@ -19,22 +21,42 @@ export default class AddItemModal extends Component {
   }
 
   getDefaultState() {
-    return { skill: 'none', change: 0 };
+    return {
+      itemName: undefined,
+      itemEffects: [],
+      nameVisible: true,
+      submitVisible: false,
+      pickerVisible: false,
+    };
   }
 
   buildItem() {
-    const newItem = { name: this.state.name };
-    if (this.state.skill !== 'none') {
-      newItem.effects = [
-        { skill: this.state.skill, modification: this.state.change },
-      ];
+    const newItem = { name: this.state.itemName };
+    if (this.state.itemEffects.length > 0) {
+      newItem.effects = this.state.itemEffects;
     }
     return newItem;
   }
 
+  submitName(event) {
+    const newState = {
+      ...this.state,
+      itemName: event.nativeEvent.text,
+      submitVisible: true,
+      pickerVisible: true,
+      nameVisible: false,
+    };
+    this.setState(newState);
+  }
+
+  submitStat(name, value) {
+    const newState = { ...this.state };
+    newState.itemEffects.push({ skill: name, modification: value });
+    this.setState(newState);
+  }
+
   submitAndClear() {
     this.props.addToInventory(this.buildItem());
-    // TODO need to clear insert row state too
     this.setState(this.getDefaultState());
   }
 
@@ -45,32 +67,63 @@ export default class AddItemModal extends Component {
         onRequestClose={this.props.closeModal}
       >
         <View style={styles.addItemModal}>
-          <InsertRow
-            insertItem={e => this.setState({ ...this.state, name: e.nativeEvent.text })}
+          <SingleItemRow
+            name={this.state.itemName}
+            value={formatEffects(this.state.itemEffects)}
           />
-          <View style={{ flexDirection: 'row' }}>
-            <ItemPicker
-              selected={this.state.skill}
-              updateSelected={value => this.setState({ ...this.state, skill: value })}
-              items={buildSkills()}
-            />
-            <ItemPicker
-              selected={this.state.change}
-              updateSelected={value => this.setState({ ...this.state, change: value})}
-              items={buildRange()}
-            />
-          </View>
-          <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-            <Button
-              title="Add it!"
-              onPress={() => this.submitAndClear()}
-            />
-          </View>
+          { this.state.nameVisible ?
+            <InsertRow onSubmit={e => this.submitName(e)} /> : null }
+          { this.state.pickerVisible ?
+            <StatPicker onSubmit={(n, v) => this.submitStat(n, v)} /> : null }
+          { this.state.submitVisible ?
+            <SubmitButton onPress={() => this.submitAndClear()} /> : null }
         </View>
       </Modal>
     );
   }
 }
+
+class StatPicker extends Component {
+  constructor() {
+    super();
+    this.state = this.getDefaultState();
+  }
+
+  getDefaultState() {
+    return { skill: 'none', change: 0 };
+  }
+
+  onSubmit() {
+    this.props.onSubmit(this.state.skill, this.state.change);
+  }
+
+  render() {
+    return (
+      <View style={{ flexDirection: 'row' }}>
+        <ItemPicker
+          selected={this.state.skill}
+          updateSelected={value => this.setState({ ...this.state, skill: value })}
+          items={buildSkills()}
+        />
+        <ItemPicker
+          selected={this.state.change}
+          updateSelected={value => this.setState({ ...this.state, change: value})}
+          items={buildRange()}
+        />
+        <Button title="Go" onPress={() => this.onSubmit()} />
+      </View>
+    );
+  }
+}
+
+const SubmitButton = ({ onPress }) => (
+  <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+    <Button
+      title="Add it!"
+      onPress={onPress}
+    />
+  </View>
+);
 
 function buildSkills() {
   const skills = ['None', 'Charisma', 'Combat', 'Magic', 'Sanctity',

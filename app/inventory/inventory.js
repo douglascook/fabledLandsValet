@@ -36,20 +36,11 @@ class Inventory extends Component {
     this.props.removeItem(key);
   }
 
-  formatEffects(effects) {
-    if (effects) {
-      return (
-        effects.map(e => `${e.skill} ${e.modification}`).join(', ')
-      );
-    }
-    return ' ';
-  }
-
   generateInventory() {
     return this.props.inventory.map((item, i) => (
       <RemovableRow
         name={item.name}
-        value={this.formatEffects(item.effects)}
+        value={formatEffects(item.effects)}
         onRemove={() => this.props.removeItem(i)}
         key={i}
       />
@@ -81,6 +72,15 @@ class Inventory extends Component {
       </View>
     );
   }
+}
+
+export function formatEffects(effects) {
+  if (effects) {
+    return (
+      effects.map(e => `${e.skill} ${e.modification}`).join(', ')
+    );
+  }
+  return ' ';
 }
 
 const mapStateToProps = state => ({
