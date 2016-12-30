@@ -4,6 +4,7 @@ import {
   Modal,
   Picker,
   Button,
+  StyleSheet,
 } from 'react-native';
 
 import { InsertRow } from './generic';
@@ -43,26 +44,28 @@ export default class AddItemModal extends Component {
         visible={this.props.visible}
         onRequestClose={this.props.closeModal}
       >
-        <InsertRow
-          insertItem={e => this.setState({ ...this.state, name: e.nativeEvent.text })}
-        />
-        <View style={{ flexDirection: 'row' }}>
-          <ItemPicker
-            selected={this.state.skill}
-            updateSelected={value => this.setState({ ...this.state, skill: value })}
-            items={buildSkills()}
+        <View style={styles.addItemModal}>
+          <InsertRow
+            insertItem={e => this.setState({ ...this.state, name: e.nativeEvent.text })}
           />
-          <ItemPicker
-            selected={this.state.change}
-            updateSelected={value => this.setState({ ...this.state, change: value})}
-            items={buildRange()}
-          />
-        </View>
-        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-          <Button
-            title="Add it!"
-            onPress={() => this.submitAndClear()}
-          />
+          <View style={{ flexDirection: 'row' }}>
+            <ItemPicker
+              selected={this.state.skill}
+              updateSelected={value => this.setState({ ...this.state, skill: value })}
+              items={buildSkills()}
+            />
+            <ItemPicker
+              selected={this.state.change}
+              updateSelected={value => this.setState({ ...this.state, change: value})}
+              items={buildRange()}
+            />
+          </View>
+          <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+            <Button
+              title="Add it!"
+              onPress={() => this.submitAndClear()}
+            />
+          </View>
         </View>
       </Modal>
     );
@@ -94,3 +97,11 @@ const ItemPicker = ({ selected, updateSelected, items }) => (
     {items}
   </Picker>
 );
+
+const styles = StyleSheet.create({
+  addItemModal: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 10,
+  },
+});
