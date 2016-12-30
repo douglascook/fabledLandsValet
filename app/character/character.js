@@ -5,11 +5,9 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 
-import {
-  SingleItemRow,
-  NavRow,
-} from './generic';
-import styles from '../styles';
+import SingleItemRow from '../shared/singleItemRow';
+import NavRow from '../shared/navRow';
+import styles from '../shared/styles';
 import { push } from '../actions';
 
 

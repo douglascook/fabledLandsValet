@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { NavigationExperimental } from 'react-native';
 import { connect } from 'react-redux';
 
-import Character from './components/character';
-import Inventory from './components/inventory';
+import Character from './character/character';
+import Inventory from './inventory/inventory';
 
 const {
   CardStack: NavigationCardStack,

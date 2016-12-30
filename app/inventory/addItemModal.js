@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import { InsertRow } from './generic';
+import InsertRow from '../shared/insertRow';
 
 const Item = Picker.Item;
 

@@ -6,12 +6,10 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 
-import {
-  RemovableRow,
-  NavRow,
-} from './generic';
 import AddItemModal from './addItemModal';
-import styles from '../styles';
+import RemovableRow from '../shared/removableRow';
+import NavRow from '../shared/navRow';
+import styles from '../shared/styles';
 import {
   pop,
   addItem,
@@ -59,13 +57,12 @@ class Inventory extends Component {
   }
 
   render() {
-    const inventory = this.generateInventory();
     return (
       <View style={styles.container}>
         <Text style={styles.headerText}>
           Inventory
         </Text>
-        {inventory}
+        {this.generateInventory()}
         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
           <Button
             onPress={() => this.setModalVisible(true)}
