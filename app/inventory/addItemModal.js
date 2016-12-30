@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   View,
   Modal,
-  Picker,
   Button,
   StyleSheet,
 } from 'react-native';
@@ -10,8 +9,7 @@ import {
 import InsertRow from '../shared/insertRow';
 import SingleItemRow from '../shared/singleItemRow';
 import { formatEffects } from './inventory';
-
-const Item = Picker.Item;
+import StatPicker from './statPicker';
 
 
 export default class AddItemModal extends Component {
@@ -28,14 +26,6 @@ export default class AddItemModal extends Component {
       submitVisible: false,
       pickerVisible: false,
     };
-  }
-
-  buildItem() {
-    const newItem = { name: this.state.itemName };
-    if (this.state.itemEffects.length > 0) {
-      newItem.effects = this.state.itemEffects;
-    }
-    return newItem;
   }
 
   submitName(event) {
@@ -58,6 +48,14 @@ export default class AddItemModal extends Component {
   submitAndClear() {
     this.props.addToInventory(this.buildItem());
     this.setState(this.getDefaultState());
+  }
+
+  buildItem() {
+    const newItem = { name: this.state.itemName };
+    if (this.state.itemEffects.length > 0) {
+      newItem.effects = this.state.itemEffects;
+    }
+    return newItem;
   }
 
   render() {
@@ -83,39 +81,6 @@ export default class AddItemModal extends Component {
   }
 }
 
-class StatPicker extends Component {
-  constructor() {
-    super();
-    this.state = this.getDefaultState();
-  }
-
-  getDefaultState() {
-    return { skill: 'none', change: 0 };
-  }
-
-  onSubmit() {
-    this.props.onSubmit(this.state.skill, this.state.change);
-  }
-
-  render() {
-    return (
-      <View style={{ flexDirection: 'row' }}>
-        <ItemPicker
-          selected={this.state.skill}
-          updateSelected={value => this.setState({ ...this.state, skill: value })}
-          items={buildSkills()}
-        />
-        <ItemPicker
-          selected={this.state.change}
-          updateSelected={value => this.setState({ ...this.state, change: value})}
-          items={buildRange()}
-        />
-        <Button title="Go" onPress={() => this.onSubmit()} />
-      </View>
-    );
-  }
-}
-
 const SubmitButton = ({ onPress }) => (
   <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
     <Button
@@ -123,32 +88,6 @@ const SubmitButton = ({ onPress }) => (
       onPress={onPress}
     />
   </View>
-);
-
-function buildSkills() {
-  const skills = ['None', 'Charisma', 'Combat', 'Magic', 'Sanctity',
-                  'Scouting', 'Thievery'];
-  return skills.map((s, i) => (
-    <Item label={s} value={s} key={i} />
-  ));
-}
-
-function buildRange() {
-  const items = [];
-  for (let i = -10; i < 11; i++) {
-    items.push(<Item label={i.toString()} value={i} key={i} />);
-  }
-  return items;
-}
-
-const ItemPicker = ({ selected, updateSelected, items }) => (
-  <Picker
-    style={{ flex: 1 }}
-    selectedValue={selected}
-    onValueChange={value => updateSelected(value)}
-  >
-    {items}
-  </Picker>
 );
 
 const styles = StyleSheet.create({
