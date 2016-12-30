@@ -66,10 +66,12 @@ class Inventory extends Component {
           Inventory
         </Text>
         {inventory}
-        <Button
-          onPress={() => this.setModalVisible(true)}
-          title="Add item"
-        />
+        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+          <Button
+            onPress={() => this.setModalVisible(true)}
+            title="Add item"
+          />
+        </View>
         <AddItemModal
           visible={this.state.modalVisible}
           closeModal={() => this.setModalVisible(false)}

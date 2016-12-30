@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Text,
+  View,
   Modal,
   Picker,
   Button,
@@ -46,20 +46,24 @@ export default class AddItemModal extends Component {
         <InsertRow
           insertItem={e => this.setState({ ...this.state, name: e.nativeEvent.text })}
         />
-        <ItemPicker
-          selected={this.state.skill}
-          updateSelected={value => this.setState({ ...this.state, skill: value })}
-          items={buildSkills()}
-        />
-        <ItemPicker
-          selected={this.state.change}
-          updateSelected={value => this.setState({ ...this.state, change: value})}
-          items={buildRange()}
-        />
-        <Button
-          title="Add it!"
-          onPress={() => this.submitAndClear()}
-        />
+        <View style={{ flexDirection: 'row' }}>
+          <ItemPicker
+            selected={this.state.skill}
+            updateSelected={value => this.setState({ ...this.state, skill: value })}
+            items={buildSkills()}
+          />
+          <ItemPicker
+            selected={this.state.change}
+            updateSelected={value => this.setState({ ...this.state, change: value})}
+            items={buildRange()}
+          />
+        </View>
+        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+          <Button
+            title="Add it!"
+            onPress={() => this.submitAndClear()}
+          />
+        </View>
       </Modal>
     );
   }
@@ -69,7 +73,7 @@ function buildSkills() {
   const skills = ['None', 'Charisma', 'Combat', 'Magic', 'Sanctity',
                   'Scouting', 'Thievery'];
   return skills.map((s, i) => (
-    <Item label={s} value={s.toLowerCase()} key={i} />
+    <Item label={s} value={s} key={i} />
   ));
 }
 
@@ -83,6 +87,7 @@ function buildRange() {
 
 const ItemPicker = ({ selected, updateSelected, items }) => (
   <Picker
+    style={{ flex: 1 }}
     selectedValue={selected}
     onValueChange={value => updateSelected(value)}
   >
