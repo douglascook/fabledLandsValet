@@ -8,16 +8,15 @@ import {
 
 
 const NavRow = ({ text, onPress }) => (
-  <View style={styles.navRow}>
-    <TouchableHighlight
-      onPress={onPress}
-      underlayColor="steelblue"
-    >
-      <Text style={styles.navText}>
-        {text}
-      </Text>
-    </TouchableHighlight>
-  </View>
+  <TouchableHighlight
+    style={styles.navRow}
+    onPress={onPress}
+    underlayColor="steelblue"
+  >
+    <Text style={styles.navText}>
+      {text}
+    </Text>
+  </TouchableHighlight>
 );
 
 const styles = StyleSheet.create({
@@ -26,6 +25,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-end',
+    margin: 5
   },
   navText: {
     textAlign: 'center',

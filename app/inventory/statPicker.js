@@ -3,6 +3,7 @@ import {
   View,
   Picker,
   Button,
+  StyleSheet,
 } from 'react-native';
 
 const Item = Picker.Item;
@@ -24,7 +25,7 @@ export default class StatPicker extends Component {
 
   render() {
     return (
-      <View style={{ flexDirection: 'row' }}>
+      <View style={styles.container}>
         <ItemPicker
           selected={this.state.skill}
           updateSelected={value => this.setState({ ...this.state, skill: value })}
@@ -35,7 +36,9 @@ export default class StatPicker extends Component {
           updateSelected={value => this.setState({ ...this.state, change: value})}
           items={buildRange()}
         />
-        <Button title="Go" onPress={() => this.onSubmit()} />
+        <View style={{ flex: 0.2 }}>
+          <Button title="0" onPress={() => this.onSubmit()} />
+        </View>
       </View>
     );
   }
@@ -66,3 +69,10 @@ const ItemPicker = ({ selected, updateSelected, items }) => (
     {items}
   </Picker>
 );
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+});

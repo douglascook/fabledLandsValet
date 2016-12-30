@@ -15,17 +15,7 @@ import StatPicker from './statPicker';
 export default class AddItemModal extends Component {
   constructor() {
     super();
-    this.state = this.getDefaultState();
-  }
-
-  getDefaultState() {
-    return {
-      itemName: undefined,
-      itemEffects: [],
-      nameVisible: true,
-      submitVisible: false,
-      pickerVisible: false,
-    };
+    this.state = getDefaultState();
   }
 
   submitName(event) {
@@ -47,7 +37,7 @@ export default class AddItemModal extends Component {
 
   submitAndClear() {
     this.props.addToInventory(this.buildItem());
-    this.setState(this.getDefaultState());
+    this.setState(getDefaultState());
   }
 
   buildItem() {
@@ -80,6 +70,16 @@ export default class AddItemModal extends Component {
     );
   }
 }
+
+const getDefaultState = () => (
+  {
+    itemName: ' ',
+    itemEffects: [],
+    nameVisible: true,
+    submitVisible: false,
+    pickerVisible: false,
+  }
+);
 
 const SubmitButton = ({ onPress }) => (
   <View style={{ flexDirection: 'row', justifyContent: 'center' }}>

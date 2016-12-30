@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
   },
   containerRow: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     marginLeft: 3,
     marginRight: 3,
     marginTop: 1,
