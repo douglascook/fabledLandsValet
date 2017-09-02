@@ -1,9 +1,4 @@
-import { NavigationExperimental } from 'react-native';
 import { combineReducers } from 'redux';
-
-const {
-  StateUtils: NavigationStateUtils,
-} = NavigationExperimental;
 
 
 const initialState = {
@@ -37,10 +32,6 @@ const initialState = {
       name: 'Pet rock',
     },
   ],
-  navigation: {
-    index: 0,
-    routes: [{ key: 'character' }],
-  },
 };
 
 function character(state = initialState.stats, action) {
@@ -61,19 +52,7 @@ function inventory(state = initialState.inventory, action) {
   }
 }
 
-function navigation(state = initialState.navigation, action) {
-  switch (action.type) {
-    case 'push':
-      return NavigationStateUtils.push(state, action.route);
-    case 'pop':
-      return NavigationStateUtils.pop(state);
-    default:
-      return state;
-  }
-}
-
 export default combineReducers({
   stats: character,
   inventory,
-  navigation,
 });

@@ -8,10 +8,8 @@ import { connect } from 'react-redux';
 
 import AddItemModal from './addItemModal';
 import RemovableRow from '../shared/removableRow';
-import NavRow from '../shared/navRow';
 import styles from '../shared/styles';
 import {
-  pop,
   addItem,
   removeItem,
 } from '../actions';
@@ -65,10 +63,6 @@ class Inventory extends Component {
           closeModal={() => this.setModalVisible(false)}
           addToInventory={state => this.addItemToStore(state)}
         />
-        <NavRow
-          onPress={() => this.props.pop()}
-          text="Go to character"
-        />
       </View>
     );
   }
@@ -88,7 +82,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  pop: () => dispatch(pop()),
   addItem: item => dispatch(addItem(item)),
   removeItem: key => dispatch(removeItem(key)),
 });

@@ -6,7 +6,6 @@ import {
 import { connect } from 'react-redux';
 
 import SingleItemRow from '../shared/singleItemRow';
-import NavRow from '../shared/navRow';
 import styles from '../shared/styles';
 import { push } from '../actions';
 
@@ -22,10 +21,6 @@ class Character extends Component {
           Character
         </Text>
         {characterStats}
-        <NavRow
-          onPress={() => this.props.push({ key: 'inventory' })}
-          text="Go to inventory"
-        />
       </View>
     );
   }
@@ -35,11 +30,6 @@ const mapStateToProps = state => ({
   stats: state.stats,
 });
 
-const mapDispatchToProps = dispatch => ({
-  push: route => dispatch(push(route)),
-});
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
 )(Character);

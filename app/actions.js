@@ -5,12 +5,6 @@ export function push(route) {
   };
 }
 
-export function pop() {
-  return {
-    type: 'pop',
-  };
-}
-
 export function addItem(item) {
   return {
     type: 'addItem',
