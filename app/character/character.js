@@ -7,29 +7,25 @@ import { connect } from 'react-redux';
 
 import SingleItemRow from '../shared/singleItemRow';
 import styles from '../shared/styles';
-import { push } from '../actions';
 
 
 class Character extends Component {
-  buildItemRow(stat, i) {
-    const modifier = stat.modifier || 0;
-    const displayValue = (stat.modifier)
-      ? `${stat.value + stat.modifier} (${stat.modifier})`
-      : stat.value;
-    return (
-      <SingleItemRow name={stat.name} value={displayValue} key={i} />
-    );
+  getDisplayValue(stat) {
+    if (!stat.modifier) {
+      return stat.value;
+    }
+    const sign = (stat.modifier > 0) ? '+' : '-';
+    return `${stat.value + stat.modifier} (${sign}${stat.modifier})`;
   }
 
   render() {
     const characterStats = this.props.stats.map((stat, i) => (
-      this.buildItemRow(stat, i)
+      <SingleItemRow name={stat.name} value={this.getDisplayValue(stat)}
+        key={i} />
     ));
     return (
       <View style={styles.container}>
-        <Text style={styles.headerText}>
-          Character
-        </Text>
+        <Text style={styles.headerText}> Character </Text>
         {characterStats}
       </View>
     );
@@ -41,5 +37,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(
-  mapStateToProps,
+  mapStateToProps
 )(Character);

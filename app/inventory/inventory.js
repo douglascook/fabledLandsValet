@@ -48,9 +48,7 @@ class Inventory extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.headerText}>
-          Inventory
-        </Text>
+        <Text style={styles.headerText}> Inventory </Text>
         {this.generateInventory()}
         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
           <Button
@@ -88,5 +86,5 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Inventory);
