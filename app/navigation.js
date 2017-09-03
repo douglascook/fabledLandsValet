@@ -21,6 +21,7 @@ const Navigation = TabNavigator({
   }
 }, {
   tabBarPosition: 'bottom',
+  lazyLoad: true,
   tabBarOptions: {
     upperCaseLabel: false,
   }
