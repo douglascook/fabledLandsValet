@@ -71,7 +71,7 @@ class Inventory extends Component {
 export function formatEffects(effects) {
   if (effects && effects.length > 0) {
     return (
-      effects.map(e => `${e.skill} ${e.modification}`).join(', ')
+      effects.map(e => `${e.skill} ${e.value}`).join(', ')
     );
   }
   return ' ';

@@ -31,7 +31,7 @@ export default class AddItemModal extends Component {
 
   submitStat(name, value) {
     const newState = { ...this.state };
-    newState.itemEffects.push({ skill: name, modification: value });
+    newState.itemEffects.push({ skill: name, value: value });
     this.setState(newState);
   }
 

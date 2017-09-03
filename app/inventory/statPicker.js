@@ -45,7 +45,7 @@ export default class StatPicker extends Component {
 }
 
 function buildSkills() {
-  const skills = ['None', 'Charisma', 'Combat', 'Magic', 'Sanctity',
+  const skills = ['None', 'Charisma', 'Combat', 'Defence', 'Magic', 'Sanctity',
                   'Scouting', 'Thievery'];
   return skills.map((s, i) => (
     <Item label={s} value={s} key={i} />

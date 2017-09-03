@@ -1,20 +1,16 @@
-export function push(route) {
-  return {
-    type: 'push',
-    route,
-  };
-}
+export const ADD_ITEM = 'ADD_ITEM';
+export const REMOVE_ITEM = 'REMOVE_ITEM';
 
 export function addItem(item) {
   return {
-    type: 'addItem',
+    type: ADD_ITEM,
     item,
   };
 }
 
 export function removeItem(key) {
   return {
-    type: 'removeItem',
+    type: REMOVE_ITEM,
     key,
   };
 }

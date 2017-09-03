@@ -11,9 +11,19 @@ import { push } from '../actions';
 
 
 class Character extends Component {
+  buildItemRow(stat, i) {
+    const modifier = stat.modifier || 0;
+    const displayValue = (stat.modifier)
+      ? `${stat.value + stat.modifier} (${stat.modifier})`
+      : stat.value;
+    return (
+      <SingleItemRow name={stat.name} value={displayValue} key={i} />
+    );
+  }
+
   render() {
     const characterStats = this.props.stats.map((stat, i) => (
-      <SingleItemRow name={stat.name} value={stat.value} key={i} />
+      this.buildItemRow(stat, i)
     ));
     return (
       <View style={styles.container}>

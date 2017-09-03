@@ -21,7 +21,10 @@ const Navigation = TabNavigator({
   }
 }, {
   tabBarPosition: 'bottom',
-  tabBarComponent: TabBarBottom,
+  tabBarOptions: {
+    upperCaseLabel: false,
+  }
+  //tabBarComponent: TabBarBottom,
 });
 
 export default Navigation;
