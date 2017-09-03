@@ -3,7 +3,7 @@ import { AppRegistry } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import reducer from './app/reducers';
+import reducer from './app/reducer';
 import Navigation from './app/navigation';
 
 
