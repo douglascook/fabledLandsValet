@@ -11,8 +11,8 @@ export default function inventory(state = initialState.inventory, action) {
 
     case REMOVE_ITEM:
       return [
-        ...state.slice(0, action.key),
-        ...state.slice(action.key + 1),
+        ...state.slice(0, action.index),
+        ...state.slice(action.index + 1),
       ];
 
     default:

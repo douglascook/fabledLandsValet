@@ -39,7 +39,7 @@ class Inventory extends Component {
       <RemovableRow
         name={item.name}
         value={formatEffects(item.effects)}
-        onRemove={() => this.props.removeItem(i)}
+        onRemove={() => this.props.removeItem(item, i)}
         key={i}
       />
     ));
@@ -81,7 +81,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addItem: item => dispatch(addItem(item)),
-  removeItem: key => dispatch(removeItem(key)),
+  removeItem: (item, index) => dispatch(removeItem(item, index)),
 });
 
 export default connect(

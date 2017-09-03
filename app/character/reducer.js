@@ -1,24 +1,38 @@
-import { ADD_ITEM, } from '../actions';
+import {
+  ADD_ITEM,
+  REMOVE_ITEM
+} from '../actions';
 import { initialState } from '../reducer.js';
 
 
 export default function character(state = initialState.stats, action) {
   switch (action.type) {
     case ADD_ITEM:
-      return updateStatModifiers(state, action);
+      return applyStatModifiers(state, action.item, addModifier);
+
+    case REMOVE_ITEM:
+      return applyStatModifiers(state, action.item, removeModifier);
 
     default:
       return state;
   }
 }
 
-function updateStatModifiers(state, action) {
+function applyStatModifiers(state, item, modify) {
   const newState = [...state];
-  action.item.effects.forEach(e => updateStatModifier(newState, e));
+  if (item.effects) {
+    item.effects.forEach(e => modify(newState, e));
+  }
   return newState;
 }
 
-function updateStatModifier(state, itemEffect) {
+function removeModifier(state, itemEffect) {
+  const index = state.findIndex(s => s.name === itemEffect.skill);
+  state[index].modifier = (state[index].modifier || 0) - itemEffect.value;
+  return state;
+}
+
+function addModifier(state, itemEffect) {
   const index = state.findIndex(s => s.name === itemEffect.skill);
   state[index].modifier = (state[index].modifier || 0) + itemEffect.value;
   return state;
