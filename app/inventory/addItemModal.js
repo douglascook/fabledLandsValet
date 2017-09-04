@@ -9,7 +9,10 @@ import {
 import InsertRow from '../shared/insertRow';
 import SingleItemRow from '../shared/singleItemRow';
 import { formatEffects } from './inventory';
-import SkillPicker from './skillPicker';
+import {
+  SkillPicker,
+  SELECT_SKILL,
+} from './skillPicker';
 
 
 export default class AddItemModal extends Component {
@@ -19,27 +22,24 @@ export default class AddItemModal extends Component {
   }
 
   submitName(event) {
-    const newState = {
-      ...this.state,
+    this.setState({ ...this.state,
       itemName: event.nativeEvent.text,
       submitVisible: true,
       pickerVisible: true,
       nameVisible: false,
-    };
-    this.setState(newState);
+    });
   }
 
   submitSkill() {
-    const newState = { ...this.state,
-      selectedSkill: 'select skill',
+    const { itemEffects, selectedSkill, selectedValue, ...rest } = this.state;
+    this.setState({ ...rest,
+      selectedSkill: SELECT_SKILL,
       selectedValue: 0,
-      itemEffects: [...this.state.itemEffects,
-        { skill: this.state.selectedSkill, value: this.state.selectedValue }],
-    };
-    this.setState(newState);
+      itemEffects: [...itemEffects, { skill: selectedSkill, value: selectedValue }],
+    });
   }
 
-  submitAndClear() {
+  addItem() {
     this.props.addToInventory(this.buildItem());
     this.setState(getDefaultState());
   }
@@ -73,7 +73,7 @@ export default class AddItemModal extends Component {
               updateSelected={(e) => this.setState(...this.state, e)}
             /> : null }
           { this.state.submitVisible ?
-            <SubmitButton onPress={() => this.submitAndClear()} /> : null }
+            <SubmitButton onPress={() => this.addItem()} /> : null }
         </View>
       </Modal>
     );
@@ -84,8 +84,7 @@ const getDefaultState = () => (
   {
     itemName: ' ',
     itemEffects: [],
-    // TODO replace magic string with constant somewhere
-    selectedSkill: 'select skill',
+    selectedSkill: SELECT_SKILL,
     selectedValue: 0,
     nameVisible: true,
     submitVisible: false,
