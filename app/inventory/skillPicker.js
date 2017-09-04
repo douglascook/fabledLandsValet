@@ -5,6 +5,7 @@ import {
   Button,
   StyleSheet,
 } from 'react-native';
+import { addSignPrefix } from '../shared/helpers';
 
 const Item = Picker.Item;
 
@@ -40,7 +41,7 @@ export const SELECT_SKILL = 'select skill';
 function buildRange() {
   const items = [];
   for (let i = -10; i < 11; i++) {
-    items.push(<Item label={i.toString()} value={i} key={i} />);
+    items.push(<Item label={addSignPrefix(i)} value={i} key={i} />);
   }
   return items;
 }

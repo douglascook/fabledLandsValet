@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 
 import SingleItemRow from '../shared/singleItemRow';
 import styles from '../shared/styles';
+import { addSignPrefix } from '../shared/helpers';
 
 
 class Character extends Component {
@@ -14,8 +15,7 @@ class Character extends Component {
     if (!stat.modifier) {
       return stat.value;
     }
-    const sign = (stat.modifier > 0) ? '+' : '-';
-    return `${stat.value + stat.modifier} (${sign}${stat.modifier})`;
+    return `${stat.value + stat.modifier} (${addSignPrefix(stat.modifier)})`;
   }
 
   render() {
