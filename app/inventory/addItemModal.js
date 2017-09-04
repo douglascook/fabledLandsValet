@@ -9,7 +9,7 @@ import {
 import InsertRow from '../shared/insertRow';
 import SingleItemRow from '../shared/singleItemRow';
 import { formatEffects } from './inventory';
-import StatPicker from './statPicker';
+import SkillPicker from './skillPicker';
 
 
 export default class AddItemModal extends Component {
@@ -29,9 +29,13 @@ export default class AddItemModal extends Component {
     this.setState(newState);
   }
 
-  submitStat(name, value) {
-    const newState = { ...this.state };
-    newState.itemEffects.push({ skill: name, value: value });
+  submitSkill() {
+    const newState = { ...this.state,
+      selectedSkill: 'select skill',
+      selectedValue: 0,
+      itemEffects: [...this.state.itemEffects,
+        { skill: this.state.selectedSkill, value: this.state.selectedValue }],
+    };
     this.setState(newState);
   }
 
@@ -62,7 +66,12 @@ export default class AddItemModal extends Component {
           { this.state.nameVisible ?
             <InsertRow onSubmit={e => this.submitName(e)} /> : null }
           { this.state.pickerVisible ?
-            <StatPicker onSubmit={(n, v) => this.submitStat(n, v)} /> : null }
+            <SkillPicker
+              selectedSkill={this.state.selectedSkill}
+              selectedValue={this.state.selectedValue}
+              onSubmit={() => this.submitSkill()}
+              updateSelected={(e) => this.setState(...this.state, e)}
+            /> : null }
           { this.state.submitVisible ?
             <SubmitButton onPress={() => this.submitAndClear()} /> : null }
         </View>
@@ -75,6 +84,9 @@ const getDefaultState = () => (
   {
     itemName: ' ',
     itemEffects: [],
+    // TODO replace magic string with constant somewhere
+    selectedSkill: 'select skill',
+    selectedValue: 0,
     nameVisible: true,
     submitVisible: false,
     pickerVisible: false,

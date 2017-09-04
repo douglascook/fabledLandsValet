@@ -8,17 +8,17 @@ import { initialState } from '../reducer.js';
 export default function character(state = initialState.stats, action) {
   switch (action.type) {
     case ADD_ITEM:
-      return applyStatModifiers(state, action.item, addModifier);
+      return applySkillModifiers(state, action.item, addModifier);
 
     case REMOVE_ITEM:
-      return applyStatModifiers(state, action.item, removeModifier);
+      return applySkillModifiers(state, action.item, removeModifier);
 
     default:
       return state;
   }
 }
 
-function applyStatModifiers(state, item, modify) {
+function applySkillModifiers(state, item, modify) {
   const newState = [...state];
   if (item.effects) {
     item.effects.forEach(e => modify(newState, e));

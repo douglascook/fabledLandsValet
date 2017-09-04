@@ -9,35 +9,23 @@ import {
 const Item = Picker.Item;
 
 
-export default class StatPicker extends Component {
-  constructor() {
-    super();
-    this.state = this.getDefaultState();
-  }
-
-  getDefaultState() {
-    return { skill: 'none', change: 0 };
-  }
-
-  onSubmit() {
-    this.props.onSubmit(this.state.skill, this.state.change);
-  }
+export default class SkillPicker extends Component {
 
   render() {
     return (
       <View style={styles.container}>
         <ItemPicker
-          selected={this.state.skill}
-          updateSelected={value => this.setState({ ...this.state, skill: value })}
+          selected={this.props.selectedSkill}
+          updateSelected={value => this.props.updateSelected({selectedSkill: value})}
           items={buildSkills()}
         />
         <ItemPicker
-          selected={this.state.change}
-          updateSelected={value => this.setState({ ...this.state, change: value})}
+          selected={this.props.selectedValue}
+          updateSelected={value => this.props.updateSelected({selectedValue: value})}
           items={buildRange()}
         />
         <View style={{ flex: 0.2 }}>
-          <Button title="0" onPress={() => this.onSubmit()} />
+          <Button title="0" onPress={() => this.props.onSubmit()} />
         </View>
       </View>
     );
@@ -45,8 +33,8 @@ export default class StatPicker extends Component {
 }
 
 function buildSkills() {
-  const skills = ['None', 'Charisma', 'Combat', 'Defence', 'Magic', 'Sanctity',
-                  'Scouting', 'Thievery'];
+  const skills = ['select skill', 'Charisma', 'Combat', 'Defence', 'Magic',
+                  'Sanctity', 'Scouting', 'Thievery'];
   return skills.map((s, i) => (
     <Item label={s} value={s} key={i} />
   ));
