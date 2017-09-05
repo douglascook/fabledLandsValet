@@ -40,7 +40,7 @@ export const SELECT_SKILL = 'select skill';
 
 function buildRange() {
   const items = [];
-  for (let i = -10; i < 11; i++) {
+  for (let i = 10; i > -11; i--) {
     items.push(<Item label={addSignPrefix(i)} value={i} key={i} />);
   }
   return items;

@@ -70,7 +70,7 @@ export default class AddItemModal extends Component {
               selectedSkill={this.state.selectedSkill}
               selectedValue={this.state.selectedValue}
               onSubmit={() => this.submitSkill()}
-              updateSelected={(e) => this.setState(...this.state, e)}
+              updateSelected={e => this.setState(...this.state, e)}
             /> : null }
           { this.state.submitVisible ?
             <SubmitButton onPress={() => this.addItem()} /> : null }

@@ -1,1 +1,8 @@
 extends: airbnb
+rules:
+  react/jsx-filename-extension: 'off'
+  comma-dangle: 'off'
+  no-use-before-define: 'off'
+  object-curly-spacing: 'warn'
+  arrow-parens: 'warn'
+  indent: 'warn'
