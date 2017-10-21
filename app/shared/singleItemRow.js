@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
   Text,
@@ -21,6 +22,11 @@ const SingleItemRow = ({ name, value }) => (
     </View>
   </View>
 );
+
+SingleItemRow.propTypes = {
+  name: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+};
 
 const styles = StyleSheet.create({
   rowName: {

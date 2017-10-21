@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
   Modal,
@@ -111,6 +112,10 @@ const SubmitButton = ({ onPress }) => (
     />
   </View>
 );
+
+SubmitButton.propTypes = {
+  onPress: PropTypes.func.isRequired,
+};
 
 const styles = StyleSheet.create({
   addItemModal: {

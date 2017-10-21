@@ -2,7 +2,8 @@ import {
   ADD_ITEM,
   REMOVE_ITEM
 } from '../actions';
-import { initialState } from '../reducer.js';
+
+import { initialState } from '../reducer';
 
 
 export default function character(state = initialState.stats, action) {
@@ -28,12 +29,14 @@ function applySkillModifiers(state, item, modify) {
 
 function removeModifier(state, itemEffect) {
   const index = state.findIndex(s => s.name === itemEffect.skill);
-  state[index].modifier = (state[index].modifier || 0) - itemEffect.value;
-  return state;
+  const newState = [...state];
+  newState[index].modifier = (state[index].modifier || 0) - itemEffect.value;
+  return newState;
 }
 
 function addModifier(state, itemEffect) {
   const index = state.findIndex(s => s.name === itemEffect.skill);
-  state[index].modifier = (state[index].modifier || 0) + itemEffect.value;
-  return state;
+  const newState = [...state];
+  newState[index].modifier = (state[index].modifier || 0) + itemEffect.value;
+  return newState;
 }

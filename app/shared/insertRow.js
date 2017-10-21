@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   TextInput,
 } from 'react-native';
@@ -22,3 +23,7 @@ export default class InsertRow extends Component {
     );
   }
 }
+
+InsertRow.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

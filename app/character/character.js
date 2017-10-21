@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Text,
   View,
@@ -11,6 +12,7 @@ import { addSignPrefix } from '../shared/helpers';
 
 
 class Character extends Component {
+
   getDisplayValue(stat) {
     if (!stat.modifier) {
       return stat.value;
@@ -20,8 +22,11 @@ class Character extends Component {
 
   render() {
     const characterStats = this.props.stats.map((stat, i) => (
-      <SingleItemRow name={stat.name} value={this.getDisplayValue(stat)}
-        key={i} />
+      <SingleItemRow
+        name={stat.name}
+        value={this.getDisplayValue(stat)}
+        key={i}
+      />
     ));
     return (
       <View style={styles.container}>
@@ -31,6 +36,10 @@ class Character extends Component {
     );
   }
 }
+
+Character.propTypes = {
+  stats: PropTypes.array.isRequired,
+};
 
 const mapStateToProps = state => ({
   stats: state.stats,

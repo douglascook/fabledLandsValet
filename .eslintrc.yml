@@ -6,3 +6,4 @@ rules:
   object-curly-spacing: 'warn'
   arrow-parens: 'warn'
   indent: 'warn'
+  padded-blocks: 'off'

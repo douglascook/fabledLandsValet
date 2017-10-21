@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
   Text,
@@ -29,6 +30,12 @@ const RemovableRow = ({ name, value, onRemove }) => (
     </View>
   </View>
 );
+
+RemovableRow.propTypes = {
+  name: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  onRemove: PropTypes.func.isRequired,
+};
 
 const styles = StyleSheet.create({
   remRowItem: {

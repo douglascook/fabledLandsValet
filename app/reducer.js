@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import character from './character/reducer.js';
-import inventory from './inventory/reducer.js';
+import character from './character/reducer';
+import inventory from './inventory/reducer';
 
 export const initialState = {
   // array so that we can set the order
