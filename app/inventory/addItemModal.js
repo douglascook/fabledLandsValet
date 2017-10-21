@@ -32,11 +32,14 @@ export default class AddItemModal extends Component {
 
   submitSkill() {
     const { itemEffects, selectedSkill, selectedValue, ...rest } = this.state;
-    this.setState({ ...rest,
-      selectedSkill: SELECT_SKILL,
-      selectedValue: 0,
-      itemEffects: [...itemEffects, { skill: selectedSkill, value: selectedValue }],
-    });
+    // TODO highlight select skill if default is selected
+    if (selectedSkill !== SELECT_SKILL) {
+      this.setState({ ...rest,
+        selectedSkill: SELECT_SKILL,
+        selectedValue: 0,
+        itemEffects: [...itemEffects, { skill: selectedSkill, value: selectedValue }],
+      });
+    }
   }
 
   addItem() {
@@ -52,28 +55,36 @@ export default class AddItemModal extends Component {
     return newItem;
   }
 
+  onClose() {
+    this.setState(getDefaultState());
+    this.props.closeModal();
+  }
+
   render() {
     return (
       <Modal
         visible={this.props.visible}
-        onRequestClose={this.props.closeModal}
+        onRequestClose={() => this.onClose()}
       >
         <View style={styles.addItemModal}>
           <SingleItemRow
             name={this.state.itemName}
             value={formatEffects(this.state.itemEffects)}
           />
-          { this.state.nameVisible ?
-            <InsertRow onSubmit={e => this.submitName(e)} /> : null }
-          { this.state.pickerVisible ?
+          { this.state.nameVisible &&
+            <InsertRow onSubmit={e => this.submitName(e)} />
+          }
+          { this.state.pickerVisible &&
             <SkillPicker
               selectedSkill={this.state.selectedSkill}
               selectedValue={this.state.selectedValue}
-              onSubmit={() => this.submitSkill()}
               updateSelected={e => this.setState(...this.state, e)}
-            /> : null }
-          { this.state.submitVisible ?
-            <SubmitButton onPress={() => this.addItem()} /> : null }
+              onSubmit={() => this.submitSkill()}
+            />
+          }
+          { this.state.submitVisible &&
+            <SubmitButton onPress={() => this.addItem()} />
+          }
         </View>
       </Modal>
     );

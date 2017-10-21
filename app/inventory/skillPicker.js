@@ -23,7 +23,7 @@ export const SkillPicker = ({ selectedSkill, selectedValue, updateSelected, onSu
       items={buildRange()}
     />
     <View style={{ flex: 0.2 }}>
-      <Button title="0" onPress={() => onSubmit()} />
+      <Button title="0" onPress={onSubmit} />
     </View>
   </View>
 );
