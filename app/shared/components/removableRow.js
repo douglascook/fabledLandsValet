@@ -6,7 +6,8 @@ import {
   Button,
   StyleSheet,
 } from 'react-native';
-import sharedStyles from './styles';
+
+import sharedStyles from '../styles';
 
 
 const RemovableRow = ({ name, value, onRemove }) => (

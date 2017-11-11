@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 
-import SingleItemRow from '../shared/singleItemRow';
+import SingleItemRow from '../shared/components/singleItemRow';
 import styles from '../shared/styles';
 import { addSignPrefix } from '../shared/helpers';
 

@@ -1,26 +1,28 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
   Picker,
   Button,
   StyleSheet,
 } from 'react-native';
+
 import { addSignPrefix } from '../shared/helpers';
-import { stats } from '../character/reducer';
+import ItemPicker from '../shared/components/itemPicker';
 
 const Item = Picker.Item;
 
 
-export const SkillPicker = ({ selectedSkill, selectedValue, updateSelected, onSubmit}) => (
+export const SkillPicker = ({ selectedSkill, selectedValue, updateSelected, onSubmit }) => (
   <View style={styles.container}>
     <ItemPicker
       selected={selectedSkill}
-      updateSelected={value => updateSelected({selectedSkill: value})}
+      updateSelected={value => updateSelected({ selectedSkill: value })}
       items={buildSkills()}
     />
     <ItemPicker
       selected={selectedValue}
-      updateSelected={value => updateSelected({selectedValue: value})}
+      updateSelected={value => updateSelected({ selectedValue: value })}
       items={buildRange()}
     />
     <View style={{ flex: 0.2 }}>
@@ -48,15 +50,12 @@ function buildRange() {
   return items;
 }
 
-const ItemPicker = ({ selected, updateSelected, items }) => (
-  <Picker
-    style={{ flex: 1 }}
-    selectedValue={selected}
-    onValueChange={value => updateSelected(value)}
-  >
-    {items}
-  </Picker>
-);
+SkillPicker.propTypes = {
+  selectedSkill: PropTypes.number.isRequired,
+  selectedValue: PropTypes.number.isRequired,
+  updateSelected: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
 
 const styles = StyleSheet.create({
   container: {

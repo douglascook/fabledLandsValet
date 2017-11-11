@@ -1,0 +1,22 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Picker } from 'react-native';
+
+
+const ItemPicker = ({ selected, updateSelected, items }) => (
+  <Picker
+    style={{ flex: 1 }}
+    selectedValue={selected}
+    onValueChange={value => updateSelected(value)}
+  >
+    {items}
+  </Picker>
+);
+
+ItemPicker.propTypes = {
+  selected: PropTypes.number.isRequired,
+  updateSelected: PropTypes.func.isRequired,
+  items: PropTypes.arrayOf(PropTypes.node).isRequired,
+};
+
+export default ItemPicker;

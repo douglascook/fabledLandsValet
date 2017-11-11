@@ -7,7 +7,7 @@ import {
 import { connect } from 'react-redux';
 
 import AddItemModal from './addItemModal';
-import RemovableRow from '../shared/removableRow';
+import RemovableRow from '../shared/components/removableRow';
 import styles from '../shared/styles';
 import { addSignPrefix } from '../shared/helpers';
 import {

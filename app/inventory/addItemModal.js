@@ -7,8 +7,8 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import InsertRow from '../shared/insertRow';
-import SingleItemRow from '../shared/singleItemRow';
+import InsertRow from '../shared/components/insertRow';
+import SingleItemRow from '../shared/components/singleItemRow';
 import { formatEffects } from './inventory';
 import {
   SkillPicker,
