@@ -9,34 +9,31 @@ import { initialState } from '../reducer';
 export default function character(state = initialState.character, action) {
   switch (action.type) {
     case ADD_ITEM:
-      return applySkillModifiers(state, action.item, addModifier);
+      return applySkillModifiers(
+        state, action.item, (value, modifier) => (value + modifier)
+      );
 
     case REMOVE_ITEM:
-      return applySkillModifiers(state, action.item, removeModifier);
+      return applySkillModifiers(
+        state, action.item, (value, modifier) => (value - modifier)
+      );
 
     default:
       return state;
   }
 }
 
-function applySkillModifiers(state, item, modify) {
-  const newState = [...state];
+function applySkillModifiers(state, item, applyEffect) {
+  const newState = {...state};
   if (item.effects) {
-    item.effects.forEach(e => modify(newState, e));
+    item.effects.forEach(e => modifyStat(newState, e, applyEffect));
   }
   return newState;
 }
 
-function removeModifier(state, itemEffect) {
-  const index = state.findIndex(s => s.name === itemEffect.skill);
-  const newState = [...state];
-  newState[index].modifier = (state[index].modifier || 0) - itemEffect.value;
-  return newState;
-}
-
-function addModifier(state, itemEffect) {
-  const index = state.findIndex(s => s.name === itemEffect.skill);
-  const newState = [...state];
-  newState[index].modifier = (state[index].modifier || 0) + itemEffect.value;
-  return newState;
+function modifyStat(state, itemEffect, applyEffect) {
+  const currentModifier = state[itemEffect.skill].modifier || 0;
+  state[itemEffect.skill].modifier = applyEffect(
+    currentModifier, itemEffect.value);
+  return state;
 }

@@ -6,6 +6,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { addSignPrefix } from '../shared/helpers';
+import { stats } from '../character/reducer';
 
 const Item = Picker.Item;
 
@@ -29,10 +30,11 @@ export const SkillPicker = ({ selectedSkill, selectedValue, updateSelected, onSu
 );
 
 function buildSkills() {
-  const skills = [SELECT_SKILL, 'Charisma', 'Combat', 'Defence', 'Magic',
-                  'Sanctity', 'Scouting', 'Thievery'];
-  return skills.map((s, i) => (
-    <Item label={s} value={s} key={i} />
+  const skills = [SELECT_SKILL, 'charisma', 'combat', 'defence', 'magic',
+                  'sanctity', 'scouting', 'thievery'];
+  // TODO convert label to title case, no js built in?
+  return skills.map(s => (
+    <Item label={s} value={s} key={s} />
   ));
 }
 

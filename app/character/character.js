@@ -13,19 +13,19 @@ import { addSignPrefix } from '../shared/helpers';
 
 const nameProfession = ['name', 'profession'];
 
-const stats = ['rank', 'defence', 'stamina', 'charisma', 'combat', 'magic',
-  'sanctity', 'scouting', 'thievery'];
+export const stats = ['rank', 'defence', 'stamina', 'charisma', 'combat',
+  'magic', 'sanctity', 'scouting', 'thievery'];
 
-const otherStats = ['god', 'titles', 'blessings', 'resurrection'];
+const otherStats = ['money', 'god', 'titles', 'blessings', 'resurrection'];
 
 
 class Character extends Component {
 
-  getDisplayValue(stat) {
-    if (!stat.modifier) {
-      return stat.value;
+  getDisplayValue(attr) {
+    if (!attr.modifier) {
+      return attr.value;
     }
-    return `${stat.value + stat.modifier} (${addSignPrefix(stat.modifier)})`;
+    return `${attr.value + attr.modifier} (${addSignPrefix(attr.modifier)})`;
   }
 
   renderRows(keys) {
