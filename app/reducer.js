@@ -4,25 +4,57 @@ import character from './character/reducer';
 import inventory from './inventory/reducer';
 
 export const initialState = {
-  // array so that we can set the order
-  stats: [
-    { name: 'Name', value: 'Gerald Littlefoot' },
-    { name: 'Profession', value: 'Wayfarer' },
-    { name: 'Rank', value: 1 },
-    { name: 'Defence', value: 5 },
-    { name: 'Stamina', value: 12 },
-    { name: 'Charisma', value: 5 },
-    { name: 'Combat', value: 5 },
-    { name: 'Magic', value: 5 },
-    { name: 'Sanctity', value: 5 },
-    { name: 'Scouting', value: 5 },
-    { name: 'Thievery', value: 5 },
-    { name: 'God', value: 'None' },
-    { name: 'Money', value: '6 shards' },
-    { name: 'Titles and Honours', value: 'None' },
-    { name: 'Blessings', value: 'None' },
-    { name: 'Resurrection Arrangements', value: 'None' },
-  ],
+  character: {
+    name: {
+      attribute: 'Name', value: 'Gerald Littlefoot'
+    },
+    profession: {
+      attribute: 'Profession', value: 'Wayfarer'
+    },
+    rank: {
+      attribute: 'Rank', value: 1
+    },
+    defence: {
+      attribute: 'Defence', value: 5
+    },
+    stamina: {
+      attribute: 'Stamina', value: 12
+    },
+    charisma: {
+      attribute: 'Charisma', value: 5
+    },
+    combat: {
+      attribute: 'Combat', value: 5
+    },
+    magic: {
+      attribute: 'Magic', value: 5
+    },
+    sanctity: {
+      attribute: 'Sanctity', value: 5
+    },
+    scouting: {
+      attribute: 'Scouting', value: 5
+    },
+    thievery: {
+      attribute: 'Thievery', value: 5
+    },
+    money: {
+      attribute: 'Money', value: 6
+    },
+    god: {
+      attribute: 'God', value: 'None'
+    },
+    titles: {
+      attribute: 'Titles and Honours', value: 'None'
+    },
+    blessings: {
+      attribute: 'Blessings', value: 'None'
+    },
+    resurrection: {
+      attribute: 'Resurrection Arrangements', value: 'None'
+    },
+  },
+
   inventory: [
     {
       name: 'Wooden sword',
@@ -37,6 +69,6 @@ export const initialState = {
 };
 
 export default combineReducers({
-  stats: character,
+  character,
   inventory,
 });

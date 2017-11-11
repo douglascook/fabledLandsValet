@@ -11,6 +11,14 @@ import styles from '../shared/styles';
 import { addSignPrefix } from '../shared/helpers';
 
 
+const nameProfession = ['name', 'profession'];
+
+const stats = ['rank', 'defence', 'stamina', 'charisma', 'combat', 'magic',
+  'sanctity', 'scouting', 'thievery'];
+
+const otherStats = ['god', 'titles', 'blessings', 'resurrection'];
+
+
 class Character extends Component {
 
   getDisplayValue(stat) {
@@ -20,29 +28,38 @@ class Character extends Component {
     return `${stat.value + stat.modifier} (${addSignPrefix(stat.modifier)})`;
   }
 
+  renderRows(keys) {
+    return keys.map(key => {
+      const attribute = this.props.character[key];
+      return (
+        <SingleItemRow
+          name={attribute.attribute}
+          value={this.getDisplayValue(attribute)}
+          key={key}
+        />
+      );
+    });
+  }
+
   render() {
-    const characterStats = this.props.stats.map((stat, i) => (
-      <SingleItemRow
-        name={stat.name}
-        value={this.getDisplayValue(stat)}
-        key={i}
-      />
-    ));
     return (
       <View style={styles.container}>
         <Text style={styles.headerText}> Character </Text>
-        {characterStats}
+        {this.renderRows(nameProfession)}
+        {this.renderRows(stats)}
+        {this.renderRows(otherStats)}
       </View>
     );
   }
 }
 
 Character.propTypes = {
-  stats: PropTypes.array.isRequired,
+  character: PropTypes.object.isRequired,
 };
 
+
 const mapStateToProps = state => ({
-  stats: state.stats,
+  character: state.character
 });
 
 export default connect(

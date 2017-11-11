@@ -6,7 +6,7 @@ import {
 import { initialState } from '../reducer';
 
 
-export default function character(state = initialState.stats, action) {
+export default function character(state = initialState.character, action) {
   switch (action.type) {
     case ADD_ITEM:
       return applySkillModifiers(state, action.item, addModifier);
