@@ -26,12 +26,12 @@ export default function character(state = initialState.character, action) {
 function applySkillModifiers(state, item, applyEffect) {
   const newState = {...state};
   if (item.effects) {
-    item.effects.forEach(e => modifyStat(newState, e, applyEffect));
+    item.effects.forEach(e => modifySkill(newState, e, applyEffect));
   }
   return newState;
 }
 
-function modifyStat(state, itemEffect, applyEffect) {
+function modifySkill(state, itemEffect, applyEffect) {
   const currentModifier = state[itemEffect.skill].modifier || 0;
   state[itemEffect.skill].modifier = applyEffect(
     currentModifier, itemEffect.value);

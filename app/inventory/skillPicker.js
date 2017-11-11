@@ -13,7 +13,7 @@ import ItemPicker from '../shared/components/itemPicker';
 const Item = Picker.Item;
 
 
-export const SkillPicker = ({ selectedSkill, selectedValue, updateSelected, onSubmit }) => (
+const SkillPicker = ({ selectedSkill, selectedValue, updateSelected, onSubmit }) => (
   <View style={styles.container}>
     <ItemPicker
       selected={selectedSkill}
@@ -51,7 +51,9 @@ function buildRange() {
 }
 
 SkillPicker.propTypes = {
-  selectedSkill: PropTypes.number.isRequired,
+  selectedSkill: PropTypes.oneOfType(
+    [PropTypes.number, PropTypes.string]
+  ).isRequired,
   selectedValue: PropTypes.number.isRequired,
   updateSelected: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
@@ -63,3 +65,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+export default SkillPicker;

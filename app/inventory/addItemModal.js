@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import {
   View,
   Modal,
   Button,
   StyleSheet,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import InsertRow from '../shared/components/insertRow';
 import SingleItemRow from '../shared/components/singleItemRow';
 import { formatEffects } from './inventory';
-import {
-  SkillPicker,
+import SkillPicker, {
   SELECT_SKILL,
 } from './skillPicker';
 
 
 export default class AddItemModal extends Component {
+
   constructor() {
     super();
     this.state = getDefaultState();

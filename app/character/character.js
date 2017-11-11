@@ -6,20 +6,36 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 
+import SkillChangeModal from './skillChangeModal';
 import SingleItemRow from '../shared/components/singleItemRow';
 import styles from '../shared/styles';
 import { addSignPrefix } from '../shared/helpers';
 
 
-const nameProfession = ['name', 'profession'];
-
 export const stats = ['rank', 'defence', 'stamina', 'charisma', 'combat',
   'magic', 'sanctity', 'scouting', 'thievery'];
+
+const nameProfession = ['name', 'profession'];
 
 const otherStats = ['money', 'god', 'titles', 'blessings', 'resurrection'];
 
 
 class Character extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      skillToChange: undefined,
+      skillValue: undefined,
+    };
+  }
+
+  onCloseSkillModal() {
+    this.setState({
+      skillToChange: undefined,
+      skillValue: undefined,
+    });
+  }
 
   getDisplayValue(attr) {
     if (!attr.modifier) {
@@ -44,10 +60,20 @@ class Character extends Component {
   render() {
     return (
       <View style={styles.container}>
+
         <Text style={styles.headerText}> Character </Text>
+
         {this.renderRows(nameProfession)}
         {this.renderRows(stats)}
         {this.renderRows(otherStats)}
+
+        <SkillChangeModal
+          visible={typeof this.state.skillToChange !== 'undefined'}
+          skillName={this.state.skillToChange}
+          skillValue={this.state.skillValue}
+          onRequestClose={() => this.onCloseSkillModal()}
+        />
+
       </View>
     );
   }
