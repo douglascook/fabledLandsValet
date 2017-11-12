@@ -22,7 +22,9 @@ export default class SkillChangeModal extends Component {
             {this.props.skillValue}
           </Text>
 
-          <SubmitButton />
+          <SubmitButton
+            onPress={() => this.props.onDone()}
+          />
         </View>
       </Modal>
     );

@@ -25,15 +25,29 @@ class Character extends Component {
   constructor() {
     super();
     this.state = {
-      skillToChange: undefined,
-      skillValue: undefined,
+      skillModalVisible: false,
+      skillToChange: null,
+      skillValue: null,
     };
+  }
+
+  onPress(attribute) {
+    this.setState({
+      skillModalVisible: true,
+      skillToChange: attribute.attribute,
+      skillValue: attribute.value,
+    });
+  }
+
+  onSubmitSkillChange() {
+    this.onCloseSkillModal();
   }
 
   onCloseSkillModal() {
     this.setState({
-      skillToChange: undefined,
-      skillValue: undefined,
+      skillModalVisible: false,
+      skillToChange: null,
+      skillValue: null,
     });
   }
 
@@ -57,6 +71,20 @@ class Character extends Component {
     });
   }
 
+  renderSkillRows() {
+    return stats.map(key => {
+      const attribute = this.props.character[key];
+      return (
+        <SingleItemRow
+          name={attribute.attribute}
+          value={this.getDisplayValue(attribute)}
+          onButtonPress={() => this.onPress(attribute)}
+          key={key}
+        />
+      );
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -64,13 +92,14 @@ class Character extends Component {
         <Text style={styles.headerText}> Character </Text>
 
         {this.renderRows(nameProfession)}
-        {this.renderRows(stats)}
+        {this.renderSkillRows()}
         {this.renderRows(otherStats)}
 
         <SkillChangeModal
-          visible={typeof this.state.skillToChange !== 'undefined'}
+          visible={this.state.skillModalVisible}
           skillName={this.state.skillToChange}
           skillValue={this.state.skillValue}
+          onDone={() => this.onSubmitSkillChange()}
           onRequestClose={() => this.onCloseSkillModal()}
         />
 
