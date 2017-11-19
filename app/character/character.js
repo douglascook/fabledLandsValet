@@ -1,16 +1,33 @@
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
+
 import PropTypes from 'prop-types';
+
 import {
   Text,
   View,
 } from 'react-native';
-import { connect } from 'react-redux';
+
+import {
+  connect
+} from 'react-redux';
 
 import SkillChangeModal from './skillChangeModal';
-import SingleItemRow from '../shared/components/singleItemRow';
+
+import {
+  SingleItemRow
+} from '../shared/components';
+
 import styles from '../shared/styles';
-import { addSignPrefix } from '../shared/helpers';
-import { updateSkillValue } from '../actions';
+
+import {
+  addSignPrefix
+} from '../shared/helpers';
+
+import {
+  updateSkillValue
+} from '../actions';
 
 
 export const stats = ['rank', 'defence', 'stamina', 'charisma', 'combat',

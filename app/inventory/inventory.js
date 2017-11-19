@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import {
   View,
   Text,
   Button,
 } from 'react-native';
-import { connect } from 'react-redux';
+
+import {
+  connect
+} from 'react-redux';
 
 import AddItemModal from './addItemModal';
-import RemovableRow from '../shared/components/removableRow';
+
+import {
+  RemovableRow
+} from '../shared/components';
+
+import {
+  formatEffects
+} from '../shared/helpers';
+
 import styles from '../shared/styles';
-import { formatEffects } from '../shared/helpers';
+
 import {
   addItem,
   removeItem,

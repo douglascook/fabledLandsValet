@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import {
   View,
   Picker,
@@ -7,8 +8,13 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import { addSignPrefix } from '../shared/helpers';
-import ItemPicker from '../shared/components/itemPicker';
+import {
+  addSignPrefix
+} from '../shared/helpers';
+
+import {
+  ItemPicker
+} from '../shared/components';
 
 const Item = Picker.Item;
 

@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import {
   View,
   Modal,
   StyleSheet,
 } from 'react-native';
-import PropTypes from 'prop-types';
 
-import InsertRow from '../shared/components/insertRow';
-import SingleItemRow from '../shared/components/singleItemRow';
-import SubmitButtonRow from '../shared/components/submitButtonRow';
-import { formatEffects } from './inventory';
+
+import {
+  InsertRow,
+  SingleItemRow,
+  SubmitButtonRow,
+} from '../shared/components';
+
+import {
+  formatEffects
+} from '../shared/helpers';
+
 import SkillPicker, {
   SELECT_SKILL,
 } from './skillPicker';

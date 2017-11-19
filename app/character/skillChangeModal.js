@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import {
   View,
   Text,
@@ -8,7 +9,9 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import SubmitButtonRow from '../shared/components/submitButtonRow';
+import {
+  SubmitButtonRow
+} from '../shared/components';
 
 
 export default class SkillChangeModal extends Component {
@@ -73,8 +76,9 @@ export default class SkillChangeModal extends Component {
 }
 
 SkillChangeModal.propTypes = {
-  skillValue: PropTypes.number.isRequired,
-  skillName: PropTypes.string.isRequired,
+  // TODO update to allow null and to be required, no simple way?
+  skillValue: PropTypes.number,
+  skillName: PropTypes.string,
   onDone: PropTypes.func.isRequired,
 };
 
