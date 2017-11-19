@@ -1,6 +1,7 @@
 import {
   ADD_ITEM,
-  REMOVE_ITEM
+  REMOVE_ITEM,
+  UPDATE_SKILL_VALUE,
 } from '../actions';
 
 import { initialState } from '../reducer';
@@ -8,6 +9,7 @@ import { initialState } from '../reducer';
 
 export default function character(state = initialState.character, action) {
   switch (action.type) {
+
     case ADD_ITEM:
       return applySkillModifiers(
         state, action.item, (value, modifier) => (value + modifier)
@@ -17,6 +19,15 @@ export default function character(state = initialState.character, action) {
       return applySkillModifiers(
         state, action.item, (value, modifier) => (value - modifier)
       );
+
+    case UPDATE_SKILL_VALUE:
+      return {
+        ...state,
+        [action.skillName]: {
+          ...state[action.skillName],
+          value: action.newValue
+        },
+      };
 
     default:
       return state;

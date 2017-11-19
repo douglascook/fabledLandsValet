@@ -10,6 +10,7 @@ import SkillChangeModal from './skillChangeModal';
 import SingleItemRow from '../shared/components/singleItemRow';
 import styles from '../shared/styles';
 import { addSignPrefix } from '../shared/helpers';
+import { updateSkillValue } from '../actions';
 
 
 export const stats = ['rank', 'defence', 'stamina', 'charisma', 'combat',
@@ -27,19 +28,22 @@ class Character extends Component {
     this.state = {
       skillModalVisible: false,
       skillToChange: null,
+      skillName: null,
       skillValue: null,
     };
   }
 
-  onPress(attribute) {
+  onPress(attributeKey, attribute) {
     this.setState({
       skillModalVisible: true,
-      skillToChange: attribute.attribute,
+      skillToChange: attributeKey,
+      skillName: attribute.attribute,
       skillValue: attribute.value,
     });
   }
 
-  onSubmitSkillChange() {
+  onSubmitSkillChange(newSkillValue) {
+    this.props.updateSkillValue(this.state.skillToChange, newSkillValue);
     this.onCloseSkillModal();
   }
 
@@ -47,6 +51,7 @@ class Character extends Component {
     this.setState({
       skillModalVisible: false,
       skillToChange: null,
+      skillName: null,
       skillValue: null,
     });
   }
@@ -78,7 +83,7 @@ class Character extends Component {
         <SingleItemRow
           name={attribute.attribute}
           value={this.getDisplayValue(attribute)}
-          onButtonPress={() => this.onPress(attribute)}
+          onButtonPress={() => this.onPress(key, attribute)}
           key={key}
         />
       );
@@ -97,9 +102,9 @@ class Character extends Component {
 
         <SkillChangeModal
           visible={this.state.skillModalVisible}
-          skillName={this.state.skillToChange}
+          skillName={this.state.skillName}
           skillValue={this.state.skillValue}
-          onDone={() => this.onSubmitSkillChange()}
+          onDone={newValue => this.onSubmitSkillChange(newValue)}
           onRequestClose={() => this.onCloseSkillModal()}
         />
 
@@ -117,6 +122,11 @@ const mapStateToProps = state => ({
   character: state.character
 });
 
+const mapDispatchToProps = dispatch => ({
+  updateSkillValue: (name, value) => dispatch(updateSkillValue(name, value)),
+});
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps,
 )(Character);
