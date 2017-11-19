@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
   Text,
@@ -9,7 +10,7 @@ import { connect } from 'react-redux';
 import AddItemModal from './addItemModal';
 import RemovableRow from '../shared/components/removableRow';
 import styles from '../shared/styles';
-import { addSignPrefix } from '../shared/helpers';
+import { formatEffects } from '../shared/helpers';
 import {
   addItem,
   removeItem,
@@ -67,14 +68,12 @@ class Inventory extends Component {
   }
 }
 
-export function formatEffects(effects) {
-  if (effects && effects.length > 0) {
-    return (
-      effects.map(e => `${e.skill} ${addSignPrefix(e.value)}`).join(', ')
-    );
-  }
-  return ' ';
-}
+Inventory.propTypes = {
+  inventory: PropTypes.array.isRequired,
+  addItem: PropTypes.func.isRequired,
+  removeItem: PropTypes.func.isRequired,
+};
+
 
 const mapStateToProps = state => ({
   inventory: state.inventory,

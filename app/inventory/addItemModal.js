@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import {
   View,
   Modal,
-  Button,
   StyleSheet,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
 import InsertRow from '../shared/components/insertRow';
 import SingleItemRow from '../shared/components/singleItemRow';
+import SubmitButtonRow from '../shared/components/submitButtonRow';
 import { formatEffects } from './inventory';
 import SkillPicker, {
   SELECT_SKILL,
@@ -20,6 +20,11 @@ export default class AddItemModal extends Component {
   constructor() {
     super();
     this.state = getDefaultState();
+  }
+
+  onClose() {
+    this.setState(getDefaultState());
+    this.props.closeModal();
   }
 
   submitName(event) {
@@ -56,11 +61,6 @@ export default class AddItemModal extends Component {
     return newItem;
   }
 
-  onClose() {
-    this.setState(getDefaultState());
-    this.props.closeModal();
-  }
-
   render() {
     return (
       <Modal
@@ -84,7 +84,10 @@ export default class AddItemModal extends Component {
             />
           }
           { this.state.submitVisible &&
-            <SubmitButton onPress={() => this.addItem()} />
+              <SubmitButtonRow
+                title="Add it!"
+                onPress={() => this.addItem()}
+              />
           }
         </View>
       </Modal>
@@ -92,30 +95,22 @@ export default class AddItemModal extends Component {
   }
 }
 
-const getDefaultState = () => (
-  {
-    itemName: ' ',
-    itemEffects: [],
-    selectedSkill: SELECT_SKILL,
-    selectedValue: 0,
-    nameVisible: true,
-    submitVisible: false,
-    pickerVisible: false,
-  }
-);
-
-const SubmitButton = ({ onPress }) => (
-  <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-    <Button
-      title="Add it!"
-      onPress={onPress}
-    />
-  </View>
-);
-
-SubmitButton.propTypes = {
-  onPress: PropTypes.func.isRequired,
+AddItemModal.propTypes = {
+  visible: PropTypes.bool.isRequired,
+  addToInventory: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
+
+
+const getDefaultState = () => ({
+  itemName: ' ',
+  itemEffects: [],
+  selectedSkill: SELECT_SKILL,
+  selectedValue: 0,
+  nameVisible: true,
+  submitVisible: false,
+  pickerVisible: false,
+});
 
 const styles = StyleSheet.create({
   addItemModal: {

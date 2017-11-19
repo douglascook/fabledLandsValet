@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
   Text,
@@ -6,6 +7,8 @@ import {
   Button,
   StyleSheet,
 } from 'react-native';
+
+import SubmitButtonRow from '../shared/components/submitButtonRow';
 
 
 export default class SkillChangeModal extends Component {
@@ -59,7 +62,8 @@ export default class SkillChangeModal extends Component {
             />
           </View>
 
-          <SubmitButton
+          <SubmitButtonRow
+            title="done"
             onPress={() => this.props.onDone(this.state.value)}
           />
         </View>
@@ -68,14 +72,11 @@ export default class SkillChangeModal extends Component {
   }
 }
 
-const SubmitButton = ({ onPress }) => (
-  <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-    <Button
-      title="Done"
-      onPress={onPress}
-    />
-  </View>
-);
+SkillChangeModal.propTypes = {
+  skillValue: PropTypes.number.isRequired,
+  skillName: PropTypes.string.isRequired,
+  onDone: PropTypes.func.isRequired,
+};
 
 
 const styles = StyleSheet.create({

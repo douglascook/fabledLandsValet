@@ -25,12 +25,7 @@ class Character extends Component {
 
   constructor() {
     super();
-    this.state = {
-      skillModalVisible: false,
-      skillToChange: null,
-      skillName: null,
-      skillValue: null,
-    };
+    this.state = getDefaultState();
   }
 
   onPress(attributeKey, attribute) {
@@ -48,12 +43,7 @@ class Character extends Component {
   }
 
   onCloseSkillModal() {
-    this.setState({
-      skillModalVisible: false,
-      skillToChange: null,
-      skillName: null,
-      skillValue: null,
-    });
+    this.setState(getDefaultState());
   }
 
   getDisplayValue(attr) {
@@ -115,7 +105,16 @@ class Character extends Component {
 
 Character.propTypes = {
   character: PropTypes.object.isRequired,
+  updateSkillValue: PropTypes.func.isRequired,
 };
+
+
+const getDefaultState = () => ({
+  skillModalVisible: false,
+  skillToChange: null,
+  skillName: null,
+  skillValue: null,
+});
 
 
 const mapStateToProps = state => ({
