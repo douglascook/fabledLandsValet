@@ -38,8 +38,8 @@ export const initialState = {
     thievery: {
       attribute: 'Thievery', value: 5
     },
-    money: {
-      attribute: 'Money', value: 6
+    shards: {
+      attribute: 'Shards', value: 6
     },
     god: {
       attribute: 'God', value: 'None'

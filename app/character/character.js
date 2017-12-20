@@ -15,6 +15,8 @@ import {
 
 import SkillChangeModal from './skillChangeModal';
 
+import ShardsChangeModal from './shardsChangeModal';
+
 import {
   SingleItemRow
 } from '../shared/components';
@@ -26,7 +28,7 @@ import {
 } from '../shared/helpers';
 
 import {
-  updateSkillValue
+  updateSkillValue,
 } from '../actions';
 
 
@@ -35,7 +37,7 @@ export const stats = ['rank', 'defence', 'stamina', 'charisma', 'combat',
 
 const nameProfession = ['name', 'profession'];
 
-const otherStats = ['money', 'god', 'titles', 'blessings', 'resurrection'];
+const otherStats = ['god', 'titles', 'blessings', 'resurrection'];
 
 
 class Character extends Component {
@@ -45,7 +47,7 @@ class Character extends Component {
     this.state = getDefaultState();
   }
 
-  onPress(attributeKey, attribute) {
+  showSkillModal(attributeKey, attribute) {
     this.setState({
       skillModalVisible: true,
       skillToChange: attributeKey,
@@ -56,10 +58,15 @@ class Character extends Component {
 
   onSubmitSkillChange(newSkillValue) {
     this.props.updateSkillValue(this.state.skillToChange, newSkillValue);
-    this.onCloseSkillModal();
+    this.onCloseModal();
   }
 
-  onCloseSkillModal() {
+  onSubmitShardsChange(newValue) {
+    this.props.updateSkillValue('shards', newValue);
+    this.onCloseModal();
+  }
+
+  onCloseModal() {
     this.setState(getDefaultState());
   }
 
@@ -90,11 +97,22 @@ class Character extends Component {
         <SingleItemRow
           name={attribute.attribute}
           value={this.getDisplayValue(attribute)}
-          onButtonPress={() => this.onPress(key, attribute)}
+          onButtonPress={() => this.showSkillModal(key, attribute)}
           key={key}
         />
       );
     });
+  }
+
+  renderShardsRow() {
+    const shards = this.props.character.shards;
+    return (
+      <SingleItemRow
+        name={shards.attribute}
+        value={this.getDisplayValue(shards)}
+        onButtonPress={() => this.setState({ shardsModalVisible: true })}
+      />
+    );
   }
 
   render() {
@@ -105,6 +123,7 @@ class Character extends Component {
 
         {this.renderRows(nameProfession)}
         {this.renderSkillRows()}
+        {this.renderShardsRow()}
         {this.renderRows(otherStats)}
 
         <SkillChangeModal
@@ -112,7 +131,14 @@ class Character extends Component {
           skillName={this.state.skillName}
           skillValue={this.state.skillValue}
           onDone={newValue => this.onSubmitSkillChange(newValue)}
-          onRequestClose={() => this.onCloseSkillModal()}
+          onRequestClose={() => this.onCloseModal()}
+        />
+
+        <ShardsChangeModal
+          visible={this.state.shardsModalVisible}
+          shards={this.props.character.shards}
+          onDone={difference => this.onSubmitShardsChange(difference)}
+          onRequestClose={() => this.onCloseModal()}
         />
 
       </View>
@@ -123,6 +149,7 @@ class Character extends Component {
 Character.propTypes = {
   character: PropTypes.object.isRequired,
   updateSkillValue: PropTypes.func.isRequired,
+  updateShardsValue: PropTypes.func.isRequired,
 };
 
 
@@ -131,6 +158,7 @@ const getDefaultState = () => ({
   skillToChange: null,
   skillName: null,
   skillValue: null,
+  shardsModalVisible: false,
 });
 
 
@@ -140,6 +168,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateSkillValue: (name, value) => dispatch(updateSkillValue(name, value)),
+  updateShardsValue: difference => dispatch(updateShardsValue(difference)),
 });
 
 export default connect(
