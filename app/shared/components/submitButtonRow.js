@@ -6,11 +6,12 @@ import {
 } from 'react-native';
 
 
-const SubmitButtonRow = ({ title, onPress }) => (
+const SubmitButtonRow = ({ title, onPress, disabled = false }) => (
   <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
     <Button
       title={title}
       onPress={onPress}
+      disabled={disabled}
     />
   </View>
 );
@@ -18,6 +19,7 @@ const SubmitButtonRow = ({ title, onPress }) => (
 SubmitButtonRow.propTypes = {
   title: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default SubmitButtonRow;

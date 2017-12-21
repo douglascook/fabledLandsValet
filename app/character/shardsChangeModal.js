@@ -19,10 +19,7 @@ export default class ShardsChangeModal extends Component {
 
   constructor() {
     super();
-    this.state = {
-      currentAmount: undefined,
-      difference: 1,
-    };
+    this.state = getDefaultState();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -32,9 +29,22 @@ export default class ShardsChangeModal extends Component {
   }
 
   onUpdateDifference(event) {
-    this.setState({
-      difference: parseInt(event.nativeEvent.text),
-    });
+    if (event.nativeEvent.text) {
+      this.setState({
+        difference: parseInt(event.nativeEvent.text),
+        buttonsDisabled: false,
+      });
+    }
+  }
+
+  onDone() {
+    this.props.onDone(this.state.currentAmount);
+    this.onClose();
+  }
+
+  onClose() {
+    this.setState(getDefaultState());
+    this.props.onRequestClose();
   }
 
   decrement() {
@@ -51,37 +61,52 @@ export default class ShardsChangeModal extends Component {
 
   render() {
     return (
-      <Modal {...this.props} >
+      <Modal
+        visible={this.props.visible}
+        onRequestClose={() => this.onClose()}
+      >
         <View style={styles.modal}>
           <Text style={styles.skillName}>
             Shards
           </Text>
 
-          <Text style={styles.value}>
+          <Text style={styles.currentAmount}>
             Current: {this.state.currentAmount}
           </Text>
 
-          <View style={styles.changer}>
-            <Button
-              title="-"
-              onPress={() => this.decrement()}
-            />
+          <View style={styles.diffRow}>
+            <View style={styles.button}>
+              <Button
+                title="-"
+                onPress={() => this.decrement()}
+                disabled={this.state.buttonsDisabled}
+              />
+            </View>
 
-            <TextInput
-              style={styles.difference}
-              keyboardType={'phone-pad'}
-              onSubmitEditing={e => this.onUpdateDifference(e)}
-            />
+            <View style={styles.diffBox}>
+              <TextInput
+                style={styles.difference}
+                keyboardType={'numeric'}
+                autoCorrect={false}
+                selectionColor="aquamarine"
+                onFocus={() => this.setState({ buttonsDisabled: true })}
+                onSubmitEditing={e => this.onUpdateDifference(e)}
+              />
+            </View>
 
-            <Button
-              title="+"
-              onPress={() => this.increment()}
-            />
+            <View style={styles.button}>
+              <Button
+                title="+"
+                onPress={() => this.increment()}
+                disabled={this.state.buttonsDisabled}
+              />
+            </View>
           </View>
 
           <SubmitButtonRow
             title="done"
-            onPress={() => this.props.onDone(this.state.currentAmount)}
+            onPress={() => this.onDone()}
+            disabled={this.state.buttonsDisabled}
           />
         </View>
       </Modal>
@@ -94,8 +119,15 @@ ShardsChangeModal.propTypes = {
   shards: PropTypes.object.isRequired,
   difference: PropTypes.number,
   onDone: PropTypes.func.isRequired,
+  onRequestClose: PropTypes.func.isRequired,
+  visible: PropTypes.bool.isRequired,
 };
 
+const getDefaultState = () => ({
+  buttonsDisabled: true,
+  currentAmount: undefined,
+  difference: undefined,
+});
 
 const styles = StyleSheet.create({
   modal: {
@@ -107,23 +139,27 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 25,
   },
-  changer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    padding: 30,
-  },
-  value: {
+  currentAmount: {
     fontWeight: 'bold',
-    fontSize: 25,
-    paddingHorizontal: 25,
+    fontSize: 20,
   },
-
-  differenceRow: {
+  diffRow: {
     flexDirection: 'row',
+    paddingVertical: 20,
+    paddingHorizontal: 80,
+  },
+  diffBox: {
+    flex: 3,
+    flexDirection: 'column',
+    paddingHorizontal: 30,
   },
   difference: {
     fontWeight: 'bold',
     fontSize: 25,
-    paddingHorizontal: 60,
+    textAlign: 'center',
   },
+  button: {
+    flex: 1,
+    flexDirection: 'column',
+  }
 });
