@@ -14,8 +14,8 @@ import {
 } from 'react-redux';
 
 import SkillChangeModal from './skillChangeModal';
-
 import ShardsChangeModal from './shardsChangeModal';
+import GodSelectModal from './godSelectModal';
 
 import {
   SingleItemRow
@@ -37,7 +37,7 @@ export const stats = ['rank', 'defence', 'stamina', 'charisma', 'combat',
 
 const nameProfession = ['name', 'profession'];
 
-const otherStats = ['god', 'titles', 'blessings', 'resurrection'];
+const otherStats = ['titles', 'blessings', 'resurrection'];
 
 
 class Character extends Component {
@@ -104,17 +104,6 @@ class Character extends Component {
     });
   }
 
-  renderShardsRow() {
-    const shards = this.props.character.shards;
-    return (
-      <SingleItemRow
-        name={shards.attribute}
-        value={this.getDisplayValue(shards)}
-        onButtonPress={() => this.setState({ shardsModalVisible: true })}
-      />
-    );
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -123,21 +112,37 @@ class Character extends Component {
 
         {this.renderRows(nameProfession)}
         {this.renderSkillRows()}
-        {this.renderShardsRow()}
+        <SingleItemRow
+          name="Shards"
+          value={this.getDisplayValue(this.props.character.shards)}
+          onButtonPress={() => this.setState({ shardsModalVisible: true })}
+        />
+        <SingleItemRow
+          name="God"
+          value={this.props.character.god.value}
+          onButtonPress={() => this.setState({ godModalVisible: true })}
+        />
         {this.renderRows(otherStats)}
 
         <SkillChangeModal
           visible={this.state.skillModalVisible}
           skillName={this.state.skillName}
           skillValue={this.state.skillValue}
-          onDone={newValue => this.onSubmitSkillChange(newValue)}
+          onDone={v => this.onSubmitSkillChange(v)}
           onRequestClose={() => this.onCloseModal()}
         />
 
         <ShardsChangeModal
           visible={this.state.shardsModalVisible}
           shards={this.props.character.shards}
-          onDone={difference => this.onSubmitShardsChange(difference)}
+          onDone={s => this.onSubmitShardsChange(s)}
+          onRequestClose={() => this.onCloseModal()}
+        />
+
+        <GodSelectModal
+          visible={this.state.godModalVisible}
+          selected={this.props.character.god.value}
+          updateSelected={g => this.props.updateSkillValue('god', g)}
           onRequestClose={() => this.onCloseModal()}
         />
 
@@ -149,7 +154,6 @@ class Character extends Component {
 Character.propTypes = {
   character: PropTypes.object.isRequired,
   updateSkillValue: PropTypes.func.isRequired,
-  updateShardsValue: PropTypes.func.isRequired,
 };
 
 
@@ -159,6 +163,7 @@ const getDefaultState = () => ({
   skillName: null,
   skillValue: null,
   shardsModalVisible: false,
+  godModalVisible: false,
 });
 
 
@@ -168,7 +173,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateSkillValue: (name, value) => dispatch(updateSkillValue(name, value)),
-  updateShardsValue: difference => dispatch(updateShardsValue(difference)),
 });
 
 export default connect(
