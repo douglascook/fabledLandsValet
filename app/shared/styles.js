@@ -7,16 +7,13 @@ const styles = StyleSheet.create({
   containerRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 3,
-    marginRight: 3,
-    marginTop: 1,
-    marginBottom: 1,
+    marginHorizontal: 3,
+    marginVertical: 1,
   },
   text: {
     backgroundColor: 'whitesmoke',
     fontSize: 18,
-    paddingLeft: 2,
-    paddingRight: 2,
+    paddingHorizontal: 2,
   },
   headerText: {
     fontSize: 30,

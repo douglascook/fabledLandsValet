@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
-  Button,
+  TouchableOpacity,
   Text,
   StyleSheet,
 } from 'react-native';
@@ -19,19 +19,22 @@ const SingleItemRow = ({ name, value, onButtonPress = null }) => (
       </Text>
     </View>
 
-    <View style={{ flex: onButtonPress ? 4 : 5 }}>
+    <View style={{ flex: onButtonPress ? 5 : 6 }}>
       <Text style={sharedStyles.text}>
         {value}
       </Text>
     </View>
 
     {onButtonPress &&
-      <View style={{ flex: 1 }}>
-        <Button
-          onPress={onButtonPress}
-          title="o"
-        />
-      </View>
+      <TouchableOpacity
+        style={styles.button}
+        activeOpacity={0.6}
+        onPress={onButtonPress}
+      >
+        <Text style={styles.buttonText}>
+          o
+        </Text>
+      </TouchableOpacity>
     }
 
   </View>
@@ -48,14 +51,22 @@ const styles = StyleSheet.create({
     flex: 6,
     marginRight: 5,
   },
-  rowValue: {
-    flex: 3,
-  },
   textTitle: {
     backgroundColor: 'whitesmoke',
     fontSize: 18,
     fontWeight: 'bold',
     paddingLeft: 1,
+  },
+  button: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: 'dodgerblue',
+    marginLeft: 5,
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 18,
   },
 });
 
