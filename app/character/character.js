@@ -47,23 +47,11 @@ class Character extends Component {
     this.state = getDefaultState();
   }
 
-  showSkillModal(attributeKey, attribute) {
+  showSkillModal(attributeKey) {
     this.setState({
       skillModalVisible: true,
       skillToChange: attributeKey,
-      skillName: attribute.attribute,
-      skillValue: attribute.value,
     });
-  }
-
-  onSubmitSkillChange(newSkillValue) {
-    this.props.updateSkillValue(this.state.skillToChange, newSkillValue);
-    this.onCloseModal();
-  }
-
-  onSubmitShardsChange(newValue) {
-    this.props.updateSkillValue('shards', newValue);
-    this.onCloseModal();
   }
 
   onCloseModal() {
@@ -97,7 +85,7 @@ class Character extends Component {
         <SingleItemRow
           name={attribute.attribute}
           value={this.getDisplayValue(attribute)}
-          onButtonPress={() => this.showSkillModal(key, attribute)}
+          onButtonPress={() => this.showSkillModal(key)}
           key={key}
         />
       );
@@ -108,7 +96,9 @@ class Character extends Component {
     return (
       <View style={styles.container}>
 
-        <Text style={styles.headerText}> Character </Text>
+        <Text style={styles.headerText}>
+          Character
+        </Text>
 
         {this.renderRows(nameProfession)}
         {this.renderSkillRows()}
@@ -126,16 +116,18 @@ class Character extends Component {
 
         <SkillChangeModal
           visible={this.state.skillModalVisible}
-          skillName={this.state.skillName}
-          skillValue={this.state.skillValue}
+          skill={this.props.character[this.state.skillToChange]}
           onDone={v => this.onSubmitSkillChange(v)}
+          updateValue={
+            s => this.props.updateSkillValue(this.state.skillToChange, s)}
           onRequestClose={() => this.onCloseModal()}
         />
 
         <ShardsChangeModal
           visible={this.state.shardsModalVisible}
-          shards={this.props.character.shards}
+          amount={this.props.character.shards.value}
           onDone={s => this.onSubmitShardsChange(s)}
+          updateAmount={s => this.props.updateSkillValue('shards', s)}
           onRequestClose={() => this.onCloseModal()}
         />
 
@@ -156,16 +148,12 @@ Character.propTypes = {
   updateSkillValue: PropTypes.func.isRequired,
 };
 
-
 const getDefaultState = () => ({
   skillModalVisible: false,
-  skillToChange: null,
-  skillName: null,
-  skillValue: null,
   shardsModalVisible: false,
   godModalVisible: false,
+  skillToChange: null,
 });
-
 
 const mapStateToProps = state => ({
   character: state.character

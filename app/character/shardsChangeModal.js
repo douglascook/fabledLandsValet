@@ -10,22 +10,12 @@ import {
   TextInput,
 } from 'react-native';
 
-import {
-  SubmitButtonRow
-} from '../shared/components';
-
 
 export default class ShardsChangeModal extends Component {
 
   constructor() {
     super();
     this.state = getDefaultState();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      currentAmount: nextProps.shards.value,
-    });
   }
 
   onUpdateDifference(event) {
@@ -37,26 +27,17 @@ export default class ShardsChangeModal extends Component {
     }
   }
 
-  onDone() {
-    this.props.onDone(this.state.currentAmount);
-    this.onClose();
-  }
-
   onClose() {
     this.setState(getDefaultState());
     this.props.onRequestClose();
   }
 
   decrement() {
-    this.setState({
-      currentAmount: this.state.currentAmount - this.state.difference
-    });
+    this.props.updateAmount(this.props.amount - this.state.difference);
   }
 
   increment() {
-    this.setState({
-      currentAmount: this.state.currentAmount + this.state.difference
-    });
+    this.props.updateAmount(this.props.amount + this.state.difference);
   }
 
   render() {
@@ -71,7 +52,7 @@ export default class ShardsChangeModal extends Component {
           </Text>
 
           <Text style={styles.currentAmount}>
-            Current: {this.state.currentAmount}
+            Current: {this.props.amount}
           </Text>
 
           <View style={styles.diffRow}>
@@ -103,11 +84,6 @@ export default class ShardsChangeModal extends Component {
             </View>
           </View>
 
-          <SubmitButtonRow
-            title="done"
-            onPress={() => this.onDone()}
-            disabled={this.state.buttonsDisabled}
-          />
         </View>
       </Modal>
     );
@@ -115,17 +91,14 @@ export default class ShardsChangeModal extends Component {
 }
 
 ShardsChangeModal.propTypes = {
-  // TODO update to allow null and to be required, no simple way?
-  shards: PropTypes.object.isRequired,
-  difference: PropTypes.number,
-  onDone: PropTypes.func.isRequired,
+  amount: PropTypes.number.isRequired,
+  updateAmount: PropTypes.func.isRequired,
   onRequestClose: PropTypes.func.isRequired,
   visible: PropTypes.bool.isRequired,
 };
 
 const getDefaultState = () => ({
   buttonsDisabled: true,
-  currentAmount: undefined,
   difference: undefined,
 });
 

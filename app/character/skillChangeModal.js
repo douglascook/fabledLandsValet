@@ -9,44 +9,24 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import {
-  SubmitButtonRow
-} from '../shared/components';
-
 
 export default class SkillChangeModal extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      value: undefined,
-    };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      value: nextProps.skillValue,
-    });
-  }
-
   decrement() {
-    this.setState({
-      value: this.state.value - 1,
-    });
+    this.props.updateValue(this.props.skill.value - 1);
   }
 
   increment() {
-    this.setState({
-      value: this.state.value + 1,
-    });
+    this.props.updateValue(this.props.skill.value + 1);
   }
 
   render() {
     return (
       <Modal {...this.props} >
         <View style={styles.modal}>
+
           <Text style={styles.skillName}>
-            {this.props.skillName}
+            {this.props.skill ? this.props.skill.attribute : ''}
           </Text>
 
           <View style={styles.changer}>
@@ -56,7 +36,7 @@ export default class SkillChangeModal extends Component {
             />
 
             <Text style={styles.value}>
-              {this.state.value}
+              {this.props.skill ? this.props.skill.value : 0}
             </Text>
 
             <Button
@@ -65,10 +45,6 @@ export default class SkillChangeModal extends Component {
             />
           </View>
 
-          <SubmitButtonRow
-            title="done"
-            onPress={() => this.props.onDone(this.state.value)}
-          />
         </View>
       </Modal>
     );
@@ -77,9 +53,8 @@ export default class SkillChangeModal extends Component {
 
 SkillChangeModal.propTypes = {
   // TODO update to allow null and to be required, no simple way?
-  skillValue: PropTypes.number,
-  skillName: PropTypes.string,
-  onDone: PropTypes.func.isRequired,
+  skill: PropTypes.object,
+  updateValue: PropTypes.func.isRequired,
 };
 
 
