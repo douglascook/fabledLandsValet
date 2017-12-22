@@ -62,19 +62,26 @@ class Inventory extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.headerText}> Inventory </Text>
+
+        <Text style={styles.headerText}>
+          Inventory
+        </Text>
+
         {this.generateInventory()}
+
         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
           <Button
             onPress={() => this.setModalVisible(true)}
             title="Add item"
           />
         </View>
+
         <AddItemModal
           visible={this.state.modalVisible}
           closeModal={() => this.setModalVisible(false)}
           addToInventory={state => this.addItemToStore(state)}
         />
+
       </View>
     );
   }

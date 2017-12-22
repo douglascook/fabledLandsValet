@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import {
   View,
   Modal,
+  TextInput,
   StyleSheet,
 } from 'react-native';
 
-
 import {
-  InsertRow,
   SingleItemRow,
   SubmitButtonRow,
 } from '../shared/components';
@@ -81,7 +80,12 @@ export default class AddItemModal extends Component {
             value={formatEffects(this.state.itemEffects)}
           />
           { this.state.nameVisible &&
-            <InsertRow onSubmit={e => this.submitName(e)} />
+            <TextInput
+              placeholder="Item Name"
+              selectionColor="aquamarine"
+              onSubmitEditing={e => this.submitName(e)}
+              autoCapitalize="sentences"
+            />
           }
           { this.state.pickerVisible &&
             <SkillPicker
@@ -92,10 +96,10 @@ export default class AddItemModal extends Component {
             />
           }
           { this.state.submitVisible &&
-              <SubmitButtonRow
-                title="Add it!"
-                onPress={() => this.addItem()}
-              />
+            <SubmitButtonRow
+              title="Add it!"
+              onPress={() => this.addItem()}
+            />
           }
         </View>
       </Modal>
