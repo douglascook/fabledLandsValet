@@ -20,3 +20,11 @@ export const updateSkillValue = (skillName, newValue) => ({
   skillName,
   newValue,
 });
+
+export const ADD_ITEM_TO_ATTRIBUTE = 'ADD_ITEM_TO_ATTRIBUTE';
+
+export const addItemToAttribute = (name, item) => ({
+  type: ADD_ITEM_TO_ATTRIBUTE,
+  name,
+  item
+});

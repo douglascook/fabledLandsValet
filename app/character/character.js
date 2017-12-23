@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import {
   Text,
   View,
+  TouchableOpacity,
   StyleSheet,
 } from 'react-native';
 
@@ -17,6 +18,7 @@ import {
 import SkillChangeModal from './skillChangeModal';
 import ShardsChangeModal from './shardsChangeModal';
 import GodSelectModal from './godSelectModal';
+import ListItemsModal from './listItemsModal';
 
 import {
   SingleItemRow
@@ -30,12 +32,14 @@ import {
 
 import {
   updateSkillValue,
+  addItemToAttribute,
 } from '../actions';
 
 
 export const stats = ['rank', 'defence', 'stamina', 'charisma', 'combat',
   'magic', 'sanctity', 'scouting', 'thievery'];
 
+const otherStats = ['titles', 'blessings', 'resurrection'];
 
 
 class Character extends Component {
@@ -56,20 +60,13 @@ class Character extends Component {
     this.setState(getDefaultState());
   }
 
-  getDisplayValue(attr) {
-    if (!attr.modifier) {
-      return attr.value;
-    }
-    return `${attr.value + attr.modifier} (${addSignPrefix(attr.modifier)})`;
-  }
-
   renderSkillRows() {
     return stats.map(key => {
       const attribute = this.props.character[key];
       return (
         <SingleItemRow
           name={attribute.attribute}
-          value={this.getDisplayValue(attribute)}
+          value={getDisplayValue(attribute)}
           onButtonPress={() => this.showSkillModal(key)}
           key={key}
         />
@@ -78,16 +75,28 @@ class Character extends Component {
   }
 
   renderStatButtons() {
-    const otherStats = ['titles', 'blessings', 'resurrection'];
     return otherStats.map(key => (
-      <View
+      <TouchableOpacity
         style={styles.buttonRow}
         key={key}
+        onPress={() => this.setState({ [`${key}ModalVisible`]: true })}
       >
         <Text style={styles.statButton}>
           {this.props.character[key].attribute}
         </Text>
-      </View>
+      </TouchableOpacity>
+    ));
+  }
+
+  renderStatModals() {
+    return otherStats.map(key => (
+      <ListItemsModal
+        visible={this.state[`${key}ModalVisible`]}
+        onRequestClose={() => this.onCloseModal()}
+        items={this.props.character[key]}
+        addNew={i => this.props.addItemToAttribute(key, i)}
+        key={key}
+      />
     ));
   }
 
@@ -110,7 +119,7 @@ class Character extends Component {
 
           <SingleItemRow
             name="Shards"
-            value={this.getDisplayValue(this.props.character.shards)}
+            value={getDisplayValue(this.props.character.shards)}
             onButtonPress={() => this.setState({ shardsModalVisible: true })}
           />
 
@@ -122,6 +131,7 @@ class Character extends Component {
         </View>
 
         {this.renderStatButtons()}
+        {this.renderStatModals()}
 
         <SkillChangeModal
           visible={this.state.skillModalVisible}
@@ -153,12 +163,23 @@ class Character extends Component {
 Character.propTypes = {
   character: PropTypes.object.isRequired,
   updateSkillValue: PropTypes.func.isRequired,
+  addItemToAttribute: PropTypes.func.isRequired,
 };
+
+function getDisplayValue(attr) {
+  if (!attr.modifier) {
+    return attr.value;
+  }
+  return `${attr.value + attr.modifier} (${addSignPrefix(attr.modifier)})`;
+}
 
 const getDefaultState = () => ({
   skillModalVisible: false,
   shardsModalVisible: false,
   godModalVisible: false,
+  titlesModalVisible: false,
+  blessingsModalVisible: false,
+  resurrectionModalVisible: false,
   skillToChange: null,
 });
 
@@ -168,6 +189,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateSkillValue: (name, value) => dispatch(updateSkillValue(name, value)),
+  addItemToAttribute: (name, item) => dispatch(addItemToAttribute(name, item)),
 });
 
 const styles = StyleSheet.create({
@@ -185,7 +207,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     backgroundColor: 'whitesmoke',
-    width: 200,
+    width: 260,
   },
 });
 

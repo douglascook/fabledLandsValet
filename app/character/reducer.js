@@ -2,6 +2,7 @@ import {
   ADD_ITEM,
   REMOVE_ITEM,
   UPDATE_SKILL_VALUE,
+  ADD_ITEM_TO_ATTRIBUTE,
 } from '../actions';
 
 import { initialState } from '../reducer';
@@ -27,6 +28,15 @@ export default function character(state = initialState.character, action) {
           ...state[action.skillName],
           value: action.newValue
         },
+      };
+
+    case ADD_ITEM_TO_ATTRIBUTE:
+      return {
+        ...state,
+        [action.name]: {
+          attribute: state[action.name].attribute,
+          value: [...state[action.name].value, action.item],
+        }
       };
 
     default:
