@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   containerRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginHorizontal: 3,
+    marginHorizontal: 20,
     marginVertical: 1,
   },
   text: {
@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 2,
   },
   headerText: {
+    fontWeight: 'bold',
     fontSize: 30,
     padding: 5,
     marginBottom: 3,

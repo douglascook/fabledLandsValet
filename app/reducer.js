@@ -45,13 +45,13 @@ export const initialState = {
       attribute: 'God', value: 'None'
     },
     titles: {
-      attribute: 'Titles and Honours', value: 'None'
+      attribute: 'Titles & Honours', value: 'None'
     },
     blessings: {
       attribute: 'Blessings', value: 'None'
     },
     resurrection: {
-      attribute: 'Resurrection Arrangements', value: 'None'
+      attribute: 'Resurrection', value: 'None'
     },
   },
 

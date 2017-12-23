@@ -58,8 +58,7 @@ const styles = StyleSheet.create({
     paddingLeft: 1,
   },
   button: {
-    flex: 1,
-    alignItems: 'center',
+    width: 25,
     backgroundColor: 'dodgerblue',
     marginLeft: 5,
   },
@@ -67,6 +66,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 18,
+    textAlign: 'center',
   },
 });
 

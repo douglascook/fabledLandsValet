@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import {
   Text,
   View,
+  StyleSheet,
 } from 'react-native';
 
 import {
@@ -21,7 +22,7 @@ import {
   SingleItemRow
 } from '../shared/components';
 
-import styles from '../shared/styles';
+import sharedStyles from '../shared/styles';
 
 import {
   addSignPrefix
@@ -35,9 +36,6 @@ import {
 export const stats = ['rank', 'defence', 'stamina', 'charisma', 'combat',
   'magic', 'sanctity', 'scouting', 'thievery'];
 
-const nameProfession = ['name', 'profession'];
-
-const otherStats = ['titles', 'blessings', 'resurrection'];
 
 
 class Character extends Component {
@@ -65,19 +63,6 @@ class Character extends Component {
     return `${attr.value + attr.modifier} (${addSignPrefix(attr.modifier)})`;
   }
 
-  renderRows(keys) {
-    return keys.map(key => {
-      const attribute = this.props.character[key];
-      return (
-        <SingleItemRow
-          name={attribute.attribute}
-          value={this.getDisplayValue(attribute)}
-          key={key}
-        />
-      );
-    });
-  }
-
   renderSkillRows() {
     return stats.map(key => {
       const attribute = this.props.character[key];
@@ -92,27 +77,51 @@ class Character extends Component {
     });
   }
 
+  renderStatButtons() {
+    const otherStats = ['titles', 'blessings', 'resurrection'];
+    return otherStats.map(key => (
+      <View
+        style={styles.buttonRow}
+        key={key}
+      >
+        <Text style={styles.statButton}>
+          {this.props.character[key].attribute}
+        </Text>
+      </View>
+    ));
+  }
+
   render() {
     return (
-      <View style={styles.container}>
+      <View style={sharedStyles.container}>
 
-        <Text style={styles.headerText}>
+        <Text style={sharedStyles.headerText}>
           Character
         </Text>
+        <Text style={styles.nameProfession}>
+          {this.props.character.name.value}
+        </Text>
+        <Text style={styles.nameProfession}>
+          {this.props.character.profession.value}
+        </Text>
 
-        {this.renderRows(nameProfession)}
-        {this.renderSkillRows()}
-        <SingleItemRow
-          name="Shards"
-          value={this.getDisplayValue(this.props.character.shards)}
-          onButtonPress={() => this.setState({ shardsModalVisible: true })}
-        />
-        <SingleItemRow
-          name="God"
-          value={this.props.character.god.value}
-          onButtonPress={() => this.setState({ godModalVisible: true })}
-        />
-        {this.renderRows(otherStats)}
+        <View style={{ marginVertical: 6 }}>
+          {this.renderSkillRows()}
+
+          <SingleItemRow
+            name="Shards"
+            value={this.getDisplayValue(this.props.character.shards)}
+            onButtonPress={() => this.setState({ shardsModalVisible: true })}
+          />
+
+          <SingleItemRow
+            name="God"
+            value={this.props.character.god.value}
+            onButtonPress={() => this.setState({ godModalVisible: true })}
+          />
+        </View>
+
+        {this.renderStatButtons()}
 
         <SkillChangeModal
           visible={this.state.skillModalVisible}
@@ -122,7 +131,6 @@ class Character extends Component {
             s => this.props.updateSkillValue(this.state.skillToChange, s)}
           onRequestClose={() => this.onCloseModal()}
         />
-
         <ShardsChangeModal
           visible={this.state.shardsModalVisible}
           amount={this.props.character.shards.value}
@@ -130,7 +138,6 @@ class Character extends Component {
           updateAmount={s => this.props.updateSkillValue('shards', s)}
           onRequestClose={() => this.onCloseModal()}
         />
-
         <GodSelectModal
           visible={this.state.godModalVisible}
           selected={this.props.character.god.value}
@@ -161,6 +168,25 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateSkillValue: (name, value) => dispatch(updateSkillValue(name, value)),
+});
+
+const styles = StyleSheet.create({
+  nameProfession: {
+    fontSize: 20,
+    textAlign: 'center',
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginVertical: 1,
+  },
+  statButton: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    backgroundColor: 'whitesmoke',
+    width: 200,
+  },
 });
 
 export default connect(

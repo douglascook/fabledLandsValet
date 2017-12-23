@@ -1,6 +1,5 @@
 import {
   TabNavigator,
-  TabBarBottom
 } from 'react-navigation';
 
 import Character from './character/character';
@@ -25,7 +24,6 @@ const Navigation = TabNavigator({
   tabBarOptions: {
     upperCaseLabel: false,
   }
-  //tabBarComponent: TabBarBottom,
 });
 
 export default Navigation;
