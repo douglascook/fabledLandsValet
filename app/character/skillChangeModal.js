@@ -9,6 +9,8 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import sharedStyles from '../shared/styles';
+
 
 export default class SkillChangeModal extends Component {
 
@@ -23,9 +25,9 @@ export default class SkillChangeModal extends Component {
   render() {
     return (
       <Modal {...this.props} >
-        <View style={styles.modal}>
+        <View style={sharedStyles.fullSizeCentred}>
 
-          <Text style={styles.skillName}>
+          <Text style={sharedStyles.modalHeaderText}>
             {this.props.skill ? this.props.skill.attribute : ''}
           </Text>
 
@@ -35,7 +37,7 @@ export default class SkillChangeModal extends Component {
               onPress={() => this.decrement()}
             />
 
-            <Text style={styles.value}>
+            <Text style={[sharedStyles.modalHeaderText, styles.value]}>
               {this.props.skill ? this.props.skill.value : 0}
             </Text>
 
@@ -59,23 +61,12 @@ SkillChangeModal.propTypes = {
 
 
 const styles = StyleSheet.create({
-  modal: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  skillName: {
-    fontWeight: 'bold',
-    fontSize: 25,
-  },
   changer: {
     flexDirection: 'row',
     justifyContent: 'center',
     padding: 30,
   },
   value: {
-    fontWeight: 'bold',
-    fontSize: 25,
     paddingHorizontal: 25,
   },
 });

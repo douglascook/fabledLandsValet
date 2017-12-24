@@ -27,14 +27,13 @@ export default class ListItemsModal extends Component {
       <Modal
         visible={visible}
         onRequestClose={onRequestClose}
-        style={styles.container}
+        style={sharedStyles.fullSizeCentred}
       >
-
-        <Text style={styles.skillName}>
-          {items.attribute}
-        </Text>
-
         <ScrollView contentContainerStyle={styles.content}>
+          <Text style={[sharedStyles.modalHeaderText, styles.skillName]}>
+            {items.attribute}
+          </Text>
+
           <TextInput
             placeholder="New"
             selectionColor="aquamarine"
@@ -49,7 +48,6 @@ export default class ListItemsModal extends Component {
             </Text>))
           }
         </ScrollView>
-
       </Modal>
     );
   }
@@ -64,21 +62,13 @@ ListItemsModal.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   content: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    paddingHorizontal: 110,
+    paddingHorizontal: 60,
   },
   skillName: {
-    fontWeight: 'bold',
-    fontSize: 25,
     textAlign: 'center',
     paddingBottom: 10,
   },

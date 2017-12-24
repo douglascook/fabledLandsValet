@@ -10,6 +10,8 @@ import {
   TextInput,
 } from 'react-native';
 
+import sharedStyles from '../shared/styles';
+
 
 export default class ShardsChangeModal extends Component {
 
@@ -46,8 +48,8 @@ export default class ShardsChangeModal extends Component {
         visible={this.props.visible}
         onRequestClose={() => this.onClose()}
       >
-        <View style={styles.modal}>
-          <Text style={styles.skillName}>
+        <View style={sharedStyles.fullSizeCentred}>
+          <Text style={sharedStyles.modalHeaderText}>
             Shards
           </Text>
 
@@ -66,7 +68,7 @@ export default class ShardsChangeModal extends Component {
 
             <View style={styles.diffBox}>
               <TextInput
-                style={styles.difference}
+                style={[sharedStyles.modalHeaderText, styles.difference]}
                 keyboardType={'numeric'}
                 autoCorrect={false}
                 selectionColor="aquamarine"
@@ -103,15 +105,6 @@ const getDefaultState = () => ({
 });
 
 const styles = StyleSheet.create({
-  modal: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  skillName: {
-    fontWeight: 'bold',
-    fontSize: 25,
-  },
   currentAmount: {
     fontWeight: 'bold',
     fontSize: 20,
@@ -127,8 +120,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
   },
   difference: {
-    fontWeight: 'bold',
-    fontSize: 25,
     textAlign: 'center',
   },
   button: {

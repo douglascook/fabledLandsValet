@@ -26,11 +26,11 @@ const RemovableRow = ({ name, value, onRemove }) => (
     </View>
 
     <TouchableOpacity
-      style={styles.button}
+      style={[sharedStyles.removeButton, styles.button]}
       activeOpacity={0.6}
       onPress={onRemove}
     >
-      <Text style={styles.buttonText}>
+      <Text style={sharedStyles.buttonText}>
         x
       </Text>
     </TouchableOpacity>
@@ -50,16 +50,8 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   button: {
-    width: 25,
-    backgroundColor: 'firebrick',
     marginLeft: 1,
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 18,
-    textAlign: 'center',
-  },
+  }
 });
 
 export default RemovableRow;

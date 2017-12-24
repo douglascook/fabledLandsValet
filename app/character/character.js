@@ -81,7 +81,7 @@ class Character extends Component {
         key={key}
         onPress={() => this.setState({ [`${key}ModalVisible`]: true })}
       >
-        <Text style={styles.statButton}>
+        <Text style={[sharedStyles.text, styles.statButton]}>
           {this.props.character[key].attribute}
         </Text>
       </TouchableOpacity>
@@ -116,13 +116,11 @@ class Character extends Component {
 
         <View style={{ marginVertical: 6 }}>
           {this.renderSkillRows()}
-
           <SingleItemRow
             name="Shards"
             value={getDisplayValue(this.props.character.shards)}
             onButtonPress={() => this.setState({ shardsModalVisible: true })}
           />
-
           <SingleItemRow
             name="God"
             value={this.props.character.god.value}
@@ -203,10 +201,8 @@ const styles = StyleSheet.create({
     marginVertical: 1,
   },
   statButton: {
-    fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
-    backgroundColor: 'whitesmoke',
     width: 260,
   },
 });
