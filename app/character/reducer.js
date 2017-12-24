@@ -2,7 +2,8 @@ import {
   ADD_ITEM,
   REMOVE_ITEM,
   UPDATE_SKILL_VALUE,
-  ADD_ITEM_TO_ATTRIBUTE,
+  APPEND_TO_ATTRIBUTE,
+  REMOVE_FROM_ATTRIBUTE,
 } from '../actions';
 
 import { initialState } from '../reducer';
@@ -30,14 +31,21 @@ export default function character(state = initialState.character, action) {
         },
       };
 
-    case ADD_ITEM_TO_ATTRIBUTE:
-      return {
-        ...state,
-        [action.name]: {
-          attribute: state[action.name].attribute,
-          value: [...state[action.name].value, action.item],
-        }
-      };
+    case APPEND_TO_ATTRIBUTE: {
+      const items = state[action.attr].value;
+      const newState = { ...state };
+      newState[action.attr].value = [...items, action.item];
+      return newState;
+    }
+
+    case REMOVE_FROM_ATTRIBUTE: {
+      const items = state[action.attr].value;
+      const newState = { ...state };
+      newState[action.attr].value = [
+        ...items.slice(0, action.index), ...items.slice(action.index + 1)
+      ];
+      return newState;
+    }
 
     default:
       return state;
@@ -45,7 +53,7 @@ export default function character(state = initialState.character, action) {
 }
 
 function applySkillModifiers(state, item, applyEffect) {
-  const newState = {...state};
+  const newState = { ...state };
   if (item.effects) {
     item.effects.forEach(e => modifySkill(newState, e, applyEffect));
   }

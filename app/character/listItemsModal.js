@@ -4,9 +4,11 @@ import React, {
 import PropTypes from 'prop-types';
 
 import {
+  View,
   ScrollView,
   Text,
   TextInput,
+  TouchableOpacity,
   Modal,
   StyleSheet,
 } from 'react-native';
@@ -42,10 +44,12 @@ export default class ListItemsModal extends Component {
             ref={input => { this.textInput = input; }}
           />
 
-          { items.value.map(i => (
-            <Text style={sharedStyles.text} key={i}>
-              {i}
-            </Text>))
+          { items.value.map((item, i) => (
+            <RemovableItem
+              text={item}
+              onRemove={() => remove(i)}
+              key={item}
+            />))
           }
         </ScrollView>
       </Modal>
@@ -61,6 +65,31 @@ ListItemsModal.propTypes = {
   remove: PropTypes.func.isRequired,
 };
 
+const RemovableItem = ({ text, onRemove }) => (
+  <View style={styles.itemRow}>
+
+    <Text style={[sharedStyles.text, styles.text]}>
+      {text}
+    </Text>
+
+    <TouchableOpacity
+      style={[sharedStyles.removeButton, styles.button]}
+      activeOpacity={0.6}
+      onPress={onRemove}
+    >
+      <Text style={sharedStyles.buttonText}>
+        x
+      </Text>
+    </TouchableOpacity>
+
+  </View>
+);
+
+RemovableItem.propTypes = {
+  text: PropTypes.string.isRequired,
+  onRemove: PropTypes.func.isRequired,
+};
+
 const styles = StyleSheet.create({
   content: {
     flex: 1,
@@ -72,4 +101,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingBottom: 10,
   },
+  itemRow: {
+    flexDirection: 'row',
+    marginBottom: 1,
+  },
+  text: {
+    flex: 9,
+  },
+  button: {
+    flex: 1,
+    marginLeft: 1,
+  }
 });

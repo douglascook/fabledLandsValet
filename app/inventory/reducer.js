@@ -2,7 +2,8 @@ import {
   ADD_ITEM,
   REMOVE_ITEM,
 } from '../actions';
-import { initialState } from '../reducer.js';
+
+import { initialState } from '../reducer';
 
 export default function inventory(state = initialState.inventory, action) {
   switch (action.type) {

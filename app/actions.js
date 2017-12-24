@@ -21,10 +21,18 @@ export const updateSkillValue = (skillName, newValue) => ({
   newValue,
 });
 
-export const ADD_ITEM_TO_ATTRIBUTE = 'ADD_ITEM_TO_ATTRIBUTE';
+export const APPEND_TO_ATTRIBUTE = 'APPEND_TO_ATTRIBUTE';
 
-export const addItemToAttribute = (name, item) => ({
-  type: ADD_ITEM_TO_ATTRIBUTE,
-  name,
+export const appendToAttribute = (attr, item) => ({
+  type: APPEND_TO_ATTRIBUTE,
+  attr,
   item
+});
+
+export const REMOVE_FROM_ATTRIBUTE = 'REMOVE_FROM_ATTRIBUTE';
+
+export const removeFromAttribute = (attr, index) => ({
+  type: REMOVE_FROM_ATTRIBUTE,
+  attr,
+  index
 });

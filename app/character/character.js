@@ -32,7 +32,8 @@ import {
 
 import {
   updateSkillValue,
-  addItemToAttribute,
+  appendToAttribute,
+  removeFromAttribute,
 } from '../actions';
 
 
@@ -94,7 +95,8 @@ class Character extends Component {
         visible={this.state[`${key}ModalVisible`]}
         onRequestClose={() => this.onCloseModal()}
         items={this.props.character[key]}
-        addNew={i => this.props.addItemToAttribute(key, i)}
+        addNew={i => this.props.appendToAttribute(key, i)}
+        remove={i => this.props.removeFromAttribute(key, i)}
         key={key}
       />
     ));
@@ -161,7 +163,7 @@ class Character extends Component {
 Character.propTypes = {
   character: PropTypes.object.isRequired,
   updateSkillValue: PropTypes.func.isRequired,
-  addItemToAttribute: PropTypes.func.isRequired,
+  appendToAttribute: PropTypes.func.isRequired,
 };
 
 function getDisplayValue(attr) {
@@ -186,8 +188,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateSkillValue: (name, value) => dispatch(updateSkillValue(name, value)),
-  addItemToAttribute: (name, item) => dispatch(addItemToAttribute(name, item)),
+  updateSkillValue: (attr, value) => dispatch(updateSkillValue(attr, value)),
+  appendToAttribute: (attr, item) => dispatch(appendToAttribute(attr, item)),
+  removeFromAttribute: (attr, index) => dispatch(removeFromAttribute(attr, index)),
 });
 
 const styles = StyleSheet.create({
