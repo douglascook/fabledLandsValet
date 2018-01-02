@@ -1,3 +1,10 @@
+import { initialState } from '../reducer';
+
+import {
+  ADD_CODEWORD,
+  REMOVE_CODEWORD,
+} from '../actions';
+
 export const CODEWORDS = [
   'Acid', 'Afraid', 'Ague', 'Aid', 'Aklar', 'Alissia', 'Almanac', 'Aloft',
   'Altitude', 'Altruist', 'Ambuscade', 'Amcha', 'Amends', 'Anchor', 'Anger',
@@ -32,3 +39,14 @@ export const CODEWORDS = [
   'Frame', 'Fresco', 'Fright', 'Friz', 'Frog', 'Fruit', 'Fuligin', 'Fuchsia',
   'Fusty', 'Future',
 ];
+
+export default function codewords(state = initialState.codewords, action) {
+  switch (action.type) {
+
+    case REMOVE_CODEWORD:
+      return state.filter(w => w !== action.codeword);
+
+    default:
+      return state;
+  }
+}

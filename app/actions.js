@@ -36,3 +36,17 @@ export const removeFromAttribute = (attr, index) => ({
   attr,
   index
 });
+
+export const REMOVE_CODEWORD = 'REMOVE_CODEWORD';
+
+export const removeCodeword = codeword => ({
+  type: REMOVE_CODEWORD,
+  codeword,
+});
+
+export const ADD_CODEWORD = 'ADD_CODEWORD';
+
+export const addCodeword = codeword => ({
+  type: ADD_CODEWORD,
+  codeword,
+});

@@ -9,7 +9,23 @@ import {
   ScrollView,
 } from 'react-native';
 
+import {
+  connect
+} from 'react-redux';
+
+import PropTypes from 'prop-types';
+
+import {
+  RemovableItem
+} from '../shared/components';
+
 import sharedStyles from '../shared/styles';
+
+import {
+  addCodeword,
+  removeCodeword,
+} from '../actions';
+
 import {
   CODEWORDS
 } from './reducer';
@@ -20,13 +36,22 @@ class Codewords extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchTerm: 'NOT A CODEWORD',
+      searchTerm: '',
     };
+  }
+
+  getCurrentWords() {
+    return this.props.codewords.map(w => (
+      <RemovableItem
+        text={w}
+        onRemove={() => this.props.removeCodeword(w)}
+        key={w}
+      />
+    ));
   }
 
   getMatchingWords() {
     return CODEWORDS.filter(w => (
-      this.state.searchTerm &&
       w.toLowerCase().startsWith(this.state.searchTerm)
     )).map(w => (
       <Text key={w}>
@@ -50,7 +75,10 @@ class Codewords extends Component {
         />
 
         <ScrollView>
-          {this.getMatchingWords()}
+          {this.state.searchTerm
+            ? this.getMatchingWords()
+            : this.getCurrentWords()
+          }
         </ScrollView>
 
       </View>
@@ -58,4 +86,21 @@ class Codewords extends Component {
   }
 }
 
-export default Codewords;
+Codewords.propTypes = {
+  codewords: PropTypes.array.isRequired,
+  removeCodeword: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
+  codewords: state.codewords,
+});
+
+const mapDispatchToProps = dispatch => ({
+  removeCodeword: word => dispatch(removeCodeword(word)),
+  addCodeword: word => dispatch(addCodeword(word)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Codewords);

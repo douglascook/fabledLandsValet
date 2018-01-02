@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 
 import character from './character/reducer';
 import inventory from './inventory/reducer';
+import codewords from './codewords/reducer';
 
 export const initialState = {
   character: {
@@ -66,9 +67,14 @@ export const initialState = {
       name: 'Pet rock',
     },
   ],
+
+  codewords: [
+    'Acid', 'Bait', 'Dangle', 'Earth',
+  ],
 };
 
 export default combineReducers({
   character,
   inventory,
+  codewords,
 });
