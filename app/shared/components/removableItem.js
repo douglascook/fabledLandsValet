@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import sharedStyles from '../styles';
 
 
-const RemovableItem = ({ text, onRemove }) => (
+const AddRemoveItem = ({ text, isActive, onAdd, onRemove }) => (
   <View style={styles.itemRow}>
 
     <Text style={[sharedStyles.text, styles.text]}>
@@ -20,21 +20,26 @@ const RemovableItem = ({ text, onRemove }) => (
     </Text>
 
     <TouchableOpacity
-      style={[sharedStyles.removeButton, styles.button]}
+      style={[
+        isActive ? sharedStyles.removeButton : sharedStyles.addButton,
+        styles.button
+      ]}
       activeOpacity={0.6}
-      onPress={onRemove}
+      onPress={isActive ? onRemove : onAdd}
     >
       <Text style={sharedStyles.buttonText}>
-        x
+        {isActive ? 'x' : 'o'}
       </Text>
     </TouchableOpacity>
 
   </View>
 );
 
-RemovableItem.propTypes = {
+AddRemoveItem.propTypes = {
   text: PropTypes.string.isRequired,
-  onRemove: PropTypes.func.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  onAdd: PropTypes.func,
+  onRemove: PropTypes.func,
 };
 
 const styles = StyleSheet.create({
@@ -51,4 +56,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default RemovableItem;
+export default AddRemoveItem;

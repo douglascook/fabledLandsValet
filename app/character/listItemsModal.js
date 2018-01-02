@@ -14,7 +14,7 @@ import {
 import sharedStyles from '../shared/styles';
 
 import {
-  RemovableItem
+  AddRemoveItem
 } from '../shared/components';
 
 
@@ -47,9 +47,10 @@ export default class ListItemsModal extends Component {
           />
 
           { items.value.map((item, i) => (
-            <RemovableItem
+            <AddRemoveItem
               text={item}
               onRemove={() => remove(i)}
+              isActive
               key={item}
             />))
           }

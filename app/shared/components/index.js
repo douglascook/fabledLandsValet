@@ -6,4 +6,4 @@ export { default as SingleItemRow } from './singleItemRow';
 
 export { default as SubmitButtonRow } from './submitButtonRow.js';
 
-export { default as RemovableItem } from './removableItem';
+export { default as AddRemoveItem } from './removableItem';

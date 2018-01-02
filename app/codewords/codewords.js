@@ -16,7 +16,7 @@ import {
 import PropTypes from 'prop-types';
 
 import {
-  RemovableItem
+  AddRemoveItem,
 } from '../shared/components';
 
 import sharedStyles from '../shared/styles';
@@ -41,10 +41,11 @@ class Codewords extends Component {
   }
 
   getCurrentWords() {
-    return this.props.codewords.map(w => (
-      <RemovableItem
+    return this.props.codewords.sort().map(w => (
+      <AddRemoveItem
         text={w}
         onRemove={() => this.props.removeCodeword(w)}
+        isActive
         key={w}
       />
     ));
@@ -54,9 +55,13 @@ class Codewords extends Component {
     return CODEWORDS.filter(w => (
       w.toLowerCase().startsWith(this.state.searchTerm)
     )).map(w => (
-      <Text key={w}>
-        {w}
-      </Text>
+      <AddRemoveItem
+        text={w}
+        isActive={this.props.codewords.indexOf(w) !== -1}
+        onRemove={() => this.props.removeCodeword(w)}
+        onAdd={() => this.props.addCodeword(w)}
+        key={w}
+      />
     ));
   }
 
@@ -87,7 +92,8 @@ class Codewords extends Component {
 }
 
 Codewords.propTypes = {
-  codewords: PropTypes.array.isRequired,
+  codewords: PropTypes.arrayOf(PropTypes.string).isRequired,
+  addCodeword: PropTypes.func.isRequired,
   removeCodeword: PropTypes.func.isRequired,
 };
 
