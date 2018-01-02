@@ -2,8 +2,6 @@ import React, {
   Component
 } from 'react';
 
-import PropTypes from 'prop-types';
-
 import {
   Text,
   View,
@@ -14,6 +12,8 @@ import {
 import {
   connect
 } from 'react-redux';
+
+import PropTypes from 'prop-types';
 
 import SkillChangeModal from './skillChangeModal';
 import ShardsChangeModal from './shardsChangeModal';

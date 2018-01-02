@@ -4,6 +4,7 @@ import {
 
 import Character from './character/character';
 import Inventory from './inventory/inventory';
+import Codewords from './codewords/codewords';
 
 const Navigation = TabNavigator({
   character: {
@@ -16,6 +17,12 @@ const Navigation = TabNavigator({
     screen: Inventory,
     navigationOptions: {
       tabBarLabel: 'Inventory'
+    },
+  },
+  codewords: {
+    screen: Codewords,
+    navigationOptions: {
+      tabBarLabel: 'Codewords'
     },
   }
 }, {
