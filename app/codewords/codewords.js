@@ -7,6 +7,7 @@ import {
   TextInput,
   View,
   ScrollView,
+  StyleSheet,
 } from 'react-native';
 
 import {
@@ -40,7 +41,7 @@ class Codewords extends Component {
     };
   }
 
-  getCurrentWords() {
+  get currentWords() {
     return this.props.codewords.sort().map(w => (
       <AddRemoveItem
         text={w}
@@ -51,7 +52,7 @@ class Codewords extends Component {
     ));
   }
 
-  getMatchingWords() {
+  get matchingWords() {
     return CODEWORDS.filter(w => (
       w.toLowerCase().startsWith(this.state.searchTerm)
     )).map(w => (
@@ -73,18 +74,21 @@ class Codewords extends Component {
           Codewords
         </Text>
 
-        <TextInput
-          placeholder="Search..."
-          selectionColor="aquamarine"
-          onChangeText={text => this.setState({ searchTerm: text.toLowerCase() })}
-        />
+        <View style={styles.content}>
+          <TextInput
+            placeholder="Search..."
+            selectionColor="aquamarine"
+            onChangeText={text => this.setState({ searchTerm: text.toLowerCase() })}
+            style={{ marginBottom: 15 }}
+          />
 
-        <ScrollView>
-          {this.state.searchTerm
-            ? this.getMatchingWords()
-            : this.getCurrentWords()
-          }
-        </ScrollView>
+          <ScrollView>
+            {this.state.searchTerm
+              ? this.matchingWords
+              : this.currentWords
+            }
+          </ScrollView>
+        </View>
 
       </View>
     );
@@ -96,6 +100,15 @@ Codewords.propTypes = {
   addCodeword: PropTypes.func.isRequired,
   removeCodeword: PropTypes.func.isRequired,
 };
+
+const styles = StyleSheet.create({
+  content: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    paddingHorizontal: 60,
+  },
+});
 
 const mapStateToProps = state => ({
   codewords: state.codewords,
