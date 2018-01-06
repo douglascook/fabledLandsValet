@@ -43,7 +43,7 @@ export default class ListItemsModal extends Component {
             selectionColor="aquamarine"
             onSubmitEditing={e => this.onSubmitEditing(e)}
             autoCapitalize="sentences"
-            ref={input => { this.textInput = input; }}
+            ref={(input) => { this.textInput = input; }}
           />
 
           { items.value.map((item, i) => (

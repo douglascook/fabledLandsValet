@@ -74,8 +74,11 @@ export const initialState = {
   ],
 
   tickboxes: [{
-    book: 'Book 1',
+    book: 0,
     pageNumber: '123',
+  }, {
+    book: 1,
+    pageNumber: '234',
   }],
 };
 

@@ -36,20 +36,26 @@ class Tickboxes extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      book: 'Book 1',
-      pageNumber: undefined,
+      book: 1,
     };
   }
 
+  onAdd(event) {
+    this.props.addTick(this.state.book, event.nativeEvent.text);
+    this.textInput.clear();
+  }
+
   get currentlyTicked() {
-    return this.props.tickboxes.map(t => (
-      <AddRemoveItem
-        text={`${t.book}: ${t.pageNumber}`}
-        isActive
-        onRemove={() => this.props.removeTick(t.book, t.pageNumber)}
-        key={`${t.book}${t.pageNumber}`}
-      />
-    ));
+    return this.props.tickboxes
+      .filter(t => t.book === this.state.book)
+      .map(t => (
+        <AddRemoveItem
+          text={t.pageNumber}
+          isActive
+          onRemove={() => this.props.removeTick(t.book, t.pageNumber)}
+          key={`${t.book}${t.pageNumber}`}
+        />
+      ));
   }
 
   render() {
@@ -62,27 +68,25 @@ class Tickboxes extends Component {
 
         <View style={styles.content}>
 
-          <View style={styles.inputRow}>
-            <Picker
-              selectedValue={this.state.book}
-              onValueChange={value => this.setState({ book: value })}
-              style={styles.picker}
-            >
-              {buildBookNumbers()}
-            </Picker>
+          <Picker
+            selectedValue={this.state.book}
+            onValueChange={value => this.setState({ book: value })}
+          >
+            {buildBookNumbers()}
+          </Picker>
 
-            <TextInput
-              placeholder="Page number"
-              keyboardType="numeric"
-              selectionColor="aquamarine"
-              onChangeText={number => this.setState({ pageNumber: number })}
-              onSubmitEditing={e =>
-                this.props.addTick(this.state.book, e.nativeEvent.text)}
-              style={styles.input}
-            />
-          </View>
+          <TextInput
+            placeholder="New page number"
+            keyboardType="numeric"
+            selectionColor="aquamarine"
+            onSubmitEditing={e => this.onAdd(e)}
+            ref={(input) => { this.textInput = input; }}
+            style={[styles.narrower, styles.inputText]}
+          />
 
-          <ScrollView>
+          <ScrollView
+            contentContainerStyle={[styles.currentlyTicked, styles.narrower]}
+          >
             {this.currentlyTicked}
           </ScrollView>
 
@@ -100,8 +104,19 @@ Tickboxes.propTypes = {
 };
 
 function buildBookNumbers() {
-  const books = ['Book 1', 'Book 2', 'Book 3', 'Book 4', 'Book 5', 'Book 6'];
-  return books.map(b => <Item label={b} value={b} key={b} />);
+  const books = [
+    'The War-Torn Kingdom',
+    'Cities of Gold and Glory',
+    'Over the Blood-Dark Sea',
+    'The Plains of Howling Darkness',
+    'The Court of Hidden Faces',
+    'Lords of the Rising Sun',
+    'The Serpent King\'s Domain',
+  ];
+
+  return books.map((b, i) => (
+    <Item label={b} value={i} key={b} />
+  ));
 }
 
 const styles = StyleSheet.create({
@@ -111,20 +126,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 60,
   },
-  inputRow: {
-    flexDirection: 'row',
-    marginBottom: 15,
+  currentlyTicked: {
+    marginTop: 10,
   },
-  picker: {
-    flex: 5,
+  narrower: {
+    marginHorizontal: 80,
   },
-  input: {
-    flex: 5,
-  },
-  button: {
-    flex: 1,
-    marginLeft: 1,
-  },
+  inputText: {
+    textAlign: 'center',
+  }
 });
 
 const mapStateToProps = state => ({
