@@ -3,7 +3,7 @@ import {
 } from 'react-navigation';
 
 import Character from './character/character';
-import Inventory from './inventory/inventory';
+import Possessions from './possessions/possessions';
 import Codewords from './codewords/codewords';
 import Tickboxes from './tickboxes/tickboxes';
 
@@ -14,10 +14,10 @@ const Navigation = TabNavigator({
       tabBarLabel: 'Character'
     },
   },
-  inventory: {
-    screen: Inventory,
+  possessions: {
+    screen: Possessions,
     navigationOptions: {
-      tabBarLabel: 'Inventory'
+      tabBarLabel: 'Possessions'
     },
   },
   codewords: {

@@ -6,16 +6,6 @@ import {
 } from '../actions';
 
 
-export const BOOKS = [
-  'The War-Torn Kingdom',
-  'Cities of Gold and Glory',
-  'Over the Blood-Dark Sea',
-  'The Plains of Howling Darkness',
-  'The Court of Hidden Faces',
-  'Lords of the Rising Sun',
-  'The Serpent King\'s Domain',
-];
-
 export default function tickboxes(state = initialState.tickboxes, action) {
   switch (action.type) {
 

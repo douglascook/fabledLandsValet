@@ -5,7 +5,7 @@ import {
 
 import { initialState } from '../reducer';
 
-export default function inventory(state = initialState.inventory, action) {
+export default function possessions(state = initialState.possessions, action) {
   switch (action.type) {
     case ADD_ITEM:
       return [...state, action.item];

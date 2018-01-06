@@ -56,7 +56,7 @@ export default class AddItemModal extends Component {
   }
 
   addItem() {
-    this.props.addToInventory(this.buildItem());
+    this.props.addItem(this.buildItem());
     this.setState(getDefaultState());
   }
 
@@ -109,7 +109,7 @@ export default class AddItemModal extends Component {
 
 AddItemModal.propTypes = {
   visible: PropTypes.bool.isRequired,
-  addToInventory: PropTypes.func.isRequired,
+  addItem: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
 };
 

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 import character from './character/reducer';
-import inventory from './inventory/reducer';
+import possessions from './possessions/reducer';
 import codewords from './codewords/reducer';
 import tickboxes from './tickboxes/reducer';
 
@@ -57,11 +57,11 @@ export const initialState = {
     },
   },
 
-  inventory: [
+  possessions: [
     {
       name: 'Wooden sword',
       effects: [
-        { skill: 'Combat', value: 1 },
+        { skill: 'combat', value: 1 },
       ],
     },
     {
@@ -84,7 +84,7 @@ export const initialState = {
 
 export default combineReducers({
   character,
-  inventory,
+  possessions,
   codewords,
   tickboxes,
 });

@@ -29,7 +29,7 @@ import {
 } from '../actions';
 
 
-class Inventory extends Component {
+class Possessions extends Component {
   constructor() {
     super();
     this.state = { modalVisible: false };
@@ -39,7 +39,7 @@ class Inventory extends Component {
     this.setState({ modalVisible: visible });
   }
 
-  addItemToStore(item) {
+  addItem(item) {
     this.props.addItem(item);
     this.setModalVisible(false);
   }
@@ -48,13 +48,13 @@ class Inventory extends Component {
     this.props.removeItem(key);
   }
 
-  generateInventory() {
-    return this.props.inventory.map((item, i) => (
+  get currentPossessions() {
+    return this.props.possessions.map((item, i) => (
       <RemovableRow
         name={item.name}
         value={formatEffects(item.effects)}
         onRemove={() => this.props.removeItem(item, i)}
-        key={i}
+        key={item.name}
       />
     ));
   }
@@ -64,10 +64,12 @@ class Inventory extends Component {
       <View style={styles.container}>
 
         <Text style={styles.headerText}>
-          Inventory
+          Possessions
         </Text>
 
-        {this.generateInventory()}
+        <View style={{ marginVertical: 10 }}>
+          {this.currentPossessions}
+        </View>
 
         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
           <Button
@@ -79,7 +81,7 @@ class Inventory extends Component {
         <AddItemModal
           visible={this.state.modalVisible}
           closeModal={() => this.setModalVisible(false)}
-          addToInventory={state => this.addItemToStore(state)}
+          addItem={state => this.addItem(state)}
         />
 
       </View>
@@ -87,15 +89,15 @@ class Inventory extends Component {
   }
 }
 
-Inventory.propTypes = {
-  inventory: PropTypes.array.isRequired,
+Possessions.propTypes = {
+  possessions: PropTypes.array.isRequired,
   addItem: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
 };
 
 
 const mapStateToProps = state => ({
-  inventory: state.inventory,
+  possessions: state.possessions,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -106,4 +108,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Inventory);
+)(Possessions);

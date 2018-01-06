@@ -76,7 +76,7 @@ class Tickboxes extends Component {
           </Picker>
 
           <TextInput
-            placeholder="New page number"
+            placeholder="Add new tick"
             keyboardType="numeric"
             selectionColor="aquamarine"
             onSubmitEditing={e => this.onAdd(e)}
