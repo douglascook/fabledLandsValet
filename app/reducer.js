@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import character from './character/reducer';
 import inventory from './inventory/reducer';
 import codewords from './codewords/reducer';
+import tickboxes from './tickboxes/reducer';
 
 export const initialState = {
   character: {
@@ -71,10 +72,16 @@ export const initialState = {
   codewords: [
     'Acid', 'Bait', 'Dangle', 'Earth',
   ],
+
+  tickboxes: [{
+    book: 'Book 1',
+    pageNumber: '123',
+  }],
 };
 
 export default combineReducers({
   character,
   inventory,
   codewords,
+  tickboxes,
 });

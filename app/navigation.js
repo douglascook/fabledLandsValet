@@ -5,6 +5,7 @@ import {
 import Character from './character/character';
 import Inventory from './inventory/inventory';
 import Codewords from './codewords/codewords';
+import Tickboxes from './tickboxes/tickboxes';
 
 const Navigation = TabNavigator({
   character: {
@@ -24,7 +25,13 @@ const Navigation = TabNavigator({
     navigationOptions: {
       tabBarLabel: 'Codewords'
     },
-  }
+  },
+  tickboxes: {
+    screen: Tickboxes,
+    navigationOptions: {
+      tabBarLabel: 'Tickboxes'
+    },
+  },
 }, {
   tabBarPosition: 'bottom',
   lazyLoad: true,

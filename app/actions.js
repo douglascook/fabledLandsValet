@@ -50,3 +50,19 @@ export const addCodeword = codeword => ({
   type: ADD_CODEWORD,
   codeword,
 });
+
+export const ADD_TICK = 'ADD_TICK';
+
+export const addTick = (book, pageNumber) => ({
+  type: ADD_TICK,
+  book,
+  pageNumber
+});
+
+export const REMOVE_TICK = 'REMOVE_TICK';
+
+export const removeTick = (book, pageNumber) => ({
+  type: REMOVE_TICK,
+  book,
+  pageNumber
+});

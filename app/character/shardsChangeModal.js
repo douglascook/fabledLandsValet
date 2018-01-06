@@ -69,7 +69,7 @@ export default class ShardsChangeModal extends Component {
             <View style={styles.diffBox}>
               <TextInput
                 style={[sharedStyles.modalHeaderText, styles.difference]}
-                keyboardType={'numeric'}
+                keyboardType="numeric"
                 autoCorrect={false}
                 selectionColor="aquamarine"
                 onFocus={() => this.setState({ buttonsDisabled: true })}
