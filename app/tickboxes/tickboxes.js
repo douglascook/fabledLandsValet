@@ -98,7 +98,7 @@ class Tickboxes extends Component {
 }
 
 Tickboxes.propTypes = {
-  tickboxes: PropTypes.arrayOf(PropTypes.node).isRequired,
+  tickboxes: PropTypes.arrayOf(PropTypes.object).isRequired,
   addTick: PropTypes.func.isRequired,
   removeTick: PropTypes.func.isRequired,
 };

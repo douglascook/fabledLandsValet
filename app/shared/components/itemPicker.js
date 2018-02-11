@@ -16,7 +16,7 @@ const ItemPicker = ({ selected, updateSelected, items }) => (
 ItemPicker.propTypes = {
   selected: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   updateSelected: PropTypes.func.isRequired,
-  items: PropTypes.arrayOf(PropTypes.node).isRequired,
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ItemPicker;
