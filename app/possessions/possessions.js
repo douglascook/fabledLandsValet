@@ -30,6 +30,7 @@ import {
 
 
 class Possessions extends Component {
+
   constructor() {
     super();
     this.state = { modalVisible: false };

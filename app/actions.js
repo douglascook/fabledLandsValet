@@ -1,12 +1,12 @@
 export const ADD_ITEM = 'ADD_ITEM';
-
+// add an item to possessions
 export const addItem = item => ({
   type: ADD_ITEM,
   item,
 });
 
 export const REMOVE_ITEM = 'REMOVE_ITEM';
-
+// remove an item from possessions
 export const removeItem = (item, index) => ({
   type: REMOVE_ITEM,
   item,
@@ -21,18 +21,18 @@ export const updateSkillValue = (skillName, newValue) => ({
   newValue,
 });
 
-export const APPEND_TO_ATTRIBUTE = 'APPEND_TO_ATTRIBUTE';
-
-export const appendToAttribute = (attr, item) => ({
-  type: APPEND_TO_ATTRIBUTE,
+export const ADD_ASSET = 'ADD_ASSET';
+// add a title, blessing or resurrection agreement
+export const addAsset = (attr, item) => ({
+  type: ADD_ASSET,
   attr,
   item
 });
 
-export const REMOVE_FROM_ATTRIBUTE = 'REMOVE_FROM_ATTRIBUTE';
-
-export const removeFromAttribute = (attr, index) => ({
-  type: REMOVE_FROM_ATTRIBUTE,
+export const REMOVE_ASSET = 'REMOVE_ASSET';
+// remove a title, blessing or resurrection agreement
+export const removeAsset = (attr, index) => ({
+  type: REMOVE_ASSET,
   attr,
   index
 });

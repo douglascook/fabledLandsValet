@@ -32,15 +32,15 @@ import {
 
 import {
   updateSkillValue,
-  appendToAttribute,
-  removeFromAttribute,
+  addAsset,
+  removeAsset,
 } from '../actions';
 
 
 export const stats = ['rank', 'defence', 'stamina', 'charisma', 'combat',
   'magic', 'sanctity', 'scouting', 'thievery'];
 
-const otherStats = ['titles', 'blessings', 'resurrection'];
+const assets = ['titles', 'blessings', 'resurrection'];
 
 
 class Character extends Component {
@@ -75,8 +75,8 @@ class Character extends Component {
     });
   }
 
-  renderStatButtons() {
-    return otherStats.map(key => (
+  renderAssetsButtons() {
+    return assets.map(key => (
       <TouchableOpacity
         style={styles.buttonRow}
         key={key}
@@ -89,14 +89,14 @@ class Character extends Component {
     ));
   }
 
-  renderStatModals() {
-    return otherStats.map(key => (
+  renderAssetsModals() {
+    return assets.map(key => (
       <ListItemsModal
         visible={this.state[`${key}ModalVisible`]}
         onRequestClose={() => this.onCloseModal()}
         items={this.props.character[key]}
-        addNew={i => this.props.appendToAttribute(key, i)}
-        remove={i => this.props.removeFromAttribute(key, i)}
+        addNew={i => this.props.addAsset(key, i)}
+        remove={i => this.props.removeAsset(key, i)}
         key={key}
       />
     ));
@@ -130,8 +130,8 @@ class Character extends Component {
           />
         </View>
 
-        {this.renderStatButtons()}
-        {this.renderStatModals()}
+        {this.renderAssetsButtons()}
+        {this.renderAssetsModals()}
 
         <SkillChangeModal
           visible={this.state.skillModalVisible}
@@ -163,7 +163,8 @@ class Character extends Component {
 Character.propTypes = {
   character: PropTypes.object.isRequired,
   updateSkillValue: PropTypes.func.isRequired,
-  appendToAttribute: PropTypes.func.isRequired,
+  addAsset: PropTypes.func.isRequired,
+  removeAsset: PropTypes.func.isRequired,
 };
 
 function getDisplayValue(attr) {
@@ -189,8 +190,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateSkillValue: (attr, value) => dispatch(updateSkillValue(attr, value)),
-  appendToAttribute: (attr, item) => dispatch(appendToAttribute(attr, item)),
-  removeFromAttribute: (attr, index) => dispatch(removeFromAttribute(attr, index)),
+  addAsset: (attr, item) => dispatch(addAsset(attr, item)),
+  removeAsset: (attr, index) => dispatch(removeAsset(attr, index)),
 });
 
 const styles = StyleSheet.create({

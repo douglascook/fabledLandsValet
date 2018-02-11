@@ -2,8 +2,8 @@ import {
   ADD_ITEM,
   REMOVE_ITEM,
   UPDATE_SKILL_VALUE,
-  APPEND_TO_ATTRIBUTE,
-  REMOVE_FROM_ATTRIBUTE,
+  ADD_ASSET,
+  REMOVE_ASSET,
 } from '../actions';
 
 import { initialState } from '../reducer';
@@ -31,14 +31,14 @@ export default function character(state = initialState.character, action) {
         },
       };
 
-    case APPEND_TO_ATTRIBUTE: {
+    case ADD_ASSET: {
       const items = state[action.attr].value;
       const newState = { ...state };
       newState[action.attr].value = [...items, action.item];
       return newState;
     }
 
-    case REMOVE_FROM_ATTRIBUTE: {
+    case REMOVE_ASSET: {
       const items = state[action.attr].value;
       const newState = { ...state };
       newState[action.attr].value = [
