@@ -7,7 +7,6 @@ import {
   TextInput,
   View,
   ScrollView,
-  StyleSheet,
 } from 'react-native';
 
 import {
@@ -74,7 +73,7 @@ class Codewords extends Component {
           Codewords
         </Text>
 
-        <View style={styles.content}>
+        <View style={sharedStyles.paddedCentred}>
           <TextInput
             placeholder="Search..."
             selectionColor="aquamarine"
@@ -100,15 +99,6 @@ Codewords.propTypes = {
   addCodeword: PropTypes.func.isRequired,
   removeCodeword: PropTypes.func.isRequired,
 };
-
-const styles = StyleSheet.create({
-  content: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    paddingHorizontal: 60,
-  },
-});
 
 const mapStateToProps = state => ({
   codewords: state.codewords,

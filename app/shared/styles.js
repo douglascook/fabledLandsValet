@@ -15,6 +15,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  paddedCentred: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    paddingHorizontal: 60,
+  },
   text: {
     backgroundColor: 'whitesmoke',
     fontSize: 18,

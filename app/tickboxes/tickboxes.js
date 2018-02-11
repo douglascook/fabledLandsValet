@@ -66,7 +66,7 @@ class Tickboxes extends Component {
           Tickboxes
         </Text>
 
-        <View style={styles.content}>
+        <View style={sharedStyles.paddedCentred}>
 
           <Picker
             selectedValue={this.state.book}
@@ -120,12 +120,6 @@ function buildBookNumbers() {
 }
 
 const styles = StyleSheet.create({
-  content: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    paddingHorizontal: 60,
-  },
   currentlyTicked: {
     marginTop: 10,
   },

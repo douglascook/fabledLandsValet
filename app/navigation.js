@@ -6,6 +6,7 @@ import Character from './character/character';
 import Possessions from './possessions/possessions';
 import Codewords from './codewords/codewords';
 import Tickboxes from './tickboxes/tickboxes';
+import Settings from './settings/settings';
 
 const Navigation = TabNavigator({
   character: {
@@ -30,6 +31,12 @@ const Navigation = TabNavigator({
     screen: Tickboxes,
     navigationOptions: {
       tabBarLabel: 'Tickboxes'
+    },
+  },
+  settings: {
+    screen: Settings,
+    navigationOptions: {
+      tabBarLabel: 'Settings'
     },
   },
 }, {
