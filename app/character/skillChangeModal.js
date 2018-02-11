@@ -15,11 +15,15 @@ import sharedStyles from '../shared/styles';
 export default class SkillChangeModal extends Component {
 
   decrement() {
-    this.props.updateValue(this.props.skill.value - 1);
+    if (this.props.skill.value > 1) {
+      this.props.updateValue(this.props.skill.value - 1);
+    }
   }
 
   increment() {
-    this.props.updateValue(this.props.skill.value + 1);
+    if (this.props.skill.value < 12) {
+      this.props.updateValue(this.props.skill.value + 1);
+    }
   }
 
   render() {

@@ -40,8 +40,10 @@ class Possessions extends Component {
   }
 
   addItem(item) {
-    this.props.addItem(item);
-    this.setModalVisible(false);
+    if (this.props.possessions.length < 12) {
+      this.props.addItem(item);
+      this.setModalVisible(false);
+    }
   }
 
   removeItem(key) {

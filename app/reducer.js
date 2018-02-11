@@ -17,7 +17,7 @@ export const initialState = {
       attribute: 'Rank', value: 1
     },
     defence: {
-      attribute: 'Defence', value: 5
+      attribute: 'Defence', value: 6
     },
     stamina: {
       attribute: 'Stamina', value: 12
@@ -47,7 +47,7 @@ export const initialState = {
       attribute: 'God', value: 'None'
     },
     titles: {
-      attribute: 'Titles & Honours', value: ['Boss man', 'Samurai'],
+      attribute: 'Titles & Honours', value: [],
     },
     blessings: {
       attribute: 'Blessings', value: [],
@@ -57,17 +57,7 @@ export const initialState = {
     },
   },
 
-  possessions: [
-    {
-      name: 'Wooden sword',
-      effects: [
-        { skill: 'combat', value: 1 },
-      ],
-    },
-    {
-      name: 'Pet rock',
-    },
-  ],
+  possessions: [],
 
   codewords: [
     'Acid', 'Bait', 'Dangle', 'Earth',
