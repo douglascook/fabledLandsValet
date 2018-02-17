@@ -37,8 +37,7 @@ import {
 } from '../actions';
 
 
-export const stats = ['rank', 'defence', 'stamina', 'charisma', 'combat',
-  'magic', 'sanctity', 'scouting', 'thievery'];
+const stats = ['charisma', 'combat', 'magic', 'sanctity', 'scouting', 'thievery'];
 
 const assets = ['titles', 'blessings', 'resurrection'];
 
@@ -61,18 +60,34 @@ class Character extends Component {
     this.setState(getDefaultState());
   }
 
-  renderSkillRows() {
-    return stats.map(key => {
-      const attribute = this.props.character[key];
-      return (
-        <SingleItemRow
-          name={attribute.attribute}
-          value={getDisplayValue(attribute)}
-          onButtonPress={() => this.showSkillModal(key)}
-          key={key}
-        />
-      );
-    });
+  get statRows() {
+    return stats.map(key => this.renderSkillRow(key));
+  }
+
+  renderSkillRow(key) {
+    const attribute = this.props.character[key];
+    return (
+      <SingleItemRow
+        name={attribute.attribute}
+        value={getDisplayValue(attribute.value, attribute.modifier)}
+        onButtonPress={() => this.showSkillModal(key)}
+        key={key}
+      />
+    );
+  }
+
+  renderDefenceRow() {
+    const { defence, rank, combat } = this.props.character;
+    const value = getDisplayValue(rank.value + combat.value, defence.modifier);
+
+    return (
+      <SingleItemRow
+        name={defence.attribute}
+        value={value}
+        onButtonPress={() => this.showSkillModal('defence')}
+        key={'defence'}
+      />
+    );
   }
 
   renderAssetsButtons() {
@@ -103,29 +118,39 @@ class Character extends Component {
   }
 
   render() {
+    const { name, profession, shards, god } = this.props.character;
+
     return (
       <View style={sharedStyles.container}>
 
         <Text style={sharedStyles.headerText}>
           Character
         </Text>
+
         <Text style={styles.nameProfession}>
-          {this.props.character.name.value}
+          {name.value}
         </Text>
+
         <Text style={styles.nameProfession}>
-          {this.props.character.profession.value}
+          {profession.value}
         </Text>
 
         <View style={{ marginVertical: 6 }}>
-          {this.renderSkillRows()}
+          {this.renderSkillRow('rank')}
+          {this.renderDefenceRow()}
+          {this.renderSkillRow('stamina')}
+
+          {this.statRows}
+
           <SingleItemRow
             name="Shards"
-            value={getDisplayValue(this.props.character.shards)}
+            value={getDisplayValue(shards.value, shards.modifier)}
             onButtonPress={() => this.setState({ shardsModalVisible: true })}
           />
+
           <SingleItemRow
             name="God"
-            value={this.props.character.god.value}
+            value={god.value}
             onButtonPress={() => this.setState({ godModalVisible: true })}
           />
         </View>
@@ -141,16 +166,18 @@ class Character extends Component {
             s => this.props.updateSkillValue(this.state.skillToChange, s)}
           onRequestClose={() => this.onCloseModal()}
         />
+
         <ShardsChangeModal
           visible={this.state.shardsModalVisible}
-          amount={this.props.character.shards.value}
+          amount={shards.value}
           onDone={s => this.onSubmitShardsChange(s)}
           updateAmount={s => this.props.updateSkillValue('shards', s)}
           onRequestClose={() => this.onCloseModal()}
         />
+
         <GodSelectModal
           visible={this.state.godModalVisible}
-          selected={this.props.character.god.value}
+          selected={god.value}
           updateSelected={g => this.props.updateSkillValue('god', g)}
           onRequestClose={() => this.onCloseModal()}
         />
@@ -167,11 +194,11 @@ Character.propTypes = {
   removeAsset: PropTypes.func.isRequired,
 };
 
-function getDisplayValue(attr) {
-  if (!attr.modifier) {
-    return attr.value;
+function getDisplayValue(value, modifier) {
+  if (!modifier) {
+    return value;
   }
-  return `${attr.value + attr.modifier} (${addSignPrefix(attr.modifier)})`;
+  return `${value + modifier} (${addSignPrefix(modifier)})`;
 }
 
 const getDefaultState = () => ({
