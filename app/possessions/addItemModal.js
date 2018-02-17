@@ -61,7 +61,11 @@ export default class AddItemModal extends Component {
   }
 
   buildItem() {
-    const newItem = { name: this.state.itemName };
+    const newItem = {
+      name: this.state.itemName,
+      // add unique key here, may have multiples of the same item
+      key: `${this.state.itemName}-${Date.now()}`,
+    };
     if (this.state.itemEffects.length > 0) {
       newItem.effects = this.state.itemEffects;
     }

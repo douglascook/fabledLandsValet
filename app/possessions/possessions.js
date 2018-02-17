@@ -57,7 +57,7 @@ class Possessions extends Component {
         name={item.name}
         value={formatEffects(item.effects)}
         onRemove={() => this.props.removeItem(item, i)}
-        key={item.name}
+        key={item.key}
       />
     ));
   }

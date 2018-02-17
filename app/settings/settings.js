@@ -28,7 +28,8 @@ class Settings extends Component {
   }
 
   dumpStateToFile() {
-    const path = `${RNFS.DocumentDirectoryPath}/fabledLandsCharacter.json`;
+    const now = Date.now();
+    const path = `${RNFS.DocumentDirectoryPath}/fabledLandsCharacter_${now}.json`;
     const currentState = JSON.stringify(this.props.state);
     RNFS.writeFile(path, currentState, 'utf8')
       .then(() => this.setState({ saved: true }))
@@ -50,7 +51,7 @@ class Settings extends Component {
             onPress={() => this.dumpStateToFile()}
           />
           { this.state.saved &&
-            <Text> {"Save successful!"}  </Text>
+            <Text> {'Save successful!'}  </Text>
           }
         </View>
 
