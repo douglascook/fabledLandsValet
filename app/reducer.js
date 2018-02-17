@@ -63,13 +63,16 @@ export const initialState = {
     'Acid', 'Bait', 'Dangle', 'Earth',
   ],
 
-  tickboxes: [{
-    book: 0,
-    pageNumber: '123',
-  }, {
-    book: 1,
-    pageNumber: '234',
-  }],
+  tickboxes: {
+    0: [123],
+    1: [234],
+    2: [],
+    3: [],
+    4: [],
+    5: [],
+    6: [],
+    7: [],
+  }
 };
 
 export default combineReducers({

@@ -36,7 +36,7 @@ class Tickboxes extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      book: 1,
+      book: 0,
     };
   }
 
@@ -46,16 +46,15 @@ class Tickboxes extends Component {
   }
 
   get currentlyTicked() {
-    return this.props.tickboxes
-      .filter(t => t.book === this.state.book)
-      .map(t => (
-        <AddRemoveItem
-          text={t.pageNumber}
-          isActive
-          onRemove={() => this.props.removeTick(t.book, t.pageNumber)}
-          key={`${t.book}${t.pageNumber}`}
-        />
-      ));
+    // TODO sort the page numbers
+    return this.props.tickboxes[this.state.book].map(pageNumber => (
+      <AddRemoveItem
+        text={pageNumber}
+        isActive
+        onRemove={() => this.props.removeTick(this.state.book, pageNumber)}
+        key={`${this.state.book}${pageNumber}`}
+      />
+    ));
   }
 
   render() {
@@ -98,7 +97,7 @@ class Tickboxes extends Component {
 }
 
 Tickboxes.propTypes = {
-  tickboxes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  tickboxes: PropTypes.object.isRequired,
   addTick: PropTypes.func.isRequired,
   removeTick: PropTypes.func.isRequired,
 };

@@ -36,7 +36,10 @@ const AddRemoveItem = ({ text, isActive, onAdd, onRemove }) => (
 );
 
 AddRemoveItem.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]).isRequired,
   isActive: PropTypes.bool.isRequired,
   onAdd: PropTypes.func,
   onRemove: PropTypes.func,
