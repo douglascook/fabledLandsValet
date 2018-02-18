@@ -38,6 +38,17 @@ export const CODEWORDS = [
   'Flimsy', 'Flood', 'Flux', 'Foment', 'Fog', 'Fortress', 'Fossil', 'Fracas',
   'Frame', 'Fresco', 'Fright', 'Friz', 'Frog', 'Fruit', 'Fuligin', 'Fuchsia',
   'Fusty', 'Future',
+
+  'Gaggle', 'Gain', 'Gale', 'Gallivant', 'Gamble', 'Game', 'Gander', 'Gannet',
+  'Gargoyle', 'Garland', 'Gather', 'Gauche', 'Gauntles', 'Gazelle', 'Genius',
+  'Gentle', 'Genuflect', 'Geode', 'Geyser', 'Ghastly', 'Giant', 'Gibbet',
+  'Giggle', 'Gin', 'Glacier', 'Gladden', 'Glade', 'Glass', 'Glide', 'Glimmer',
+  'Glimpse', 'Glitter', 'Gloat', 'Gloom', 'Glory', 'Glove', 'Glutton', 'Gnash',
+  'Gnat', 'Gnome', 'Gnu', 'Goblet', 'Golem', 'Gone', 'Goose', 'Gore', 'Gosling',
+  'Gossamoer', 'Gourd', 'Govern', 'Grace', 'Graft', 'Grain', 'Granite',
+  'Granule', 'Grape', 'Grapple', 'Grateful', 'Grebe', 'Green', 'Grief',
+  'Grimace', 'Grime', 'Grind', 'Grog', 'Grotto', 'Grove', 'Growl', 'Grub',
+  'Guard', 'Guilt', 'Guise', 'Gulf', 'Gully', 'Gush',
 ];
 
 export default function codewords(state = initialState.codewords, action) {
