@@ -46,8 +46,8 @@ class Tickboxes extends Component {
   }
 
   get currentlyTicked() {
-    // TODO sort the page numbers
-    return this.props.tickboxes[this.state.book].map(pageNumber => (
+    const ticks = this.props.tickboxes[this.state.book].sort((a, b) => a - b);
+    return ticks.map(pageNumber => (
       <AddRemoveItem
         text={pageNumber}
         isActive
