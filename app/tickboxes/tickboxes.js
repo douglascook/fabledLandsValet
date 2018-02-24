@@ -84,7 +84,8 @@ class Tickboxes extends Component {
           />
 
           <ScrollView
-            contentContainerStyle={[styles.currentlyTicked, styles.narrower]}
+            contentContainerStyle={
+              [sharedStyles.scrollViewContent, styles.narrower]}
           >
             {this.currentlyTicked}
           </ScrollView>
@@ -119,9 +120,6 @@ function buildBookNumbers() {
 }
 
 const styles = StyleSheet.create({
-  currentlyTicked: {
-    marginTop: 10,
-  },
   narrower: {
     marginHorizontal: 80,
   },

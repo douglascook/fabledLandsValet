@@ -78,10 +78,11 @@ class Codewords extends Component {
             placeholder="Search..."
             selectionColor="aquamarine"
             onChangeText={text => this.setState({ searchTerm: text.toLowerCase() })}
-            style={{ marginBottom: 15 }}
           />
 
-          <ScrollView>
+          <ScrollView
+            contentContainerStyle={sharedStyles.scrollViewContent}
+          >
             {this.state.searchTerm
               ? this.matchingWords
               : this.currentWords

@@ -21,6 +21,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 60,
   },
+  scrollViewContent: {
+    marginTop: 10,
+    paddingBottom: 30,
+  },
   text: {
     backgroundColor: 'whitesmoke',
     fontSize: 18,
