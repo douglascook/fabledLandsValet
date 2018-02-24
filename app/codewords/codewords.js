@@ -58,11 +58,16 @@ class Codewords extends Component {
       <AddRemoveItem
         text={w}
         isActive={this.props.codewords.indexOf(w) !== -1}
-        onRemove={() => this.props.removeCodeword(w)}
-        onAdd={() => this.props.addCodeword(w)}
+        onRemove={() => this.clearSearch(this.props.removeCodeword(w))}
+        onAdd={() => this.clearSearch(this.props.addCodeword(w))}
         key={w}
       />
     ));
+  }
+
+  clearSearch() {
+    this.setState({ searchTerm: '' });
+    this.textInput.clear();
   }
 
   render() {
@@ -78,6 +83,7 @@ class Codewords extends Component {
             placeholder="Search..."
             selectionColor="aquamarine"
             onChangeText={text => this.setState({ searchTerm: text.toLowerCase() })}
+            ref={(input) => { this.textInput = input; }}
           />
 
           <ScrollView
