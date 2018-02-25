@@ -37,14 +37,14 @@ class Possessions extends Component {
   }
 
   setModalVisible(visible) {
-    this.setState({ modalVisible: visible });
+    if (this.props.possessions.length < 12) {
+      this.setState({ modalVisible: visible });
+    }
   }
 
   addItem(item) {
-    if (this.props.possessions.length < 12) {
-      this.props.addItem(item);
-      this.setModalVisible(false);
-    }
+    this.props.addItem(item);
+    this.setModalVisible(false);
   }
 
   removeItem(key) {

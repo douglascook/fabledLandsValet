@@ -42,8 +42,9 @@ GodSelectModal.propTypes = {
 };
 
 function buildGodItems() {
-  const gods = ['None', 'Alvir and Valmir', 'Elnir', 'Lacuna', 'Maka',
-    'Molhern', 'Nagil', 'Sig', 'The Three Fortunes', 'Tyrnai',
+  const gods = ['None', 'Alvir and Valmir', 'Amanushi', 'Elnir', 'Juntoku',
+    'Lacuna', 'Maka', 'Molhern', 'Nagil', 'Nai', 'Nisoderu', 'Sig', 'Tambu', 
+    'The Three Fortunes', 'Tyrnai',
   ];
   return gods.map(g => <Item label={g} value={g} key={g} />);
 }
