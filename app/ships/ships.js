@@ -9,7 +9,6 @@ import {
 import {
   Text,
   View,
-  Modal,
 } from 'react-native';
 
 import {
@@ -17,6 +16,8 @@ import {
 } from '../shared/components';
 
 import sharedStyles from '../shared/styles';
+
+import ShipModal from './modal';
 
 
 class Ships extends Component {
@@ -65,39 +66,6 @@ class Ships extends Component {
         }
 
       </View>
-    );
-  }
-}
-
-class ShipModal extends Component {
-
-  render() {
-    const { name, type, crew, cargo, port } = this.props.ship;
-
-    return (
-      <Modal {...this.props} >
-        <View style={sharedStyles.fullSizeCentred}>
-
-          <Text style={sharedStyles.modalHeaderText}>
-            {name}
-          </Text>
-
-          <View>
-
-            <Text>
-              {type}
-            </Text>
-            <Text>
-              {crew}
-            </Text>
-            <Text>
-              {port}
-            </Text>
-
-          </View>
-
-        </View>
-      </Modal>
     );
   }
 }
