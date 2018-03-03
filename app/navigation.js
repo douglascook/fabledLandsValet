@@ -4,6 +4,7 @@ import {
 
 import Character from './character/character';
 import Possessions from './possessions/possessions';
+import Ships from './ships/ships';
 import Codewords from './codewords/codewords';
 import Tickboxes from './tickboxes/tickboxes';
 import Settings from './settings/settings';
@@ -19,6 +20,12 @@ const Navigation = TabNavigator({
     screen: Possessions,
     navigationOptions: {
       tabBarLabel: 'Possessions'
+    },
+  },
+  ships: {
+    screen: Ships,
+    navigationOptions: {
+      tabBarLabel: 'Ships'
     },
   },
   codewords: {

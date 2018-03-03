@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 
 import character from './character/reducer';
 import possessions from './possessions/reducer';
+import ships from './ships/reducer';
 import codewords from './codewords/reducer';
 import tickboxes from './tickboxes/reducer';
 
@@ -72,12 +73,24 @@ export const initialState = {
     5: [],
     6: [],
     7: [],
-  }
+  },
+
+  ships: [
+    {
+      name: 'Sea Sprite',
+      type: 'Galleon',
+      crew: 'Poor',
+      cargo: ['fur', 'grain', 'spice'],
+      port: 'Ringhorn',
+    },
+  ]
+
 };
 
 export default combineReducers({
   character,
   possessions,
+  ships,
   codewords,
   tickboxes,
 });
