@@ -18,6 +18,7 @@ import {
 import sharedStyles from '../shared/styles';
 
 import {
+  updatePort,
   updateCrew,
   updateCargo,
 } from '../actions';
@@ -67,6 +68,9 @@ class Ships extends Component {
           <ShipModal
             ship={this.props.ships[this.state.shipIndex]}
             onRequestClose={() => this.closeModal()}
+            visible={this.state.shipIndex !== null}
+            onUpdatePort={
+              port => this.props.updatePort(this.state.shipIndex, port)}
             onUpdateCrew={
               v => this.props.updateCrew(this.state.shipIndex, v)}
             onUpdateCargo={
@@ -84,6 +88,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  updatePort: (shipIndex, port) => dispatch(updatePort(shipIndex, port)),
   updateCrew: (shipIndex, quality) => dispatch(updateCrew(shipIndex, quality)),
   updateCargo: (shipIndex, cargoIndex, cargo) =>
     dispatch(updateCargo(shipIndex, cargoIndex, cargo)),

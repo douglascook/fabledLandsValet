@@ -83,3 +83,11 @@ export const updateCargo = (shipIndex, cargoIndex, cargo) => ({
   cargoIndex,
   cargo,
 });
+
+export const UPDATE_PORT = 'UPDATE_PORT';
+
+export const updatePort = (shipIndex, port) => ({
+  type: UPDATE_PORT,
+  shipIndex,
+  port
+});
