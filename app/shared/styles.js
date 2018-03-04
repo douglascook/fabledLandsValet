@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
   modalHeaderText: {
     fontWeight: 'bold',
     fontSize: 25,
+    textAlign: 'center',
   },
   removeButton: {
     width: 25,

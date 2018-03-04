@@ -75,15 +75,7 @@ export const initialState = {
     7: [],
   },
 
-  ships: [
-    {
-      name: 'Sea Sprite',
-      type: 'Galleon',
-      crew: 'Poor',
-      cargo: ['Furs', 'Grain', 'Spices'],
-      port: 'Ringhorn',
-    },
-  ]
+  ships: [],
 
 };
 

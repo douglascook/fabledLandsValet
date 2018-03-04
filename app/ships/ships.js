@@ -7,8 +7,9 @@ import {
 } from 'react-redux';
 
 import {
-  Text,
   View,
+  Text,
+  Button,
 } from 'react-native';
 
 import {
@@ -18,33 +19,25 @@ import {
 import sharedStyles from '../shared/styles';
 
 import {
+  addNewShip,
   updatePort,
   updateCrew,
   updateCargo,
 } from '../actions';
 
 import ShipModal from './modal';
+import NewShipModal from './newShip';
 
 
 class Ships extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      shipIndex: null,
-    };
+    this.state = getDefaultState();
   }
 
-  showModal(index) {
-    this.setState({
-      shipIndex: index,
-    });
-  }
-
-  closeModal() {
-    this.setState({
-      shipIndex: null,
-    });
+  closeModals() {
+    this.setState(getDefaultState());
   }
 
   render() {
@@ -60,14 +53,23 @@ class Ships extends Component {
             name={ship.name}
             value={ship.port}
             key={ship.name}
-            onButtonPress={() => this.showModal(i)}
+            onButtonPress={() => this.setState({ shipIndex: i })}
           />
         ))}
+
+        <View style={
+          { flexDirection: 'row', justifyContent: 'center', marginTop: 5 }}
+        >
+          <Button
+            onPress={() => this.setState({ newShip: true })}
+            title="Add ship"
+          />
+        </View>
 
         { (this.state.shipIndex !== null) &&
           <ShipModal
             ship={this.props.ships[this.state.shipIndex]}
-            onRequestClose={() => this.closeModal()}
+            onRequestClose={() => this.closeModals()}
             visible={this.state.shipIndex !== null}
             onUpdatePort={
               port => this.props.updatePort(this.state.shipIndex, port)}
@@ -78,16 +80,28 @@ class Ships extends Component {
           />
         }
 
+        <NewShipModal
+          visible={this.state.newShip}
+          addNewShip={(n, t, c) => this.props.addNewShip(n, t, c)}
+          closeModal={() => this.closeModals()}
+        />
+
       </View>
     );
   }
 }
+
+const getDefaultState = () => ({
+  shipIndex: null,
+  newShip: false,
+});
 
 const mapStateToProps = state => ({
   ships: state.ships,
 });
 
 const mapDispatchToProps = dispatch => ({
+  addNewShip: (name, type, crew) => dispatch(addNewShip(name, type, crew)),
   updatePort: (shipIndex, port) => dispatch(updatePort(shipIndex, port)),
   updateCrew: (shipIndex, quality) => dispatch(updateCrew(shipIndex, quality)),
   updateCargo: (shipIndex, cargoIndex, cargo) =>

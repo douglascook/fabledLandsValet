@@ -91,3 +91,12 @@ export const updatePort = (shipIndex, port) => ({
   shipIndex,
   port
 });
+
+export const ADD_NEW_SHIP = 'ADD_NEW_SHIP';
+
+export const addNewShip = (name, shipType, crew) => ({
+  type: ADD_NEW_SHIP,
+  name,
+  shipType,
+  crew
+});

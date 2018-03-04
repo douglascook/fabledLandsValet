@@ -14,7 +14,6 @@ import {
 import sharedStyles from '../shared/styles';
 
 import {
-  shipTypes,
   cargoTypes,
   crewQualities
 } from './data';
