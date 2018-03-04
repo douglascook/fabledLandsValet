@@ -3,13 +3,22 @@ import React, {
 } from 'react';
 
 import {
-  Text,
   View,
+  Text,
+  Picker,
   Modal,
   StyleSheet,
 } from 'react-native';
 
 import sharedStyles from '../shared/styles';
+
+import {
+  shipTypes,
+  cargoTypes,
+  crewQualities
+} from './data';
+
+const Item = Picker.Item;
 
 
 export default class ShipModal extends Component {
@@ -29,7 +38,7 @@ export default class ShipModal extends Component {
             <Text style={[styles.attribute, sharedStyles.text]}>
               Type
             </Text>
-            <Text style={[styles.content, sharedStyles.text]}>
+            <Text style={[styles.content, styles.contentText, sharedStyles.text]}>
               {type}
             </Text>
           </View>
@@ -38,25 +47,32 @@ export default class ShipModal extends Component {
             <Text style={[styles.attribute, sharedStyles.text]}>
               Crew
             </Text>
-            <Text style={[styles.content, sharedStyles.text]}>
-              {crew}
-            </Text>
+            <Picker
+              style={styles.content}
+              selected={crew}
+              onValueChange={value => this.updateCrew(value)}
+            >
+              {crewQualities.map(q =>
+                <Item label={q} value={q} key={q} />
+              )}
+            </Picker>
           </View>
 
           <View style={sharedStyles.containerRow}>
             <Text style={[styles.attribute, sharedStyles.text]}>
               Cargo
             </Text>
-            <Text style={[styles.content, sharedStyles.text]}>
-              {cargo.join(', ')}
-            </Text>
+          </View>
+
+          <View style={sharedStyles.containerRow}>
+            {buildCargoPickers(cargo)}
           </View>
 
           <View style={sharedStyles.containerRow}>
             <Text style={[styles.attribute, sharedStyles.text]}>
               Docked
             </Text>
-            <Text style={[styles.content, sharedStyles.text]}>
+            <Text style={[styles.content, styles.contentText, sharedStyles.text]}>
               {port}
             </Text>
           </View>
@@ -66,6 +82,22 @@ export default class ShipModal extends Component {
     );
   }
 }
+
+function buildCargoPickers(cargo) {
+  return cargo.map((current, i) => (
+    <Picker
+      style={styles.content}
+      selected={current}
+      onValueChange={value => null}
+      key={i}
+    >
+      {cargoTypes.map(c =>
+        <Item label={c} value={c} key={c} />
+      )}
+    </Picker>
+  ));
+}
+
 const styles = StyleSheet.create({
   header: {
     paddingBottom: 10,
@@ -78,6 +110,8 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 4,
+  },
+  contentText: {
     textAlign: 'left',
   },
 });
