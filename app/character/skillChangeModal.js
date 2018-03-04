@@ -21,7 +21,7 @@ export default class SkillChangeModal extends Component {
   }
 
   increment() {
-    if (this.props.skill.value < 12) {
+    if (this.props.skill.value < 12 || this.props.skill.attribute === 'Stamina') {
       this.props.updateValue(this.props.skill.value + 1);
     }
   }
