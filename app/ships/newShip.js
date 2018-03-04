@@ -2,11 +2,14 @@ import React, {
   Component
 } from 'react';
 
+import PropTypes from 'prop-types';
+
 import {
   View,
   Text,
   Picker,
   TextInput,
+  Button,
   Modal,
 } from 'react-native';
 
@@ -24,16 +27,17 @@ export default class NewShipModal extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      name: '',
-      type: 'Barque',
-      crew: 'Poor',
-    };
+    this.state = getDefaultState();
   }
 
   saveNewShip() {
     const { name, type, crew } = this.state;
     this.props.addNewShip(name, type, crew);
+    this.closeAndClear();
+  }
+
+  closeAndClear() {
+    this.setState(getDefaultState());
     this.props.closeModal();
   }
 
@@ -41,7 +45,7 @@ export default class NewShipModal extends Component {
     return (
       <Modal
         visible={this.props.visible}
-        onRequestClose={() => this.saveNewShip()}
+        onRequestClose={() => this.closeAndClear()}
       >
         <View style={sharedStyles.paddedCentred}>
 
@@ -55,7 +59,7 @@ export default class NewShipModal extends Component {
               value={this.state.name}
               placeholder="Name"
               selectionColor="aquamarine"
-              autoCapitalize="sentences"
+              autoCapitalize="words"
               onChangeText={text => this.setState({ name: text })}
             />
           </View>
@@ -84,8 +88,29 @@ export default class NewShipModal extends Component {
             </Picker>
           </View>
 
+          <View style={
+            { flexDirection: 'row', justifyContent: 'center', marginTop: 5 }}
+          >
+            <Button
+              onPress={() => this.saveNewShip()}
+              title="Save"
+            />
+          </View>
+
         </View>
       </Modal>
     );
   }
 }
+
+const getDefaultState = () => ({
+  name: '',
+  type: 'Barque',
+  crew: 'Poor',
+});
+
+NewShipModal.propTypes = {
+  visible: PropTypes.bool.isRequired,
+  addNewShip: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
+};

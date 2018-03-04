@@ -2,6 +2,8 @@ import React, {
   Component
 } from 'react';
 
+import PropTypes from 'prop-types';
+
 import {
   connect
 } from 'react-redux';
@@ -25,7 +27,7 @@ import {
   updateCargo,
 } from '../actions';
 
-import ShipModal from './modal';
+import EditShipModal from './editShip';
 import NewShipModal from './newShip';
 
 
@@ -52,7 +54,7 @@ class Ships extends Component {
           <SingleItemRow
             name={ship.name}
             value={ship.port}
-            key={ship.name}
+            key={ship.key}
             onButtonPress={() => this.setState({ shipIndex: i })}
           />
         ))}
@@ -67,7 +69,7 @@ class Ships extends Component {
         </View>
 
         { (this.state.shipIndex !== null) &&
-          <ShipModal
+          <EditShipModal
             ship={this.props.ships[this.state.shipIndex]}
             onRequestClose={() => this.closeModals()}
             visible={this.state.shipIndex !== null}
@@ -90,6 +92,14 @@ class Ships extends Component {
     );
   }
 }
+
+Ships.propTypes = {
+  ships: PropTypes.array.isRequired,
+  updatePort: PropTypes.func.isRequired,
+  updateCrew: PropTypes.func.isRequired,
+  updateCargo: PropTypes.func.isRequired,
+  addNewShip: PropTypes.func.isRequired,
+};
 
 const getDefaultState = () => ({
   shipIndex: null,

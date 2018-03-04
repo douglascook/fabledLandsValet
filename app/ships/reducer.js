@@ -24,6 +24,7 @@ export default function ships(state = initialState.ships, action) {
         crew: action.crew,
         cargo: new Array(capacity).fill('None'),
         port: 'No Port',
+        key: Date.now(),
       };
       return [...state, newShip];
     }

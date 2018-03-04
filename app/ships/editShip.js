@@ -2,6 +2,8 @@ import React, {
   Component
 } from 'react';
 
+import PropTypes from 'prop-types';
+
 import {
   View,
   Text,
@@ -21,7 +23,7 @@ import {
 const Item = Picker.Item;
 
 
-export default class ShipModal extends Component {
+export default class EditShipModal extends Component {
 
   constructor(props) {
     super(props);
@@ -31,7 +33,7 @@ export default class ShipModal extends Component {
   }
 
   render() {
-    const { name, type, crew, cargo, port } = this.props.ship;
+    const { name, type, crew, cargo } = this.props.ship;
 
     return (
       <Modal {...this.props} >
@@ -54,7 +56,7 @@ export default class ShipModal extends Component {
               value={this.state.port}
               selectionColor="aquamarine"
               underlineColorAndroid="transparent"
-              autoCapitalize="sentences"
+              autoCapitalize="words"
               onChangeText={text => this.setState({ port: text })}
               onSubmitEditing={e => this.props.onUpdatePort(e.nativeEvent.text)}
             />
@@ -91,6 +93,15 @@ export default class ShipModal extends Component {
     );
   }
 }
+
+EditShipModal.propTypes = {
+  visible: PropTypes.bool.isRequired,
+  ship: PropTypes.object.isRequired,
+  onRequestClose: PropTypes.func.isRequired,
+  onUpdatePort: PropTypes.func.isRequired,
+  onUpdateCrew: PropTypes.func.isRequired,
+  onUpdateCargo: PropTypes.func.isRequired,
+};
 
 function buildCargoPickers(cargo, onUpdateCargo) {
   return cargo.map((current, i) => (
