@@ -80,7 +80,7 @@ export const initialState = {
       name: 'Sea Sprite',
       type: 'Galleon',
       crew: 'Poor',
-      cargo: ['fur', 'grain', 'spice'],
+      cargo: ['Furs', 'Grain', 'Spices'],
       port: 'Ringhorn',
     },
   ]

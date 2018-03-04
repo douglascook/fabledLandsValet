@@ -66,3 +66,20 @@ export const removeTick = (book, pageNumber) => ({
   book,
   pageNumber
 });
+
+export const UPDATE_CREW = 'UPDATE_CREW';
+
+export const updateCrew = (shipIndex, quality) => ({
+  type: UPDATE_CREW,
+  shipIndex,
+  quality,
+});
+
+export const UPDATE_CARGO = 'UPDATE_CARGO';
+
+export const updateCargo = (shipIndex, cargoIndex, cargo) => ({
+  type: UPDATE_CARGO,
+  shipIndex,
+  cargoIndex,
+  cargo,
+});

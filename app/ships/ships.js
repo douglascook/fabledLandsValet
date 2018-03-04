@@ -17,6 +17,11 @@ import {
 
 import sharedStyles from '../shared/styles';
 
+import {
+  updateCrew,
+  updateCargo,
+} from '../actions';
+
 import ShipModal from './modal';
 
 
@@ -25,19 +30,19 @@ class Ships extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentShip: null,
+      shipIndex: null,
     };
   }
 
-  showModal(ship) {
+  showModal(index) {
     this.setState({
-      currentShip: ship,
+      shipIndex: index,
     });
   }
 
   closeModal() {
     this.setState({
-      currentShip: null,
+      shipIndex: null,
     });
   }
 
@@ -49,19 +54,23 @@ class Ships extends Component {
           Ships
         </Text>
 
-        { this.props.ships.map(ship => (
+        { this.props.ships.map((ship, i) => (
           <SingleItemRow
             name={ship.name}
             value={ship.port}
             key={ship.name}
-            onButtonPress={() => this.showModal(ship)}
+            onButtonPress={() => this.showModal(i)}
           />
         ))}
 
-        { this.state.currentShip &&
+        { (this.state.shipIndex !== null) &&
           <ShipModal
-            ship={this.state.currentShip}
+            ship={this.props.ships[this.state.shipIndex]}
             onRequestClose={() => this.closeModal()}
+            onUpdateCrew={
+              v => this.props.updateCrew(this.state.shipIndex, v)}
+            onUpdateCargo={
+              (i, c) => this.props.updateCargo(this.state.shipIndex, i, c)}
           />
         }
 
@@ -74,6 +83,13 @@ const mapStateToProps = state => ({
   ships: state.ships,
 });
 
+const mapDispatchToProps = dispatch => ({
+  updateCrew: (shipIndex, quality) => dispatch(updateCrew(shipIndex, quality)),
+  updateCargo: (shipIndex, cargoIndex, cargo) =>
+    dispatch(updateCargo(shipIndex, cargoIndex, cargo)),
+});
+
 export default connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(Ships);

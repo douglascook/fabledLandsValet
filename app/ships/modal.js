@@ -49,8 +49,8 @@ export default class ShipModal extends Component {
             </Text>
             <Picker
               style={styles.content}
-              selected={crew}
-              onValueChange={value => this.updateCrew(value)}
+              selectedValue={crew}
+              onValueChange={value => this.props.onUpdateCrew(value)}
             >
               {crewQualities.map(q =>
                 <Item label={q} value={q} key={q} />
@@ -65,7 +65,7 @@ export default class ShipModal extends Component {
           </View>
 
           <View style={sharedStyles.containerRow}>
-            {buildCargoPickers(cargo)}
+            {buildCargoPickers(cargo, (i, c) => this.props.onUpdateCargo(i, c))}
           </View>
 
           <View style={sharedStyles.containerRow}>
@@ -83,20 +83,22 @@ export default class ShipModal extends Component {
   }
 }
 
-function buildCargoPickers(cargo) {
+function buildCargoPickers(cargo, onUpdateCargo) {
   return cargo.map((current, i) => (
     <Picker
       style={styles.content}
-      selected={current}
-      onValueChange={value => null}
+      selectedValue={current}
+      onValueChange={value => onUpdateCargo(i, value)}
       key={i}
     >
-      {cargoTypes.map(c =>
-        <Item label={c} value={c} key={c} />
-      )}
+      {cargoPickerItems}
     </Picker>
   ));
 }
+
+const cargoPickerItems = cargoTypes.map(c =>
+  <Item label={c} value={c} key={c} />
+);
 
 const styles = StyleSheet.create({
   header: {
