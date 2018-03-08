@@ -1,5 +1,6 @@
 import {
   ADD_NEW_SHIP,
+  DELETE_SHIP,
   UPDATE_PORT,
   UPDATE_CREW,
   UPDATE_CARGO,
@@ -28,6 +29,12 @@ export default function ships(state = initialState.ships, action) {
       };
       return [...state, newShip];
     }
+
+    case DELETE_SHIP:
+      return [
+        ...state.slice(0, action.shipIndex),
+        ...state.slice(action.shipIndex + 1)
+      ];
 
     case UPDATE_PORT: {
       const newState = [...state];

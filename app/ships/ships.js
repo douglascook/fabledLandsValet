@@ -22,6 +22,7 @@ import sharedStyles from '../shared/styles';
 
 import {
   addNewShip,
+  deleteShip,
   updatePort,
   updateCrew,
   updateCargo,
@@ -46,7 +47,7 @@ class Ships extends Component {
     return (
       <View style={sharedStyles.container}>
 
-        <Text style={sharedStyles.headerText}>
+        <Text style={[sharedStyles.headerText, { marginBottom: 10 }]}>
           Ships
         </Text>
 
@@ -60,7 +61,7 @@ class Ships extends Component {
         ))}
 
         <View style={
-          { flexDirection: 'row', justifyContent: 'center', marginTop: 5 }}
+          { flexDirection: 'row', justifyContent: 'center', marginTop: 10 }}
         >
           <Button
             onPress={() => this.setState({ newShip: true })}
@@ -79,12 +80,15 @@ class Ships extends Component {
               v => this.props.updateCrew(this.state.shipIndex, v)}
             onUpdateCargo={
               (i, c) => this.props.updateCargo(this.state.shipIndex, i, c)}
+            onDeleteShip={() => this.props.deleteShip(this.state.shipIndex)}
+            closeModal={() => this.closeModals()}
           />
         }
 
         <NewShipModal
           visible={this.state.newShip}
-          addNewShip={(n, t, c) => this.props.addNewShip(n, t, c)}
+          addNewShip={(name, type, crew) =>
+            this.props.addNewShip(name, type, crew)}
           closeModal={() => this.closeModals()}
         />
 
@@ -99,6 +103,7 @@ Ships.propTypes = {
   updateCrew: PropTypes.func.isRequired,
   updateCargo: PropTypes.func.isRequired,
   addNewShip: PropTypes.func.isRequired,
+  deleteShip: PropTypes.func.isRequired,
 };
 
 const getDefaultState = () => ({
@@ -112,6 +117,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addNewShip: (name, type, crew) => dispatch(addNewShip(name, type, crew)),
+  deleteShip: shipIndex => dispatch(deleteShip(shipIndex)),
   updatePort: (shipIndex, port) => dispatch(updatePort(shipIndex, port)),
   updateCrew: (shipIndex, quality) => dispatch(updateCrew(shipIndex, quality)),
   updateCargo: (shipIndex, cargoIndex, cargo) =>

@@ -100,3 +100,10 @@ export const addNewShip = (name, shipType, crew) => ({
   shipType,
   crew
 });
+
+export const DELETE_SHIP = 'DELETE_SHIP';
+
+export const deleteShip = shipIndex => ({
+  type: DELETE_SHIP,
+  shipIndex,
+});

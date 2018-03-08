@@ -8,6 +8,7 @@ import {
   View,
   Text,
   Picker,
+  Button,
   TextInput,
   Modal,
   StyleSheet,
@@ -30,6 +31,11 @@ export default class EditShipModal extends Component {
     this.state = {
       port: props.ship.port,
     };
+  }
+
+  deleteShip() {
+    this.props.closeModal();
+    this.props.onDeleteShip();
   }
 
   render() {
@@ -88,6 +94,12 @@ export default class EditShipModal extends Component {
             {buildCargoPickers(cargo, (i, c) => this.props.onUpdateCargo(i, c))}
           </View>
 
+          <Button
+            onPress={() => this.deleteShip()}
+            title="Delete"
+            color="firebrick"
+          />
+
         </View>
       </Modal>
     );
@@ -101,6 +113,8 @@ EditShipModal.propTypes = {
   onUpdatePort: PropTypes.func.isRequired,
   onUpdateCrew: PropTypes.func.isRequired,
   onUpdateCargo: PropTypes.func.isRequired,
+  onDeleteShip: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
 
 function buildCargoPickers(cargo, onUpdateCargo) {
