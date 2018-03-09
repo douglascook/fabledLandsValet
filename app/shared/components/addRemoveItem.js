@@ -4,7 +4,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  StyleSheet,
 } from 'react-native';
 
 import PropTypes from 'prop-types';
@@ -13,16 +12,16 @@ import sharedStyles from '../styles';
 
 
 const AddRemoveItem = ({ text, isActive, onAdd, onRemove }) => (
-  <View style={styles.itemRow}>
+  <View style={{ flexDirection: 'row', marginVertical: 1 }}>
 
-    <Text style={[sharedStyles.text, styles.text]}>
+    <Text style={[sharedStyles.text, { flex: 1 }]}>
       {text}
     </Text>
 
     <TouchableOpacity
       style={[
         isActive ? sharedStyles.removeButton : sharedStyles.addButton,
-        styles.button
+        { marginLeft: 2 }
       ]}
       activeOpacity={0.6}
       onPress={isActive ? onRemove : onAdd}
@@ -44,19 +43,5 @@ AddRemoveItem.propTypes = {
   onAdd: PropTypes.func,
   onRemove: PropTypes.func,
 };
-
-const styles = StyleSheet.create({
-  itemRow: {
-    flexDirection: 'row',
-    marginBottom: 1,
-  },
-  text: {
-    flex: 9,
-  },
-  button: {
-    flex: 1,
-    marginLeft: 1,
-  }
-});
 
 export default AddRemoveItem;
