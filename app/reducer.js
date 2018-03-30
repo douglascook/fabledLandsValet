@@ -60,8 +60,14 @@ export const initialState = {
 
   possessions: {
     personal: [],
-    bank: [],
-    invested: [],
+    bank: {
+      shards: 0,
+      items: []
+    },
+    invested: {
+      shards: 0,
+      items: []
+    },
   },
 
   codewords: [
