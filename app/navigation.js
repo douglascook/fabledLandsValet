@@ -9,6 +9,7 @@ import MatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Character from './character/character';
 import Possessions from './possessions/possessions';
+import Stashes from './stashes/stashes';
 import Ships from './ships/ships';
 import Codewords from './codewords/codewords';
 import Tickboxes from './tickboxes/tickboxes';
@@ -26,6 +27,12 @@ const Navigation = TabNavigator({
     screen: Possessions,
     navigationOptions: {
       tabBarIcon: () => <MatIcon name="sword" size={26} color="white" />,
+    },
+  },
+  stashes: {
+    screen: Stashes,
+    navigationOptions: {
+      tabBarIcon: () => <FaIcon name="home" size={26} color="white" />,
     },
   },
   ships: {

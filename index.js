@@ -9,7 +9,7 @@ import Navigation from './app/navigation';
 
 
 const store = createStore(reducer, undefined, autoRehydrate());
-persistStore(store, {storage: AsyncStorage});
+persistStore(store, { storage: AsyncStorage });
 
 const App = () => (
   <Provider store={store}>
