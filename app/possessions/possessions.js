@@ -37,7 +37,8 @@ class Possessions extends Component {
   }
 
   setModalVisible(visible) {
-    if (this.props.possessions.length < 12) {
+    const possessions = this.props.possessions.personal.items;
+    if (possessions.length < 12) {
       this.setState({ modalVisible: visible });
     }
   }
@@ -52,7 +53,8 @@ class Possessions extends Component {
   }
 
   get currentPossessions() {
-    return this.props.possessions.map((item, i) => (
+    const possessions = this.props.possessions.personal.items;
+    return possessions.map((item, i) => (
       <RemovableRow
         name={item.name}
         value={formatEffects(item.effects)}
@@ -93,14 +95,14 @@ class Possessions extends Component {
 }
 
 Possessions.propTypes = {
-  possessions: PropTypes.array.isRequired,
+  possessions: PropTypes.object.isRequired,
   addItem: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
 };
 
 
 const mapStateToProps = state => ({
-  possessions: state.possessions.personal,
+  possessions: state.possessions,
 });
 
 const mapDispatchToProps = dispatch => ({

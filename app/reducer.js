@@ -59,7 +59,10 @@ export const initialState = {
   },
 
   possessions: {
-    personal: [],
+    personal: {
+      shards: 0,
+      items: []
+    },
     bank: {
       shards: 0,
       items: []

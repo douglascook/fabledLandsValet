@@ -14,15 +14,19 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import MatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import sharedStyles from '../shared/styles';
+
+import {
+  swapItemCollection,
+} from '../actions';
 
 const Item = Picker.Item;
 
 const SELECT_STASH = 'select stash';
 
-
 class Stashes extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -42,6 +46,7 @@ class Stashes extends Component {
 
   render() {
     const { possessions, shards } = this.props;
+    const currentStash = this.state.currentStash;
 
     return (
       <View style={sharedStyles.container}>
@@ -51,21 +56,29 @@ class Stashes extends Component {
 
         <StashContents
           name="Currently Carrying"
-          stash={{ items: possessions.personal, shards: shards}}
+          icon="down"
+          stash={{ items: possessions.personal.items, shards}}
+          onItemPress={index => currentStash !== SELECT_STASH &&
+            this.props.swapItemCollection(index, 'personal', currentStash)
+          }
         />
 
         <Picker
           style={sharedStyles.containerRow}
-          selected={this.state.currentStash}
+          selected={currentStash}
           onValueChange={value => this.setState({ currentStash: value })}
         >
           {this.buildStashOptions()}
         </Picker>
 
-        {this.state.currentStash !== SELECT_STASH &&
+        {currentStash !== SELECT_STASH &&
           <StashContents
-            name={this.state.currentStash}
-            stash={possessions[this.state.currentStash]}
+            name={currentStash}
+            icon="up"
+            stash={possessions[currentStash]}
+            onItemPress={index =>
+              this.props.swapItemCollection(index, currentStash, 'personal')
+            }
           />
         }
       </View>
@@ -73,22 +86,22 @@ class Stashes extends Component {
   }
 }
 
-const StashContents = ({ name, stash }) => (
+const StashContents = ({ name, icon, stash, onItemPress }) => (
   <View>
     <Text style={styles.sectionHeader}>
       {name}
     </Text>
-    {stash.items.map(i => (
+    {stash.items.map((item, i) => (
       <ItemRow
-        value={i.name}
-        icon="I"
-        onButtonPress={() => null}
-        key={i.key}
+        value={item.name}
+        icon={icon}
+        onButtonPress={() => onItemPress(i)}
+        key={item.key}
       />))
     }
     <ItemRow
       value={`${stash.shards} shards`}
-      icon="I"
+      icon={icon}
       onButtonPress={() => null}
     />
   </View>
@@ -109,7 +122,7 @@ const ItemRow = ({ value, icon, onButtonPress }) => (
       onPress={onButtonPress}
     >
       <Text style={sharedStyles.buttonText}>
-        {icon}
+        <MatIcon name={`arrow-${icon}-bold`} size={23} color="white" />
       </Text>
     </TouchableOpacity>
 
@@ -137,6 +150,12 @@ const mapStateToProps = state => ({
   shards: state.character.shards.value,
 });
 
+const mapDispatchToProps = dispatch => ({
+  swapItemCollection: (itemIndex, collection, newCollection) =>
+    dispatch(swapItemCollection(itemIndex, collection, newCollection)),
+});
+
 export default connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(Stashes);

@@ -13,6 +13,14 @@ export const removeItem = (item, index) => ({
   index,
 });
 
+export const SWAP_ITEM_COLLECTION = 'SWAP_ITEM_COLLECTION';
+export const swapItemCollection = (itemIndex, currentCol, newCol) => ({
+  type: SWAP_ITEM_COLLECTION,
+  itemIndex,
+  currentCol,
+  newCol,
+});
+
 export const UPDATE_SKILL_VALUE = 'UPDATE_SKILL_VALUE';
 
 export const updateSkillValue = (skillName, newValue) => ({
