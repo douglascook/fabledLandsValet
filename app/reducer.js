@@ -58,7 +58,11 @@ export const initialState = {
     },
   },
 
-  possessions: [],
+  possessions: {
+    personal: [],
+    bank: [],
+    invested: [],
+  },
 
   codewords: [
     'Acid', 'Bait', 'Dangle', 'Earth',

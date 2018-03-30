@@ -100,7 +100,7 @@ Possessions.propTypes = {
 
 
 const mapStateToProps = state => ({
-  possessions: state.possessions,
+  possessions: state.possessions.personal,
 });
 
 const mapDispatchToProps = dispatch => ({

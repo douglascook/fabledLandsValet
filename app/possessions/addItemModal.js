@@ -35,7 +35,8 @@ export default class AddItemModal extends Component {
   }
 
   submitName(event) {
-    this.setState({ ...this.state,
+    this.setState({
+      ...this.state,
       itemName: event.nativeEvent.text,
       submitVisible: true,
       pickerVisible: true,
@@ -47,7 +48,8 @@ export default class AddItemModal extends Component {
     const { itemEffects, selectedSkill, selectedValue, ...rest } = this.state;
     // TODO highlight select skill if default is selected
     if (selectedSkill !== SELECT_SKILL) {
-      this.setState({ ...rest,
+      this.setState({
+        ...rest,
         selectedSkill: SELECT_SKILL,
         selectedValue: 0,
         itemEffects: [...itemEffects, { skill: selectedSkill, value: selectedValue }],
