@@ -46,8 +46,9 @@ RemovableRow.propTypes = {
 
 const styles = StyleSheet.create({
   remRowItem: {
-    flex: 5,
+    flex: 1,
     marginRight: 5,
+    backgroundColor: 'whitesmoke'
   },
   button: {
     marginLeft: 1,

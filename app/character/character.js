@@ -92,15 +92,16 @@ class Character extends Component {
 
   renderAssetsButtons() {
     return assets.map(key => (
-      <TouchableOpacity
-        style={styles.buttonRow}
-        key={key}
-        onPress={() => this.setState({ [`${key}ModalVisible`]: true })}
-      >
-        <Text style={[sharedStyles.text, styles.statButton]}>
-          {this.props.character[key].attribute}
-        </Text>
-      </TouchableOpacity>
+      <View style={{ alignItems: 'center' }} key={key}>
+        <TouchableOpacity
+          style={styles.buttonRow}
+          onPress={() => this.setState({ [`${key}ModalVisible`]: true })}
+        >
+          <Text style={[sharedStyles.text, styles.statButton]}>
+            {this.props.character[key].attribute}
+          </Text>
+        </TouchableOpacity>
+      </View>
     ));
   }
 
@@ -230,11 +231,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginVertical: 1,
+    backgroundColor: 'whitesmoke',
+    width: 260,
   },
   statButton: {
     fontWeight: 'bold',
     textAlign: 'center',
-    width: 260,
   },
 });
 

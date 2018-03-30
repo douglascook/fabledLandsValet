@@ -19,23 +19,24 @@ const SingleItemRow = ({ name, value, onButtonPress = null }) => (
       </Text>
     </View>
 
-    <View style={{ flex: onButtonPress ? 5 : 6 }}>
+    <View style={styles.rowContents}>
       <Text style={[sharedStyles.text, styles.text]}>
         {value}
       </Text>
+
+      {onButtonPress &&
+        <TouchableOpacity
+          style={[sharedStyles.addButton, styles.button]}
+          activeOpacity={0.6}
+          onPress={onButtonPress}
+        >
+          <Text style={sharedStyles.buttonText}>
+            o
+          </Text>
+        </TouchableOpacity>
+      }
     </View>
 
-    {onButtonPress &&
-      <TouchableOpacity
-        style={[sharedStyles.addButton, styles.button]}
-        activeOpacity={0.6}
-        onPress={onButtonPress}
-      >
-        <Text style={sharedStyles.buttonText}>
-          o
-        </Text>
-      </TouchableOpacity>
-    }
 
   </View>
 );
@@ -50,6 +51,13 @@ const styles = StyleSheet.create({
   rowName: {
     flex: 6,
     marginRight: 5,
+    backgroundColor: 'whitesmoke'
+  },
+  rowContents: {
+    flex: 6,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: 'whitesmoke'
   },
   text: {
     paddingHorizontal: 2,
