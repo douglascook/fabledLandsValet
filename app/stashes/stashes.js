@@ -38,7 +38,7 @@ class Stashes extends Component {
     };
   }
 
-  buildStashOptions() {
+  get stashOptions() {
     const options = [
       SELECT_STASH,
       ...Object.keys(this.props.possessions).filter(k => k !== 'personal')
@@ -58,10 +58,14 @@ class Stashes extends Component {
           Stashes
         </Text>
 
+        <Text style={styles.sectionHeader}>
+          Currently Carrying
+        </Text>
+
         <StashContents
-          name="Currently Carrying"
+          personal
           icon="down"
-          stash={{ items: possessions.personal.items, shards}}
+          stash={{ items: possessions.personal.items, shards }}
           onItemPress={index => currentStash !== SELECT_STASH &&
             this.props.swapItemCollection(index, 'personal', currentStash)
           }
@@ -69,15 +73,14 @@ class Stashes extends Component {
 
         <Picker
           style={sharedStyles.containerRow}
-          selected={currentStash}
+          selectedValue={currentStash}
           onValueChange={value => this.setState({ currentStash: value })}
         >
-          {this.buildStashOptions()}
+          {this.stashOptions}
         </Picker>
 
         {currentStash !== SELECT_STASH &&
           <StashContents
-            name={currentStash}
             icon="up"
             stash={possessions[currentStash]}
             onItemPress={index =>
@@ -95,11 +98,9 @@ Stashes.propTypes = {
   shards: PropTypes.number.isRequired,
 };
 
-const StashContents = ({ name, icon, stash, onItemPress }) => (
+
+const StashContents = ({ icon, stash, onItemPress }) => (
   <View>
-    <Text style={styles.sectionHeader}>
-      {name}
-    </Text>
     {stash.items.map((item, i) => (
       <ItemRow
         value={item.name}
@@ -117,11 +118,11 @@ const StashContents = ({ name, icon, stash, onItemPress }) => (
 );
 
 StashContents.propTypes = {
-  name: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
   stash: PropTypes.object.isRequired,
   onItemPress: PropTypes.func.isRequired,
 };
+
 
 const ItemRow = ({ value, icon, onButtonPress }) => (
   <View style={[sharedStyles.containerRow, { justifyContent: 'space-between' }]}>
