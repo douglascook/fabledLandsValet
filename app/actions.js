@@ -21,6 +21,12 @@ export const swapItemCollection = (itemIndex, currentCol, newCol) => ({
   newCol,
 });
 
+export const ADD_STASH = 'ADD_STASH';
+export const addStash = name => ({
+  type: ADD_STASH,
+  name
+});
+
 export const UPDATE_SKILL_VALUE = 'UPDATE_SKILL_VALUE';
 
 export const updateSkillValue = (skillName, newValue) => ({

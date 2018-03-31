@@ -2,6 +2,7 @@ import {
   ADD_ITEM,
   REMOVE_ITEM,
   SWAP_ITEM_COLLECTION,
+  ADD_STASH,
 } from '../actions';
 
 import { initialState } from '../reducer';
@@ -42,6 +43,15 @@ export default function possessions(state = initialState.possessions, action) {
       ];
       return newState;
     }
+
+    case ADD_STASH:
+      return {
+        ...state,
+        [action.name]: {
+          shards: 0,
+          items: []
+        }
+      };
 
     default:
       return state;

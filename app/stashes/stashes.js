@@ -11,8 +11,10 @@ import PropTypes from 'prop-types';
 import {
   View,
   Text,
+  TextInput,
   TouchableOpacity,
   Picker,
+  Button,
   StyleSheet,
 } from 'react-native';
 
@@ -21,6 +23,7 @@ import MatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import sharedStyles from '../shared/styles';
 
 import {
+  addStash,
   swapItemCollection,
 } from '../actions';
 
@@ -35,6 +38,8 @@ class Stashes extends Component {
     super(props);
     this.state = {
       currentStash: SELECT_STASH,
+      addingStash: false,
+      newStash: null,
     };
   }
 
@@ -46,6 +51,15 @@ class Stashes extends Component {
     return options.map(o =>
       <Item label={o} value={o} key={o} />
     );
+  }
+
+  addStash() {
+    // TODO handle duplicate name
+    this.props.addStash(this.state.newStash);
+    this.setState({
+      addingStash: false,
+      stashName: null
+    });
   }
 
   render() {
@@ -88,6 +102,29 @@ class Stashes extends Component {
             }
           />
         }
+
+        <View style={
+          { flexDirection: 'row', justifyContent: 'center', marginTop: 10 }}
+        >
+          {!this.state.addingStash &&
+            <Button
+              onPress={() => this.setState({ addingStash: true })}
+              title="New Stash"
+            />
+          }
+          {this.state.addingStash &&
+            <TextInput
+              style={[sharedStyles.containerRow, { flex: 1 }]}
+              value={this.state.newStash}
+              placeholder="New stash name"
+              selectionColor="aquamarine"
+              autoCapitalize="words"
+              onChangeText={text => this.setState({ newStash: text })}
+              onSubmitEditing={() => this.addStash()}
+            />
+          }
+        </View>
+
       </View>
     );
   }
@@ -96,6 +133,8 @@ class Stashes extends Component {
 Stashes.propTypes = {
   possessions: PropTypes.object.isRequired,
   shards: PropTypes.number.isRequired,
+  addStash: PropTypes.func.isRequired,
+  swapItemCollection: PropTypes.func.isRequired,
 };
 
 
@@ -174,6 +213,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  addStash: name => dispatch(addStash(name)),
   swapItemCollection: (itemIndex, collection, newCollection) =>
     dispatch(swapItemCollection(itemIndex, collection, newCollection)),
 });
