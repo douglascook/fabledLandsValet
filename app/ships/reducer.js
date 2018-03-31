@@ -7,8 +7,8 @@ import {
 } from '../actions';
 
 import {
-  shipTypes
-} from './data';
+  SHIP_TYPES,
+} from '../data';
 
 import { initialState } from '../reducer';
 
@@ -18,7 +18,7 @@ export default function ships(state = initialState.ships, action) {
   switch (action.type) {
 
     case ADD_NEW_SHIP: {
-      const capacity = shipTypes.find(s => s.type === action.shipType).capacity;
+      const capacity = SHIP_TYPES.find(s => s.type === action.shipType).capacity;
       const newShip = {
         name: action.name,
         type: action.shipType,

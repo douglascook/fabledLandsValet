@@ -28,6 +28,10 @@ import {
   removeTick,
 } from '../actions';
 
+import {
+  BOOKS,
+} from '../data';
+
 const Item = Picker.Item;
 
 
@@ -71,7 +75,7 @@ class Tickboxes extends Component {
             selectedValue={this.state.book}
             onValueChange={value => this.setState({ book: value })}
           >
-            {buildBookNumbers()}
+            {bookItems}
           </Picker>
 
           <TextInput
@@ -103,21 +107,9 @@ Tickboxes.propTypes = {
   removeTick: PropTypes.func.isRequired,
 };
 
-function buildBookNumbers() {
-  const books = [
-    'The War-Torn Kingdom',
-    'Cities of Gold and Glory',
-    'Over the Blood-Dark Sea',
-    'The Plains of Howling Darkness',
-    'The Court of Hidden Faces',
-    'Lords of the Rising Sun',
-    'The Serpent King\'s Domain',
-  ];
-
-  return books.map((b, i) => (
-    <Item label={b} value={i} key={b} />
-  ));
-}
+const bookItems = BOOKS.map((b, i) => (
+  <Item label={b} value={i} key={b} />
+));
 
 const styles = StyleSheet.create({
   narrower: {

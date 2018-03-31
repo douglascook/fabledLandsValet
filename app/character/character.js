@@ -36,10 +36,10 @@ import {
   removeAsset,
 } from '../actions';
 
-
-const stats = ['charisma', 'combat', 'magic', 'sanctity', 'scouting', 'thievery'];
-
-const assets = ['titles', 'blessings', 'resurrection'];
+import {
+  ABILITIES,
+  ASSETS,
+} from '../data';
 
 
 class Character extends Component {
@@ -61,7 +61,7 @@ class Character extends Component {
   }
 
   get statRows() {
-    return stats.map(key => this.renderSkillRow(key));
+    return ABILITIES.map(key => this.renderSkillRow(key));
   }
 
   renderSkillRow(key) {
@@ -91,7 +91,7 @@ class Character extends Component {
   }
 
   renderAssetsButtons() {
-    return assets.map(key => (
+    return ASSETS.map(key => (
       <View style={{ alignItems: 'center' }} key={key}>
         <TouchableOpacity
           style={styles.buttonRow}
@@ -106,7 +106,7 @@ class Character extends Component {
   }
 
   renderAssetsModals() {
-    return assets.map(key => (
+    return ASSETS.map(key => (
       <ListItemsModal
         visible={this.state[`${key}ModalVisible`]}
         onRequestClose={() => this.onCloseModal()}

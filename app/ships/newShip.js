@@ -16,9 +16,9 @@ import {
 import sharedStyles from '../shared/styles';
 
 import {
-  shipTypes,
-  crewQualities,
-} from './data';
+  SHIP_TYPES,
+  CREW_QUALITIES,
+} from '../data';
 
 const Item = Picker.Item;
 
@@ -70,9 +70,7 @@ export default class NewShipModal extends Component {
               selectedValue={this.state.type}
               onValueChange={value => this.setState({ type: value })}
             >
-              {shipTypes.map(s =>
-                <Item label={s.type} value={s.type} key={s.type} />
-              )}
+              {shipTypeItems}
             </Picker>
           </View>
 
@@ -82,9 +80,7 @@ export default class NewShipModal extends Component {
               selectedValue={this.state.crew}
               onValueChange={value => this.setState({ crew: value })}
             >
-              {crewQualities.map(q =>
-                <Item label={q} value={q} key={q} />
-              )}
+              {crewQualityItems}
             </Picker>
           </View>
 
@@ -102,6 +98,14 @@ export default class NewShipModal extends Component {
     );
   }
 }
+
+const shipTypeItems = SHIP_TYPES.map(s =>
+  <Item label={s.type} value={s.type} key={s.type} />
+);
+
+export const crewQualityItems = CREW_QUALITIES.map(q =>
+  <Item label={q} value={q} key={q} />
+);
 
 const getDefaultState = () => ({
   name: '',

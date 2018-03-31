@@ -27,8 +27,8 @@ import {
 } from '../actions';
 
 import {
-  CODEWORDS
-} from './reducer';
+  CODEWORDS,
+} from '../data';
 
 
 class Codewords extends Component {

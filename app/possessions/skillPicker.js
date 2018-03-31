@@ -16,6 +16,10 @@ import {
   ItemPicker
 } from '../shared/components';
 
+import {
+  ITEM_SKILLS,
+} from '../data';
+
 const Item = Picker.Item;
 
 
@@ -24,7 +28,7 @@ const SkillPicker = ({ selectedSkill, selectedValue, updateSelected, onSubmit })
     <ItemPicker
       selected={selectedSkill}
       updateSelected={value => updateSelected({ selectedSkill: value })}
-      items={buildSkills()}
+      items={skillItems()}
     />
     <ItemPicker
       selected={selectedValue}
@@ -37,14 +41,10 @@ const SkillPicker = ({ selectedSkill, selectedValue, updateSelected, onSubmit })
   </View>
 );
 
-function buildSkills() {
-  const skills = [SELECT_SKILL, 'charisma', 'combat', 'defence', 'magic',
-                  'sanctity', 'scouting', 'thievery'];
-  // TODO convert label to title case, no js built in?
-  return skills.map(s => (
-    <Item label={s} value={s} key={s} />
-  ));
-}
+// TODO convert label to title case, no js built in?
+const skillItems = () => [SELECT_SKILL, ...ITEM_SKILLS].map(s =>
+  <Item label={s} value={s} key={s} />
+);
 
 export const SELECT_SKILL = 'select skill';
 

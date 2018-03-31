@@ -17,9 +17,12 @@ import {
 import sharedStyles from '../shared/styles';
 
 import {
-  cargoTypes,
-  crewQualities
-} from './data';
+  CARGO_TYPES,
+} from '../data';
+
+import {
+  crewQualityItems,
+} from './newShip';
 
 const Item = Picker.Item;
 
@@ -78,9 +81,7 @@ export default class EditShipModal extends Component {
               onValueChange={value => this.props.onUpdateCrew(value)}
               itemStyle={styles.portInput}
             >
-              {crewQualities.map(q =>
-                <Item label={q} value={q} key={q} />
-              )}
+              {crewQualityItems}
             </Picker>
           </View>
 
@@ -125,12 +126,12 @@ function buildCargoPickers(cargo, onUpdateCargo) {
       onValueChange={value => onUpdateCargo(i, value)}
       key={i}
     >
-      {cargoPickerItems}
+      {cargoItems}
     </Picker>
   ));
 }
 
-const cargoPickerItems = cargoTypes.map(c =>
+const cargoItems = CARGO_TYPES.map(c =>
   <Item label={c} value={c} key={c} />
 );
 

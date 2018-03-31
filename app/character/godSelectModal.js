@@ -10,6 +10,10 @@ import {
 
 import sharedStyles from '../shared/styles';
 
+import {
+  GODS,
+} from '../data';
+
 const Item = Picker.Item;
 
 
@@ -28,7 +32,7 @@ const GodSelectModal = ({ visible, onRequestClose, selected, updateSelected }) =
         selectedValue={selected}
         onValueChange={value => updateSelected(value)}
       >
-        {buildGodItems()}
+        {godItems}
       </Picker>
     </View>
   </Modal>
@@ -41,13 +45,6 @@ GodSelectModal.propTypes = {
   updateSelected: PropTypes.func.isRequired,
 };
 
-function buildGodItems() {
-  const gods = [
-    'None', 'Alvir and Valmir', 'Amanushi', 'Eleuia', 'Elnir', 'Juntoku', 'Ko',
-    'Lacuna', 'Maka', 'Molhern', 'Nagil', 'Nai', 'Nisoderu', 'Quetzil', 'Sig',
-    'Tambu', 'The Three Fortunes', 'Tyrnai', 'Vinti', 'Zaos',
-  ];
-  return gods.map(g => <Item label={g} value={g} key={g} />);
-}
+const godItems = GODS.map(g => <Item label={g} value={g} key={g} />);
 
 export default GodSelectModal;
