@@ -10,19 +10,16 @@ import { initialState } from '../reducer';
 export default function possessions(state = initialState.possessions, action) {
   switch (action.type) {
 
-    case ADD_ITEM: {
-      const { items, shards } = state.personal;
+    case ADD_ITEM:
       return {
         ...state,
         personal: {
-          items: [...items, action.item],
-          shards,
+          items: [...state.personal.items, action.item],
         }
       };
-    }
 
     case REMOVE_ITEM: {
-      const { items, shards } = state.personal;
+      const { items } = state.personal;
       return {
         ...state,
         personal: {
@@ -30,7 +27,6 @@ export default function possessions(state = initialState.possessions, action) {
             ...items.slice(0, action.index),
             ...items.slice(action.index + 1),
           ],
-          shards,
         }
       };
     }

@@ -6,6 +6,8 @@ import {
   connect,
 } from 'react-redux';
 
+import PropTypes from 'prop-types';
+
 import {
   View,
   Text,
@@ -26,7 +28,9 @@ const Item = Picker.Item;
 
 const SELECT_STASH = 'select stash';
 
+
 class Stashes extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -86,6 +90,11 @@ class Stashes extends Component {
   }
 }
 
+Stashes.propTypes = {
+  possessions: PropTypes.object.isRequired,
+  shards: PropTypes.number.isRequired,
+};
+
 const StashContents = ({ name, icon, stash, onItemPress }) => (
   <View>
     <Text style={styles.sectionHeader}>
@@ -107,8 +116,15 @@ const StashContents = ({ name, icon, stash, onItemPress }) => (
   </View>
 );
 
+StashContents.propTypes = {
+  name: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  stash: PropTypes.object.isRequired,
+  onItemPress: PropTypes.func.isRequired,
+};
+
 const ItemRow = ({ value, icon, onButtonPress }) => (
-  <View style={[sharedStyles.containerRow, {justifyContent: 'space-between'}]}>
+  <View style={[sharedStyles.containerRow, { justifyContent: 'space-between' }]}>
 
     <View style={styles.textContainer}>
       <Text style={sharedStyles.text}>
@@ -128,6 +144,12 @@ const ItemRow = ({ value, icon, onButtonPress }) => (
 
   </View>
 );
+
+ItemRow.propTypes = {
+  value: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  onButtonPress: PropTypes.func.isRequired,
+};
 
 
 const styles = StyleSheet.create({
