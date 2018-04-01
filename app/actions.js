@@ -27,6 +27,12 @@ export const addStash = name => ({
   name
 });
 
+export const DELETE_STASH = 'DELETE_STASH';
+export const deleteStash = name => ({
+  type: DELETE_STASH,
+  name
+});
+
 export const UPDATE_SKILL_VALUE = 'UPDATE_SKILL_VALUE';
 
 export const updateSkillValue = (skillName, newValue) => ({

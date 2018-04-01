@@ -24,12 +24,13 @@ import sharedStyles from '../shared/styles';
 
 import {
   addStash,
+  deleteStash,
   swapItemCollection,
 } from '../actions';
 
 const Item = Picker.Item;
 
-const SELECT_STASH = 'select stash';
+const SELECT_STASH = 'Select/Add stash';
 
 
 class Stashes extends Component {
@@ -46,7 +47,7 @@ class Stashes extends Component {
   get stashOptions() {
     const options = [
       SELECT_STASH,
-      ...Object.keys(this.props.possessions).filter(k => k !== 'personal')
+      ...Object.keys(this.props.possessions).filter(k => k !== 'personal').sort()
     ];
     return options.map(o =>
       <Item label={o} value={o} key={o} />
@@ -58,7 +59,16 @@ class Stashes extends Component {
     this.props.addStash(this.state.newStash);
     this.setState({
       addingStash: false,
-      stashName: null
+      currentStash: this.state.newStash,
+      newStash: null,
+    });
+  }
+
+  deleteStash() {
+    this.props.deleteStash(this.state.newStash);
+    this.setState({
+      currentStash: SELECT_STASH,
+      addingStash: false,
     });
   }
 
@@ -103,14 +113,23 @@ class Stashes extends Component {
           />
         }
 
-        <View style={
-          { flexDirection: 'row', justifyContent: 'center', marginTop: 10 }}
-        >
-          {!this.state.addingStash &&
-            <Button
-              onPress={() => this.setState({ addingStash: true })}
-              title="New Stash"
-            />
+        <View style={styles.addDeleteContainer}>
+          {currentStash === SELECT_STASH && !this.state.addingStash &&
+            <View style={styles.addDeleteButton}>
+              <Button
+                onPress={() => this.setState({ addingStash: true })}
+                title="New"
+              />
+            </View>
+          }
+          {currentStash !== SELECT_STASH && !this.state.addingStash &&
+            <View style={styles.addDeleteButton}>
+              <Button
+                color="firebrick"
+                onPress={() => this.deleteStash()}
+                title="Delete"
+              />
+            </View>
           }
           {this.state.addingStash &&
             <TextInput
@@ -134,6 +153,7 @@ Stashes.propTypes = {
   possessions: PropTypes.object.isRequired,
   shards: PropTypes.number.isRequired,
   addStash: PropTypes.func.isRequired,
+  deleteStash: PropTypes.func.isRequired,
   swapItemCollection: PropTypes.func.isRequired,
 };
 
@@ -205,6 +225,15 @@ const styles = StyleSheet.create({
   button: {
     marginLeft: 5,
   },
+  addDeleteContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 10,
+  },
+  addDeleteButton: {
+    marginHorizontal: 5,
+    width: 80,
+  },
 });
 
 const mapStateToProps = state => ({
@@ -214,6 +243,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addStash: name => dispatch(addStash(name)),
+  deleteStash: name => dispatch(deleteStash(name)),
   swapItemCollection: (itemIndex, collection, newCollection) =>
     dispatch(swapItemCollection(itemIndex, collection, newCollection)),
 });

@@ -3,6 +3,7 @@ import {
   REMOVE_ITEM,
   SWAP_ITEM_COLLECTION,
   ADD_STASH,
+  DELETE_STASH,
 } from '../actions';
 
 import { initialState } from '../reducer';
@@ -52,6 +53,12 @@ export default function possessions(state = initialState.possessions, action) {
           items: []
         }
       };
+
+    case DELETE_STASH: {
+      const newState = {...state};
+      delete newState[action.name];
+      return newState;
+    }
 
     default:
       return state;
