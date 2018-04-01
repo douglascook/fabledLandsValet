@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 
 import {
   View,
+  ScrollView,
   Text,
   TextInput,
   Picker,
@@ -71,9 +72,7 @@ class Stashes extends Component {
     });
   }
 
-  renderAddDelete() {
-    const currentStash = this.state.currentStash;
-
+  newStashInput() {
     if (this.state.addingStash) {
       return (
         <TextInput
@@ -87,23 +86,12 @@ class Stashes extends Component {
         />);
     }
 
-    if (currentStash === SELECT_STASH) {
+    if (this.state.currentStash === SELECT_STASH) {
       return (
         <View style={styles.addDeleteButton}>
           <Button
             onPress={() => this.setState({ addingStash: true })}
             title="New"
-          />
-        </View>);
-    }
-
-    if (currentStash !== 'Bank' && currentStash !== 'Invested') {
-      return (
-        <View style={styles.addDeleteButton}>
-          <Button
-            color="firebrick"
-            onPress={() => this.deleteStash()}
-            title="Delete"
           />
         </View>);
     }
@@ -146,17 +134,30 @@ class Stashes extends Component {
         </Picker>
 
         {currentStash !== SELECT_STASH &&
-          <StashContents
-            icon="up"
-            stash={possessions[currentStash]}
-            onItemPress={index =>
-              this.props.swapItemCollection(index, currentStash, 'personal')
+          <ScrollView>
+            <StashContents
+              icon="up"
+              stash={possessions[currentStash]}
+              onItemPress={index =>
+                this.props.swapItemCollection(index, currentStash, 'personal')
+              }
+              disableSwap={possessions.personal.items.length >= 12}
+            />
+
+            { currentStash !== 'Bank' && currentStash !== 'Invested' &&
+              <View style={styles.addDeleteContainer}>
+                <Button
+                  color="firebrick"
+                  onPress={() => this.deleteStash()}
+                  title="Delete"
+                />
+              </View>
             }
-          />
+          </ScrollView>
         }
 
         <View style={styles.addDeleteContainer}>
-          {this.renderAddDelete()}
+          {this.newStashInput()}
         </View>
 
       </View>
