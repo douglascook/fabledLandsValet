@@ -55,7 +55,7 @@ export default function possessions(state = initialState.possessions, action) {
       };
 
     case DELETE_STASH: {
-      const newState = {...state};
+      const newState = { ...state };
       delete newState[action.name];
       return newState;
     }

@@ -12,13 +12,10 @@ import {
   View,
   Text,
   TextInput,
-  TouchableOpacity,
   Picker,
   Button,
   StyleSheet,
 } from 'react-native';
-
-import MatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import sharedStyles from '../shared/styles';
 
@@ -27,6 +24,8 @@ import {
   deleteStash,
   swapItemCollection,
 } from '../actions';
+
+import StashContents from './contents';
 
 const Item = Picker.Item;
 
@@ -65,11 +64,50 @@ class Stashes extends Component {
   }
 
   deleteStash() {
-    this.props.deleteStash(this.state.newStash);
+    this.props.deleteStash(this.state.currentStash);
     this.setState({
       currentStash: SELECT_STASH,
       addingStash: false,
     });
+  }
+
+  renderAddDelete() {
+    const currentStash = this.state.currentStash;
+
+    if (this.state.addingStash) {
+      return (
+        <TextInput
+          style={[sharedStyles.containerRow, { flex: 1 }]}
+          value={this.state.newStash}
+          placeholder="New stash name"
+          selectionColor="aquamarine"
+          autoCapitalize="words"
+          onChangeText={text => this.setState({ newStash: text })}
+          onSubmitEditing={() => this.addStash()}
+        />);
+    }
+
+    if (currentStash === SELECT_STASH) {
+      return (
+        <View style={styles.addDeleteButton}>
+          <Button
+            onPress={() => this.setState({ addingStash: true })}
+            title="New"
+          />
+        </View>);
+    }
+
+    if (currentStash !== 'Bank' && currentStash !== 'Invested') {
+      return (
+        <View style={styles.addDeleteButton}>
+          <Button
+            color="firebrick"
+            onPress={() => this.deleteStash()}
+            title="Delete"
+          />
+        </View>);
+    }
+    return null;
   }
 
   render() {
@@ -90,9 +128,13 @@ class Stashes extends Component {
           personal
           icon="down"
           stash={{ items: possessions.personal.items, shards }}
-          onItemPress={index => currentStash !== SELECT_STASH &&
+          onItemPress={index =>
             this.props.swapItemCollection(index, 'personal', currentStash)
           }
+          disableSwap={currentStash === SELECT_STASH || currentStash === 'Bank'
+              || currentStash === 'Invested'
+          }
+          disableShards={currentStash === SELECT_STASH}
         />
 
         <Picker
@@ -114,34 +156,7 @@ class Stashes extends Component {
         }
 
         <View style={styles.addDeleteContainer}>
-          {currentStash === SELECT_STASH && !this.state.addingStash &&
-            <View style={styles.addDeleteButton}>
-              <Button
-                onPress={() => this.setState({ addingStash: true })}
-                title="New"
-              />
-            </View>
-          }
-          {currentStash !== SELECT_STASH && !this.state.addingStash &&
-            <View style={styles.addDeleteButton}>
-              <Button
-                color="firebrick"
-                onPress={() => this.deleteStash()}
-                title="Delete"
-              />
-            </View>
-          }
-          {this.state.addingStash &&
-            <TextInput
-              style={[sharedStyles.containerRow, { flex: 1 }]}
-              value={this.state.newStash}
-              placeholder="New stash name"
-              selectionColor="aquamarine"
-              autoCapitalize="words"
-              onChangeText={text => this.setState({ newStash: text })}
-              onSubmitEditing={() => this.addStash()}
-            />
-          }
+          {this.renderAddDelete()}
         </View>
 
       </View>
@@ -158,72 +173,11 @@ Stashes.propTypes = {
 };
 
 
-const StashContents = ({ icon, stash, onItemPress }) => (
-  <View>
-    {stash.items.map((item, i) => (
-      <ItemRow
-        value={item.name}
-        icon={icon}
-        onButtonPress={() => onItemPress(i)}
-        key={item.key}
-      />))
-    }
-    <ItemRow
-      value={`${stash.shards} shards`}
-      icon={icon}
-      onButtonPress={() => null}
-    />
-  </View>
-);
-
-StashContents.propTypes = {
-  icon: PropTypes.string.isRequired,
-  stash: PropTypes.object.isRequired,
-  onItemPress: PropTypes.func.isRequired,
-};
-
-
-const ItemRow = ({ value, icon, onButtonPress }) => (
-  <View style={[sharedStyles.containerRow, { justifyContent: 'space-between' }]}>
-
-    <View style={styles.textContainer}>
-      <Text style={sharedStyles.text}>
-        {value}
-      </Text>
-    </View>
-
-    <TouchableOpacity
-      style={[sharedStyles.addButton, styles.button]}
-      activeOpacity={0.6}
-      onPress={onButtonPress}
-    >
-      <Text style={sharedStyles.buttonText}>
-        <MatIcon name={`arrow-${icon}-bold`} size={23} color="white" />
-      </Text>
-    </TouchableOpacity>
-
-  </View>
-);
-
-ItemRow.propTypes = {
-  value: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
-  onButtonPress: PropTypes.func.isRequired,
-};
-
-
 const styles = StyleSheet.create({
   sectionHeader: {
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center'
-  },
-  textContainer: {
-    flex: 1,
-    backgroundColor: 'whitesmoke',
-  },
-  button: {
-    marginLeft: 5,
   },
   addDeleteContainer: {
     flexDirection: 'row',

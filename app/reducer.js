@@ -62,11 +62,11 @@ export const initialState = {
     personal: {
       items: []
     },
-    bank: {
+    Bank: {
       shards: 0,
       items: []
     },
-    invested: {
+    Invested: {
       shards: 0,
       items: []
     },
