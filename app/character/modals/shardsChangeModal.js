@@ -10,7 +10,7 @@ import {
   TextInput,
 } from 'react-native';
 
-import sharedStyles from '../shared/styles';
+import sharedStyles from '../../shared/styles';
 
 
 export default class ShardsChangeModal extends Component {

@@ -11,11 +11,11 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import sharedStyles from '../shared/styles';
+import sharedStyles from '../../shared/styles';
 
 import {
   AddRemoveItem
-} from '../shared/components';
+} from '../../shared/components';
 
 
 export default class ListItemsModal extends Component {
@@ -35,7 +35,7 @@ export default class ListItemsModal extends Component {
       >
         <ScrollView contentContainerStyle={styles.content}>
           <Text style={[sharedStyles.modalHeaderText, styles.skillName]}>
-            {items.attribute}
+            {items.displayName}
           </Text>
 
           <TextInput

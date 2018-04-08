@@ -8,11 +8,11 @@ import {
   Modal,
 } from 'react-native';
 
-import sharedStyles from '../shared/styles';
+import sharedStyles from '../../shared/styles';
 
 import {
   GODS,
-} from '../data';
+} from '../../data';
 
 const Item = Picker.Item;
 

@@ -15,12 +15,13 @@ import {
 
 import PropTypes from 'prop-types';
 
-import SkillChangeModal, {
+import {
+  SkillChangeModal,
   StaminaChangeModal,
-} from './skillChangeModal';
-import ShardsChangeModal from './shardsChangeModal';
-import GodSelectModal from './godSelectModal';
-import ListItemsModal from './listItemsModal';
+  ShardsChangeModal,
+  GodSelectModal,
+  ListItemsModal,
+} from './modals';
 
 import {
   SingleItemRow
