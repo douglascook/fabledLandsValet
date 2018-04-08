@@ -9,52 +9,52 @@ import tickboxes from './tickboxes/reducer';
 export const initialState = {
   character: {
     name: {
-      attribute: 'Name', value: 'Gerald Littlefoot'
+      displayName: 'Name', value: 'Gerald Littlefoot'
     },
     profession: {
-      attribute: 'Profession', value: 'Wayfarer'
+      displayName: 'Profession', value: 'Wayfarer'
     },
     rank: {
-      attribute: 'Rank', value: 1
+      displayName: 'Rank', value: 1
     },
     defence: {
-      attribute: 'Defence', value: 6
+      displayName: 'Defence', value: 6
     },
     stamina: {
-      attribute: 'Stamina', value: 12
+      displayName: 'Stamina', value: 12, current: 12,
     },
     charisma: {
-      attribute: 'Charisma', value: 5
+      displayName: 'Charisma', value: 5
     },
     combat: {
-      attribute: 'Combat', value: 5
+      displayName: 'Combat', value: 5
     },
     magic: {
-      attribute: 'Magic', value: 5
+      displayName: 'Magic', value: 5
     },
     sanctity: {
-      attribute: 'Sanctity', value: 5
+      displayName: 'Sanctity', value: 5
     },
     scouting: {
-      attribute: 'Scouting', value: 5
+      displayName: 'Scouting', value: 5
     },
     thievery: {
-      attribute: 'Thievery', value: 5
+      displayName: 'Thievery', value: 5
     },
     shards: {
-      attribute: 'Shards', value: 6
+      displayName: 'Shards', value: 6
     },
     god: {
-      attribute: 'God', value: 'None'
+      displayName: 'God', value: 'None'
     },
     titles: {
-      attribute: 'Titles & Honours', value: [],
+      displayName: 'Titles & Honours', value: [],
     },
     blessings: {
-      attribute: 'Blessings', value: [],
+      displayName: 'Blessings', value: [],
     },
     resurrection: {
-      attribute: 'Resurrection Arrangements', value: [],
+      displayName: 'Resurrection Arrangements', value: [],
     },
   },
 

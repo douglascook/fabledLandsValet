@@ -2,6 +2,7 @@ import {
   ADD_ITEM,
   REMOVE_ITEM,
   UPDATE_SKILL_VALUE,
+  UPDATE_CURRENT_STAMINA,
   ADD_ASSET,
   REMOVE_ASSET,
 } from '../actions';
@@ -29,6 +30,15 @@ export default function character(state = initialState.character, action) {
           ...state[action.skillName],
           value: action.newValue
         },
+      };
+
+    case UPDATE_CURRENT_STAMINA:
+      return {
+        ...state,
+        stamina: {
+          ...state.stamina,
+          current: action.newValue,
+        }
       };
 
     case ADD_ASSET: {

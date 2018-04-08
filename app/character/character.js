@@ -15,7 +15,9 @@ import {
 
 import PropTypes from 'prop-types';
 
-import SkillChangeModal from './skillChangeModal';
+import SkillChangeModal, {
+  StaminaChangeModal,
+} from './skillChangeModal';
 import ShardsChangeModal from './shardsChangeModal';
 import GodSelectModal from './godSelectModal';
 import ListItemsModal from './listItemsModal';
@@ -32,6 +34,7 @@ import {
 
 import {
   updateSkillValue,
+  updateCurrentStamina,
   addAsset,
   removeAsset,
 } from '../actions';
@@ -68,7 +71,7 @@ class Character extends Component {
     const attribute = this.props.character[key];
     return (
       <SingleItemRow
-        name={attribute.attribute}
+        name={attribute.displayName}
         value={getDisplayValue(attribute.value, attribute.modifier)}
         onButtonPress={() => this.showSkillModal(key)}
         key={key}
@@ -82,7 +85,7 @@ class Character extends Component {
 
     return (
       <SingleItemRow
-        name={defence.attribute}
+        name={defence.displayName}
         value={value}
         onButtonPress={() => this.showSkillModal('defence')}
         key={'defence'}
@@ -98,7 +101,7 @@ class Character extends Component {
           onPress={() => this.setState({ [`${key}ModalVisible`]: true })}
         >
           <Text style={[sharedStyles.text, styles.statButton]}>
-            {this.props.character[key].attribute}
+            {this.props.character[key].displayName}
           </Text>
         </TouchableOpacity>
       </View>
@@ -160,26 +163,35 @@ class Character extends Component {
         {this.renderAssetsModals()}
 
         <SkillChangeModal
-          visible={this.state.skillModalVisible}
+          visible={this.state.skillModalVisible &&
+                   this.state.skillToChange !== 'stamina'}
           skill={this.props.character[this.state.skillToChange]}
-          onDone={v => this.onSubmitSkillChange(v)}
           updateValue={
-            s => this.props.updateSkillValue(this.state.skillToChange, s)}
+            v => this.props.updateSkillValue(this.state.skillToChange, v)}
+          onRequestClose={() => this.onCloseModal()}
+        />
+
+        <StaminaChangeModal
+          visible={this.state.skillModalVisible &&
+                   this.state.skillToChange === 'stamina'}
+          stamina={this.props.character.stamina}
+          updateMax={
+            v => this.props.updateSkillValue(this.state.skillToChange, v)}
+          updateCurrent={v => this.props.updateCurrentStamina(v)}
           onRequestClose={() => this.onCloseModal()}
         />
 
         <ShardsChangeModal
           visible={this.state.shardsModalVisible}
           amount={shards.value}
-          onDone={s => this.onSubmitShardsChange(s)}
-          updateAmount={s => this.props.updateSkillValue('shards', s)}
+          updateAmount={v => this.props.updateSkillValue('shards', v)}
           onRequestClose={() => this.onCloseModal()}
         />
 
         <GodSelectModal
           visible={this.state.godModalVisible}
           selected={god.value}
-          updateSelected={g => this.props.updateSkillValue('god', g)}
+          updateSelected={v => this.props.updateSkillValue('god', v)}
           onRequestClose={() => this.onCloseModal()}
         />
 
@@ -191,6 +203,7 @@ class Character extends Component {
 Character.propTypes = {
   character: PropTypes.object.isRequired,
   updateSkillValue: PropTypes.func.isRequired,
+  updateCurrentStamina: PropTypes.func.isRequired,
   addAsset: PropTypes.func.isRequired,
   removeAsset: PropTypes.func.isRequired,
 };
@@ -218,6 +231,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateSkillValue: (attr, value) => dispatch(updateSkillValue(attr, value)),
+  updateCurrentStamina: value => dispatch(updateCurrentStamina(value)),
   addAsset: (attr, item) => dispatch(addAsset(attr, item)),
   removeAsset: (attr, index) => dispatch(removeAsset(attr, index)),
 });

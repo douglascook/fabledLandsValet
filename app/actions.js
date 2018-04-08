@@ -34,10 +34,15 @@ export const deleteStash = name => ({
 });
 
 export const UPDATE_SKILL_VALUE = 'UPDATE_SKILL_VALUE';
-
 export const updateSkillValue = (skillName, newValue) => ({
   type: UPDATE_SKILL_VALUE,
   skillName,
+  newValue,
+});
+
+export const UPDATE_CURRENT_STAMINA = 'UPDATE_CURRENT_STAMINA';
+export const updateCurrentStamina = newValue => ({
+  type: UPDATE_CURRENT_STAMINA,
   newValue,
 });
 
@@ -58,21 +63,18 @@ export const removeAsset = (attr, index) => ({
 });
 
 export const REMOVE_CODEWORD = 'REMOVE_CODEWORD';
-
 export const removeCodeword = codeword => ({
   type: REMOVE_CODEWORD,
   codeword,
 });
 
 export const ADD_CODEWORD = 'ADD_CODEWORD';
-
 export const addCodeword = codeword => ({
   type: ADD_CODEWORD,
   codeword,
 });
 
 export const ADD_TICK = 'ADD_TICK';
-
 export const addTick = (book, pageNumber) => ({
   type: ADD_TICK,
   book,
@@ -80,7 +82,6 @@ export const addTick = (book, pageNumber) => ({
 });
 
 export const REMOVE_TICK = 'REMOVE_TICK';
-
 export const removeTick = (book, pageNumber) => ({
   type: REMOVE_TICK,
   book,
@@ -88,7 +89,6 @@ export const removeTick = (book, pageNumber) => ({
 });
 
 export const UPDATE_CREW = 'UPDATE_CREW';
-
 export const updateCrew = (shipIndex, quality) => ({
   type: UPDATE_CREW,
   shipIndex,
@@ -96,7 +96,6 @@ export const updateCrew = (shipIndex, quality) => ({
 });
 
 export const UPDATE_CARGO = 'UPDATE_CARGO';
-
 export const updateCargo = (shipIndex, cargoIndex, cargo) => ({
   type: UPDATE_CARGO,
   shipIndex,
@@ -105,7 +104,6 @@ export const updateCargo = (shipIndex, cargoIndex, cargo) => ({
 });
 
 export const UPDATE_PORT = 'UPDATE_PORT';
-
 export const updatePort = (shipIndex, port) => ({
   type: UPDATE_PORT,
   shipIndex,
@@ -113,7 +111,6 @@ export const updatePort = (shipIndex, port) => ({
 });
 
 export const ADD_NEW_SHIP = 'ADD_NEW_SHIP';
-
 export const addNewShip = (name, shipType, crew) => ({
   type: ADD_NEW_SHIP,
   name,
@@ -122,7 +119,6 @@ export const addNewShip = (name, shipType, crew) => ({
 });
 
 export const DELETE_SHIP = 'DELETE_SHIP';
-
 export const deleteShip = shipIndex => ({
   type: DELETE_SHIP,
   shipIndex,
