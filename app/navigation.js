@@ -1,7 +1,8 @@
 import React from 'react';
 
 import {
-  TabNavigator,
+  createBottomTabNavigator,
+  createAppContainer,
 } from 'react-navigation';
 
 import FaIcon from 'react-native-vector-icons/FontAwesome';
@@ -16,7 +17,7 @@ import Tickboxes from './tickboxes/tickboxes';
 import Settings from './settings/settings';
 
 
-const Navigation = TabNavigator({
+const Navigator = createBottomTabNavigator({
   character: {
     screen: Character,
     navigationOptions: {
@@ -60,17 +61,14 @@ const Navigation = TabNavigator({
     },
   },
 }, {
-  tabBarPosition: 'bottom',
-  lazyLoad: true,
   tabBarOptions: {
     showLabel: false,
     showIcon: true,
-    upperCaseLabel: false,
-    iconStyle: {
-      width: 30,
-      height: 30,
+    style: {
+      backgroundColor: 'dodgerblue',
     },
   }
 });
 
-export default Navigation;
+const AppContainer = createAppContainer(Navigator);
+export default AppContainer;

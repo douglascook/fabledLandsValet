@@ -1,19 +1,24 @@
 import React from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { persistStore, autoRehydrate } from 'redux-persist';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 import reducer from './app/reducer';
-import Navigation from './app/navigation';
+import AppContainer from './app/navigation';
 
 
-const store = createStore(reducer, undefined, autoRehydrate());
-persistStore(store, { storage: AsyncStorage });
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+const persistedReducer = persistReducer(persistConfig, reducer);
+const store = createStore(persistedReducer);
+
 
 const App = () => (
   <Provider store={store}>
-    <Navigation />
+    <AppContainer />
   </Provider>
 );
 
