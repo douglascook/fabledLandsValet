@@ -12,7 +12,7 @@ import {
   connect
 } from 'react-redux';
 
-//import RNFS from 'react-native-fs';
+import RNFS from 'react-native-fs';
 
 import sharedStyles from '../shared/styles';
 
@@ -27,14 +27,14 @@ class Settings extends Component {
     };
   }
 
-  //dumpStateToFile() {
-    //const now = Date.now();
-    //const path = `${RNFS.DocumentDirectoryPath}/fabledLandsCharacter_${now}.json`;
-    //const currentState = JSON.stringify(this.props.state);
-    //RNFS.writeFile(path, currentState, 'utf8')
-      //.then(() => this.setState({ saved: true }))
-      //.catch(err => this.setState({ errors: err }));
-  //}
+  dumpStateToFile() {
+    const now = Date.now();
+    const path = `${RNFS.DocumentDirectoryPath}/fabledLandsCharacter_${now}.json`;
+    const currentState = JSON.stringify(this.props.state);
+    RNFS.writeFile(path, currentState, 'utf8')
+      .then(() => this.setState({ saved: true }))
+      .catch(err => this.setState({ errors: err }));
+  }
 
   render() {
     return (
@@ -48,8 +48,7 @@ class Settings extends Component {
 
           <Button
             title="Save to file"
-            //onPress={() => this.dumpStateToFile()}
-            onPress={null}
+            onPress={() => this.dumpStateToFile()}
           />
           { this.state.saved &&
             <Text> {'Save successful!'}  </Text>
