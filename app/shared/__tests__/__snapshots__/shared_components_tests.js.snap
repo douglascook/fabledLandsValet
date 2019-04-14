@@ -1,0 +1,413 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddRemoveItem renders correctly when active 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+      "marginVertical": 1,
+    }
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "backgroundColor": "whitesmoke",
+          "fontSize": 18,
+        },
+        Object {
+          "flex": 1,
+        },
+      ]
+    }
+  >
+    test me
+  </Text>
+  <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "firebrick",
+        "marginLeft": 2,
+        "opacity": 1,
+        "width": 25,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "white",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    >
+      x
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`AddRemoveItem renders correctly when inactive 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+      "marginVertical": 1,
+    }
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "backgroundColor": "whitesmoke",
+          "fontSize": 18,
+        },
+        Object {
+          "flex": 1,
+        },
+      ]
+    }
+  >
+    test me
+  </Text>
+  <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "dodgerblue",
+        "marginLeft": 2,
+        "opacity": 1,
+        "width": 25,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "white",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    >
+      o
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`RemovableRow renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "marginHorizontal": 20,
+      "marginVertical": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "whitesmoke",
+        "flex": 1,
+        "marginRight": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "backgroundColor": "whitesmoke",
+          "fontSize": 18,
+        }
+      }
+    >
+      test me
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "whitesmoke",
+        "flex": 1,
+        "marginRight": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "backgroundColor": "whitesmoke",
+          "fontSize": 18,
+        }
+      }
+    >
+      yeah
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "firebrick",
+        "marginLeft": 1,
+        "opacity": 1,
+        "width": 25,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "white",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    >
+      x
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`SingleItemRow renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "marginHorizontal": 20,
+      "marginVertical": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "whitesmoke",
+        "flex": 6,
+        "marginRight": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "backgroundColor": "whitesmoke",
+            "fontSize": 18,
+          },
+          Object {
+            "fontWeight": "bold",
+            "paddingLeft": 1,
+          },
+        ]
+      }
+    >
+      test me
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "whitesmoke",
+        "flex": 6,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "backgroundColor": "whitesmoke",
+            "fontSize": 18,
+          },
+          Object {
+            "paddingHorizontal": 2,
+          },
+        ]
+      }
+    >
+      yeah
+    </Text>
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "backgroundColor": "dodgerblue",
+          "marginLeft": 5,
+          "opacity": 1,
+          "width": 25,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "white",
+            "fontSize": 18,
+            "fontWeight": "bold",
+            "textAlign": "center",
+          }
+        }
+      >
+        o
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`SubmitButtonRow renders correctly when disabled 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    accessibilityRole="button"
+    accessibilityStates={
+      Array [
+        "disabled",
+      ]
+    }
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {},
+          Object {},
+        ]
+      }
+    >
+      <Text
+        disabled={true}
+        style={
+          Array [
+            Object {
+              "color": "#007AFF",
+              "fontSize": 18,
+              "padding": 8,
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#cdcdcd",
+            },
+          ]
+        }
+      >
+        test me
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`SubmitButtonRow renders correctly when enabled 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    accessibilityRole="button"
+    accessibilityStates={Array []}
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {},
+        ]
+      }
+    >
+      <Text
+        disabled={false}
+        style={
+          Array [
+            Object {
+              "color": "#007AFF",
+              "fontSize": 18,
+              "padding": 8,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        test me
+      </Text>
+    </View>
+  </View>
+</View>
+`;
