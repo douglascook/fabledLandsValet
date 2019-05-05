@@ -14,7 +14,7 @@ import sharedStyles from '../../shared/styles';
 
 
 const StaminaChangeModal = ({ stamina, updateCurrent, updateMax, ...modalProps }) => (
-  <Modal {...modalProps} >
+  <Modal {...modalProps}>
     <View style={sharedStyles.fullSizeCentred}>
 
       <Text style={sharedStyles.modalHeaderText}>

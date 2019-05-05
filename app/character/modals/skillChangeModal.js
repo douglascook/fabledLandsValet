@@ -13,7 +13,7 @@ import sharedStyles from '../../shared/styles';
 
 
 const SkillChangeModal = ({ skill, updateValue, ...modalProps }) => (
-  <Modal {...modalProps} >
+  <Modal {...modalProps}>
     <View style={sharedStyles.fullSizeCentred}>
 
       <Text style={sharedStyles.modalHeaderText}>
