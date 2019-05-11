@@ -13,10 +13,6 @@ import {
 } from '../shared/helpers';
 
 import {
-  ItemPicker
-} from '../shared/components';
-
-import {
   ITEM_SKILLS,
 } from '../data';
 
@@ -25,16 +21,23 @@ const Item = Picker.Item;
 
 const SkillPicker = ({ selectedSkill, selectedValue, updateSelected, onSubmit }) => (
   <View style={styles.container}>
-    <ItemPicker
-      selected={selectedSkill}
-      updateSelected={value => updateSelected({ selectedSkill: value })}
-      items={skillItems()}
-    />
-    <ItemPicker
-      selected={selectedValue}
-      updateSelected={value => updateSelected({ selectedValue: value })}
+    <Picker
+      style={{ flex: 1 }}
+      selectedValue={selectedSkill}
+      onValueChange={value => updateSelected({ selectedSkill: value })}
+    >
+      {skillItems()}
+    </Picker>
+
+    <Picker
+      style={{ flex: 1 }}
+      selectedValue={selectedValue}
+      onValueChange={value => updateSelected({ selectedValue: value })}
       items={buildRange()}
-    />
+    >
+      {buildRange()}
+    </Picker>
+
     <View style={{ flex: 0.2 }}>
       <Button title="0" onPress={onSubmit} />
     </View>
