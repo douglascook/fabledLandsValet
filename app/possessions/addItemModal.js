@@ -36,7 +36,6 @@ export default class AddItemModal extends Component {
 
   submitName(event) {
     this.setState({
-      ...this.state,
       itemName: event.nativeEvent.text,
       submitVisible: true,
       pickerVisible: true,
@@ -97,7 +96,7 @@ export default class AddItemModal extends Component {
             <SkillPicker
               selectedSkill={this.state.selectedSkill}
               selectedValue={this.state.selectedValue}
-              updateSelected={e => this.setState(...this.state, e)}
+              updateSelected={e => this.setState(e)}
               onSubmit={() => this.submitSkill()}
             />
           }

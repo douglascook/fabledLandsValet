@@ -38,7 +38,7 @@ const StaminaChangeModal = ({ stamina, updateCurrent, updateMax, ...modalProps }
       <Changer
         value={stamina.current}
         increment={() => updateCurrent(Math.min(stamina.current + 1, stamina.value))}
-        decrement={() => updateCurrent(Math.max(stamina.value - 1, 1))}
+        decrement={() => updateCurrent(Math.max(stamina.current - 1, 1))}
       />
 
     </View>
