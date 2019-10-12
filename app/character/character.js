@@ -35,6 +35,7 @@ import {
 
 import {
   updateSkillValue,
+  updateMaxStamina,
   updateCurrentStamina,
   addAsset,
   removeAsset,
@@ -53,19 +54,19 @@ class Character extends Component {
     this.state = getDefaultState();
   }
 
-  showSkillModal(attributeKey) {
-    this.setState({
-      skillModalVisible: true,
-      skillToChange: attributeKey,
-    });
-  }
-
   onCloseModal() {
     this.setState(getDefaultState());
   }
 
   get statRows() {
     return ABILITIES.map(key => this.renderSkillRow(key));
+  }
+
+  showSkillModal(attributeKey) {
+    this.setState({
+      skillModalVisible: true,
+      skillToChange: attributeKey,
+    });
   }
 
   renderSkillRow(key) {
@@ -132,6 +133,7 @@ class Character extends Component {
     const {
       character,
       updateSkillValue,
+      updateMaxStamina,
       updateCurrentStamina,
     } = this.props;
 
@@ -198,7 +200,7 @@ class Character extends Component {
         <StaminaChangeModal
           visible={skillModalVisible && skillToChange === 'stamina'}
           stamina={stamina}
-          updateMax={v => updateSkillValue(skillToChange, v)}
+          updateMax={v => updateMaxStamina(v)}
           updateCurrent={v => updateCurrentStamina(v)}
           onRequestClose={() => this.onCloseModal()}
         />
@@ -226,6 +228,7 @@ Character.propTypes = {
   character: PropTypes.object.isRequired,
   updateSkillValue: PropTypes.func.isRequired,
   updateCurrentStamina: PropTypes.func.isRequired,
+  updateMaxStamina: PropTypes.func.isRequired,
   addAsset: PropTypes.func.isRequired,
   removeAsset: PropTypes.func.isRequired,
 };
@@ -253,6 +256,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   updateSkillValue,
+  updateMaxStamina,
   updateCurrentStamina,
   addAsset,
   removeAsset,

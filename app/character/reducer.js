@@ -2,6 +2,7 @@ import {
   ADD_ITEM,
   REMOVE_ITEM,
   UPDATE_SKILL_VALUE,
+  UPDATE_MAX_STAMINA,
   UPDATE_CURRENT_STAMINA,
   ADD_ASSET,
   REMOVE_ASSET,
@@ -32,14 +33,34 @@ export default function character(state = initialState.character, action) {
         },
       };
 
-    case UPDATE_CURRENT_STAMINA:
+    case UPDATE_MAX_STAMINA: {
+      const { stamina } = state;
+      // max cannot go below zero
+      const newMax = Math.max(stamina.value + action.modifier, 0);
       return {
         ...state,
         stamina: {
+          ...stamina,
+          value: newMax,
+          // current cannot be higher than max
+          current: Math.min(stamina.current, newMax),
+        },
+      };
+    }
+
+    case UPDATE_CURRENT_STAMINA: {
+      const { stamina } = state;
+      // current cannot be higher than max
+      const newCurrent = Math.min(stamina.current + action.modifier, stamina.value);
+      return {
+        ...state,
+        stamina: {
+          ...stamina,
           ...state.stamina,
-          current: action.newValue,
+          current: newCurrent,
         }
       };
+    }
 
     case ADD_ASSET: {
       const items = state[action.attr].value;

@@ -40,10 +40,16 @@ export const updateSkillValue = (skillName, newValue) => ({
   newValue,
 });
 
+export const UPDATE_MAX_STAMINA = 'UPDATE_MAX_STAMINA';
+export const updateMaxStamina = modifier => ({
+  type: UPDATE_MAX_STAMINA,
+  modifier,
+});
+
 export const UPDATE_CURRENT_STAMINA = 'UPDATE_CURRENT_STAMINA';
-export const updateCurrentStamina = newValue => ({
+export const updateCurrentStamina = modifier => ({
   type: UPDATE_CURRENT_STAMINA,
-  newValue,
+  modifier,
 });
 
 export const ADD_ASSET = 'ADD_ASSET';
