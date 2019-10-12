@@ -55,11 +55,12 @@ class Stashes extends Component {
   }
 
   addStash() {
+    const { newStash } = this.state;
     // TODO handle duplicate name
-    this.props.addStash(this.state.newStash);
+    this.props.addStash(newStash);
     this.setState({
       addingStash: false,
-      currentStash: this.state.newStash,
+      currentStash: newStash,
       newStash: null,
     });
   }
@@ -73,34 +74,37 @@ class Stashes extends Component {
   }
 
   newStashInput() {
-    if (this.state.addingStash) {
+    const { addingStash, newStash, currentStash } = this.state;
+    if (addingStash) {
       return (
         <TextInput
           style={[sharedStyles.containerRow, { flex: 1 }]}
-          value={this.state.newStash}
+          value={newStash}
           placeholder="New stash name"
           selectionColor="aquamarine"
           autoCapitalize="words"
           onChangeText={text => this.setState({ newStash: text })}
           onSubmitEditing={() => this.addStash()}
-        />);
+        />
+      );
     }
 
-    if (this.state.currentStash === SELECT_STASH) {
+    if (currentStash === SELECT_STASH) {
       return (
         <View style={styles.addDeleteButton}>
           <Button
             onPress={() => this.setState({ addingStash: true })}
             title="New"
           />
-        </View>);
+        </View>
+      );
     }
     return null;
   }
 
   render() {
-    const { possessions, shards } = this.props;
-    const currentStash = this.state.currentStash;
+    const { possessions, shards, swapItemCollection } = this.props;
+    const { currentStash } = this.state;
 
     return (
       <View style={sharedStyles.container}>
@@ -116,12 +120,9 @@ class Stashes extends Component {
           personal
           icon="down"
           stash={{ items: possessions.personal.items, shards }}
-          onItemPress={index =>
-            this.props.swapItemCollection(index, 'personal', currentStash)
-          }
+          onItemPress={index => swapItemCollection(index, 'personal', currentStash)}
           disableSwap={currentStash === SELECT_STASH || currentStash === 'Bank'
-              || currentStash === 'Invested'
-          }
+              || currentStash === 'Invested'}
           disableShards={currentStash === SELECT_STASH}
         />
 
@@ -133,18 +134,16 @@ class Stashes extends Component {
           {this.stashOptions}
         </Picker>
 
-        {currentStash !== SELECT_STASH &&
+        {currentStash !== SELECT_STASH && (
           <ScrollView>
             <StashContents
               icon="up"
               stash={possessions[currentStash]}
-              onItemPress={index =>
-                this.props.swapItemCollection(index, currentStash, 'personal')
-              }
+              onItemPress={index => swapItemCollection(index, currentStash, 'personal')}
               disableSwap={possessions.personal.items.length >= 12}
             />
 
-            { currentStash !== 'Bank' && currentStash !== 'Invested' &&
+            { currentStash !== 'Bank' && currentStash !== 'Invested' && (
               <View style={styles.addDeleteContainer}>
                 <Button
                   color="firebrick"
@@ -152,9 +151,9 @@ class Stashes extends Component {
                   title="Delete"
                 />
               </View>
-            }
+            )}
           </ScrollView>
-        }
+        )}
 
         <View style={styles.addDeleteContainer}>
           {this.newStashInput()}

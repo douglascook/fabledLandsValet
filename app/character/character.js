@@ -81,7 +81,11 @@ class Character extends Component {
   }
 
   renderDefenceRow() {
-    const { defence, rank, combat } = this.props.character;
+    const {
+      character: {
+        defence, rank, combat
+      }
+    } = this.props;
     const value = getDisplayValue(rank.value + combat.value, defence.modifier);
 
     return (
@@ -89,12 +93,13 @@ class Character extends Component {
         name={defence.displayName}
         value={value}
         onButtonPress={() => this.showSkillModal('defence')}
-        key={'defence'}
+        key="defence"
       />
     );
   }
 
   renderAssetsButtons() {
+    const { character } = this.props;
     return ASSETS.map(key => (
       <View style={{ alignItems: 'center' }} key={key}>
         <TouchableOpacity
@@ -102,7 +107,7 @@ class Character extends Component {
           onPress={() => this.setState({ [`${key}ModalVisible`]: true })}
         >
           <Text style={[sharedStyles.text, styles.statButton]}>
-            {this.props.character[key].displayName}
+            {character[key].displayName}
           </Text>
         </TouchableOpacity>
       </View>
@@ -110,20 +115,40 @@ class Character extends Component {
   }
 
   renderAssetsModals() {
+    const { character, addAsset, removeAsset } = this.props;
     return ASSETS.map(key => (
       <ListItemsModal
         visible={this.state[`${key}ModalVisible`]}
         onRequestClose={() => this.onCloseModal()}
-        items={this.props.character[key]}
-        addNew={i => this.props.addAsset(key, i)}
-        remove={i => this.props.removeAsset(key, i)}
+        items={character[key]}
+        addNew={i => addAsset(key, i)}
+        remove={i => removeAsset(key, i)}
         key={key}
       />
     ));
   }
 
   render() {
-    const { name, profession, shards, god } = this.props.character;
+    const {
+      character,
+      updateSkillValue,
+      updateCurrentStamina,
+    } = this.props;
+
+    const {
+      name,
+      profession,
+      shards,
+      god,
+      stamina,
+    } = character;
+
+    const {
+      skillModalVisible,
+      skillToChange,
+      shardsModalVisible,
+      godModalVisible,
+    } = this.state;
 
     return (
       <View style={sharedStyles.container}>
@@ -164,35 +189,31 @@ class Character extends Component {
         {this.renderAssetsModals()}
 
         <SkillChangeModal
-          visible={this.state.skillModalVisible &&
-                   this.state.skillToChange !== 'stamina'}
-          skill={this.props.character[this.state.skillToChange]}
-          updateValue={
-            v => this.props.updateSkillValue(this.state.skillToChange, v)}
+          visible={skillModalVisible && skillToChange !== 'stamina'}
+          skill={character[skillToChange]}
+          updateValue={v => updateSkillValue(skillToChange, v)}
           onRequestClose={() => this.onCloseModal()}
         />
 
         <StaminaChangeModal
-          visible={this.state.skillModalVisible &&
-                   this.state.skillToChange === 'stamina'}
-          stamina={this.props.character.stamina}
-          updateMax={
-            v => this.props.updateSkillValue(this.state.skillToChange, v)}
-          updateCurrent={v => this.props.updateCurrentStamina(v)}
+          visible={skillModalVisible && skillToChange === 'stamina'}
+          stamina={stamina}
+          updateMax={v => updateSkillValue(skillToChange, v)}
+          updateCurrent={v => updateCurrentStamina(v)}
           onRequestClose={() => this.onCloseModal()}
         />
 
         <ShardsChangeModal
-          visible={this.state.shardsModalVisible}
+          visible={shardsModalVisible}
           amount={shards.value}
-          updateAmount={v => this.props.updateSkillValue('shards', v)}
+          updateAmount={v => updateSkillValue('shards', v)}
           onRequestClose={() => this.onCloseModal()}
         />
 
         <GodSelectModal
-          visible={this.state.godModalVisible}
+          visible={godModalVisible}
           selected={god.value}
-          updateSelected={v => this.props.updateSkillValue('god', v)}
+          updateSelected={v => updateSkillValue('god', v)}
           onRequestClose={() => this.onCloseModal()}
         />
 
@@ -230,12 +251,12 @@ const mapStateToProps = state => ({
   character: state.character
 });
 
-const mapDispatchToProps = dispatch => ({
-  updateSkillValue: (attr, value) => dispatch(updateSkillValue(attr, value)),
-  updateCurrentStamina: value => dispatch(updateCurrentStamina(value)),
-  addAsset: (attr, item) => dispatch(addAsset(attr, item)),
-  removeAsset: (attr, index) => dispatch(removeAsset(attr, index)),
-});
+const mapDispatchToProps = {
+  updateSkillValue,
+  updateCurrentStamina,
+  addAsset,
+  removeAsset,
+};
 
 const styles = StyleSheet.create({
   nameProfession: {

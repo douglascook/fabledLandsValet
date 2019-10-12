@@ -50,18 +50,22 @@ class Tickboxes extends Component {
   }
 
   get currentlyTicked() {
-    const ticks = this.props.tickboxes[this.state.book].sort((a, b) => a - b);
+    const { tickboxes, removeTick } = this.props;
+    const { book } = this.state;
+
+    const ticks = tickboxes[book].sort((a, b) => a - b);
     return ticks.map(pageNumber => (
       <AddRemoveItem
         text={pageNumber}
         isActive
-        onRemove={() => this.props.removeTick(this.state.book, pageNumber)}
-        key={`${this.state.book}${pageNumber}`}
+        onRemove={() => removeTick(book, pageNumber)}
+        key={`${book}${pageNumber}`}
       />
     ));
   }
 
   render() {
+    const { book } = this.state;
     return (
       <View style={sharedStyles.container}>
 
@@ -72,7 +76,7 @@ class Tickboxes extends Component {
         <View style={sharedStyles.paddedCentred}>
 
           <Picker
-            selectedValue={this.state.book}
+            selectedValue={book}
             onValueChange={value => this.setState({ book: value })}
           >
             {bookItems}

@@ -42,7 +42,18 @@ export default class EditShipModal extends Component {
   }
 
   render() {
-    const { name, type, crew, cargo } = this.props.ship;
+    const {
+      ship: {
+        name,
+        type,
+        crew,
+        cargo,
+      },
+      onUpdatePort,
+      onUpdateCrew,
+      onUpdateCargo,
+    } = this.props;
+    const { port } = this.state;
 
     return (
       <Modal {...this.props} >
@@ -62,12 +73,12 @@ export default class EditShipModal extends Component {
             </Text>
             <TextInput
               style={[styles.content, styles.portInput]}
-              value={this.state.port}
+              value={port}
               selectionColor="aquamarine"
               underlineColorAndroid="transparent"
               autoCapitalize="words"
               onChangeText={text => this.setState({ port: text })}
-              onSubmitEditing={e => this.props.onUpdatePort(e.nativeEvent.text)}
+              onSubmitEditing={e => onUpdatePort(e.nativeEvent.text)}
             />
           </View>
 
@@ -78,7 +89,7 @@ export default class EditShipModal extends Component {
             <Picker
               style={styles.content}
               selectedValue={crew}
-              onValueChange={value => this.props.onUpdateCrew(value)}
+              onValueChange={value => onUpdateCrew(value)}
               itemStyle={styles.portInput}
             >
               {crewQualityItems}
@@ -92,7 +103,7 @@ export default class EditShipModal extends Component {
           </View>
 
           <View style={sharedStyles.containerRow}>
-            {buildCargoPickers(cargo, (i, c) => this.props.onUpdateCargo(i, c))}
+            {buildCargoPickers(cargo, (i, c) => onUpdateCargo(i, c))}
           </View>
 
           <Button

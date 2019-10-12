@@ -16,23 +16,23 @@ import sharedStyles from '../shared/styles';
 
 const StashContents = (
   { icon, stash, onItemPress, disableSwap, disableShards }) => (
-  <View>
-    {stash.items.map((item, i) => (
+    <View>
+      {stash.items.map((item, i) => (
+        <ItemRow
+          value={item.name}
+          icon={icon}
+          onButtonPress={() => onItemPress(i)}
+          buttonDisabled={disableSwap}
+          key={item.key}
+        />
+      ))}
       <ItemRow
-        value={item.name}
+        value={`${stash.shards} shards`}
         icon={icon}
-        onButtonPress={() => onItemPress(i)}
-        buttonDisabled={disableSwap}
-        key={item.key}
-      />))
-    }
-    <ItemRow
-      value={`${stash.shards} shards`}
-      icon={icon}
-      onButtonPress={() => null}
-      buttonDisabled={disableShards}
-    />
-  </View>
+        onButtonPress={() => null}
+        buttonDisabled={disableShards}
+      />
+    </View>
 );
 
 StashContents.propTypes = {

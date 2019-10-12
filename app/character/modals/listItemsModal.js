@@ -52,8 +52,8 @@ export default class ListItemsModal extends Component {
               onRemove={() => remove(i)}
               isActive
               key={item}
-            />))
-          }
+            />
+          ))}
         </ScrollView>
       </Modal>
     );

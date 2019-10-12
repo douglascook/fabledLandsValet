@@ -24,7 +24,7 @@ const SingleItemRow = ({ name, value, onButtonPress = null }) => (
         {value}
       </Text>
 
-      {onButtonPress &&
+      {onButtonPress && (
         <TouchableOpacity
           style={[sharedStyles.addButton, styles.button]}
           activeOpacity={0.6}
@@ -34,7 +34,7 @@ const SingleItemRow = ({ name, value, onButtonPress = null }) => (
             o
           </Text>
         </TouchableOpacity>
-      }
+      )}
     </View>
 
 

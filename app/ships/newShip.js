@@ -42,9 +42,11 @@ export default class NewShipModal extends Component {
   }
 
   render() {
+    const { visible } = this.props;
+    const { name, type, crew } = this.state;
     return (
       <Modal
-        visible={this.props.visible}
+        visible={visible}
         onRequestClose={() => this.closeAndClear()}
       >
         <View style={sharedStyles.paddedCentred}>
@@ -56,7 +58,7 @@ export default class NewShipModal extends Component {
           <View style={sharedStyles.containerRow}>
             <TextInput
               style={{ flex: 1 }}
-              value={this.state.name}
+              value={name}
               placeholder="Name"
               selectionColor="aquamarine"
               autoCapitalize="words"
@@ -67,7 +69,7 @@ export default class NewShipModal extends Component {
           <View style={sharedStyles.containerRow}>
             <Picker
               style={{ flex: 1 }}
-              selectedValue={this.state.type}
+              selectedValue={type}
               onValueChange={value => this.setState({ type: value })}
             >
               {shipTypeItems}
@@ -77,7 +79,7 @@ export default class NewShipModal extends Component {
           <View style={sharedStyles.containerRow}>
             <Picker
               style={{ flex: 1 }}
-              selectedValue={this.state.crew}
+              selectedValue={crew}
               onValueChange={value => this.setState({ crew: value })}
             >
               {crewQualityItems}

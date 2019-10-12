@@ -41,10 +41,11 @@ class Codewords extends Component {
   }
 
   get currentWords() {
-    return this.props.codewords.sort().map(w => (
+    const { codewords, removeCodeword } = this.props;
+    return codewords.sort().map(w => (
       <AddRemoveItem
         text={w}
-        onRemove={() => this.props.removeCodeword(w)}
+        onRemove={() => removeCodeword(w)}
         isActive
         key={w}
       />
@@ -52,14 +53,16 @@ class Codewords extends Component {
   }
 
   get matchingWords() {
+    const { codewords, removeCodeword, addCodeword } = this.props;
+    const { searchTerm } = this.state;
     return CODEWORDS.filter(w => (
-      w.toLowerCase().startsWith(this.state.searchTerm)
+      w.toLowerCase().startsWith(searchTerm)
     )).map(w => (
       <AddRemoveItem
         text={w}
-        isActive={this.props.codewords.indexOf(w) !== -1}
-        onRemove={() => this.clearSearch(this.props.removeCodeword(w))}
-        onAdd={() => this.clearSearch(this.props.addCodeword(w))}
+        isActive={codewords.indexOf(w) !== -1}
+        onRemove={() => this.clearSearch(removeCodeword(w))}
+        onAdd={() => this.clearSearch(addCodeword(w))}
         key={w}
       />
     ));
@@ -71,6 +74,7 @@ class Codewords extends Component {
   }
 
   render() {
+    const { searchTerm } = this.state;
     return (
       <View style={sharedStyles.container}>
 
@@ -89,10 +93,7 @@ class Codewords extends Component {
           <ScrollView
             contentContainerStyle={sharedStyles.scrollViewContent}
           >
-            {this.state.searchTerm
-              ? this.matchingWords
-              : this.currentWords
-            }
+            {searchTerm ? this.matchingWords : this.currentWords}
           </ScrollView>
         </View>
 

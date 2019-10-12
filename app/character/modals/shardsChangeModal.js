@@ -43,9 +43,12 @@ export default class ShardsChangeModal extends Component {
   }
 
   render() {
+    const { buttonsDisabled } = this.state;
+    const { visible, amount } = this.props;
+
     return (
       <Modal
-        visible={this.props.visible}
+        visible={visible}
         onRequestClose={() => this.onClose()}
       >
         <View style={sharedStyles.fullSizeCentred}>
@@ -54,7 +57,7 @@ export default class ShardsChangeModal extends Component {
           </Text>
 
           <Text style={styles.currentAmount}>
-            Current: {this.props.amount}
+            Current: {amount}
           </Text>
 
           <View style={styles.diffRow}>
@@ -62,7 +65,7 @@ export default class ShardsChangeModal extends Component {
               <Button
                 title="-"
                 onPress={() => this.decrement()}
-                disabled={this.state.buttonsDisabled}
+                disabled={buttonsDisabled}
               />
             </View>
 
@@ -81,7 +84,7 @@ export default class ShardsChangeModal extends Component {
               <Button
                 title="+"
                 onPress={() => this.increment()}
-                disabled={this.state.buttonsDisabled}
+                disabled={buttonsDisabled}
               />
             </View>
           </View>

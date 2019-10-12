@@ -44,6 +44,9 @@ class Ships extends Component {
   }
 
   render() {
+    const { ships, updatePort, updateCrew, updateCargo, addNewShip, deleteShip } = this.props;
+    const { newShip, shipIndex } = this.state;
+
     return (
       <View style={sharedStyles.container}>
 
@@ -51,7 +54,7 @@ class Ships extends Component {
           Ships
         </Text>
 
-        { this.props.ships.map((ship, i) => (
+        { ships.map((ship, i) => (
           <SingleItemRow
             name={ship.name}
             value={ship.port}
@@ -69,26 +72,22 @@ class Ships extends Component {
           />
         </View>
 
-        { (this.state.shipIndex !== null) &&
+        { (shipIndex !== null) && (
           <EditShipModal
-            ship={this.props.ships[this.state.shipIndex]}
+            ship={ships[shipIndex]}
             onRequestClose={() => this.closeModals()}
-            visible={this.state.shipIndex !== null}
-            onUpdatePort={
-              port => this.props.updatePort(this.state.shipIndex, port)}
-            onUpdateCrew={
-              v => this.props.updateCrew(this.state.shipIndex, v)}
-            onUpdateCargo={
-              (i, c) => this.props.updateCargo(this.state.shipIndex, i, c)}
-            onDeleteShip={() => this.props.deleteShip(this.state.shipIndex)}
+            visible={shipIndex !== null}
+            onUpdatePort={port => updatePort(shipIndex, port)}
+            onUpdateCrew={v => updateCrew(shipIndex, v)}
+            onUpdateCargo={(i, c) => updateCargo(shipIndex, i, c)}
+            onDeleteShip={() => deleteShip(shipIndex)}
             closeModal={() => this.closeModals()}
           />
-        }
+        )}
 
         <NewShipModal
-          visible={this.state.newShip}
-          addNewShip={(name, type, crew) =>
-            this.props.addNewShip(name, type, crew)}
+          visible={newShip}
+          addNewShip={(name, type, crew) => addNewShip(name, type, crew)}
           closeModal={() => this.closeModals()}
         />
 
