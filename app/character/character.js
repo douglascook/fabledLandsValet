@@ -37,6 +37,8 @@ import {
   updateSkillValue,
   updateMaxStamina,
   updateCurrentStamina,
+  updateGod,
+  updateShards,
   addAsset,
   removeAsset,
 } from '../actions';
@@ -135,6 +137,8 @@ class Character extends Component {
       updateSkillValue,
       updateMaxStamina,
       updateCurrentStamina,
+      updateGod,
+      updateShards,
     } = this.props;
 
     const {
@@ -208,14 +212,14 @@ class Character extends Component {
         <ShardsChangeModal
           visible={shardsModalVisible}
           amount={shards.value}
-          updateAmount={v => updateSkillValue('shards', v)}
+          updateAmount={v => updateShards(v)}
           onRequestClose={() => this.onCloseModal()}
         />
 
         <GodSelectModal
           visible={godModalVisible}
           selected={god.value}
-          updateSelected={v => updateSkillValue('god', v)}
+          updateSelected={v => updateGod(v)}
           onRequestClose={() => this.onCloseModal()}
         />
 
@@ -229,6 +233,8 @@ Character.propTypes = {
   updateSkillValue: PropTypes.func.isRequired,
   updateCurrentStamina: PropTypes.func.isRequired,
   updateMaxStamina: PropTypes.func.isRequired,
+  updateGod: PropTypes.func.isRequired,
+  updateShards: PropTypes.func.isRequired,
   addAsset: PropTypes.func.isRequired,
   removeAsset: PropTypes.func.isRequired,
 };
@@ -258,6 +264,8 @@ const mapDispatchToProps = {
   updateSkillValue,
   updateMaxStamina,
   updateCurrentStamina,
+  updateGod,
+  updateShards,
   addAsset,
   removeAsset,
 };

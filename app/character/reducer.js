@@ -4,6 +4,8 @@ import {
   UPDATE_SKILL_VALUE,
   UPDATE_MAX_STAMINA,
   UPDATE_CURRENT_STAMINA,
+  UPDATE_GOD,
+  UPDATE_SHARDS,
   ADD_ASSET,
   REMOVE_ASSET,
 } from '../actions';
@@ -24,14 +26,21 @@ export default function character(state = initialState.character, action) {
         state, action.item, (value, modifier) => (value - modifier)
       );
 
-    case UPDATE_SKILL_VALUE:
+    case UPDATE_SKILL_VALUE: {
+      const { skillName, modifier } = action;
+      // range for skill values is [1, 12]
+      const newValue = Math.max(
+        Math.min(state[skillName].value + modifier, 12),
+        1
+      );
       return {
         ...state,
-        [action.skillName]: {
-          ...state[action.skillName],
-          value: action.newValue
+        [skillName]: {
+          ...state[skillName],
+          value: newValue
         },
       };
+    }
 
     case UPDATE_MAX_STAMINA: {
       const { stamina } = state;
@@ -61,6 +70,24 @@ export default function character(state = initialState.character, action) {
         }
       };
     }
+
+    case UPDATE_GOD:
+      return {
+        ...state,
+        god: {
+          ...state.god,
+          value: action.newGod
+        },
+      };
+
+    case UPDATE_SHARDS:
+      return {
+        ...state,
+        shards: {
+          ...state.shards,
+          value: state.shards.value + action.modifier,
+        }
+      };
 
     case ADD_ASSET: {
       const items = state[action.attr].value;

@@ -23,7 +23,7 @@ export default class ShardsChangeModal extends Component {
   onUpdateDifference(event) {
     if (event.nativeEvent.text) {
       this.setState({
-        difference: parseInt(event.nativeEvent.text),
+        modifier: parseInt(event.nativeEvent.text),
         buttonsDisabled: false,
       });
     }
@@ -34,17 +34,9 @@ export default class ShardsChangeModal extends Component {
     this.props.onRequestClose();
   }
 
-  decrement() {
-    this.props.updateAmount(this.props.amount - this.state.difference);
-  }
-
-  increment() {
-    this.props.updateAmount(this.props.amount + this.state.difference);
-  }
-
   render() {
-    const { buttonsDisabled } = this.state;
-    const { visible, amount } = this.props;
+    const { visible, amount, updateAmount } = this.props;
+    const { buttonsDisabled, modifier } = this.state;
 
     return (
       <Modal
@@ -64,14 +56,14 @@ export default class ShardsChangeModal extends Component {
             <View style={styles.button}>
               <Button
                 title="-"
-                onPress={() => this.decrement()}
+                onPress={() => updateAmount(-modifier)}
                 disabled={buttonsDisabled}
               />
             </View>
 
             <View style={styles.diffBox}>
               <TextInput
-                style={[sharedStyles.modalHeaderText, styles.difference]}
+                style={[sharedStyles.modalHeaderText, styles.modifier]}
                 keyboardType="numeric"
                 autoCorrect={false}
                 selectionColor="aquamarine"
@@ -83,7 +75,7 @@ export default class ShardsChangeModal extends Component {
             <View style={styles.button}>
               <Button
                 title="+"
-                onPress={() => this.increment()}
+                onPress={() => updateAmount(modifier)}
                 disabled={buttonsDisabled}
               />
             </View>
@@ -104,7 +96,7 @@ ShardsChangeModal.propTypes = {
 
 const getDefaultState = () => ({
   buttonsDisabled: true,
-  difference: undefined,
+  modifier: undefined,
 });
 
 const styles = StyleSheet.create({
@@ -122,7 +114,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     paddingHorizontal: 30,
   },
-  difference: {
+  modifier: {
     textAlign: 'center',
   },
   button: {

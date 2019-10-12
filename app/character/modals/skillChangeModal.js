@@ -17,13 +17,14 @@ const SkillChangeModal = ({ skill, updateValue, ...modalProps }) => (
     <View style={sharedStyles.fullSizeCentred}>
 
       <Text style={sharedStyles.modalHeaderText}>
+        {/* When the modal is hidden skill is undefined -> need default values */}
         {skill ? skill.displayName : ''}
       </Text>
 
       <Changer
         value={skill ? skill.value : 0}
-        increment={() => updateValue(Math.min(skill.value + 1, 12))}
-        decrement={() => updateValue(Math.max(skill.value - 1, 1))}
+        increment={() => updateValue(1)}
+        decrement={() => updateValue(-1)}
       />
 
     </View>

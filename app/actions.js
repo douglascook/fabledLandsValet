@@ -34,10 +34,10 @@ export const deleteStash = name => ({
 });
 
 export const UPDATE_SKILL_VALUE = 'UPDATE_SKILL_VALUE';
-export const updateSkillValue = (skillName, newValue) => ({
+export const updateSkillValue = (skillName, modifier) => ({
   type: UPDATE_SKILL_VALUE,
   skillName,
-  newValue,
+  modifier,
 });
 
 export const UPDATE_MAX_STAMINA = 'UPDATE_MAX_STAMINA';
@@ -49,6 +49,18 @@ export const updateMaxStamina = modifier => ({
 export const UPDATE_CURRENT_STAMINA = 'UPDATE_CURRENT_STAMINA';
 export const updateCurrentStamina = modifier => ({
   type: UPDATE_CURRENT_STAMINA,
+  modifier,
+});
+
+export const UPDATE_GOD = 'UPDATE_GOD';
+export const updateGod = newGod => ({
+  type: UPDATE_GOD,
+  newGod,
+});
+
+export const UPDATE_SHARDS = 'UPDATE_SHARDS';
+export const updateShards = modifier => ({
+  type: UPDATE_SHARDS,
   modifier,
 });
 

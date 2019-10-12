@@ -27,7 +27,7 @@ export const initialState = {
       displayName: 'Charisma', value: 5
     },
     combat: {
-      displayName: 'Combat', value: 5
+      displayName: 'Combat', value: 5, modifier: 1
     },
     magic: {
       displayName: 'Magic', value: 5
@@ -60,7 +60,15 @@ export const initialState = {
 
   possessions: {
     personal: {
-      items: []
+      items: [
+        {
+          name: 'Wooden Sword',
+          key: 'Wooden Sword-0000',
+          effects: [
+            { skill: 'combat', value: 1 },
+          ]
+        },
+      ]
     },
     Bank: {
       shards: 0,
