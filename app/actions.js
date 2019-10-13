@@ -14,10 +14,10 @@ export const removeItem = (item, index) => ({
 });
 
 export const SWAP_ITEM_COLLECTION = 'SWAP_ITEM_COLLECTION';
-export const swapItemCollection = (itemIndex, currentCol, newCol) => ({
+export const swapItemCollection = (itemIndex, oldCol, newCol) => ({
   type: SWAP_ITEM_COLLECTION,
   itemIndex,
-  currentCol,
+  oldCol,
   newCol,
 });
 
@@ -27,9 +27,9 @@ export const addStash = name => ({
   name
 });
 
-export const DELETE_STASH = 'DELETE_STASH';
-export const deleteStash = name => ({
-  type: DELETE_STASH,
+export const REMOVE_STASH = 'REMOVE STASH';
+export const removeStash = name => ({
+  type: REMOVE_STASH,
   name
 });
 

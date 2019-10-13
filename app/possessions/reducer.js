@@ -3,11 +3,11 @@ import {
   REMOVE_ITEM,
   SWAP_ITEM_COLLECTION,
   ADD_STASH,
-  DELETE_STASH,
+  REMOVE_STASH,
 } from '../actions';
 
 
-const initialState = {
+export const initialState = {
   personal: {
     items: [
       {
@@ -32,13 +32,16 @@ const initialState = {
 export default function possessions(state = initialState, action) {
   switch (action.type) {
 
-    case ADD_ITEM:
+    case ADD_ITEM: {
+      // add a unique key since there may be multiple instances of the same item
+      const newItem = { ...action.item, key: Date.now() };
       return {
         ...state,
         personal: {
-          items: [...state.personal.items, action.item],
+          items: [...state.personal.items, newItem],
         }
       };
+    }
 
     case REMOVE_ITEM: {
       const { items } = state.personal;
@@ -54,15 +57,21 @@ export default function possessions(state = initialState, action) {
     }
 
     case SWAP_ITEM_COLLECTION: {
-      const { itemIndex, currentCol, newCol } = action;
-      const newState = { ...state };
-
-      newState[newCol].items.push(newState[currentCol].items[itemIndex]);
-      newState[currentCol].items = [
-        ...newState[currentCol].items.slice(0, itemIndex),
-        ...newState[currentCol].items.slice(itemIndex + 1),
-      ];
-      return newState;
+      const { itemIndex, oldCol, newCol } = action;
+      return {
+        ...state,
+        [oldCol]: {
+          ...state[oldCol],
+          items: [
+            ...state[oldCol].items.slice(0, itemIndex),
+            ...state[oldCol].items.slice(itemIndex + 1),
+          ],
+        },
+        [newCol]: {
+          ...state[newCol],
+          items: [...state[newCol].items, state[oldCol].items[itemIndex]]
+        }
+      };
     }
 
     case ADD_STASH:
@@ -74,7 +83,7 @@ export default function possessions(state = initialState, action) {
         }
       };
 
-    case DELETE_STASH: {
+    case REMOVE_STASH: {
       const newState = { ...state };
       delete newState[action.name];
       return newState;

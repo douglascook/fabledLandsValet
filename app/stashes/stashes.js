@@ -22,7 +22,7 @@ import sharedStyles from '../shared/styles';
 
 import {
   addStash,
-  deleteStash,
+  removeStash,
   swapItemCollection,
 } from '../actions';
 
@@ -65,8 +65,8 @@ class Stashes extends Component {
     });
   }
 
-  deleteStash() {
-    this.props.deleteStash(this.state.currentStash);
+  removeStash() {
+    this.props.removeStash(this.state.currentStash);
     this.setState({
       currentStash: SELECT_STASH,
       addingStash: false,
@@ -147,7 +147,7 @@ class Stashes extends Component {
               <View style={styles.addDeleteContainer}>
                 <Button
                   color="firebrick"
-                  onPress={() => this.deleteStash()}
+                  onPress={() => this.removeStash()}
                   title="Delete"
                 />
               </View>
@@ -168,7 +168,7 @@ Stashes.propTypes = {
   possessions: PropTypes.object.isRequired,
   shards: PropTypes.number.isRequired,
   addStash: PropTypes.func.isRequired,
-  deleteStash: PropTypes.func.isRequired,
+  removeStash: PropTypes.func.isRequired,
   swapItemCollection: PropTypes.func.isRequired,
 };
 
@@ -195,12 +195,11 @@ const mapStateToProps = state => ({
   shards: state.character.shards.value,
 });
 
-const mapDispatchToProps = dispatch => ({
-  addStash: name => dispatch(addStash(name)),
-  deleteStash: name => dispatch(deleteStash(name)),
-  swapItemCollection: (itemIndex, collection, newCollection) =>
-    dispatch(swapItemCollection(itemIndex, collection, newCollection)),
-});
+const mapDispatchToProps = {
+  addStash,
+  removeStash,
+  swapItemCollection,
+};
 
 export default connect(
   mapStateToProps,
