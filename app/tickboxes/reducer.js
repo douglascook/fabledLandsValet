@@ -19,13 +19,13 @@ export default function tickboxes(state = initialState, action) {
       };
 
     case REMOVE_TICK: {
-      const index = state[action.book].findIndex(
-        page => page == action.pageNumber);
+      const { book, pageNumber } = action;
+      const index = state[book].findIndex(page => page === pageNumber);
       return {
         ...state,
-        [action.book]: [
-          ...state[action.book].slice(0, index),
-          ...state[action.book].slice(index + 1),
+        [book]: [
+          ...state[book].slice(0, index),
+          ...state[book].slice(index + 1),
         ]
       };
     }

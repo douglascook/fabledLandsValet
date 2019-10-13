@@ -8,6 +8,7 @@
     "react-devtools": "react-devtools"
   },
   "dependencies": {
+    "eslint-plugin-jest": "^22.19.0",
     "fsevents": "^1.2.9",
     "prop-types": "^15.7.2",
     "react": "16.8.3",

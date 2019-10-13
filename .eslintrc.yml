@@ -8,3 +8,7 @@ rules:
   arrow-parens: 'warn'
   indent: 'warn'
   padded-blocks: 'off'
+plugins:
+  - jest
+env:
+  jest/globals: true
