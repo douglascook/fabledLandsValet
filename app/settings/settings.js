@@ -51,8 +51,7 @@ class Settings extends Component {
             onPress={() => this.dumpStateToFile()}
           />
           { this.state.saved &&
-            <Text> {'Save successful!'}  </Text>
-          }
+            <Text>Save successful!</Text> }
         </View>
 
       </View>

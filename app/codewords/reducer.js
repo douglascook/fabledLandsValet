@@ -4,7 +4,7 @@ import {
 } from '../actions';
 
 
-const initialState = ['Acid', 'Bait', 'Dangle', 'Earth'];
+export const initialState = ['Acid', 'Bait', 'Dangle', 'Earth'];
 
 export default function codewords(state = initialState, action) {
   switch (action.type) {

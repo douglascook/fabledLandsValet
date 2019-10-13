@@ -1,4 +1,8 @@
-import tickboxes from '../reducer';
+import {
+  default as tickboxes,
+  initialState,
+} from '../reducer';
+
 import {
   addTick,
   removeTick,
@@ -8,17 +12,17 @@ import {
 describe('Tickboxes reducer', () => {
   it('should return the initial state', () => {
     expect(
-      tickboxes([], {})
+      tickboxes(undefined, {})
     ).toEqual(
-      []
+      initialState
     );
   });
 
   it('should add a tick', () => {
     expect(
-      tickboxes({ 0: [], 1: [] }, addTick(0, 123))
+      tickboxes({ 0: [], 1: [100] }, addTick(0, 123))
     ).toEqual(
-      { 0: [123], 1: [] }
+      { 0: [123], 1: [100] }
     );
     expect(
       tickboxes({ 0: [], 1: [100] }, addTick(1, 123))
@@ -34,9 +38,9 @@ describe('Tickboxes reducer', () => {
       { 0: [], 1: [] }
     );
     expect(
-      tickboxes({ 0: [], 1: [100, 200, 300] }, removeTick(1, 200))
+      tickboxes({ 0: [100], 1: [100, 200, 300] }, removeTick(1, 200))
     ).toEqual(
-      { 0: [], 1: [100, 300] }
+      { 0: [100], 1: [100, 300] }
     );
   });
 });

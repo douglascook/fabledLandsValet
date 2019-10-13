@@ -4,7 +4,7 @@ import {
 } from '../actions';
 
 
-const initialState = {0: [123], 1: [234], 2: [], 3: [], 4: [], 5: [], 6: [], 7: []};
+export const initialState = {0: [123], 1: [234], 2: [], 3: [], 4: [], 5: [], 6: [], 7: []};
 
 export default function tickboxes(state = initialState, action) {
   switch (action.type) {

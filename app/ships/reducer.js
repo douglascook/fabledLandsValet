@@ -11,7 +11,7 @@ import {
 } from '../data';
 
 
-const initialState = [];
+export const initialState = [];
 
 export default function ships(state = initialState, action) {
   switch (action.type) {
