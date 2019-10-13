@@ -10,11 +10,10 @@ import {
   SHIP_TYPES,
 } from '../data';
 
-import { initialState } from '../reducer';
 
+const initialState = [];
 
-export default function ships(state = initialState.ships, action) {
-
+export default function ships(state = initialState, action) {
   switch (action.type) {
 
     case ADD_NEW_SHIP: {

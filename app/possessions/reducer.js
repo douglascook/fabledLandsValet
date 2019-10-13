@@ -6,10 +6,30 @@ import {
   DELETE_STASH,
 } from '../actions';
 
-import { initialState } from '../reducer';
 
+const initialState = {
+  personal: {
+    items: [
+      {
+        name: 'Wooden Sword',
+        key: 'Wooden Sword-0000',
+        effects: [
+          { skill: 'combat', value: 1 },
+        ]
+      },
+    ]
+  },
+  Bank: {
+    shards: 0,
+    items: []
+  },
+  Invested: {
+    shards: 0,
+    items: []
+  },
+};
 
-export default function possessions(state = initialState.possessions, action) {
+export default function possessions(state = initialState, action) {
   switch (action.type) {
 
     case ADD_ITEM:

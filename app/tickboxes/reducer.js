@@ -1,12 +1,12 @@
-import { initialState } from '../reducer';
-
 import {
   ADD_TICK,
   REMOVE_TICK,
 } from '../actions';
 
 
-export default function tickboxes(state = initialState.tickboxes, action) {
+const initialState = {0: [123], 1: [234], 2: [], 3: [], 4: [], 5: [], 6: [], 7: []};
+
+export default function tickboxes(state = initialState, action) {
   switch (action.type) {
 
     case ADD_TICK:

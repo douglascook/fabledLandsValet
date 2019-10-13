@@ -10,10 +10,59 @@ import {
   REMOVE_ASSET,
 } from '../actions';
 
-import { initialState } from '../reducer';
 
+const initialState = {
+  name: {
+    displayName: 'Name', value: 'Gerald Littlefoot'
+  },
+  profession: {
+    displayName: 'Profession', value: 'Wayfarer'
+  },
+  rank: {
+    displayName: 'Rank', value: 1
+  },
+  defence: {
+    displayName: 'Defence', value: 6
+  },
+  stamina: {
+    displayName: 'Stamina', value: 12, current: 12,
+  },
+  charisma: {
+    displayName: 'Charisma', value: 5
+  },
+  combat: {
+    displayName: 'Combat', value: 5, modifier: 1
+  },
+  magic: {
+    displayName: 'Magic', value: 5
+  },
+  sanctity: {
+    displayName: 'Sanctity', value: 5
+  },
+  scouting: {
+    displayName: 'Scouting', value: 5
+  },
+  thievery: {
+    displayName: 'Thievery', value: 5
+  },
+  shards: {
+    displayName: 'Shards', value: 6
+  },
+  god: {
+    displayName: 'God', value: 'None'
+  },
+  titles: {
+    displayName: 'Titles & Honours', value: [],
+  },
+  blessings: {
+    displayName: 'Blessings', value: [],
+  },
+  resurrection: {
+    displayName: 'Resurrection Arrangements', value: [],
+  },
+};
 
-export default function character(state = initialState.character, action) {
+export default function character(state = initialState, action) {
   switch (action.type) {
 
     case ADD_ITEM:
