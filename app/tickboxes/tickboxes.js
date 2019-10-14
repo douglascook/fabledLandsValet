@@ -128,10 +128,10 @@ const mapStateToProps = state => ({
   tickboxes: state.tickboxes,
 });
 
-const mapDispatchToProps = dispatch => ({
-  addTick: (book, pageNumber) => dispatch(addTick(book, pageNumber)),
-  removeTick: (book, pageNumber) => dispatch(removeTick(book, pageNumber)),
-});
+const mapDispatchToProps = {
+  addTick,
+  removeTick,
+};
 
 export default connect(
   mapStateToProps,

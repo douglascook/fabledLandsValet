@@ -105,10 +105,10 @@ const mapStateToProps = state => ({
   possessions: state.possessions,
 });
 
-const mapDispatchToProps = dispatch => ({
-  addItem: item => dispatch(addItem(item)),
-  removeItem: (item, index) => dispatch(removeItem(item, index)),
-});
+const mapDispatchToProps = {
+  addItem,
+  removeItem,
+};
 
 export default connect(
   mapStateToProps,

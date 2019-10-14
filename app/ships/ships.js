@@ -114,14 +114,13 @@ const mapStateToProps = state => ({
   ships: state.ships,
 });
 
-const mapDispatchToProps = dispatch => ({
-  addNewShip: (name, type, crew) => dispatch(addNewShip(name, type, crew)),
-  deleteShip: shipIndex => dispatch(deleteShip(shipIndex)),
-  updatePort: (shipIndex, port) => dispatch(updatePort(shipIndex, port)),
-  updateCrew: (shipIndex, quality) => dispatch(updateCrew(shipIndex, quality)),
-  updateCargo: (shipIndex, cargoIndex, cargo) =>
-    dispatch(updateCargo(shipIndex, cargoIndex, cargo)),
-});
+const mapDispatchToProps = {
+  addNewShip,
+  deleteShip,
+  updatePort,
+  updateCrew,
+  updateCargo,
+};
 
 export default connect(
   mapStateToProps,

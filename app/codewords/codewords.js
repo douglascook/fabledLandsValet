@@ -112,10 +112,10 @@ const mapStateToProps = state => ({
   codewords: state.codewords,
 });
 
-const mapDispatchToProps = dispatch => ({
-  removeCodeword: word => dispatch(removeCodeword(word)),
-  addCodeword: word => dispatch(addCodeword(word)),
-});
+const mapDispatchToProps = {
+  removeCodeword,
+  addCodeword,
+};
 
 export default connect(
   mapStateToProps,
