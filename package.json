@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "eslint-plugin-jest": "^22.19.0",
-    "fsevents": "^1.2.9",
     "prop-types": "^15.7.2",
     "react": "16.8.3",
     "react-art": "^16.10.2",
@@ -40,5 +39,8 @@
     "metro-react-native-babel-preset": "^0.53.1",
     "react-devtools": "^3.6.3",
     "react-test-renderer": "16.8.3"
+  },
+  "optionalDependencies": {
+    "fsevents": "^1.2.9"
   }
 }
