@@ -22,7 +22,7 @@ const initialState = {
     displayName: 'Rank', value: 1
   },
   defence: {
-    displayName: 'Defence', value: 6
+    displayName: 'Defence'
   },
   stamina: {
     displayName: 'Stamina', value: 12, current: 12,
