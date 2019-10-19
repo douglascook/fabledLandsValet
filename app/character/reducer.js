@@ -11,7 +11,7 @@ import {
 } from '../actions';
 
 
-const initialState = {
+export const initialState = {
   name: {
     displayName: 'Name', value: 'Gerald Littlefoot'
   },
@@ -93,8 +93,8 @@ export default function character(state = initialState, action) {
 
     case UPDATE_MAX_STAMINA: {
       const { stamina } = state;
-      // max cannot go below zero
-      const newMax = Math.max(stamina.value + action.modifier, 0);
+      // max cannot go below one
+      const newMax = Math.max(stamina.value + action.modifier, 1);
       return {
         ...state,
         stamina: {
@@ -149,12 +149,18 @@ export default function character(state = initialState, action) {
     }
 
     case REMOVE_ASSET: {
-      const items = state[action.attr].value;
-      const newState = { ...state };
-      newState[action.attr].value = [
-        ...items.slice(0, action.index), ...items.slice(action.index + 1)
-      ];
-      return newState;
+      const { attr, index } = action;
+      const items = [...state[attr].value];
+      return {
+        ...state,
+        [attr]: {
+          ...state[attr],
+          value: [
+            ...items.slice(0, index),
+            ...items.slice(index + 1)
+          ]
+        }
+      };
     }
 
     default:
@@ -163,16 +169,19 @@ export default function character(state = initialState, action) {
 }
 
 function applySkillModifiers(state, item, applyEffect) {
-  const newState = { ...state };
+  let newState = { ...state };
+
   if (item.effects) {
-    item.effects.forEach(e => modifySkill(newState, e, applyEffect));
+    item.effects.forEach(effect => {
+      const currentModifier = state[effect.skill].modifier || 0;
+      newState = {
+        ...newState,
+        [effect.skill]: {
+          ...newState[effect.skill],
+          modifier: applyEffect(currentModifier, effect.value),
+        }
+      };
+    });
   }
   return newState;
-}
-
-function modifySkill(state, itemEffect, applyEffect) {
-  const currentModifier = state[itemEffect.skill].modifier || 0;
-  state[itemEffect.skill].modifier = applyEffect(
-    currentModifier, itemEffect.value);
-  return state;
 }

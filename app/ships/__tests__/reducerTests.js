@@ -1,5 +1,5 @@
 import {
-  default as ships,
+  default as reducer,
   initialState,
 } from '../reducer';
 
@@ -31,7 +31,7 @@ describe('Ships reducer', () => {
 
   it('should return the initial state', () => {
     expect(
-      ships(undefined, {})
+      reducer(undefined, {})
     ).toEqual(
       initialState
     );
@@ -39,12 +39,12 @@ describe('Ships reducer', () => {
 
   it('should add a new ship', () => {
     expect(
-      ships([], addNewShip('Boaty McBoatFace', 'Galleon', 'Poor'))
+      reducer([], addNewShip('Boaty McBoatFace', 'Galleon', 'Poor'))
     ).toEqual(
       [mockShip]
     );
     expect(
-      ships([fakeShip], addNewShip('Boaty McBoatFace', 'Galleon', 'Poor'))
+      reducer([fakeShip], addNewShip('Boaty McBoatFace', 'Galleon', 'Poor'))
     ).toEqual(
       [fakeShip, mockShip]
     );
@@ -52,7 +52,7 @@ describe('Ships reducer', () => {
 
   it('should delete a ship', () => {
     expect(
-      ships([fakeShip, mockShip, fakeShip], deleteShip(1))
+      reducer([fakeShip, mockShip, fakeShip], deleteShip(1))
     ).toEqual(
       [fakeShip, fakeShip]
     );
@@ -60,7 +60,7 @@ describe('Ships reducer', () => {
 
   it('should update the crew', () => {
     expect(
-      ships([fakeShip, mockShip, fakeShip], updateCrew(1, 'Excellent'))
+      reducer([fakeShip, mockShip, fakeShip], updateCrew(1, 'Excellent'))
     ).toEqual(
       [fakeShip, { ...mockShip, crew: 'Excellent' }, fakeShip]
     );
@@ -68,7 +68,7 @@ describe('Ships reducer', () => {
 
   it('should update the port', () => {
     expect(
-      ships([fakeShip, mockShip, fakeShip], updatePort(1, 'Easter Island'))
+      reducer([fakeShip, mockShip, fakeShip], updatePort(1, 'Easter Island'))
     ).toEqual(
       [fakeShip, { ...mockShip, port: 'Easter Island' }, fakeShip]
     );
@@ -76,7 +76,7 @@ describe('Ships reducer', () => {
 
   it('should update the cargo', () => {
     expect(
-      ships([fakeShip, mockShip, fakeShip], updateCargo(1, 2, 'Laptops'))
+      reducer([fakeShip, mockShip, fakeShip], updateCargo(1, 2, 'Laptops'))
     ).toEqual(
       [fakeShip, { ...mockShip, cargo: ['None', 'None', 'Laptops'] }, fakeShip]
     );

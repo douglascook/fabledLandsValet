@@ -1,5 +1,5 @@
 import {
-  default as possessions,
+  default as reducer,
   initialState,
 } from '../reducer';
 
@@ -21,7 +21,7 @@ describe('Possessions reducer', () => {
 
   it('should return the initial state', () => {
     expect(
-      possessions(undefined, {})
+      reducer(undefined, {})
     ).toEqual(
       initialState
     );
@@ -29,7 +29,7 @@ describe('Possessions reducer', () => {
 
   it('should add an item', () => {
     expect(
-      possessions({ personal: { items: [] } }, addItem({ name: 'smoulder fish' }))
+      reducer({ personal: { items: [] } }, addItem({ name: 'smoulder fish' }))
     ).toEqual(
       { personal: { items: [{ name: 'smoulder fish', key: mockNow }] } }
     );
@@ -37,7 +37,7 @@ describe('Possessions reducer', () => {
 
   it('should remove an item', () => {
     expect(
-      possessions(
+      reducer(
         { personal: { items: [{ name: 'a' }, { name: 'b' }, { name: 'c' }] } },
         removeItem({ name: 'b' }, 1)
       )
@@ -45,7 +45,7 @@ describe('Possessions reducer', () => {
       { personal: { items: [{ name: 'a' }, { name: 'c' }] } }
     );
     expect(
-      possessions(
+      reducer(
         { personal: { items: [{ name: 'a' }] } }, removeItem({ name: 'a' }, 0)
       )
     ).toEqual(
@@ -61,14 +61,14 @@ describe('Possessions reducer', () => {
     };
 
     expect(
-      possessions(initial, swapItemCollection(0, 'personal', 'stash1'))
+      reducer(initial, swapItemCollection(0, 'personal', 'stash1'))
     ).toEqual({
       personal: { items: [] },
       stash1: { items: [{ name: 'b' }, { name: 'c' }, { name: 'a' }] },
       stash2: { items: [] },
     });
     expect(
-      possessions(initial, swapItemCollection(1, 'stash1', 'stash2'))
+      reducer(initial, swapItemCollection(1, 'stash1', 'stash2'))
     ).toEqual({
       personal: { items: [{ name: 'a' }] },
       stash1: { items: [{ name: 'b' }] },
@@ -78,12 +78,12 @@ describe('Possessions reducer', () => {
 
   it('should add a stash', () => {
     expect(
-      possessions({}, addStash('cubbyhole'))
+      reducer({}, addStash('cubbyhole'))
     ).toEqual(
       { cubbyhole: { shards: 0, items: [] } }
     );
     expect(
-      possessions({ holeInTheWall: { shards: 0, items: [] }}, addStash('cubbyhole'))
+      reducer({ holeInTheWall: { shards: 0, items: [] }}, addStash('cubbyhole'))
     ).toEqual({
       holeInTheWall: { shards: 0, items: [] },
       cubbyhole: { shards: 0, items: [] }
@@ -92,7 +92,7 @@ describe('Possessions reducer', () => {
 
   it('should remove a stash', () => {
     expect(
-      possessions(
+      reducer(
         {
           holeInTheWall: { shards: 0, items: [] },
           cubbyhole: { shards: 0, items: [] }

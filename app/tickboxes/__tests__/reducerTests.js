@@ -1,5 +1,5 @@
 import {
-  default as tickboxes,
+  default as reducer,
   initialState,
 } from '../reducer';
 
@@ -12,7 +12,7 @@ import {
 describe('Tickboxes reducer', () => {
   it('should return the initial state', () => {
     expect(
-      tickboxes(undefined, {})
+      reducer(undefined, {})
     ).toEqual(
       initialState
     );
@@ -20,12 +20,12 @@ describe('Tickboxes reducer', () => {
 
   it('should add a tick', () => {
     expect(
-      tickboxes({ 0: [], 1: [100] }, addTick(0, 123))
+      reducer({ 0: [], 1: [100] }, addTick(0, 123))
     ).toEqual(
       { 0: [123], 1: [100] }
     );
     expect(
-      tickboxes({ 0: [], 1: [100] }, addTick(1, 123))
+      reducer({ 0: [], 1: [100] }, addTick(1, 123))
     ).toEqual(
       { 0: [], 1: [100, 123] }
     );
@@ -33,12 +33,12 @@ describe('Tickboxes reducer', () => {
 
   it('should remove a tick', () => {
     expect(
-      tickboxes({ 0: [100], 1: [] }, removeTick(0, 100))
+      reducer({ 0: [100], 1: [] }, removeTick(0, 100))
     ).toEqual(
       { 0: [], 1: [] }
     );
     expect(
-      tickboxes({ 0: [100], 1: [100, 200, 300] }, removeTick(1, 200))
+      reducer({ 0: [100], 1: [100, 200, 300] }, removeTick(1, 200))
     ).toEqual(
       { 0: [100], 1: [100, 300] }
     );
