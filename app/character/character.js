@@ -95,7 +95,6 @@ class Character extends Component {
       <SingleItemRow
         name={defence.displayName}
         value={value}
-        onButtonPress={() => this.showSkillModal('defence')}
         key="defence"
       />
     );
