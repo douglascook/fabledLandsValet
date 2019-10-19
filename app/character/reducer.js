@@ -108,8 +108,11 @@ export default function character(state = initialState, action) {
 
     case UPDATE_CURRENT_STAMINA: {
       const { stamina } = state;
-      // current cannot be higher than max
-      const newCurrent = Math.min(stamina.current + action.modifier, stamina.value);
+      // current cannot be higher than max, and cannot go below zero
+      const newCurrent = Math.max(
+        Math.min(stamina.current + action.modifier, stamina.value),
+        0
+      );
       return {
         ...state,
         stamina: {

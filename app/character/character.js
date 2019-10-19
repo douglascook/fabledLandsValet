@@ -100,6 +100,20 @@ class Character extends Component {
     );
   }
 
+  renderStaminaRow() {
+    const stamina = this.props.character.stamina;
+    const value = getDisplayValue(stamina.current + ' / ' + stamina.value);
+
+    return (
+      <SingleItemRow
+        name={stamina.displayName}
+        value={value}
+        onButtonPress={() => this.showSkillModal('stamina')}
+        key="stamina"
+      />
+    );
+  }
+
   renderAssetsButtons() {
     const { character } = this.props;
     return ASSETS.map(key => (
@@ -173,7 +187,7 @@ class Character extends Component {
         <View style={{ marginVertical: 6 }}>
           {this.renderSkillRow('rank')}
           {this.renderDefenceRow()}
-          {this.renderSkillRow('stamina')}
+          {this.renderStaminaRow()}
 
           {this.statRows}
 
