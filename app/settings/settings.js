@@ -12,6 +12,8 @@ import {
   connect
 } from 'react-redux';
 
+import PropTypes from 'prop-types';
+
 import RNFS from 'react-native-fs';
 
 import sharedStyles from '../shared/styles';
@@ -22,21 +24,32 @@ class Settings extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      saved: false,
+      saveFiles: [],
       errors: '',
     };
+    // create saves directory if it doesn't already exist
+    // TODO better place to do this?
+    RNFS.mkdir(`${RNFS.DocumentDirectoryPath}/saves`);
   }
 
   dumpStateToFile() {
-    const now = Date.now();
-    const path = `${RNFS.DocumentDirectoryPath}/fabledLandsCharacter_${now}.json`;
-    const currentState = JSON.stringify(this.props.state);
+    const { characterName, state } = this.props;
+    const path = `${RNFS.DocumentDirectoryPath}/saves/${characterName}`;
+    const currentState = JSON.stringify(state);
     RNFS.writeFile(path, currentState, 'utf8')
-      .then(() => this.setState({ saved: true }))
-      .catch(err => this.setState({ errors: err }));
+      .catch((err) => this.setState({ errors: err }));
+  }
+
+  loadFiles() {
+    const savesDir = `${RNFS.DocumentDirectoryPath}/saves`;
+    RNFS.readDir(savesDir)
+      .then((result) => this.setState({ saveFiles: result.map(f => f.path )}))
+      .catch((err) => this.setState({ errors: err }));
   }
 
   render() {
+    const { saveFiles, newCharacterVisible } = this.state;
+
     return (
       <View style={sharedStyles.container}>
 
@@ -50,8 +63,14 @@ class Settings extends Component {
             title="Save to file"
             onPress={() => this.dumpStateToFile()}
           />
-          { this.state.saved &&
-            <Text>Save successful!</Text> }
+
+          <Button
+            title="Load saves"
+            onPress={() => this.loadFiles()}
+          />
+
+          { (saveFiles.length > 0) &&
+            <Text>{ saveFiles[saveFiles.length - 1] }</Text> }
         </View>
 
       </View>
@@ -59,8 +78,14 @@ class Settings extends Component {
   }
 }
 
+Settings.propTypes = {
+  characterName: PropTypes.string.isRequired,
+  state: PropTypes.object.isRequired,
+};
+
 const mapStateToProps = state => ({
-  state
+  characterName: state.character.name.value,
+  state,
 });
 
 export default connect(
