@@ -26,7 +26,7 @@ exports[`AddRemoveItem renders correctly when active 1`] = `
   </Text>
   <View
     accessible={true}
-    clickable={true}
+    focusable={true}
     isTVSelectable={true}
     onClick={[Function]}
     onResponderGrant={[Function]}
@@ -86,7 +86,7 @@ exports[`AddRemoveItem renders correctly when inactive 1`] = `
   </Text>
   <View
     accessible={true}
-    clickable={true}
+    focusable={true}
     isTVSelectable={true}
     onClick={[Function]}
     onResponderGrant={[Function]}
@@ -173,7 +173,7 @@ exports[`RemovableRow renders correctly 1`] = `
   </View>
   <View
     accessible={true}
-    clickable={true}
+    focusable={true}
     isTVSelectable={true}
     onClick={[Function]}
     onResponderGrant={[Function]}
@@ -271,7 +271,7 @@ exports[`SingleItemRow renders correctly 1`] = `
     </Text>
     <View
       accessible={true}
-      clickable={true}
+      focusable={true}
       isTVSelectable={true}
       onClick={[Function]}
       onResponderGrant={[Function]}
@@ -323,7 +323,7 @@ exports[`SubmitButtonRow renders correctly when disabled 1`] = `
       ]
     }
     accessible={true}
-    clickable={true}
+    focusable={true}
     isTVSelectable={true}
     onClick={[Function]}
     onResponderGrant={[Function]}
@@ -382,7 +382,7 @@ exports[`SubmitButtonRow renders correctly when enabled 1`] = `
     accessibilityRole="button"
     accessibilityStates={Array []}
     accessible={true}
-    clickable={true}
+    focusable={true}
     isTVSelectable={true}
     onClick={[Function]}
     onResponderGrant={[Function]}

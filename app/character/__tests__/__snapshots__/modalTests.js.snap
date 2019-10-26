@@ -232,7 +232,7 @@ exports[`ListItemsModal renders correctly with multiple items 1`] = `
         </Text>
         <View
           accessible={true}
-          clickable={true}
+          focusable={true}
           isTVSelectable={true}
           onClick={[Function]}
           onResponderGrant={[Function]}
@@ -289,7 +289,7 @@ exports[`ListItemsModal renders correctly with multiple items 1`] = `
         </Text>
         <View
           accessible={true}
-          clickable={true}
+          focusable={true}
           isTVSelectable={true}
           onClick={[Function]}
           onResponderGrant={[Function]}
@@ -346,7 +346,7 @@ exports[`ListItemsModal renders correctly with multiple items 1`] = `
         </Text>
         <View
           accessible={true}
-          clickable={true}
+          focusable={true}
           isTVSelectable={true}
           onClick={[Function]}
           onResponderGrant={[Function]}
@@ -513,7 +513,7 @@ exports[`ListItemsModal renders correctly with one item 1`] = `
         </Text>
         <View
           accessible={true}
-          clickable={true}
+          focusable={true}
           isTVSelectable={true}
           onClick={[Function]}
           onResponderGrant={[Function]}
@@ -612,7 +612,7 @@ exports[`ShardsChangeModal renders correctly 1`] = `
             ]
           }
           accessible={true}
-          clickable={true}
+          focusable={true}
           isTVSelectable={true}
           onClick={[Function]}
           onResponderGrant={[Function]}
@@ -704,7 +704,7 @@ exports[`ShardsChangeModal renders correctly 1`] = `
             ]
           }
           accessible={true}
-          clickable={true}
+          focusable={true}
           isTVSelectable={true}
           onClick={[Function]}
           onResponderGrant={[Function]}
@@ -792,7 +792,7 @@ exports[`SkillChangeModal renders correctly with a value 1`] = `
         accessibilityRole="button"
         accessibilityStates={Array []}
         accessible={true}
-        clickable={true}
+        focusable={true}
         isTVSelectable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
@@ -850,7 +850,7 @@ exports[`SkillChangeModal renders correctly with a value 1`] = `
         accessibilityRole="button"
         accessibilityStates={Array []}
         accessible={true}
-        clickable={true}
+        focusable={true}
         isTVSelectable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
@@ -932,7 +932,7 @@ exports[`SkillChangeModal renders correctly with no value 1`] = `
         accessibilityRole="button"
         accessibilityStates={Array []}
         accessible={true}
-        clickable={true}
+        focusable={true}
         isTVSelectable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
@@ -990,7 +990,7 @@ exports[`SkillChangeModal renders correctly with no value 1`] = `
         accessibilityRole="button"
         accessibilityStates={Array []}
         accessible={true}
-        clickable={true}
+        focusable={true}
         isTVSelectable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
@@ -1082,7 +1082,7 @@ exports[`StaminaChangeModal renders correctly 1`] = `
         accessibilityRole="button"
         accessibilityStates={Array []}
         accessible={true}
-        clickable={true}
+        focusable={true}
         isTVSelectable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
@@ -1140,7 +1140,7 @@ exports[`StaminaChangeModal renders correctly 1`] = `
         accessibilityRole="button"
         accessibilityStates={Array []}
         accessible={true}
-        clickable={true}
+        focusable={true}
         isTVSelectable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
@@ -1202,7 +1202,7 @@ exports[`StaminaChangeModal renders correctly 1`] = `
         accessibilityRole="button"
         accessibilityStates={Array []}
         accessible={true}
-        clickable={true}
+        focusable={true}
         isTVSelectable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
@@ -1260,7 +1260,7 @@ exports[`StaminaChangeModal renders correctly 1`] = `
         accessibilityRole="button"
         accessibilityStates={Array []}
         accessible={true}
-        clickable={true}
+        focusable={true}
         isTVSelectable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
