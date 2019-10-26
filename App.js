@@ -1,8 +1,9 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { persistReducer, persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import reducer from './app/reducer';
 import AppContainer from './app/navigation';
@@ -10,15 +11,17 @@ import AppContainer from './app/navigation';
 
 const persistConfig = {
   key: 'root',
-  storage,
+  storage: AsyncStorage,
 };
 const persistedReducer = persistReducer(persistConfig, reducer);
 const store = createStore(persistedReducer);
-
+const persistor = persistStore(store);
 
 const App = () => (
   <Provider store={store}>
-    <AppContainer />
+    <PersistGate loading={null} persistor={persistor}>
+      <AppContainer />
+    </PersistGate>
   </Provider>
 );
 
