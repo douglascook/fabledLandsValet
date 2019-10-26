@@ -26,7 +26,9 @@ exports[`AddRemoveItem renders correctly when active 1`] = `
   </Text>
   <View
     accessible={true}
+    clickable={true}
     isTVSelectable={true}
+    onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -84,7 +86,9 @@ exports[`AddRemoveItem renders correctly when inactive 1`] = `
   </Text>
   <View
     accessible={true}
+    clickable={true}
     isTVSelectable={true}
+    onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -169,7 +173,9 @@ exports[`RemovableRow renders correctly 1`] = `
   </View>
   <View
     accessible={true}
+    clickable={true}
     isTVSelectable={true}
+    onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -265,7 +271,9 @@ exports[`SingleItemRow renders correctly 1`] = `
     </Text>
     <View
       accessible={true}
+      clickable={true}
       isTVSelectable={true}
+      onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -315,7 +323,9 @@ exports[`SubmitButtonRow renders correctly when disabled 1`] = `
       ]
     }
     accessible={true}
+    clickable={true}
     isTVSelectable={true}
+    onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -372,7 +382,9 @@ exports[`SubmitButtonRow renders correctly when enabled 1`] = `
     accessibilityRole="button"
     accessibilityStates={Array []}
     accessible={true}
+    clickable={true}
     isTVSelectable={true}
+    onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
