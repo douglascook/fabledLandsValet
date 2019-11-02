@@ -22,6 +22,8 @@ import {
 
 import sharedStyles from '../shared/styles';
 
+import NewCharacterModal from './newCharacterModal';
+
 
 class Settings extends Component {
 
@@ -30,6 +32,7 @@ class Settings extends Component {
     this.state = {
       saveFiles: [],
       errors: '',
+      newCharacterVisible: false,
     };
     // create saves directory if it doesn't already exist
     // TODO better place to do this?
@@ -44,8 +47,11 @@ class Settings extends Component {
       .catch((err) => this.setState({ errors: err }));
   }
 
-  createNewCharacter() {
-    this.props.createNewCharacter('Jim Greybeard', 'Mage');
+  createCharacter(name, profession) {
+    // save the current character first
+    this.dumpStateToFile();
+    this.props.createNewCharacter(name, profession);
+    this.props.navigation.navigate('character');
   }
 
   loadFiles() {
@@ -69,7 +75,7 @@ class Settings extends Component {
 
           <Button
             title="New Character"
-            onPress={() => this.createNewCharacter()}
+            onPress={() => this.setState({ newCharacterVisible: true })}
           />
 
           <Button
@@ -84,6 +90,12 @@ class Settings extends Component {
 
           { (saveFiles.length > 0) &&
             <Text>{ saveFiles[saveFiles.length - 1] }</Text> }
+
+          <NewCharacterModal
+            visible={newCharacterVisible}
+            save={(name, profession) => this.createCharacter(name, profession)}
+            onRequestClose={() => this.setState({ newCharacterVisible: false })}
+          />
         </View>
 
       </View>
@@ -94,6 +106,7 @@ class Settings extends Component {
 Settings.propTypes = {
   characterName: PropTypes.string.isRequired,
   state: PropTypes.object.isRequired,
+  createNewCharacter: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {

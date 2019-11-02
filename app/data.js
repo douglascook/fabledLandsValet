@@ -19,6 +19,10 @@ export const GODS = [
 
 // CHARACTER
 
+export const PROFESSIONS = [
+  'Wayfarer', 'Warrior', 'Mage', 'Rogue', 'Priest', 'Troubadour',
+];
+
 export const ABILITIES = [
   'charisma', 'combat', 'magic', 'sanctity', 'scouting', 'thievery'
 ];
