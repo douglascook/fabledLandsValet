@@ -6,6 +6,7 @@ import {
 import {
   addCodeword,
   removeCodeword,
+  createNewCharacter,
 } from '../../actions';
 
 
@@ -51,6 +52,14 @@ describe('Codewords reducer', () => {
       reducer(['a', 'b', 'c'], removeCodeword('d'))
     ).toEqual(
       ['a', 'b', 'c']
+    );
+  });
+
+  it('should reset for new character', () => {
+    expect(
+      reducer(['a', 'b', 'c'], createNewCharacter('doug', 'dev'))
+    ).toEqual(
+      initialState
     );
   });
 });

@@ -4,6 +4,7 @@ import {
   SWAP_ITEM_COLLECTION,
   ADD_STASH,
   REMOVE_STASH,
+  CREATE_NEW_CHARACTER,
 } from '../actions';
 
 
@@ -88,6 +89,9 @@ export default function possessions(state = initialState, action) {
       delete newState[action.name];
       return newState;
     }
+
+    case CREATE_NEW_CHARACTER:
+      return initialState;
 
     default:
       return state;

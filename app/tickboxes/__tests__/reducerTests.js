@@ -6,6 +6,7 @@ import {
 import {
   addTick,
   removeTick,
+  createNewCharacter,
 } from '../../actions';
 
 
@@ -41,6 +42,14 @@ describe('Tickboxes reducer', () => {
       reducer({ 0: [100], 1: [100, 200, 300] }, removeTick(1, 200))
     ).toEqual(
       { 0: [100], 1: [100, 300] }
+    );
+  });
+
+  it('should reset for new character', () => {
+    expect(
+      reducer({ 0: [100] }, createNewCharacter('doug', 'dev'))
+    ).toEqual(
+      initialState
     );
   });
 });

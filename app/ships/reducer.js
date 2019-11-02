@@ -4,6 +4,7 @@ import {
   UPDATE_PORT,
   UPDATE_CREW,
   UPDATE_CARGO,
+  CREATE_NEW_CHARACTER,
 } from '../actions';
 
 import {
@@ -11,6 +12,9 @@ import {
 } from '../data';
 
 
+// Example state:
+// [{ name: 'Boaty McBoatFace', type: 'Galleon', crew: 'Poor', cargo: ['None', 'None', 'None'],
+//    port: 'No Port', key: 12345}]
 export const initialState = [];
 
 export default function ships(state = initialState, action) {
@@ -52,6 +56,9 @@ export default function ships(state = initialState, action) {
       newState[action.shipIndex].cargo[action.cargoIndex] = action.cargo;
       return newState;
     }
+
+    case CREATE_NEW_CHARACTER:
+      return initialState;
 
     default:
       return state;

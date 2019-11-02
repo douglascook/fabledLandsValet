@@ -9,6 +9,7 @@ import {
   updatePort,
   updateCrew,
   updateCargo,
+  createNewCharacter,
 } from '../../actions';
 
 
@@ -79,6 +80,14 @@ describe('Ships reducer', () => {
       reducer([fakeShip, mockShip, fakeShip], updateCargo(1, 2, 'Laptops'))
     ).toEqual(
       [fakeShip, { ...mockShip, cargo: ['None', 'None', 'Laptops'] }, fakeShip]
+    );
+  });
+
+  it('should reset for new character', () => {
+    expect(
+      reducer([fakeShip, mockShip, fakeShip], createNewCharacter('doug', 'dev'))
+    ).toEqual(
+      initialState
     );
   });
 });

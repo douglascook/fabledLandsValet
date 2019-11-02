@@ -16,6 +16,10 @@ import PropTypes from 'prop-types';
 
 import RNFS from 'react-native-fs';
 
+import {
+  createNewCharacter,
+} from '../actions';
+
 import sharedStyles from '../shared/styles';
 
 
@@ -40,10 +44,14 @@ class Settings extends Component {
       .catch((err) => this.setState({ errors: err }));
   }
 
+  createNewCharacter() {
+    this.props.createNewCharacter('Jim Greybeard', 'Mage');
+  }
+
   loadFiles() {
     const savesDir = `${RNFS.DocumentDirectoryPath}/saves`;
     RNFS.readDir(savesDir)
-      .then((result) => this.setState({ saveFiles: result.map(f => f.path )}))
+      .then((result) => this.setState({ saveFiles: result.map(f => f.path)}))
       .catch((err) => this.setState({ errors: err }));
   }
 
@@ -58,6 +66,11 @@ class Settings extends Component {
         </Text>
 
         <View style={sharedStyles.paddedCentred}>
+
+          <Button
+            title="New Character"
+            onPress={() => this.createNewCharacter()}
+          />
 
           <Button
             title="Save to file"
@@ -83,6 +96,10 @@ Settings.propTypes = {
   state: PropTypes.object.isRequired,
 };
 
+const mapDispatchToProps = {
+  createNewCharacter,
+};
+
 const mapStateToProps = state => ({
   characterName: state.character.name.value,
   state,
@@ -90,4 +107,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(Settings);

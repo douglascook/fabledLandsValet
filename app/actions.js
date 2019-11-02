@@ -24,13 +24,13 @@ export const swapItemCollection = (itemIndex, oldCol, newCol) => ({
 export const ADD_STASH = 'ADD_STASH';
 export const addStash = name => ({
   type: ADD_STASH,
-  name
+  name,
 });
 
 export const REMOVE_STASH = 'REMOVE STASH';
 export const removeStash = name => ({
   type: REMOVE_STASH,
-  name
+  name,
 });
 
 export const UPDATE_SKILL_VALUE = 'UPDATE_SKILL_VALUE';
@@ -69,7 +69,7 @@ export const ADD_ASSET = 'ADD_ASSET';
 export const addAsset = (attr, item) => ({
   type: ADD_ASSET,
   attr,
-  item
+  item,
 });
 
 export const REMOVE_ASSET = 'REMOVE_ASSET';
@@ -77,7 +77,7 @@ export const REMOVE_ASSET = 'REMOVE_ASSET';
 export const removeAsset = (attr, index) => ({
   type: REMOVE_ASSET,
   attr,
-  index
+  index,
 });
 
 export const REMOVE_CODEWORD = 'REMOVE_CODEWORD';
@@ -96,14 +96,14 @@ export const ADD_TICK = 'ADD_TICK';
 export const addTick = (book, pageNumber) => ({
   type: ADD_TICK,
   book,
-  pageNumber
+  pageNumber,
 });
 
 export const REMOVE_TICK = 'REMOVE_TICK';
 export const removeTick = (book, pageNumber) => ({
   type: REMOVE_TICK,
   book,
-  pageNumber
+  pageNumber,
 });
 
 export const UPDATE_CREW = 'UPDATE_CREW';
@@ -125,7 +125,7 @@ export const UPDATE_PORT = 'UPDATE_PORT';
 export const updatePort = (shipIndex, port) => ({
   type: UPDATE_PORT,
   shipIndex,
-  port
+  port,
 });
 
 export const ADD_NEW_SHIP = 'ADD_NEW_SHIP';
@@ -133,11 +133,18 @@ export const addNewShip = (name, shipType, crew) => ({
   type: ADD_NEW_SHIP,
   name,
   shipType,
-  crew
+  crew,
 });
 
 export const DELETE_SHIP = 'DELETE_SHIP';
 export const deleteShip = shipIndex => ({
   type: DELETE_SHIP,
   shipIndex,
+});
+
+export const CREATE_NEW_CHARACTER = 'CREATE_NEW_CHARACTER';
+export const createNewCharacter = (name, profession) => ({
+  type: CREATE_NEW_CHARACTER,
+  name,
+  profession,
 });

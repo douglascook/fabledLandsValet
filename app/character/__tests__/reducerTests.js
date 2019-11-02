@@ -13,6 +13,7 @@ import {
   removeAsset,
   addItem,
   removeItem,
+  createNewCharacter,
 } from '../../actions';
 
 
@@ -222,4 +223,25 @@ describe('Character reducer', () => {
       thievery: { displayName: 'Thievery', value: 6, modifier: 0 },
     });
   });
+
+  it('should create a new character', () => {
+    const state = {
+      name: {
+        displayName: 'Name', value: 'Oldy'
+      },
+      profession: {
+        displayName: 'Profession', value: 'Retired'
+      }
+    };
+    const expected = initialState;
+    expected.name.value = 'doug';
+    expected.profession.value = 'dev';
+
+    expect(
+      reducer(state, createNewCharacter('doug', 'dev'))
+    ).toEqual(
+      expected
+    );
+  });
+
 });

@@ -8,6 +8,7 @@ import {
   UPDATE_SHARDS,
   ADD_ASSET,
   REMOVE_ASSET,
+  CREATE_NEW_CHARACTER,
 } from '../actions';
 
 
@@ -159,6 +160,21 @@ export default function character(state = initialState, action) {
             ...items.slice(0, index),
             ...items.slice(index + 1)
           ]
+        }
+      };
+    }
+
+    case CREATE_NEW_CHARACTER: {
+      const { name, profession } = action;
+      return {
+        ...initialState,
+        name: {
+          ...initialState.name,
+          value: name
+        },
+        profession: {
+          ...initialState.profession,
+          value: profession
         }
       };
     }

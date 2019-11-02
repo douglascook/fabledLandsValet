@@ -9,6 +9,7 @@ import {
   swapItemCollection,
   addStash,
   removeStash,
+  createNewCharacter,
 } from '../../actions';
 
 
@@ -101,6 +102,19 @@ describe('Possessions reducer', () => {
       )
     ).toEqual(
       { cubbyhole: { shards: 0, items: [] } }
+    );
+  });
+
+  it('should reset for new character', () => {
+    const state = {
+      personal: { items: [{ name: 'a' }] },
+      stash1: { items: [{ name: 'b' }, { name: 'c' }] },
+      stash2: { items: [] },
+    };
+    expect(
+      reducer(state, createNewCharacter('doug', 'dev'))
+    ).toEqual(
+      initialState
     );
   });
 });

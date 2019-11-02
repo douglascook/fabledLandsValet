@@ -1,10 +1,12 @@
 import {
   ADD_TICK,
   REMOVE_TICK,
+  CREATE_NEW_CHARACTER,
 } from '../actions';
 
 
-export const initialState = {0: [123], 1: [234], 2: [], 3: [], 4: [], 5: [], 6: [], 7: []};
+export const initialState = {};
+// Example state: {0: [123], 1: [234], 2: [], 3: [], 4: [], 5: [], 6: [], 7: []};
 
 export default function tickboxes(state = initialState, action) {
   switch (action.type) {
@@ -29,6 +31,9 @@ export default function tickboxes(state = initialState, action) {
         ]
       };
     }
+
+    case CREATE_NEW_CHARACTER:
+      return initialState;
 
     default:
       return state;
