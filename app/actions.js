@@ -148,3 +148,9 @@ export const createNewCharacter = (name, profession) => ({
   name,
   profession,
 });
+
+export const LOAD_SAVE = 'LOAD_SAVE';
+export const loadSave = (state) => ({
+  type: LOAD_SAVE,
+  state
+});

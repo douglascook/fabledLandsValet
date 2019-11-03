@@ -10,6 +10,7 @@ import {
   addStash,
   removeStash,
   createNewCharacter,
+  loadSave,
 } from '../../actions';
 
 
@@ -84,7 +85,7 @@ describe('Possessions reducer', () => {
       { cubbyhole: { shards: 0, items: [] } }
     );
     expect(
-      reducer({ holeInTheWall: { shards: 0, items: [] }}, addStash('cubbyhole'))
+      reducer({ holeInTheWall: { shards: 0, items: [] } }, addStash('cubbyhole'))
     ).toEqual({
       holeInTheWall: { shards: 0, items: [] },
       cubbyhole: { shards: 0, items: [] }
@@ -115,6 +116,17 @@ describe('Possessions reducer', () => {
       reducer(state, createNewCharacter('doug', 'dev'))
     ).toEqual(
       initialState
+    );
+  });
+
+  it('should load a save', () => {
+    expect(
+      reducer(initialState, loadSave({
+        possessions: { personal: { items: [{ name: 'smoulder fish', key: mockNow }] } },
+        other: 'nah'
+      }))
+    ).toEqual(
+      { personal: { items: [{ name: 'smoulder fish', key: mockNow }] }}
     );
   });
 });

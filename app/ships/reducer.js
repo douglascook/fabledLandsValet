@@ -5,6 +5,7 @@ import {
   UPDATE_CREW,
   UPDATE_CARGO,
   CREATE_NEW_CHARACTER,
+  LOAD_SAVE,
 } from '../actions';
 
 import {
@@ -21,7 +22,7 @@ export default function ships(state = initialState, action) {
   switch (action.type) {
 
     case ADD_NEW_SHIP: {
-      const capacity = SHIP_TYPES.find(s => s.type === action.shipType).capacity;
+      const capacity = SHIP_TYPES.find((s) => s.type === action.shipType).capacity;
       const newShip = {
         name: action.name,
         type: action.shipType,
@@ -59,6 +60,9 @@ export default function ships(state = initialState, action) {
 
     case CREATE_NEW_CHARACTER:
       return initialState;
+
+    case LOAD_SAVE:
+      return action.state.ships;
 
     default:
       return state;

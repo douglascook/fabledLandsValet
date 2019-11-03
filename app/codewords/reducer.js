@@ -2,6 +2,7 @@ import {
   ADD_CODEWORD,
   REMOVE_CODEWORD,
   CREATE_NEW_CHARACTER,
+  LOAD_SAVE,
 } from '../actions';
 
 
@@ -15,10 +16,13 @@ export default function codewords(state = initialState, action) {
       return [...state, action.codeword];
 
     case REMOVE_CODEWORD:
-      return state.filter(w => w !== action.codeword);
+      return state.filter((w) => w !== action.codeword);
 
     case CREATE_NEW_CHARACTER:
       return initialState;
+
+    case LOAD_SAVE:
+      return action.state.codewords;
 
     default:
       return state;

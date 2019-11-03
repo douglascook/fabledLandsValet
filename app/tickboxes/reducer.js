@@ -2,10 +2,13 @@ import {
   ADD_TICK,
   REMOVE_TICK,
   CREATE_NEW_CHARACTER,
+  LOAD_SAVE,
 } from '../actions';
 
 
-export const initialState = {0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: []};
+export const initialState = {
+  0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: []
+};
 // Example state: {0: [123], 1: [234], 2: [], 3: [], 4: [], 5: [], 6: [], 7: []};
 
 export default function tickboxes(state = initialState, action) {
@@ -22,7 +25,7 @@ export default function tickboxes(state = initialState, action) {
 
     case REMOVE_TICK: {
       const { book, pageNumber } = action;
-      const index = state[book].findIndex(page => page === pageNumber);
+      const index = state[book].findIndex((page) => page === pageNumber);
       return {
         ...state,
         [book]: [
@@ -34,6 +37,9 @@ export default function tickboxes(state = initialState, action) {
 
     case CREATE_NEW_CHARACTER:
       return initialState;
+
+    case LOAD_SAVE:
+      return action.state.tickboxes;
 
     default:
       return state;

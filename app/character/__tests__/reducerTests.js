@@ -14,6 +14,7 @@ import {
   addItem,
   removeItem,
   createNewCharacter,
+  loadSave,
 } from '../../actions';
 
 
@@ -244,4 +245,11 @@ describe('Character reducer', () => {
     );
   });
 
+  it('should load a save', () => {
+    expect(
+      reducer(initialState, loadSave({ character: { name: 'yo' }, other: 'nah' }))
+    ).toEqual(
+      { name: 'yo' }
+    );
+  });
 });

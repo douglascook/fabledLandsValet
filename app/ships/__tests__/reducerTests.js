@@ -10,6 +10,7 @@ import {
   updateCrew,
   updateCargo,
   createNewCharacter,
+  loadSave,
 } from '../../actions';
 
 
@@ -88,6 +89,14 @@ describe('Ships reducer', () => {
       reducer([fakeShip, mockShip, fakeShip], createNewCharacter('doug', 'dev'))
     ).toEqual(
       initialState
+    );
+  });
+
+  it('should load a save', () => {
+    expect(
+      reducer(initialState, loadSave({ ships: [fakeShip, mockShip], other: 'nah' }))
+    ).toEqual(
+      [fakeShip, mockShip]
     );
   });
 });

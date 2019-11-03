@@ -9,6 +9,7 @@ import {
   ADD_ASSET,
   REMOVE_ASSET,
   CREATE_NEW_CHARACTER,
+  LOAD_SAVE,
 } from '../actions';
 
 
@@ -178,6 +179,9 @@ export default function character(state = initialState, action) {
         }
       };
     }
+
+    case LOAD_SAVE:
+      return action.state.character;
 
     default:
       return state;

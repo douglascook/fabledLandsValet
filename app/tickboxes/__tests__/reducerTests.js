@@ -7,6 +7,7 @@ import {
   addTick,
   removeTick,
   createNewCharacter,
+  loadSave,
 } from '../../actions';
 
 
@@ -50,6 +51,14 @@ describe('Tickboxes reducer', () => {
       reducer({ 0: [100] }, createNewCharacter('doug', 'dev'))
     ).toEqual(
       initialState
+    );
+  });
+
+  it('should load a save', () => {
+    expect(
+      reducer(initialState, loadSave({ tickboxes: { 0: [123] }, other: 'nah' }))
+    ).toEqual(
+      { 0: [123] }
     );
   });
 });

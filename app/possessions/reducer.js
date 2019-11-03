@@ -5,6 +5,7 @@ import {
   ADD_STASH,
   REMOVE_STASH,
   CREATE_NEW_CHARACTER,
+  LOAD_SAVE,
 } from '../actions';
 
 
@@ -92,6 +93,9 @@ export default function possessions(state = initialState, action) {
 
     case CREATE_NEW_CHARACTER:
       return initialState;
+
+    case LOAD_SAVE:
+      return action.state.possessions;
 
     default:
       return state;

@@ -7,6 +7,7 @@ import {
   addCodeword,
   removeCodeword,
   createNewCharacter,
+  loadSave,
 } from '../../actions';
 
 
@@ -60,6 +61,14 @@ describe('Codewords reducer', () => {
       reducer(['a', 'b', 'c'], createNewCharacter('doug', 'dev'))
     ).toEqual(
       initialState
+    );
+  });
+
+  it('should load a save', () => {
+    expect(
+      reducer(initialState, loadSave({ codewords: ['blah', 'eh'], other: 'nah' }))
+    ).toEqual(
+      ['blah', 'eh']
     );
   });
 });
