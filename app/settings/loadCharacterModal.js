@@ -31,7 +31,7 @@ class LoadCharacterModal extends Component {
   }
 
   render() {
-    const { visible, onRequestClose, loadSave } = this.props;
+    const { visible, onRequestClose, loadFile } = this.props;
     const { selectedFile } = this.state;
 
     return (
@@ -56,7 +56,7 @@ class LoadCharacterModal extends Component {
 
             <Button
               title="Load"
-              onPress={() => loadSave(selectedFile)}
+              onPress={() => loadFile(selectedFile)}
             />
           </View>
         </View>
@@ -68,7 +68,7 @@ class LoadCharacterModal extends Component {
 LoadCharacterModal.propTypes = {
   visible: PropTypes.bool.isRequired,
   filepaths: PropTypes.arrayOf(PropTypes.string).isRequired,
-  loadSave: PropTypes.func.isRequired,
+  loadFile: PropTypes.func.isRequired,
   onRequestClose: PropTypes.func.isRequired,
 };
 

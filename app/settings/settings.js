@@ -43,21 +43,6 @@ class Settings extends Component {
     RNFS.mkdir(this.savesDir);
   }
 
-  dumpStateToFile() {
-    const { characterName, state } = this.props;
-    const path = `${this.savesDir}/${characterName}`;
-    const currentState = JSON.stringify(state);
-    RNFS.writeFile(path, currentState, 'utf8')
-      .catch((err) => this.setState({ errors: err }));
-  }
-
-  createCharacter(name, profession) {
-    // save the current character first
-    this.dumpStateToFile();
-    this.props.createNewCharacter(name, profession);
-    this.props.navigation.navigate('character');
-  }
-
   openLoadCharacterModal() {
     RNFS.readDir(this.savesDir)
       .then((result) => result.map((f) => f.path))
@@ -65,15 +50,30 @@ class Settings extends Component {
     this.setState({ loadCharacterVisible: true });
   }
 
-  loadSave(filepath) {
+  createCharacter(name, profession) {
     // save the current character first
-    this.dumpStateToFile();
+    this.saveCurrentCharacter();
+    this.props.createNewCharacter(name, profession);
+    this.props.navigation.navigate('character');
+  }
+
+  loadCharacter(filepath) {
+    // save the current character first
+    this.saveCurrentCharacter();
 
     const { loadSave, navigation } = this.props;
     RNFS.readFile(filepath)
       .then((content) => loadSave(JSON.parse(content)))
       .then(() => this.setState({ loadCharacterVisible: false }))
       .then(() => navigation.navigate('character'));
+  }
+
+  saveCurrentCharacter() {
+    const { characterName, state } = this.props;
+    const path = `${this.savesDir}/${characterName}`;
+    const currentState = JSON.stringify(state);
+    RNFS.writeFile(path, currentState, 'utf8')
+      .catch((err) => this.setState({ errors: err }));
   }
 
   render() {
@@ -86,8 +86,8 @@ class Settings extends Component {
           Settings
         </Text>
 
-        <View style={{flex: 1, justifyContent: 'space-around'}}>
-          <View style={[sharedStyles.paddedCentred, { flex: 0.4, justifyContent: 'space-around' }]}>
+        <View style={{ flex: 1, justifyContent: 'space-around' }}>
+          <View style={[sharedStyles.paddedCentred, { flex: 0.2, justifyContent: 'space-around' }]}>
 
             <Button
               title="New Character"
@@ -95,29 +95,24 @@ class Settings extends Component {
             />
 
             <Button
-              title="Save to file"
-              onPress={() => this.dumpStateToFile()}
-            />
-
-            <Button
-              title="Load save"
+              title="Load Character"
               onPress={() => this.openLoadCharacterModal()}
-            />
-
-            <NewCharacterModal
-              visible={newCharacterVisible}
-              create={(name, profession) => this.createCharacter(name, profession)}
-              onRequestClose={() => this.setState({ newCharacterVisible: false })}
-            />
-
-            <LoadCharacterModal
-              visible={loadCharacterVisible}
-              filepaths={saveFiles}
-              loadSave={(f) => this.loadSave(f)}
-              onRequestClose={() => this.setState({ loadCharacterVisible: false })}
             />
           </View>
         </View>
+
+        <NewCharacterModal
+          visible={newCharacterVisible}
+          create={(name, profession) => this.createCharacter(name, profession)}
+          onRequestClose={() => this.setState({ newCharacterVisible: false })}
+        />
+
+        <LoadCharacterModal
+          visible={loadCharacterVisible}
+          filepaths={saveFiles}
+          loadFile={(f) => this.loadCharacter(f)}
+          onRequestClose={() => this.setState({ loadCharacterVisible: false })}
+        />
 
       </View>
     );
