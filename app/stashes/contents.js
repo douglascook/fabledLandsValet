@@ -17,11 +17,11 @@ import sharedStyles from '../shared/styles';
 const StashContents = (
   { icon, stash, onItemPress, disableSwap, disableShards }) => (
     <View>
-      {stash.items.map((item, i) => (
+      {stash.items.map((item) => (
         <ItemRow
           value={item.name}
           icon={icon}
-          onButtonPress={() => onItemPress(i)}
+          onButtonPress={() => onItemPress(item)}
           buttonDisabled={disableSwap}
           key={item.key}
         />

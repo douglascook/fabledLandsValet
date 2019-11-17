@@ -59,7 +59,9 @@ export default function possessions(state = initialState, action) {
     }
 
     case SWAP_ITEM_COLLECTION: {
-      const { itemIndex, oldCol, newCol } = action;
+      const { item, oldCol, newCol } = action;
+      const itemIndex = state[oldCol].items.findIndex((i) => i.key === item.key);
+
       return {
         ...state,
         [oldCol]: {

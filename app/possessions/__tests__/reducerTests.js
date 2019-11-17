@@ -56,25 +56,28 @@ describe('Possessions reducer', () => {
   });
 
   it('should move an item to another collection', () => {
+    const itemA = { name: 'A', key: 'a' };
+    const itemB = { name: 'B', key: 'b' };
+    const itemC = { name: 'C', key: 'c' };
     const initial = {
-      personal: { items: [{ name: 'a' }] },
-      stash1: { items: [{ name: 'b' }, { name: 'c' }] },
+      personal: { items: [itemA] },
+      stash1: { items: [itemB, itemC] },
       stash2: { items: [] },
     };
 
     expect(
-      reducer(initial, swapItemCollection(0, 'personal', 'stash1'))
+      reducer(initial, swapItemCollection(itemA, 'personal', 'stash1'))
     ).toEqual({
       personal: { items: [] },
-      stash1: { items: [{ name: 'b' }, { name: 'c' }, { name: 'a' }] },
+      stash1: { items: [itemB, itemC, itemA] },
       stash2: { items: [] },
     });
     expect(
-      reducer(initial, swapItemCollection(1, 'stash1', 'stash2'))
+      reducer(initial, swapItemCollection(itemC, 'stash1', 'stash2'))
     ).toEqual({
-      personal: { items: [{ name: 'a' }] },
-      stash1: { items: [{ name: 'b' }] },
-      stash2: { items: [{ name: 'c' }] },
+      personal: { items: [itemA] },
+      stash1: { items: [itemB] },
+      stash2: { items: [itemC] },
     });
   });
 

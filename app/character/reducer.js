@@ -1,6 +1,7 @@
 import {
   ADD_ITEM,
   REMOVE_ITEM,
+  SWAP_ITEM_COLLECTION,
   UPDATE_SKILL_VALUE,
   UPDATE_MAX_STAMINA,
   UPDATE_CURRENT_STAMINA,
@@ -64,18 +65,28 @@ export const initialState = {
   },
 };
 
+
 export default function character(state = initialState, action) {
   switch (action.type) {
 
     case ADD_ITEM:
-      return applySkillModifiers(
-        state, action.item, (value, modifier) => (value + modifier)
-      );
+      return applySkillModifiers(state, action.item, addModifier);
 
     case REMOVE_ITEM:
-      return applySkillModifiers(
-        state, action.item, (value, modifier) => (value - modifier)
-      );
+      return applySkillModifiers(state, action.item, subtractModifier);
+
+    case SWAP_ITEM_COLLECTION: {
+      const { item, newCol, oldCol } = action;
+      // add the item
+      if (newCol === 'personal') {
+        return applySkillModifiers(state, item, addModifier);
+      }
+      // remove the item
+      if (oldCol === 'personal') {
+        return applySkillModifiers(state, item, subtractModifier);
+      }
+      return state;
+    }
 
     case UPDATE_SKILL_VALUE: {
       const { skillName, modifier } = action;
@@ -205,3 +216,7 @@ function applySkillModifiers(state, item, applyEffect) {
   }
   return newState;
 }
+
+const subtractModifier = (value, modifier) => (value - modifier);
+
+const addModifier = (value, modifier) => (value + modifier);

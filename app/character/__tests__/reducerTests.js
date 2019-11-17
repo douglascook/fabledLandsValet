@@ -15,6 +15,7 @@ import {
   removeItem,
   createNewCharacter,
   loadSave,
+  swapItemCollection,
 } from '../../actions';
 
 
@@ -218,6 +219,38 @@ describe('Character reducer', () => {
     });
 
     const withoutItem = reducer(withItem, removeItem(item));
+    expect(withItem).not.toEqual(withoutItem);
+    expect(withoutItem).toEqual({
+      scouting: { displayName: 'Scouting', value: 6, modifier: 0 },
+      thievery: { displayName: 'Thievery', value: 6, modifier: 0 },
+    });
+  });
+
+  it('should adjust skills when an item is moved to/from a stash', () => {
+    const startingState = {
+      scouting: { displayName: 'Scouting', value: 6 },
+      thievery: { displayName: 'Thievery', value: 6 },
+    };
+    const item = {
+      name: 'telescope',
+      effects: [{ skill: 'scouting', value: 4 }, { skill: 'thievery', value: -4 }],
+    };
+
+    // item doesn't leave or enter personal possesions so nothing should happen
+    expect(
+      reducer(startingState, swapItemCollection(item, 'Bank', 'Other Stash'))
+    ).toEqual(startingState);
+
+    // item is added to personal possessions so should have effects applied
+    const withItem = reducer(startingState, swapItemCollection(item, 'Bank', 'personal'));
+    expect(startingState).not.toEqual(withItem);
+    expect(withItem).toEqual({
+      scouting: { displayName: 'Scouting', value: 6, modifier: 4 },
+      thievery: { displayName: 'Thievery', value: 6, modifier: -4 },
+    });
+
+    // item is removed from personal possessions so should have effects removed
+    const withoutItem = reducer(withItem, swapItemCollection(item, 'personal', 'Bank'));
     expect(withItem).not.toEqual(withoutItem);
     expect(withoutItem).toEqual({
       scouting: { displayName: 'Scouting', value: 6, modifier: 0 },

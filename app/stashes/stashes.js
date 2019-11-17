@@ -28,8 +28,6 @@ import {
 
 import StashContents from './contents';
 
-const Item = Picker.Item;
-
 const SELECT_STASH = 'Select/Add stash';
 
 
@@ -49,9 +47,7 @@ class Stashes extends Component {
       SELECT_STASH,
       ...Object.keys(this.props.possessions).filter(k => k !== 'personal').sort()
     ];
-    return options.map(o =>
-      <Item label={o} value={o} key={o} />
-    );
+    return options.map((o) => <Picker.Item label={o} value={o} key={o} />);
   }
 
   addStash() {
@@ -120,7 +116,7 @@ class Stashes extends Component {
           personal
           icon="down"
           stash={{ items: possessions.personal.items, shards }}
-          onItemPress={index => swapItemCollection(index, 'personal', currentStash)}
+          onItemPress={(item) => swapItemCollection(item, 'personal', currentStash)}
           disableSwap={currentStash === SELECT_STASH || currentStash === 'Bank'
               || currentStash === 'Invested'}
           disableShards={currentStash === SELECT_STASH}
@@ -129,7 +125,7 @@ class Stashes extends Component {
         <Picker
           style={sharedStyles.containerRow}
           selectedValue={currentStash}
-          onValueChange={value => this.setState({ currentStash: value })}
+          onValueChange={(v) => this.setState({ currentStash: v })}
         >
           {this.stashOptions}
         </Picker>
@@ -139,7 +135,7 @@ class Stashes extends Component {
             <StashContents
               icon="up"
               stash={possessions[currentStash]}
-              onItemPress={index => swapItemCollection(index, currentStash, 'personal')}
+              onItemPress={(i) => swapItemCollection(i, currentStash, 'personal')}
               disableSwap={possessions.personal.items.length >= 12}
             />
 

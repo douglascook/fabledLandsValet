@@ -14,9 +14,9 @@ export const removeItem = (item, index) => ({
 });
 
 export const SWAP_ITEM_COLLECTION = 'SWAP_ITEM_COLLECTION';
-export const swapItemCollection = (itemIndex, oldCol, newCol) => ({
+export const swapItemCollection = (item, oldCol, newCol) => ({
   type: SWAP_ITEM_COLLECTION,
-  itemIndex,
+  item,
   oldCol,
   newCol,
 });
