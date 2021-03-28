@@ -61,7 +61,7 @@ class NewCharacterModal extends Component {
             <TextInput
               placeholder="Name"
               selectionColor="aquamarine"
-              onSubmitEditing={(event) => this.setState({ name: event.nativeEvent.text })}
+              onChangeText={(text) => this.setState({ name: text })}
               autoCapitalize="words"
             />
 
