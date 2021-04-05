@@ -27,6 +27,7 @@ import {
 } from '../actions';
 
 import StashContents from './contents';
+import ShardsChangeModal from './shardsChangeModal';
 
 const SELECT_STASH = 'Select/Add stash';
 
@@ -39,6 +40,7 @@ class Stashes extends Component {
       currentStash: SELECT_STASH,
       addingStash: false,
       newStash: null,
+      shardsModalVisible: false,
     };
   }
 
@@ -100,7 +102,7 @@ class Stashes extends Component {
 
   render() {
     const { possessions, shards, swapItemCollection } = this.props;
-    const { currentStash } = this.state;
+    const { currentStash, shardsModalVisible } = this.state;
 
     return (
       <View style={sharedStyles.container}>
@@ -113,10 +115,10 @@ class Stashes extends Component {
         </Text>
 
         <StashContents
-          personal
           icon="down"
           stash={{ items: possessions.personal.items, shards }}
           onItemPress={(item) => swapItemCollection(item, 'personal', currentStash)}
+          openShardsModal={() => this.setState({ shardsModalVisible: true })}
           disableSwap={currentStash === SELECT_STASH || currentStash === 'Bank'
               || currentStash === 'Invested'}
           disableShards={currentStash === SELECT_STASH}
@@ -136,7 +138,9 @@ class Stashes extends Component {
               icon="up"
               stash={possessions[currentStash]}
               onItemPress={(i) => swapItemCollection(i, currentStash, 'personal')}
+              openShardsModal={() => this.setState({ shardsModalVisible: true })}
               disableSwap={possessions.personal.items.length >= 12}
+              disableShards={false}
             />
 
             { currentStash !== 'Bank' && currentStash !== 'Invested' && (
@@ -154,6 +158,16 @@ class Stashes extends Component {
         <View style={styles.addDeleteContainer}>
           {this.newStashInput()}
         </View>
+
+        {currentStash !== SELECT_STASH && (
+          <ShardsChangeModal
+            visible={shardsModalVisible}
+            personalShards={shards}
+            stashName={currentStash}
+            stashShards={possessions[currentStash].shards}
+            onRequestClose={() => this.setState({ shardsModalVisible: false })}
+          />
+        )}
 
       </View>
     );
@@ -188,6 +202,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
   possessions: state.possessions,
+  // TODO do shards actually belong in posessions?
   shards: state.character.shards.value,
 });
 

@@ -14,31 +14,33 @@ import MatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import sharedStyles from '../shared/styles';
 
 
-const StashContents = (
-  { icon, stash, onItemPress, disableSwap, disableShards }) => (
-    <View>
-      {stash.items.map((item) => (
-        <ItemRow
-          value={item.name}
-          icon={icon}
-          onButtonPress={() => onItemPress(item)}
-          buttonDisabled={disableSwap}
-          key={item.key}
-        />
-      ))}
+const StashContents = ({
+  icon, stash, onItemPress, openShardsModal, disableSwap, disableShards
+}) => (
+  <View>
+    {stash.items.map((item) => (
       <ItemRow
-        value={`${stash.shards} shards`}
+        value={item.name}
         icon={icon}
-        onButtonPress={() => null}
-        buttonDisabled={disableShards}
+        onButtonPress={() => onItemPress(item)}
+        buttonDisabled={disableSwap}
+        key={item.key}
       />
-    </View>
+    ))}
+    <ItemRow
+      value={`${stash.shards} shards`}
+      icon={icon}
+      onButtonPress={() => openShardsModal()}
+      buttonDisabled={disableShards}
+    />
+  </View>
 );
 
 StashContents.propTypes = {
   icon: PropTypes.string.isRequired,
   stash: PropTypes.object.isRequired,
   onItemPress: PropTypes.func.isRequired,
+  openShardsModal: PropTypes.func.isRequired,
   disableSwap: PropTypes.bool,
   disableShards: PropTypes.bool,
 };
@@ -55,7 +57,7 @@ const ItemRow = ({ value, icon, onButtonPress, buttonDisabled }) => (
 
     <TouchableOpacity
       style={[sharedStyles.addButton, styles.button, {
-        backgroundColor: buttonDisabled ? 'transparent' : 'dodgerblue'}]}
+        backgroundColor: buttonDisabled ? 'transparent' : 'dodgerblue' }]}
       activeOpacity={0.6}
       onPress={onButtonPress}
       disabled={buttonDisabled}
