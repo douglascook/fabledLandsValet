@@ -5,3 +5,5 @@ export { default as SingleItemRow } from './singleItemRow';
 export { default as SubmitButtonRow } from './submitButtonRow';
 
 export { default as AddRemoveItem } from './addRemoveItem';
+
+export { default as ShardsChangeRow } from './shardsChangeRow';

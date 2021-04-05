@@ -584,8 +584,7 @@ exports[`ShardsChangeModal renders correctly 1`] = `
         }
       }
     >
-      Current: 
-      999
+      Current: 999
     </Text>
     <View
       style={
@@ -597,64 +596,52 @@ exports[`ShardsChangeModal renders correctly 1`] = `
       }
     >
       <View
+        accessible={true}
+        clickable={true}
+        isTVSelectable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         style={
           Object {
+            "backgroundColor": "whitesmoke",
             "flex": 1,
             "flexDirection": "column",
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": 25,
           }
         }
       >
-        <View
-          accessibilityRole="button"
-          accessibilityStates={
+        <Text
+          allowFontScaling={false}
+          style={
             Array [
-              "disabled",
+              Object {
+                "color": undefined,
+                "fontSize": 12,
+              },
+              Object {
+                "color": "white",
+                "fontSize": 25,
+                "fontWeight": "bold",
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": "Material Design Icons",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {},
             ]
           }
-          accessible={true}
-          clickable={true}
-          isTVSelectable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "opacity": 1,
-            }
-          }
         >
-          <View
-            style={
-              Array [
-                Object {},
-                Object {},
-              ]
-            }
-          >
-            <Text
-              disabled={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#007AFF",
-                    "fontSize": 18,
-                    "padding": 8,
-                    "textAlign": "center",
-                  },
-                  Object {
-                    "color": "#cdcdcd",
-                  },
-                ]
-              }
-            >
-              -
-            </Text>
-          </View>
-        </View>
+          
+        </Text>
       </View>
       <View
         style={
@@ -671,6 +658,7 @@ exports[`ShardsChangeModal renders correctly 1`] = `
           keyboardType="numeric"
           onFocus={[Function]}
           onSubmitEditing={[Function]}
+          placeholder="0"
           rejectResponderTermination={true}
           selectionColor="aquamarine"
           style={
@@ -689,64 +677,52 @@ exports[`ShardsChangeModal renders correctly 1`] = `
         />
       </View>
       <View
+        accessible={true}
+        clickable={true}
+        isTVSelectable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         style={
           Object {
+            "backgroundColor": "whitesmoke",
             "flex": 1,
             "flexDirection": "column",
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": 25,
           }
         }
       >
-        <View
-          accessibilityRole="button"
-          accessibilityStates={
+        <Text
+          allowFontScaling={false}
+          style={
             Array [
-              "disabled",
+              Object {
+                "color": undefined,
+                "fontSize": 12,
+              },
+              Object {
+                "color": "white",
+                "fontSize": 25,
+                "fontWeight": "bold",
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": "Material Design Icons",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {},
             ]
           }
-          accessible={true}
-          clickable={true}
-          isTVSelectable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "opacity": 1,
-            }
-          }
         >
-          <View
-            style={
-              Array [
-                Object {},
-                Object {},
-              ]
-            }
-          >
-            <Text
-              disabled={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#007AFF",
-                    "fontSize": 18,
-                    "padding": 8,
-                    "textAlign": "center",
-                  },
-                  Object {
-                    "color": "#cdcdcd",
-                  },
-                ]
-              }
-            >
-              +
-            </Text>
-          </View>
-        </View>
+          
+        </Text>
       </View>
     </View>
   </View>
