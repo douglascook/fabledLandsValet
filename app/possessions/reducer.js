@@ -6,6 +6,7 @@ import {
   REMOVE_STASH,
   CREATE_NEW_CHARACTER,
   LOAD_SAVE,
+  MOVE_SHARDS_TO_STASH,
 } from '../actions';
 
 
@@ -77,6 +78,15 @@ export default function possessions(state = initialState, action) {
         }
       };
     }
+
+    case MOVE_SHARDS_TO_STASH:
+      return {
+        ...state,
+        [action.stashName]: {
+          ...state[action.stashName],
+          shards: state[action.stashName].shards + action.modifier
+        }
+      };
 
     case ADD_STASH:
       return {

@@ -24,6 +24,7 @@ import {
   addStash,
   removeStash,
   swapItemCollection,
+  moveShardsToStash,
 } from '../actions';
 
 import StashContents from './contents';
@@ -101,7 +102,7 @@ class Stashes extends Component {
   }
 
   render() {
-    const { possessions, shards, swapItemCollection } = this.props;
+    const { possessions, shards, swapItemCollection, moveShardsToStash } = this.props;
     const { currentStash, shardsModalVisible } = this.state;
 
     return (
@@ -166,6 +167,7 @@ class Stashes extends Component {
             stashName={currentStash}
             stashShards={possessions[currentStash].shards}
             onRequestClose={() => this.setState({ shardsModalVisible: false })}
+            updateAmount={(v) => moveShardsToStash(currentStash, v)}
           />
         )}
 
@@ -210,6 +212,7 @@ const mapDispatchToProps = {
   addStash,
   removeStash,
   swapItemCollection,
+  moveShardsToStash,
 };
 
 export default connect(

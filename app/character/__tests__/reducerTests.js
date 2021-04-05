@@ -16,6 +16,7 @@ import {
   createNewCharacter,
   loadSave,
   swapItemCollection,
+  moveShardsToStash,
 } from '../../actions';
 
 
@@ -255,6 +256,30 @@ describe('Character reducer', () => {
     expect(withoutItem).toEqual({
       scouting: { displayName: 'Scouting', value: 6, modifier: 0 },
       thievery: { displayName: 'Thievery', value: 6, modifier: 0 },
+    });
+  });
+
+  it('should accept shards from a stash', () => {
+    const state = {
+      shards: { displayName: 'Shards', value: 50 }
+    };
+
+    expect(
+      reducer(state, moveShardsToStash('Another Stash', -50))
+    ).toEqual({
+      shards: { displayName: 'Shards', value: 100 }
+    });
+  });
+
+  it('should give shards to a stash', () => {
+    const state = {
+      shards: { displayName: 'Shards', value: 100 }
+    };
+
+    expect(
+      reducer(state, moveShardsToStash('Any Stash', 50))
+    ).toEqual({
+      shards: { displayName: 'Shards', value: 50 }
     });
   });
 

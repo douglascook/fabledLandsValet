@@ -11,6 +11,7 @@ import {
   removeStash,
   createNewCharacter,
   loadSave,
+  moveShardsToStash,
 } from '../../actions';
 
 
@@ -107,6 +108,27 @@ describe('Possessions reducer', () => {
     ).toEqual(
       { cubbyhole: { shards: 0, items: [] } }
     );
+  });
+
+  it('should move shards to/from stash', () => {
+    const state = {
+      Bank: { shards: 0, items: [] },
+      Invested: { shards: 100, items: [] },
+    };
+
+    expect(
+      reducer(state, moveShardsToStash('Bank', 100))
+    ).toEqual({
+      Bank: { shards: 100, items: [] },
+      Invested: { shards: 100, items: [] },
+    });
+
+    expect(
+      reducer(state, moveShardsToStash('Invested', -100))
+    ).toEqual({
+      Bank: { shards: 0, items: [] },
+      Invested: { shards: 0, items: [] },
+    });
   });
 
   it('should reset for new character', () => {

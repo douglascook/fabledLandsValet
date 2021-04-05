@@ -11,6 +11,7 @@ import {
   REMOVE_ASSET,
   CREATE_NEW_CHARACTER,
   LOAD_SAVE,
+  MOVE_SHARDS_TO_STASH,
 } from '../actions';
 
 
@@ -151,6 +152,15 @@ export default function character(state = initialState, action) {
         shards: {
           ...state.shards,
           value: state.shards.value + action.modifier,
+        }
+      };
+
+    case MOVE_SHARDS_TO_STASH:
+      return {
+        ...state,
+        shards: {
+          ...state.shards,
+          value: state.shards.value - action.modifier
         }
       };
 

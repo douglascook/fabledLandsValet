@@ -21,6 +21,13 @@ export const swapItemCollection = (item, oldCol, newCol) => ({
   newCol,
 });
 
+export const MOVE_SHARDS_TO_STASH = 'MOVE_SHARDS_TO_STASH';
+export const moveShardsToStash = (stashName, modifier) => ({
+  type: MOVE_SHARDS_TO_STASH,
+  stashName,
+  modifier,
+});
+
 export const ADD_STASH = 'ADD_STASH';
 export const addStash = name => ({
   type: ADD_STASH,

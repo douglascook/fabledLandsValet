@@ -13,7 +13,7 @@ import { ShardsChangeRow } from '../shared/components';
 
 
 const ShardsChangeModal = ({
-  visible, onRequestClose, stashName, personalShards, stashShards
+  visible, onRequestClose, stashName, personalShards, stashShards, updateAmount
 }) => (
   <Modal
     visible={visible}
@@ -29,7 +29,7 @@ const ShardsChangeModal = ({
       </Text>
 
       <ShardsChangeRow
-        updateAmount={() => null}
+        updateAmount={updateAmount}
         leftButtonIcon="arrow-up-bold"
         rightButtonIcon="arrow-down-bold"
       />
@@ -48,6 +48,7 @@ ShardsChangeModal.propTypes = {
   stashName: PropTypes.string.isRequired,
   personalShards: PropTypes.number.isRequired,
   stashShards: PropTypes.number.isRequired,
+  updateAmount: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({
