@@ -20,29 +20,55 @@ describe('Tickboxes reducer', () => {
     );
   });
 
-  it('should add a tick', () => {
+  it('should add a new tick', () => {
     expect(
-      reducer({ 0: [], 1: [100] }, addTick(0, 123))
+      reducer({ 0: [], 1: [[100, 1]] }, addTick(0, 123))
     ).toEqual(
-      { 0: [123], 1: [100] }
+      { 0: [[123, 1]], 1: [[100, 1]] }
     );
     expect(
-      reducer({ 0: [], 1: [100] }, addTick(1, 123))
+      reducer({ 0: [], 1: [[100, 1]] }, addTick(1, 123))
     ).toEqual(
-      { 0: [], 1: [100, 123] }
+      { 0: [], 1: [[100, 1], [123, 1]] }
+    );
+  });
+
+  it('should increment an existing tick', () => {
+    expect(
+      reducer({ 0: [[123, 1]], 1: [[100, 1]] }, addTick(1, 100))
+    ).toEqual(
+      { 0: [[123, 1]], 1: [[100, 2]] }
+    );
+    expect(
+      reducer({ 0: [], 1: [[100, 1], [123, 2]] }, addTick(1, 123))
+    ).toEqual(
+      { 0: [], 1: [[100, 1], [123, 3]] }
+    );
+  });
+
+  it('should decrement an existing tick', () => {
+    expect(
+      reducer({ 0: [[100, 2]], 1: [] }, removeTick(0, 100))
+    ).toEqual(
+      { 0: [[100, 1]], 1: [] }
+    );
+    expect(
+      reducer({ 0: [[100, 1]], 1: [[100, 1], [200, 2], [300, 3]] }, removeTick(1, 200))
+    ).toEqual(
+      { 0: [[100, 1]], 1: [[100, 1], [200, 1], [300, 3]] }
     );
   });
 
   it('should remove a tick', () => {
     expect(
-      reducer({ 0: [100], 1: [] }, removeTick(0, 100))
+      reducer({ 0: [[100, 1]], 1: [] }, removeTick(0, 100))
     ).toEqual(
       { 0: [], 1: [] }
     );
     expect(
-      reducer({ 0: [100], 1: [100, 200, 300] }, removeTick(1, 200))
+      reducer({ 0: [[100, 1]], 1: [[100, 1], [200, 1], [300, 1]] }, removeTick(1, 200))
     ).toEqual(
-      { 0: [100], 1: [100, 300] }
+      { 0: [[100, 1]], 1: [[100, 1], [300, 1]] }
     );
   });
 
