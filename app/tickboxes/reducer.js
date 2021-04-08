@@ -15,7 +15,8 @@ export default function tickboxes(state = initialState, action) {
   switch (action.type) {
 
     case ADD_TICK: {
-      const { book, pageNumber } = action;
+      let { book, pageNumber } = action;
+      pageNumber = Number(pageNumber);
       const index = state[book].findIndex((page) => page[0] === pageNumber);
 
       if (index === -1) {
@@ -24,7 +25,7 @@ export default function tickboxes(state = initialState, action) {
           ...state,
           [book]: [
             ...state[book],
-            [Number(pageNumber), 1]
+            [pageNumber, 1]
           ]
         };
       }
@@ -33,14 +34,15 @@ export default function tickboxes(state = initialState, action) {
         ...state,
         [book]: [
           ...state[book].slice(0, index),
-          [Number(pageNumber), state[book][index][1] + 1],
+          [pageNumber, state[book][index][1] + 1],
           ...state[book].slice(index + 1),
         ]
       };
     }
 
     case REMOVE_TICK: {
-      const { book, pageNumber } = action;
+      let { book, pageNumber } = action;
+      pageNumber = Number(pageNumber);
       const index = state[book].findIndex((page) => page[0] === pageNumber);
       const tick = state[book][index];
 
@@ -59,7 +61,7 @@ export default function tickboxes(state = initialState, action) {
         ...state,
         [book]: [
           ...state[book].slice(0, index),
-          [Number(pageNumber), tick[1] - 1],
+          [pageNumber, tick[1] - 1],
           ...state[book].slice(index + 1),
         ]
       };

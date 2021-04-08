@@ -53,13 +53,13 @@ class Tickboxes extends Component {
     const { tickboxes, removeTick } = this.props;
     const { book } = this.state;
 
-    const ticks = tickboxes[book].sort((a, b) => a - b);
-    return ticks.map(pageNumber => (
+    const ticks = tickboxes[book].sort((a, b) => a[0] - b[0]);
+    return ticks.map((tick) => (
       <AddRemoveItem
-        text={pageNumber}
+        text={tick[1] > 1 ? `${tick[0]} x ${tick[1]}` : tick[0]}
         isActive
-        onRemove={() => removeTick(book, pageNumber)}
-        key={`${book}${pageNumber}`}
+        onRemove={() => removeTick(book, tick[0])}
+        key={`${book}${tick[0]}`}
       />
     ));
   }
