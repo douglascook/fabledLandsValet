@@ -46,7 +46,6 @@ export default class ShardsChangeRow extends Component {
             placeholder="0"
             style={[sharedStyles.modalHeaderText, styles.modifier]}
             keyboardType="numeric"
-            autoCorrect={false}
             selectionColor="aquamarine"
             onFocus={() => this.setState({ buttonsDisabled: true })}
             onSubmitEditing={(e) => this.onUpdateDifference(e)}

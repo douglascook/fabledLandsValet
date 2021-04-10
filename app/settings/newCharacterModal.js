@@ -63,6 +63,7 @@ class NewCharacterModal extends Component {
               selectionColor="aquamarine"
               onChangeText={(text) => this.setState({ name: text })}
               autoCapitalize="words"
+              autoCorrect={false}
             />
 
             <Picker
