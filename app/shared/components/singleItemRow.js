@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import {
   View,
-  TouchableOpacity,
   Text,
   StyleSheet,
 } from 'react-native';
 
+import { IconButton } from './iconButton';
 import sharedStyles from '../styles';
 
 
@@ -25,19 +26,13 @@ const SingleItemRow = ({ name, value, onButtonPress = null }) => (
       </Text>
 
       {onButtonPress && (
-        <TouchableOpacity
-          style={[sharedStyles.addButton, styles.button]}
-          activeOpacity={0.6}
+        <IconButton
+          iconName="edit"
+          buttonColour="dodgerblue"
           onPress={onButtonPress}
-        >
-          <Text style={sharedStyles.buttonText}>
-            o
-          </Text>
-        </TouchableOpacity>
+        />
       )}
     </View>
-
-
   </View>
 );
 
@@ -65,9 +60,6 @@ const styles = StyleSheet.create({
   textTitle: {
     fontWeight: 'bold',
     paddingLeft: 1,
-  },
-  button: {
-    marginLeft: 5,
   },
 });
 

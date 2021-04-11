@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {
   View,
   Picker,
-  Button,
   StyleSheet,
 } from 'react-native';
 
@@ -15,6 +14,8 @@ import {
 import {
   ITEM_SKILLS,
 } from '../data';
+
+import { CommunityIconButton } from '../shared/components';
 
 const Item = Picker.Item;
 
@@ -39,7 +40,11 @@ const SkillPicker = ({ selectedSkill, selectedValue, updateSelected, onSubmit })
     </Picker>
 
     <View style={{ flex: 0.2 }}>
-      <Button title="0" onPress={onSubmit} />
+      <CommunityIconButton
+        iconName="check"
+        buttonColour="dodgerblue"
+        onPress={onSubmit}
+      />
     </View>
   </View>
 );

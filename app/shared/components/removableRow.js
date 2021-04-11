@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import {
   View,
   Text,
-  TouchableOpacity,
   StyleSheet,
 } from 'react-native';
 
+import { CommunityIconButton } from './iconButton';
 import sharedStyles from '../styles';
 
 
@@ -25,15 +25,13 @@ const RemovableRow = ({ name, value, onRemove }) => (
       </Text>
     </View>
 
-    <TouchableOpacity
-      style={[sharedStyles.removeButton, styles.button]}
-      activeOpacity={0.6}
-      onPress={onRemove}
-    >
-      <Text style={sharedStyles.buttonText}>
-        x
-      </Text>
-    </TouchableOpacity>
+    <View>
+      <CommunityIconButton
+        iconName="close"
+        buttonColour="firebrick"
+        onPress={onRemove}
+      />
+    </View>
 
   </View>
 );
@@ -47,12 +45,11 @@ RemovableRow.propTypes = {
 const styles = StyleSheet.create({
   remRowItem: {
     flex: 1,
+    flexDirection: 'row',
     marginRight: 5,
+    justifyContent: 'space-between',
     backgroundColor: 'whitesmoke'
   },
-  button: {
-    marginLeft: 1,
-  }
 });
 
 export default RemovableRow;

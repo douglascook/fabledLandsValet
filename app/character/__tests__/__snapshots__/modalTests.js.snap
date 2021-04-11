@@ -244,23 +244,37 @@ exports[`ListItemsModal renders correctly with multiple items 1`] = `
           style={
             Object {
               "backgroundColor": "firebrick",
-              "marginLeft": 2,
+              "borderColor": "white",
+              "borderLeftWidth": 3,
+              "justifyContent": "center",
               "opacity": 1,
-              "width": 25,
             }
           }
         >
           <Text
+            allowFontScaling={false}
             style={
-              Object {
-                "color": "white",
-                "fontSize": 18,
-                "fontWeight": "bold",
-                "textAlign": "center",
-              }
+              Array [
+                Object {
+                  "color": undefined,
+                  "fontSize": 12,
+                },
+                Object {
+                  "color": "white",
+                  "fontSize": 21,
+                  "fontWeight": "bold",
+                  "textAlign": "center",
+                },
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {},
+              ]
             }
           >
-            x
+            
           </Text>
         </View>
       </View>
@@ -301,23 +315,37 @@ exports[`ListItemsModal renders correctly with multiple items 1`] = `
           style={
             Object {
               "backgroundColor": "firebrick",
-              "marginLeft": 2,
+              "borderColor": "white",
+              "borderLeftWidth": 3,
+              "justifyContent": "center",
               "opacity": 1,
-              "width": 25,
             }
           }
         >
           <Text
+            allowFontScaling={false}
             style={
-              Object {
-                "color": "white",
-                "fontSize": 18,
-                "fontWeight": "bold",
-                "textAlign": "center",
-              }
+              Array [
+                Object {
+                  "color": undefined,
+                  "fontSize": 12,
+                },
+                Object {
+                  "color": "white",
+                  "fontSize": 21,
+                  "fontWeight": "bold",
+                  "textAlign": "center",
+                },
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {},
+              ]
             }
           >
-            x
+            
           </Text>
         </View>
       </View>
@@ -358,23 +386,37 @@ exports[`ListItemsModal renders correctly with multiple items 1`] = `
           style={
             Object {
               "backgroundColor": "firebrick",
-              "marginLeft": 2,
+              "borderColor": "white",
+              "borderLeftWidth": 3,
+              "justifyContent": "center",
               "opacity": 1,
-              "width": 25,
             }
           }
         >
           <Text
+            allowFontScaling={false}
             style={
-              Object {
-                "color": "white",
-                "fontSize": 18,
-                "fontWeight": "bold",
-                "textAlign": "center",
-              }
+              Array [
+                Object {
+                  "color": undefined,
+                  "fontSize": 12,
+                },
+                Object {
+                  "color": "white",
+                  "fontSize": 21,
+                  "fontWeight": "bold",
+                  "textAlign": "center",
+                },
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {},
+              ]
             }
           >
-            x
+            
           </Text>
         </View>
       </View>
@@ -525,23 +567,37 @@ exports[`ListItemsModal renders correctly with one item 1`] = `
           style={
             Object {
               "backgroundColor": "firebrick",
-              "marginLeft": 2,
+              "borderColor": "white",
+              "borderLeftWidth": 3,
+              "justifyContent": "center",
               "opacity": 1,
-              "width": 25,
             }
           }
         >
           <Text
+            allowFontScaling={false}
             style={
-              Object {
-                "color": "white",
-                "fontSize": 18,
-                "fontWeight": "bold",
-                "textAlign": "center",
-              }
+              Array [
+                Object {
+                  "color": undefined,
+                  "fontSize": 12,
+                },
+                Object {
+                  "color": "white",
+                  "fontSize": 21,
+                  "fontWeight": "bold",
+                  "textAlign": "center",
+                },
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {},
+              ]
             }
           >
-            x
+            
           </Text>
         </View>
       </View>
@@ -609,11 +665,10 @@ exports[`ShardsChangeModal renders correctly 1`] = `
         style={
           Object {
             "backgroundColor": "whitesmoke",
-            "flex": 1,
-            "flexDirection": "column",
+            "borderColor": "white",
+            "borderLeftWidth": 3,
             "justifyContent": "center",
             "opacity": 1,
-            "width": 25,
           }
         }
       >
@@ -627,7 +682,7 @@ exports[`ShardsChangeModal renders correctly 1`] = `
               },
               Object {
                 "color": "white",
-                "fontSize": 25,
+                "fontSize": 21,
                 "fontWeight": "bold",
                 "textAlign": "center",
               },
@@ -654,7 +709,6 @@ exports[`ShardsChangeModal renders correctly 1`] = `
       >
         <TextInput
           allowFontScaling={true}
-          autoCorrect={false}
           keyboardType="numeric"
           onFocus={[Function]}
           onSubmitEditing={[Function]}
@@ -690,11 +744,10 @@ exports[`ShardsChangeModal renders correctly 1`] = `
         style={
           Object {
             "backgroundColor": "whitesmoke",
-            "flex": 1,
-            "flexDirection": "column",
+            "borderColor": "white",
+            "borderLeftWidth": 3,
             "justifyContent": "center",
             "opacity": 1,
-            "width": 25,
           }
         }
       >
@@ -708,7 +761,7 @@ exports[`ShardsChangeModal renders correctly 1`] = `
               },
               Object {
                 "color": "white",
-                "fontSize": 25,
+                "fontSize": 21,
                 "fontWeight": "bold",
                 "textAlign": "center",
               },
@@ -765,8 +818,6 @@ exports[`SkillChangeModal renders correctly with a value 1`] = `
       }
     >
       <View
-        accessibilityRole="button"
-        accessibilityStates={Array []}
         accessible={true}
         clickable={true}
         isTVSelectable={true}
@@ -779,32 +830,39 @@ exports[`SkillChangeModal renders correctly with a value 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           Object {
+            "backgroundColor": "dodgerblue",
+            "borderColor": "white",
+            "borderLeftWidth": 3,
+            "justifyContent": "center",
             "opacity": 1,
           }
         }
       >
-        <View
+        <Text
+          allowFontScaling={false}
           style={
             Array [
+              Object {
+                "color": undefined,
+                "fontSize": 12,
+              },
+              Object {
+                "color": "white",
+                "fontSize": 21,
+                "fontWeight": "bold",
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": "Material Design Icons",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
               Object {},
             ]
           }
         >
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#007AFF",
-                  "fontSize": 18,
-                  "padding": 8,
-                  "textAlign": "center",
-                },
-              ]
-            }
-          >
-            -
-          </Text>
-        </View>
+          
+        </Text>
       </View>
       <Text
         style={
@@ -823,8 +881,6 @@ exports[`SkillChangeModal renders correctly with a value 1`] = `
         100
       </Text>
       <View
-        accessibilityRole="button"
-        accessibilityStates={Array []}
         accessible={true}
         clickable={true}
         isTVSelectable={true}
@@ -837,32 +893,39 @@ exports[`SkillChangeModal renders correctly with a value 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           Object {
+            "backgroundColor": "dodgerblue",
+            "borderColor": "white",
+            "borderLeftWidth": 3,
+            "justifyContent": "center",
             "opacity": 1,
           }
         }
       >
-        <View
+        <Text
+          allowFontScaling={false}
           style={
             Array [
+              Object {
+                "color": undefined,
+                "fontSize": 12,
+              },
+              Object {
+                "color": "white",
+                "fontSize": 21,
+                "fontWeight": "bold",
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": "Material Design Icons",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
               Object {},
             ]
           }
         >
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#007AFF",
-                  "fontSize": 18,
-                  "padding": 8,
-                  "textAlign": "center",
-                },
-              ]
-            }
-          >
-            +
-          </Text>
-        </View>
+          
+        </Text>
       </View>
     </View>
   </View>
@@ -905,8 +968,6 @@ exports[`SkillChangeModal renders correctly with no value 1`] = `
       }
     >
       <View
-        accessibilityRole="button"
-        accessibilityStates={Array []}
         accessible={true}
         clickable={true}
         isTVSelectable={true}
@@ -919,32 +980,39 @@ exports[`SkillChangeModal renders correctly with no value 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           Object {
+            "backgroundColor": "dodgerblue",
+            "borderColor": "white",
+            "borderLeftWidth": 3,
+            "justifyContent": "center",
             "opacity": 1,
           }
         }
       >
-        <View
+        <Text
+          allowFontScaling={false}
           style={
             Array [
+              Object {
+                "color": undefined,
+                "fontSize": 12,
+              },
+              Object {
+                "color": "white",
+                "fontSize": 21,
+                "fontWeight": "bold",
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": "Material Design Icons",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
               Object {},
             ]
           }
         >
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#007AFF",
-                  "fontSize": 18,
-                  "padding": 8,
-                  "textAlign": "center",
-                },
-              ]
-            }
-          >
-            -
-          </Text>
-        </View>
+          
+        </Text>
       </View>
       <Text
         style={
@@ -963,8 +1031,6 @@ exports[`SkillChangeModal renders correctly with no value 1`] = `
         0
       </Text>
       <View
-        accessibilityRole="button"
-        accessibilityStates={Array []}
         accessible={true}
         clickable={true}
         isTVSelectable={true}
@@ -977,32 +1043,39 @@ exports[`SkillChangeModal renders correctly with no value 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           Object {
+            "backgroundColor": "dodgerblue",
+            "borderColor": "white",
+            "borderLeftWidth": 3,
+            "justifyContent": "center",
             "opacity": 1,
           }
         }
       >
-        <View
+        <Text
+          allowFontScaling={false}
           style={
             Array [
+              Object {
+                "color": undefined,
+                "fontSize": 12,
+              },
+              Object {
+                "color": "white",
+                "fontSize": 21,
+                "fontWeight": "bold",
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": "Material Design Icons",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
               Object {},
             ]
           }
         >
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#007AFF",
-                  "fontSize": 18,
-                  "padding": 8,
-                  "textAlign": "center",
-                },
-              ]
-            }
-          >
-            +
-          </Text>
-        </View>
+          
+        </Text>
       </View>
     </View>
   </View>
@@ -1055,8 +1128,6 @@ exports[`StaminaChangeModal renders correctly 1`] = `
       }
     >
       <View
-        accessibilityRole="button"
-        accessibilityStates={Array []}
         accessible={true}
         clickable={true}
         isTVSelectable={true}
@@ -1069,32 +1140,39 @@ exports[`StaminaChangeModal renders correctly 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           Object {
+            "backgroundColor": "dodgerblue",
+            "borderColor": "white",
+            "borderLeftWidth": 3,
+            "justifyContent": "center",
             "opacity": 1,
           }
         }
       >
-        <View
+        <Text
+          allowFontScaling={false}
           style={
             Array [
+              Object {
+                "color": undefined,
+                "fontSize": 12,
+              },
+              Object {
+                "color": "white",
+                "fontSize": 21,
+                "fontWeight": "bold",
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": "Material Design Icons",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
               Object {},
             ]
           }
         >
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#007AFF",
-                  "fontSize": 18,
-                  "padding": 8,
-                  "textAlign": "center",
-                },
-              ]
-            }
-          >
-            -
-          </Text>
-        </View>
+          
+        </Text>
       </View>
       <Text
         style={
@@ -1113,8 +1191,6 @@ exports[`StaminaChangeModal renders correctly 1`] = `
         10
       </Text>
       <View
-        accessibilityRole="button"
-        accessibilityStates={Array []}
         accessible={true}
         clickable={true}
         isTVSelectable={true}
@@ -1127,32 +1203,39 @@ exports[`StaminaChangeModal renders correctly 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           Object {
+            "backgroundColor": "dodgerblue",
+            "borderColor": "white",
+            "borderLeftWidth": 3,
+            "justifyContent": "center",
             "opacity": 1,
           }
         }
       >
-        <View
+        <Text
+          allowFontScaling={false}
           style={
             Array [
+              Object {
+                "color": undefined,
+                "fontSize": 12,
+              },
+              Object {
+                "color": "white",
+                "fontSize": 21,
+                "fontWeight": "bold",
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": "Material Design Icons",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
               Object {},
             ]
           }
         >
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#007AFF",
-                  "fontSize": 18,
-                  "padding": 8,
-                  "textAlign": "center",
-                },
-              ]
-            }
-          >
-            +
-          </Text>
-        </View>
+          
+        </Text>
       </View>
     </View>
     <Text
@@ -1175,8 +1258,6 @@ exports[`StaminaChangeModal renders correctly 1`] = `
       }
     >
       <View
-        accessibilityRole="button"
-        accessibilityStates={Array []}
         accessible={true}
         clickable={true}
         isTVSelectable={true}
@@ -1189,32 +1270,39 @@ exports[`StaminaChangeModal renders correctly 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           Object {
+            "backgroundColor": "dodgerblue",
+            "borderColor": "white",
+            "borderLeftWidth": 3,
+            "justifyContent": "center",
             "opacity": 1,
           }
         }
       >
-        <View
+        <Text
+          allowFontScaling={false}
           style={
             Array [
+              Object {
+                "color": undefined,
+                "fontSize": 12,
+              },
+              Object {
+                "color": "white",
+                "fontSize": 21,
+                "fontWeight": "bold",
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": "Material Design Icons",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
               Object {},
             ]
           }
         >
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#007AFF",
-                  "fontSize": 18,
-                  "padding": 8,
-                  "textAlign": "center",
-                },
-              ]
-            }
-          >
-            -
-          </Text>
-        </View>
+          
+        </Text>
       </View>
       <Text
         style={
@@ -1233,8 +1321,6 @@ exports[`StaminaChangeModal renders correctly 1`] = `
         5
       </Text>
       <View
-        accessibilityRole="button"
-        accessibilityStates={Array []}
         accessible={true}
         clickable={true}
         isTVSelectable={true}
@@ -1247,32 +1333,39 @@ exports[`StaminaChangeModal renders correctly 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           Object {
+            "backgroundColor": "dodgerblue",
+            "borderColor": "white",
+            "borderLeftWidth": 3,
+            "justifyContent": "center",
             "opacity": 1,
           }
         }
       >
-        <View
+        <Text
+          allowFontScaling={false}
           style={
             Array [
+              Object {
+                "color": undefined,
+                "fontSize": 12,
+              },
+              Object {
+                "color": "white",
+                "fontSize": 21,
+                "fontWeight": "bold",
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": "Material Design Icons",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
               Object {},
             ]
           }
         >
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#007AFF",
-                  "fontSize": 18,
-                  "padding": 8,
-                  "textAlign": "center",
-                },
-              ]
-            }
-          >
-            +
-          </Text>
-        </View>
+          
+        </Text>
       </View>
     </View>
   </View>

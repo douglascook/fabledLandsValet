@@ -1,16 +1,12 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
-
 import {
   View,
   Text,
-  TouchableOpacity,
   StyleSheet,
 } from 'react-native';
 
-import MatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import { CommunityIconButton } from '../shared/components';
 import sharedStyles from '../shared/styles';
 
 
@@ -55,17 +51,12 @@ const ItemRow = ({ value, icon, onButtonPress, buttonDisabled }) => (
       </Text>
     </View>
 
-    <TouchableOpacity
-      style={[sharedStyles.addButton, styles.button, {
-        backgroundColor: buttonDisabled ? 'transparent' : 'dodgerblue' }]}
-      activeOpacity={0.6}
+    <CommunityIconButton
+      iconName={`arrow-${icon}-bold`}
+      buttonColour="dodgerblue"
       onPress={onButtonPress}
       disabled={buttonDisabled}
-    >
-      <Text style={sharedStyles.buttonText}>
-        <MatIcon name={`arrow-${icon}-bold`} size={23} color="white" />
-      </Text>
-    </TouchableOpacity>
+    />
 
   </View>
 );

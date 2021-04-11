@@ -42,19 +42,15 @@ const styles = StyleSheet.create({
     fontSize: 25,
     textAlign: 'center',
   },
-  removeButton: {
-    width: 25,
-    backgroundColor: 'firebrick',
-    marginLeft: 1,
+  iconButton: {
+    borderLeftWidth: 3,
+    borderColor: 'white',
+    justifyContent: 'center',
   },
-  addButton: {
-    width: 25,
-    backgroundColor: 'dodgerblue',
-  },
-  buttonText: {
+  iconButtonIcon: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 21,
     textAlign: 'center',
   },
 });

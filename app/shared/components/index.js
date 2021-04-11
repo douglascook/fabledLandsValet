@@ -7,3 +7,6 @@ export { default as SubmitButtonRow } from './submitButtonRow';
 export { default as AddRemoveItem } from './addRemoveItem';
 
 export { default as ShardsChangeRow } from './shardsChangeRow';
+
+export { IconButton } from './iconButton';
+export { CommunityIconButton } from './iconButton';

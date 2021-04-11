@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import {
   View,
   StyleSheet,
   TextInput,
-  TouchableOpacity,
 } from 'react-native';
 
-import MatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import { CommunityIconButton } from './iconButton';
 import sharedStyles from '../styles';
 
 
@@ -35,8 +32,9 @@ export default class ShardsChangeRow extends Component {
 
     return (
       <View style={styles.diffRow}>
-        <IconButton
+        <CommunityIconButton
           iconName={leftButtonIcon}
+          buttonColour="dodgerblue"
           onPress={() => updateAmount(-modifier)}
           disabled={buttonsDisabled}
         />
@@ -52,8 +50,9 @@ export default class ShardsChangeRow extends Component {
           />
         </View>
 
-        <IconButton
+        <CommunityIconButton
           iconName={rightButtonIcon}
+          buttonColour="dodgerblue"
           onPress={() => updateAmount(modifier)}
           disabled={buttonsDisabled}
         />
@@ -67,27 +66,6 @@ ShardsChangeRow.propTypes = {
   updateAmount: PropTypes.func.isRequired,
   leftButtonIcon: PropTypes.string.isRequired,
   rightButtonIcon: PropTypes.string.isRequired,
-};
-
-const IconButton = ({ iconName, disabled, onPress }) => (
-  <TouchableOpacity
-    style={[sharedStyles.addButton, styles.button, {
-      backgroundColor: disabled ? 'whitesmoke' : 'dodgerblue' }]}
-    activeOpacity={0.6}
-    onPress={onPress}
-    disabled={disabled}
-  >
-    <MatIcon
-      name={iconName}
-      style={styles.buttonIcon}
-    />
-  </TouchableOpacity>
-);
-
-IconButton.propTypes = {
-  iconName: PropTypes.string.isRequired,
-  disabled: PropTypes.bool.isRequired,
-  onPress: PropTypes.func.isRequired,
 };
 
 const getDefaultState = () => ({
@@ -109,15 +87,4 @@ const styles = StyleSheet.create({
   modifier: {
     textAlign: 'center',
   },
-  button: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-  },
-  buttonIcon: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 25,
-    textAlign: 'center',
-  }
 });

@@ -1,13 +1,12 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import {
   View,
   Text,
-  TouchableOpacity,
 } from 'react-native';
 
-import PropTypes from 'prop-types';
 
+import { CommunityIconButton } from './iconButton';
 import sharedStyles from '../styles';
 
 
@@ -18,21 +17,15 @@ const AddRemoveItem = ({ text, isActive, onAdd, onRemove }) => (
       {text}
     </Text>
 
-    <TouchableOpacity
-      style={[
-        isActive ? sharedStyles.removeButton : sharedStyles.addButton,
-        { marginLeft: 2 }
-      ]}
-      activeOpacity={0.6}
+    <CommunityIconButton
+      iconName={isActive ? 'close' : 'check'}
+      buttonColour={isActive ? 'firebrick' : 'dodgerblue'}
       onPress={isActive ? onRemove : onAdd}
-    >
-      <Text style={sharedStyles.buttonText}>
-        {isActive ? 'x' : 'o'}
-      </Text>
-    </TouchableOpacity>
+    />
 
   </View>
 );
+
 
 AddRemoveItem.propTypes = {
   text: PropTypes.oneOfType([

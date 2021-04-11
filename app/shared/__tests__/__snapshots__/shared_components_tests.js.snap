@@ -38,23 +38,37 @@ exports[`AddRemoveItem renders correctly when active 1`] = `
     style={
       Object {
         "backgroundColor": "firebrick",
-        "marginLeft": 2,
+        "borderColor": "white",
+        "borderLeftWidth": 3,
+        "justifyContent": "center",
         "opacity": 1,
-        "width": 25,
       }
     }
   >
     <Text
+      allowFontScaling={false}
       style={
-        Object {
-          "color": "white",
-          "fontSize": 18,
-          "fontWeight": "bold",
-          "textAlign": "center",
-        }
+        Array [
+          Object {
+            "color": undefined,
+            "fontSize": 12,
+          },
+          Object {
+            "color": "white",
+            "fontSize": 21,
+            "fontWeight": "bold",
+            "textAlign": "center",
+          },
+          Object {
+            "fontFamily": "Material Design Icons",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
       }
     >
-      x
+      
     </Text>
   </View>
 </View>
@@ -98,23 +112,37 @@ exports[`AddRemoveItem renders correctly when inactive 1`] = `
     style={
       Object {
         "backgroundColor": "dodgerblue",
-        "marginLeft": 2,
+        "borderColor": "white",
+        "borderLeftWidth": 3,
+        "justifyContent": "center",
         "opacity": 1,
-        "width": 25,
       }
     }
   >
     <Text
+      allowFontScaling={false}
       style={
-        Object {
-          "color": "white",
-          "fontSize": 18,
-          "fontWeight": "bold",
-          "textAlign": "center",
-        }
+        Array [
+          Object {
+            "color": undefined,
+            "fontSize": 12,
+          },
+          Object {
+            "color": "white",
+            "fontSize": 21,
+            "fontWeight": "bold",
+            "textAlign": "center",
+          },
+          Object {
+            "fontFamily": "Material Design Icons",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
       }
     >
-      o
+      
     </Text>
   </View>
 </View>
@@ -136,6 +164,8 @@ exports[`RemovableRow renders correctly 1`] = `
       Object {
         "backgroundColor": "whitesmoke",
         "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
         "marginRight": 5,
       }
     }
@@ -156,6 +186,8 @@ exports[`RemovableRow renders correctly 1`] = `
       Object {
         "backgroundColor": "whitesmoke",
         "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
         "marginRight": 5,
       }
     }
@@ -171,38 +203,54 @@ exports[`RemovableRow renders correctly 1`] = `
       yeah
     </Text>
   </View>
-  <View
-    accessible={true}
-    clickable={true}
-    isTVSelectable={true}
-    onClick={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-    style={
-      Object {
-        "backgroundColor": "firebrick",
-        "marginLeft": 1,
-        "opacity": 1,
-        "width": 25,
-      }
-    }
-  >
-    <Text
+  <View>
+    <View
+      accessible={true}
+      clickable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "color": "white",
-          "fontSize": 18,
-          "fontWeight": "bold",
-          "textAlign": "center",
+          "backgroundColor": "firebrick",
+          "borderColor": "white",
+          "borderLeftWidth": 3,
+          "justifyContent": "center",
+          "opacity": 1,
         }
       }
     >
-      x
-    </Text>
+      <Text
+        allowFontScaling={false}
+        style={
+          Array [
+            Object {
+              "color": undefined,
+              "fontSize": 12,
+            },
+            Object {
+              "color": "white",
+              "fontSize": 21,
+              "fontWeight": "bold",
+              "textAlign": "center",
+            },
+            Object {
+              "fontFamily": "Material Design Icons",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {},
+          ]
+        }
+      >
+        
+      </Text>
+    </View>
   </View>
 </View>
 `;
@@ -283,23 +331,37 @@ exports[`SingleItemRow renders correctly 1`] = `
       style={
         Object {
           "backgroundColor": "dodgerblue",
-          "marginLeft": 5,
+          "borderColor": "white",
+          "borderLeftWidth": 3,
+          "justifyContent": "center",
           "opacity": 1,
-          "width": 25,
         }
       }
     >
       <Text
+        allowFontScaling={false}
         style={
-          Object {
-            "color": "white",
-            "fontSize": 18,
-            "fontWeight": "bold",
-            "textAlign": "center",
-          }
+          Array [
+            Object {
+              "color": undefined,
+              "fontSize": 12,
+            },
+            Object {
+              "color": "white",
+              "fontSize": 21,
+              "fontWeight": "bold",
+              "textAlign": "center",
+            },
+            Object {
+              "fontFamily": "Material Icons",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {},
+          ]
         }
       >
-        o
+        
       </Text>
     </View>
   </View>

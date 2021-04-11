@@ -4,27 +4,29 @@ import PropTypes from 'prop-types';
 import {
   View,
   Text,
-  Button,
   StyleSheet,
 } from 'react-native';
 
 import sharedStyles from '../../shared/styles';
+import { CommunityIconButton } from '../../shared/components';
 
 
 const Changer = ({ value, increment, decrement }) => (
   <View style={styles.changer}>
-    <Button
-      title="-"
-      onPress={() => decrement()}
+    <CommunityIconButton
+      iconName="minus"
+      buttonColour="dodgerblue"
+      onPress={decrement}
     />
 
     <Text style={[sharedStyles.modalHeaderText, styles.value]}>
       {value}
     </Text>
 
-    <Button
-      title="+"
-      onPress={() => increment()}
+    <CommunityIconButton
+      iconName="plus"
+      buttonColour="dodgerblue"
+      onPress={increment}
     />
   </View>
 );
