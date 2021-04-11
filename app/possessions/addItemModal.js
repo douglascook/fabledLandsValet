@@ -97,7 +97,7 @@ export default class AddItemModal extends Component {
               placeholder="Item Name"
               selectionColor="aquamarine"
               onSubmitEditing={e => this.submitName(e)}
-              autoCapitalize="sentences"
+              autoCapitalize="words"
             />
           )}
           { pickerVisible && (

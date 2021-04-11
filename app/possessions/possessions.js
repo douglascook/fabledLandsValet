@@ -37,8 +37,8 @@ class Possessions extends Component {
   }
 
   setModalVisible(visible) {
-    const possessions = this.props.possessions.personal.items;
-    if (possessions.length < 12) {
+    const { possessions } = this.props;
+    if (possessions.personal.items.length < 12) {
       this.setState({ modalVisible: visible });
     }
   }
@@ -48,17 +48,13 @@ class Possessions extends Component {
     this.setModalVisible(false);
   }
 
-  removeItem(key) {
-    this.props.removeItem(key);
-  }
-
   get currentPossessions() {
-    const possessions = this.props.possessions.personal.items;
-    return possessions.map((item, i) => (
+    const { possessions, removeItem } = this.props;
+    return possessions.personal.items.map((item, i) => (
       <RemovableRow
         name={item.name}
         value={formatEffects(item.effects)}
-        onRemove={() => this.props.removeItem(item, i)}
+        onRemove={() => removeItem(item, i)}
         key={item.key}
       />
     ));
