@@ -116,7 +116,7 @@ class Stashes extends Component {
         </Text>
 
         <StashContents
-          icon="down"
+          iconName="arrow-down-bold"
           stash={{ items: possessions.personal.items, shards }}
           onItemPress={(item) => swapItemCollection(item, 'personal', currentStash)}
           openShardsModal={() => this.setState({ shardsModalVisible: true })}
@@ -136,7 +136,7 @@ class Stashes extends Component {
         {currentStash !== SELECT_STASH && (
           <ScrollView>
             <StashContents
-              icon="up"
+              iconName="arrow-up-bold"
               stash={possessions[currentStash]}
               onItemPress={(i) => swapItemCollection(i, currentStash, 'personal')}
               openShardsModal={() => this.setState({ shardsModalVisible: true })}

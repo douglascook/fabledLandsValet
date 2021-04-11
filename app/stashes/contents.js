@@ -11,13 +11,13 @@ import sharedStyles from '../shared/styles';
 
 
 const StashContents = ({
-  icon, stash, onItemPress, openShardsModal, disableSwap, disableShards
+  iconName, stash, onItemPress, openShardsModal, disableSwap, disableShards
 }) => (
   <View>
     {stash.items.map((item) => (
       <ItemRow
         value={item.name}
-        icon={icon}
+        iconName={iconName}
         onButtonPress={() => onItemPress(item)}
         buttonDisabled={disableSwap}
         key={item.key}
@@ -25,7 +25,7 @@ const StashContents = ({
     ))}
     <ItemRow
       value={`${stash.shards} shards`}
-      icon={icon}
+      iconName={iconName}
       onButtonPress={() => openShardsModal()}
       buttonDisabled={disableShards}
     />
@@ -33,7 +33,7 @@ const StashContents = ({
 );
 
 StashContents.propTypes = {
-  icon: PropTypes.string.isRequired,
+  iconName: PropTypes.string.isRequired,
   stash: PropTypes.object.isRequired,
   onItemPress: PropTypes.func.isRequired,
   openShardsModal: PropTypes.func.isRequired,
@@ -42,7 +42,7 @@ StashContents.propTypes = {
 };
 
 
-const ItemRow = ({ value, icon, onButtonPress, buttonDisabled }) => (
+const ItemRow = ({ value, iconName, onButtonPress, buttonDisabled }) => (
   <View style={[sharedStyles.containerRow, { justifyContent: 'space-between' }]}>
 
     <View style={styles.textContainer}>
@@ -52,7 +52,7 @@ const ItemRow = ({ value, icon, onButtonPress, buttonDisabled }) => (
     </View>
 
     <CommunityIconButton
-      iconName={`arrow-${icon}-bold`}
+      iconName={iconName}
       buttonColour="dodgerblue"
       onPress={onButtonPress}
       disabled={buttonDisabled}
@@ -63,7 +63,7 @@ const ItemRow = ({ value, icon, onButtonPress, buttonDisabled }) => (
 
 ItemRow.propTypes = {
   value: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
+  iconName: PropTypes.string.isRequired,
   onButtonPress: PropTypes.func.isRequired,
   buttonDisabled: PropTypes.bool,
 };
