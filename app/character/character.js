@@ -46,6 +46,7 @@ import {
 import {
   ABILITIES,
   ASSETS,
+  RANKS,
 } from '../data';
 
 
@@ -83,6 +84,21 @@ class Character extends Component {
     );
   }
 
+  renderRankRow() {
+    const { character: { rank } } = this.props;
+
+    // every rank above 11 has the same name
+    // TODO can you go above rank 12?
+    return (
+      <SingleItemRow
+        name={rank.displayName}
+        value={`${rank.value} (${RANKS[Math.min(11, rank.value)]})`}
+        onButtonPress={() => this.showSkillModal('rank')}
+        key="rank"
+      />
+    );
+  }
+
   renderDefenceRow() {
     const {
       character: {
@@ -102,7 +118,7 @@ class Character extends Component {
 
   renderStaminaRow() {
     const stamina = this.props.character.stamina;
-    const value = getDisplayValue(stamina.current + ' / ' + stamina.value);
+    const value = getDisplayValue(`${stamina.current}/${stamina.value}`);
 
     return (
       <SingleItemRow
@@ -185,7 +201,7 @@ class Character extends Component {
         </Text>
 
         <View style={{ marginVertical: 6 }}>
-          {this.renderSkillRow('rank')}
+          {this.renderRankRow()}
           {this.renderDefenceRow()}
           {this.renderStaminaRow()}
 

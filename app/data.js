@@ -23,6 +23,21 @@ export const PROFESSIONS = [
   'Wayfarer', 'Warrior', 'Mage', 'Rogue', 'Priest', 'Troubadour',
 ];
 
+// TODO add gender options
+export const RANKS = {
+  1: 'Outcast',
+  2: 'Commoner',
+  3: 'Guildmember',
+  4: 'Master', // Mistress
+  5: 'Gentleman', // Lady
+  6: 'Baron', // Baroness
+  7: 'Count', // Countess
+  8: 'Earl', // Viscountess
+  9: 'Marquis', // Marchioness
+  10: 'Duke', // Duchess
+  11: 'Hero',
+};
+
 export const ABILITIES = [
   'charisma', 'combat', 'magic', 'sanctity', 'scouting', 'thievery'
 ];
