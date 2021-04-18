@@ -34,6 +34,7 @@ class Settings extends Component {
     this.state = {
       saveFiles: [],
       errors: '',
+      savePageVisible: false,
       newCharacterVisible: false,
       loadCharacterVisible: false,
     };
@@ -78,6 +79,7 @@ class Settings extends Component {
 
   render() {
     const { saveFiles, newCharacterVisible, loadCharacterVisible } = this.state;
+    const { book, page } = this.props;
 
     return (
       <View style={sharedStyles.container}>
@@ -86,17 +88,29 @@ class Settings extends Component {
           Settings
         </Text>
 
+
         <View style={{ flex: 1, justifyContent: 'space-around' }}>
-          <View style={[sharedStyles.paddedCentred, { flex: 0.2, justifyContent: 'space-around' }]}>
+          <View style={[sharedStyles.paddedCentred, { flex: 0.3, justifyContent: 'space-around' }]}>
+
+            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+              <Text style={{ fontSize: 14 }}>
+                {`Last Page: ${book} - ${page}`}
+              </Text>
+            </View>
 
             <Button
-              title="New Character"
-              onPress={() => this.setState({ newCharacterVisible: true })}
+              title="Save"
+              onPress={() => this.setState({ savePageVisible: true })}
             />
 
             <Button
               title="Load Character"
               onPress={() => this.openLoadCharacterModal()}
+            />
+
+            <Button
+              title="New Character"
+              onPress={() => this.setState({ newCharacterVisible: true })}
             />
           </View>
         </View>
@@ -122,6 +136,8 @@ class Settings extends Component {
 Settings.propTypes = {
   characterName: PropTypes.string.isRequired,
   state: PropTypes.object.isRequired,
+  book: PropTypes.string.isRequired,
+  page: PropTypes.number.isRequired,
   createNewCharacter: PropTypes.func.isRequired,
   loadSave: PropTypes.func.isRequired,
 };
@@ -133,6 +149,8 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => ({
   characterName: state.character.name.value,
+  book: state.settings.book,
+  page: state.settings.page,
   state,
 });
 
