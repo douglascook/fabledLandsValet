@@ -156,6 +156,13 @@ export const createNewCharacter = (name, profession) => ({
   profession,
 });
 
+export const UPDATE_LAST_PAGE = 'UPDATE_LAST_PAGE';
+export const updateLastPage = (book, page) => ({
+  type: UPDATE_LAST_PAGE,
+  book,
+  page
+});
+
 export const LOAD_SAVE = 'LOAD_SAVE';
 export const loadSave = (state) => ({
   type: LOAD_SAVE,

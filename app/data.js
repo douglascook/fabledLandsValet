@@ -7,7 +7,7 @@ export const BOOKS = [
   'The Plains of Howling Darkness',
   'The Court of Hidden Faces',
   'Lords of the Rising Sun',
-  'The Serpent King\'s Domain',
+  "The Serpent King's Domain",
 ];
 
 export const GODS = [

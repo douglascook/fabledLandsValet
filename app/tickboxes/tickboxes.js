@@ -54,6 +54,7 @@ class Tickboxes extends Component {
     const { book } = this.state;
 
     const ticks = tickboxes[book].sort((a, b) => a[0] - b[0]);
+    // each tick has an associated count, displayed when > 1
     return ticks.map((tick) => (
       <AddRemoveItem
         text={tick[1] > 1 ? `${tick[0]} x ${tick[1]}` : tick[0]}
