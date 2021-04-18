@@ -52,7 +52,7 @@ class NewCharacterModal extends Component {
         onRequestClose={onRequestClose}
       >
         <View style={{ flex: 1, justifyContent: 'space-around' }}>
-          <View style={[sharedStyles.fullSizeCentred, { flex: 0.3, justifyContent: 'space-around' }]}>
+          <View style={sharedStyles.modalContent}>
 
             <Text style={sharedStyles.modalHeaderText}>
               New Character

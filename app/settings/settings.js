@@ -19,12 +19,14 @@ import RNFS from 'react-native-fs';
 import {
   createNewCharacter,
   loadSave,
+  updateLastPage,
 } from '../actions';
 
 import sharedStyles from '../shared/styles';
 
 import NewCharacterModal from './newCharacterModal';
 import LoadCharacterModal from './loadCharacterModal';
+import LastPageModal from './lastPageModal';
 
 
 class Settings extends Component {
@@ -34,7 +36,7 @@ class Settings extends Component {
     this.state = {
       saveFiles: [],
       errors: '',
-      savePageVisible: false,
+      lastPageVisible: false,
       newCharacterVisible: false,
       loadCharacterVisible: false,
     };
@@ -54,8 +56,10 @@ class Settings extends Component {
   createCharacter(name, profession) {
     // save the current character first
     this.saveCurrentCharacter();
-    this.props.createNewCharacter(name, profession);
-    this.props.navigation.navigate('character');
+
+    const { createNewCharacter, navigation } = this.props;
+    createNewCharacter(name, profession);
+    navigation.navigate('character');
   }
 
   loadCharacter(filepath) {
@@ -69,6 +73,12 @@ class Settings extends Component {
       .then(() => navigation.navigate('character'));
   }
 
+  updateLastPage(book, page) {
+    this.setState({ lastPageVisible: false });
+    this.props.updateLastPage(book, page);
+    this.saveCurrentCharacter();
+  }
+
   saveCurrentCharacter() {
     const { characterName, state } = this.props;
     const path = `${this.savesDir}/${characterName}`;
@@ -78,7 +88,9 @@ class Settings extends Component {
   }
 
   render() {
-    const { saveFiles, newCharacterVisible, loadCharacterVisible } = this.state;
+    const {
+      saveFiles, lastPageVisible, newCharacterVisible, loadCharacterVisible
+    } = this.state;
     const { book, page } = this.props;
 
     return (
@@ -93,14 +105,14 @@ class Settings extends Component {
           <View style={[sharedStyles.paddedCentred, { flex: 0.3, justifyContent: 'space-around' }]}>
 
             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-              <Text style={{ fontSize: 14 }}>
-                {`Last Page: ${book} - ${page}`}
+              <Text style={{ fontSize: 15 }}>
+                {`Last page:\n  ${book} - ${page}`}
               </Text>
             </View>
 
             <Button
-              title="Save"
-              onPress={() => this.setState({ savePageVisible: true })}
+              title="Save Page"
+              onPress={() => this.setState({ lastPageVisible: true })}
             />
 
             <Button
@@ -114,6 +126,12 @@ class Settings extends Component {
             />
           </View>
         </View>
+
+        <LastPageModal
+          visible={lastPageVisible}
+          book={book}
+          onRequestClose={(b, p) => this.updateLastPage(b, p)}
+        />
 
         <NewCharacterModal
           visible={newCharacterVisible}
@@ -137,14 +155,16 @@ Settings.propTypes = {
   characterName: PropTypes.string.isRequired,
   state: PropTypes.object.isRequired,
   book: PropTypes.string.isRequired,
-  page: PropTypes.number.isRequired,
+  page: PropTypes.string.isRequired,
   createNewCharacter: PropTypes.func.isRequired,
   loadSave: PropTypes.func.isRequired,
+  updateLastPage: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {
   createNewCharacter,
   loadSave,
+  updateLastPage,
 };
 
 const mapStateToProps = (state) => ({

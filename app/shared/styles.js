@@ -21,6 +21,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 60,
   },
+  modalContent: {
+    flex: 0.3,
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
   scrollViewContent: {
     marginTop: 10,
     paddingBottom: 30,
