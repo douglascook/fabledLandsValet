@@ -19,12 +19,12 @@ import {
 } from '../data';
 
 
-class LastPageModal extends Component {
+class SavePageModal extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      book: props.book,
+      book: props.currentBook,
       page: null,
     };
   }
@@ -50,7 +50,7 @@ class LastPageModal extends Component {
           <View style={sharedStyles.modalContent}>
 
             <Text style={sharedStyles.modalHeaderText}>
-              Save Last Page
+              Save Page
             </Text>
 
             <View style={{ flexDirection: 'row' }}>
@@ -84,14 +84,14 @@ class LastPageModal extends Component {
   }
 }
 
-const bookItems = BOOKS.map((b, i) => (
+const bookItems = BOOKS.map((b) => (
   <Picker.Item label={b} value={b} key={b} />
 ));
 
-LastPageModal.propTypes = {
+SavePageModal.propTypes = {
   visible: PropTypes.bool.isRequired,
   onRequestClose: PropTypes.func.isRequired,
-  book: PropTypes.string.isRequired,
+  currentBook: PropTypes.string.isRequired,
 };
 
-export default LastPageModal;
+export default SavePageModal;

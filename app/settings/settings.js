@@ -19,14 +19,14 @@ import RNFS from 'react-native-fs';
 import {
   createNewCharacter,
   loadSave,
-  updateLastPage,
+  savePage,
 } from '../actions';
 
 import sharedStyles from '../shared/styles';
 
 import NewCharacterModal from './newCharacterModal';
 import LoadCharacterModal from './loadCharacterModal';
-import LastPageModal from './lastPageModal';
+import SavePageModal from './savePageModal';
 
 
 class Settings extends Component {
@@ -36,7 +36,7 @@ class Settings extends Component {
     this.state = {
       saveFiles: [],
       errors: '',
-      lastPageVisible: false,
+      savePageVisible: false,
       newCharacterVisible: false,
       loadCharacterVisible: false,
     };
@@ -73,9 +73,9 @@ class Settings extends Component {
       .then(() => navigation.navigate('character'));
   }
 
-  updateLastPage(book, page) {
-    this.setState({ lastPageVisible: false });
-    this.props.updateLastPage(book, page);
+  savePageAndCharacter(book, page) {
+    this.setState({ savePageVisible: false });
+    this.props.savePage(book, page);
     this.saveCurrentCharacter();
   }
 
@@ -89,7 +89,7 @@ class Settings extends Component {
 
   render() {
     const {
-      saveFiles, lastPageVisible, newCharacterVisible, loadCharacterVisible
+      saveFiles, savePageVisible, newCharacterVisible, loadCharacterVisible
     } = this.state;
     const { book, page } = this.props;
 
@@ -112,7 +112,7 @@ class Settings extends Component {
 
             <Button
               title="Save Page"
-              onPress={() => this.setState({ lastPageVisible: true })}
+              onPress={() => this.setState({ savePageVisible: true })}
             />
 
             <Button
@@ -127,10 +127,10 @@ class Settings extends Component {
           </View>
         </View>
 
-        <LastPageModal
-          visible={lastPageVisible}
-          book={book}
-          onRequestClose={(b, p) => this.updateLastPage(b, p)}
+        <SavePageModal
+          visible={savePageVisible}
+          currentBook={book}
+          onRequestClose={(b, p) => this.savePageAndCharacter(b, p)}
         />
 
         <NewCharacterModal
@@ -158,13 +158,13 @@ Settings.propTypes = {
   page: PropTypes.string.isRequired,
   createNewCharacter: PropTypes.func.isRequired,
   loadSave: PropTypes.func.isRequired,
-  updateLastPage: PropTypes.func.isRequired,
+  savePage: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {
   createNewCharacter,
   loadSave,
-  updateLastPage,
+  savePage,
 };
 
 const mapStateToProps = (state) => ({

@@ -156,9 +156,9 @@ export const createNewCharacter = (name, profession) => ({
   profession,
 });
 
-export const UPDATE_LAST_PAGE = 'UPDATE_LAST_PAGE';
-export const updateLastPage = (book, page) => ({
-  type: UPDATE_LAST_PAGE,
+export const SAVE_PAGE = 'SAVE_PAGE';
+export const savePage = (book, page) => ({
+  type: SAVE_PAGE,
   book,
   page
 });

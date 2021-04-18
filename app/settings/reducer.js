@@ -1,6 +1,6 @@
 import {
   LOAD_SAVE,
-  UPDATE_LAST_PAGE,
+  SAVE_PAGE,
 } from '../actions';
 
 
@@ -12,7 +12,7 @@ export const initialState = {
 export default function settings(state = initialState, action) {
   switch (action.type) {
 
-    case UPDATE_LAST_PAGE:
+    case SAVE_PAGE:
       return {
         book: action.book,
         page: action.page,
