@@ -57,7 +57,7 @@ export default class EditShipModal extends Component {
 
     return (
       <Modal {...this.props} >
-        <View style={sharedStyles.fullSizeCentred}>
+        <View style={[sharedStyles.fullSizeCentred, { padding: 20 }]}>
 
           <Text style={sharedStyles.modalHeaderText}>
             {name}
