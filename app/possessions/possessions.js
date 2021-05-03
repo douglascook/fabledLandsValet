@@ -21,7 +21,7 @@ import {
   formatEffects
 } from '../shared/helpers';
 
-import styles from '../shared/styles';
+import sharedStyles from '../shared/styles';
 
 import {
   addItem,
@@ -62,21 +62,23 @@ class Possessions extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={sharedStyles.container}>
 
-        <Text style={styles.headerText}>
+        <Text style={sharedStyles.headerText}>
           Possessions
         </Text>
 
-        <View style={{ marginVertical: 10 }}>
-          {this.currentPossessions}
-        </View>
+        <View style={sharedStyles.rowContainer}>
+          <View style={{ marginVertical: 10 }}>
+            {this.currentPossessions}
+          </View>
 
-        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-          <Button
-            onPress={() => this.setModalVisible(true)}
-            title="Add item"
-          />
+          <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+            <Button
+              onPress={() => this.setModalVisible(true)}
+              title="Add item"
+            />
+          </View>
         </View>
 
         <AddItemModal

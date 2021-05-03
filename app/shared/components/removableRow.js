@@ -11,7 +11,7 @@ import sharedStyles from '../styles';
 
 
 const RemovableRow = ({ name, value, onRemove }) => (
-  <View style={sharedStyles.containerRow}>
+  <View style={sharedStyles.row}>
 
     <View style={styles.remRowItem}>
       <Text style={sharedStyles.text}>

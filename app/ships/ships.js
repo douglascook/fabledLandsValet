@@ -50,26 +50,28 @@ class Ships extends Component {
     return (
       <View style={sharedStyles.container}>
 
-        <Text style={[sharedStyles.headerText, { marginBottom: 10 }]}>
+        <Text style={sharedStyles.headerText}>
           Ships
         </Text>
 
-        { ships.map((ship, i) => (
-          <SingleItemRow
-            name={ship.name}
-            value={ship.port}
-            key={ship.key}
-            onButtonPress={() => this.setState({ shipIndex: i })}
-          />
-        ))}
+        <View style={sharedStyles.rowContainer}>
+          { ships.map((ship, i) => (
+            <SingleItemRow
+              name={ship.name}
+              value={ship.port}
+              key={ship.key}
+              onButtonPress={() => this.setState({ shipIndex: i })}
+            />
+          ))}
 
-        <View style={
-          { flexDirection: 'row', justifyContent: 'center', marginTop: 10 }}
-        >
-          <Button
-            onPress={() => this.setState({ newShip: true })}
-            title="Add ship"
-          />
+          <View style={
+            { flexDirection: 'row', justifyContent: 'center', marginTop: 10 }}
+          >
+            <Button
+              onPress={() => this.setState({ newShip: true })}
+              title="Add ship"
+            />
+          </View>
         </View>
 
         { (shipIndex !== null) && (

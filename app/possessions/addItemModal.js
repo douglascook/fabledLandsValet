@@ -110,7 +110,7 @@ export default class AddItemModal extends Component {
           )}
           { submitVisible && (
             <SubmitButtonRow
-              title="Add it!"
+              title="OK"
               onPress={() => this.addItem()}
             />
           )}
@@ -141,6 +141,6 @@ const styles = StyleSheet.create({
   addItemModal: {
     flex: 1,
     justifyContent: 'center',
-    padding: 10,
+    padding: 20,
   },
 });

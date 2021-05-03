@@ -13,7 +13,7 @@ import sharedStyles from '../shared/styles';
 const StashContents = ({
   iconName, stash, onItemPress, openShardsModal, disableSwap, disableShards
 }) => (
-  <View>
+  <View style={{ flex: 1 }}>
     {stash.items.map((item) => (
       <ItemRow
         value={item.name}
@@ -43,7 +43,7 @@ StashContents.propTypes = {
 
 
 const ItemRow = ({ value, iconName, onButtonPress, buttonDisabled }) => (
-  <View style={[sharedStyles.containerRow, { justifyContent: 'space-between' }]}>
+  <View style={[sharedStyles.row, { justifyContent: 'space-between' }]}>
 
     <View style={styles.textContainer}>
       <Text style={sharedStyles.text}>

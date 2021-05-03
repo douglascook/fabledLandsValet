@@ -4,10 +4,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  containerRow: {
+  rowContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  row: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginHorizontal: 20,
     marginVertical: 1,
   },
   fullSizeCentred: {
@@ -20,6 +25,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     paddingHorizontal: 60,
+    paddingBottom: 30,
   },
   modalContent: {
     flex: 0.3,

@@ -12,7 +12,7 @@ import sharedStyles from '../styles';
 
 
 const SingleItemRow = ({ name, value, onButtonPress = null }) => (
-  <View style={sharedStyles.containerRow}>
+  <View style={sharedStyles.row}>
 
     <View style={styles.rowName}>
       <Text style={[sharedStyles.text, styles.textTitle]}>

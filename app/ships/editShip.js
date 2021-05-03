@@ -67,7 +67,7 @@ export default class EditShipModal extends Component {
             {type}
           </Text>
 
-          <View style={sharedStyles.containerRow}>
+          <View style={sharedStyles.row}>
             <Text style={[styles.attribute, sharedStyles.text]}>
               Docked
             </Text>
@@ -82,7 +82,7 @@ export default class EditShipModal extends Component {
             />
           </View>
 
-          <View style={sharedStyles.containerRow}>
+          <View style={sharedStyles.row}>
             <Text style={[styles.attribute, sharedStyles.text]}>
               Crew
             </Text>
@@ -96,13 +96,13 @@ export default class EditShipModal extends Component {
             </Picker>
           </View>
 
-          <View style={sharedStyles.containerRow}>
+          <View style={sharedStyles.row}>
             <Text style={[styles.attribute, sharedStyles.text]}>
               Cargo
             </Text>
           </View>
 
-          <View style={sharedStyles.containerRow}>
+          <View style={sharedStyles.row}>
             {buildCargoPickers(cargo, (i, c) => onUpdateCargo(i, c))}
           </View>
 

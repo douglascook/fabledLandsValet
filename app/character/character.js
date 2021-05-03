@@ -192,36 +192,38 @@ class Character extends Component {
           Character
         </Text>
 
-        <Text style={styles.nameProfession}>
-          {name.value}
-        </Text>
+        <View style={sharedStyles.rowContainer}>
+          <Text style={styles.nameProfession}>
+            {name.value}
+          </Text>
 
-        <Text style={styles.nameProfession}>
-          {profession.value}
-        </Text>
+          <Text style={styles.nameProfession}>
+            {profession.value}
+          </Text>
 
-        <View style={{ marginVertical: 6 }}>
-          {this.renderRankRow()}
-          {this.renderDefenceRow()}
-          {this.renderStaminaRow()}
+          <View style={{ marginVertical: 6 }}>
+            {this.renderRankRow()}
+            {this.renderDefenceRow()}
+            {this.renderStaminaRow()}
 
-          {this.statRows}
+            {this.statRows}
 
-          <SingleItemRow
-            name="Shards"
-            value={getDisplayValue(shards.value, shards.modifier)}
-            onButtonPress={() => this.setState({ shardsModalVisible: true })}
-          />
+            <SingleItemRow
+              name="Shards"
+              value={getDisplayValue(shards.value, shards.modifier)}
+              onButtonPress={() => this.setState({ shardsModalVisible: true })}
+            />
 
-          <SingleItemRow
-            name="God"
-            value={god.value}
-            onButtonPress={() => this.setState({ godModalVisible: true })}
-          />
+            <SingleItemRow
+              name="God"
+              value={god.value}
+              onButtonPress={() => this.setState({ godModalVisible: true })}
+            />
+          </View>
+
+          {this.renderAssetsButtons()}
+          {this.renderAssetsModals()}
         </View>
-
-        {this.renderAssetsButtons()}
-        {this.renderAssetsModals()}
 
         <SkillChangeModal
           visible={skillModalVisible && skillToChange !== 'stamina'}

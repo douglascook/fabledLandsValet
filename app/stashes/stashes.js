@@ -77,7 +77,7 @@ class Stashes extends Component {
     if (addingStash) {
       return (
         <TextInput
-          style={[sharedStyles.containerRow, { flex: 1 }]}
+          style={sharedStyles.row}
           value={newStash}
           placeholder="New stash name"
           selectionColor="aquamarine"
@@ -111,53 +111,57 @@ class Stashes extends Component {
           Stashes
         </Text>
 
-        <Text style={styles.sectionHeader}>
-          Currently Carrying
-        </Text>
+        <View style={[sharedStyles.rowContainer, { justifyContent: 'flex-start' }]}>
+          <Text style={styles.sectionHeader}>
+            Currently Carrying
+          </Text>
 
-        <StashContents
-          iconName="arrow-down-bold"
-          stash={{ items: possessions.personal.items, shards }}
-          onItemPress={(item) => swapItemCollection(item, 'personal', currentStash)}
-          openShardsModal={() => this.setState({ shardsModalVisible: true })}
-          disableSwap={currentStash === SELECT_STASH || currentStash === 'Bank'
-              || currentStash === 'Invested'}
-          disableShards={currentStash === SELECT_STASH}
-        />
+          <StashContents
+            iconName="arrow-down-bold"
+            stash={{ items: possessions.personal.items, shards }}
+            onItemPress={(item) => swapItemCollection(item, 'personal', currentStash)}
+            openShardsModal={() => this.setState({ shardsModalVisible: true })}
+            disableSwap={currentStash === SELECT_STASH || currentStash === 'Bank'
+                || currentStash === 'Invested'}
+            disableShards={currentStash === SELECT_STASH}
+          />
+        </View>
 
-        <Picker
-          style={sharedStyles.containerRow}
-          selectedValue={currentStash}
-          onValueChange={(v) => this.setState({ currentStash: v })}
-        >
-          {this.stashOptions}
-        </Picker>
+        <View style={[sharedStyles.rowContainer, { justifyContent: 'flex-start' }]}>
+          <Picker
+            style={sharedStyles.row}
+            selectedValue={currentStash}
+            onValueChange={(v) => this.setState({ currentStash: v })}
+          >
+            {this.stashOptions}
+          </Picker>
 
-        {currentStash !== SELECT_STASH && (
-          <ScrollView>
-            <StashContents
-              iconName="arrow-up-bold"
-              stash={possessions[currentStash]}
-              onItemPress={(i) => swapItemCollection(i, currentStash, 'personal')}
-              openShardsModal={() => this.setState({ shardsModalVisible: true })}
-              disableSwap={possessions.personal.items.length >= 12}
-              disableShards={false}
-            />
+          <View style={styles.addDeleteContainer}>
+            {this.newStashInput()}
+          </View>
 
-            { currentStash !== 'Bank' && currentStash !== 'Invested' && (
-              <View style={styles.addDeleteContainer}>
-                <Button
-                  color="firebrick"
-                  onPress={() => this.removeStash()}
-                  title="Delete"
-                />
-              </View>
-            )}
-          </ScrollView>
-        )}
+          {currentStash !== SELECT_STASH && (
+            <ScrollView>
+              <StashContents
+                iconName="arrow-up-bold"
+                stash={possessions[currentStash]}
+                onItemPress={(i) => swapItemCollection(i, currentStash, 'personal')}
+                openShardsModal={() => this.setState({ shardsModalVisible: true })}
+                disableSwap={possessions.personal.items.length >= 12}
+                disableShards={false}
+              />
 
-        <View style={styles.addDeleteContainer}>
-          {this.newStashInput()}
+              { currentStash !== 'Bank' && currentStash !== 'Invested' && (
+                <View style={styles.addDeleteContainer}>
+                  <Button
+                    color="firebrick"
+                    onPress={() => this.removeStash()}
+                    title="Delete"
+                  />
+                </View>
+              )}
+            </ScrollView>
+          )}
         </View>
 
         {currentStash !== SELECT_STASH && (

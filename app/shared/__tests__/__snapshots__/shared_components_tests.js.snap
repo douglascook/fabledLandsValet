@@ -154,7 +154,6 @@ exports[`RemovableRow renders correctly 1`] = `
     Object {
       "alignItems": "center",
       "flexDirection": "row",
-      "marginHorizontal": 20,
       "marginVertical": 1,
     }
   }
@@ -261,7 +260,6 @@ exports[`SingleItemRow renders correctly 1`] = `
     Object {
       "alignItems": "center",
       "flexDirection": "row",
-      "marginHorizontal": 20,
       "marginVertical": 1,
     }
   }

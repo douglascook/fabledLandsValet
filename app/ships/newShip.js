@@ -55,7 +55,7 @@ export default class NewShipModal extends Component {
             New Ship
           </Text>
 
-          <View style={sharedStyles.containerRow}>
+          <View style={sharedStyles.row}>
             <TextInput
               style={{ flex: 1 }}
               value={name}
@@ -66,7 +66,7 @@ export default class NewShipModal extends Component {
             />
           </View>
 
-          <View style={sharedStyles.containerRow}>
+          <View style={sharedStyles.row}>
             <Picker
               style={{ flex: 1 }}
               selectedValue={type}
@@ -76,7 +76,7 @@ export default class NewShipModal extends Component {
             </Picker>
           </View>
 
-          <View style={sharedStyles.containerRow}>
+          <View style={sharedStyles.row}>
             <Picker
               style={{ flex: 1 }}
               selectedValue={crew}
