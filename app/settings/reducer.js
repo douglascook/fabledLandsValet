@@ -6,7 +6,7 @@ import {
 
 export const initialState = {
   book: 'The War-Torn Kingdom',
-  page: 123,
+  page: '1',
 };
 
 export default function settings(state = initialState, action) {

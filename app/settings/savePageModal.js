@@ -34,6 +34,7 @@ class SavePageModal extends Component {
     const { onRequestClose } = this.props;
     if (page !== null) {
       onRequestClose(book, page);
+      this.setState({ page: null });
     }
   }
 
